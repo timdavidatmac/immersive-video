@@ -251,8 +251,19 @@
       let html = '';
 
       // ── Apple TV ──────────────────────────────────────────
-      html += `<h2 class="section-heading" id="apple-tv">🍎 Apple TV App</h2>`;
-      html += `<p class="text-muted text-small" style="margin:0 0 20px;">Pre-installed on Apple Vision Pro. All content free or with Apple TV+.</p>`;
+      html += `<h2 class="section-heading" id="apple-tv">Apple TV App</h2>`;
+      html += `<ul class="catalog-list" style="margin-bottom:0;">
+        <li class="catalog-entry" data-category="apple-tv" data-search="apple tv app download" style="display:flex;gap:12px;align-items:flex-start;">
+          <div style="width:90px;height:51px;flex-shrink:0;display:flex;align-items:center;justify-content:center;">
+            <img src="catalog-images/AppleTV.png" alt="Apple TV app icon" loading="lazy" style="width:46px;height:46px;border-radius:10px;display:block;">
+          </div>
+          <div style="min-width:0;flex:1;padding-top:2px;">
+            <span class="entry-name">Apple TV</span>
+            <span class="platform-note">Pre-installed on Apple Vision Pro. All content free or included with Apple TV+.</span>
+          </div>
+        </li>
+      </ul>
+      <p class="text-muted text-small" style="margin:8px 0 20px;"></p>`;
 
       const atv = data.viewer.apple_tv.sections;
       const atvSections = [
