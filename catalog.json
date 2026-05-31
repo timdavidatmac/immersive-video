@@ -629,7 +629,9 @@
               "status": "available",
               "genre": "Documentary / History",
               "duration": "5m 40s",
-              "note": "Part one of a three-part VR history. In association with the Immersive Archive at USC."
+              "note": "Part one of a three-part VR history. In association with the Immersive Archive at USC.",
+              "thumbnail": "https://nmzfdjblmhrthistlmnc.supabase.co/storage/v1/object/public/theater-artwork/heroes/seeing-things-sensorama.jpg",
+              "title_overlay": true
             },
             {
               "id": "yo-yo-technique",
@@ -682,7 +684,9 @@
               "genre": "Documentary / Art",
               "duration": "13 min",
               "year": 2026,
-              "note": "Color artist Morag Myerscough transforms Munich's Flux Museum. Dir: Carl Amadeus Hiller & Isabelle Vlahos."
+              "note": "Color artist Morag Myerscough transforms Munich's Flux Museum. Dir: Carl Amadeus Hiller & Isabelle Vlahos.",
+              "thumbnail": "https://nmzfdjblmhrthistlmnc.supabase.co/storage/v1/object/public/theater-artwork/heroes/we-make-belonging.jpg",
+              "title_overlay": true
             },
             {
               "id": "resonance",
@@ -738,28 +742,42 @@
               "status": "available",
               "added": "2026-05-25",
               "genre": "Nature / Adventure",
+              "thumbnail": "https://i.ytimg.com/vi/x0bawA7DIvs/hqdefault.jpg",
+              "title_overlay": true,
               "note": "Native AIV, 90fps HDR. Shot by Hugh Hou on URSA Cine Immersive. Best quality via Spatial Film app.",
               "links": [
+                {
+                  "label": "Spatial Film app",
+                  "url": "https://apps.apple.com/us/app/spatial-film/id6670564820"
+                },
                 {
                   "label": "YouTube (free, 8K on M5)",
                   "url": "https://youtu.be/x0bawA7DIvs"
                 },
                 {
-                  "label": "Production Q&A thread",
-                  "url": "https://www.reddit.com/r/VisionPro/comments/1tnd5pp/just_shipped_a_new_apple_immersive_video_at/"
+                  "label": "Full YouTube playlist",
+                  "url": "https://www.youtube.com/playlist?list=PLAyCpxLR2TxvqNdgU4dMQNrRCu37zHyzT"
                 }
               ]
             },
             {
               "id": "tudor-period-piece",
               "title": "Tudor Period Piece — Auggie Award Finalist",
-              "deep_link": null,
-              "platform": "Theater app (deep link TBD)",
+              "url": "https://apps.apple.com/us/app/spatial-film/id6670564820",
+              "platform": "Spatial Film app",
               "status": "available",
               "genre": "Narrative",
               "year": 2026,
               "note": "Dir: Keeley Turner. Shot by Hugh Hou. Auggie Award finalist.",
               "links": [
+                {
+                  "label": "Spatial Film app",
+                  "url": "https://apps.apple.com/us/app/spatial-film/id6670564820"
+                },
+                {
+                  "label": "Full YouTube playlist",
+                  "url": "https://www.youtube.com/playlist?list=PLAyCpxLR2TxvqNdgU4dMQNrRCu37zHyzT"
+                },
                 {
                   "label": "Reddit post",
                   "url": "https://www.reddit.com/r/VisionPro/comments/1tkxbgu/we_filmed_a_tudor_period_piece_in_immersive_for/"
@@ -769,13 +787,21 @@
             {
               "id": "almshouse",
               "title": "700-Year-Old English Almshouse — Guided Immersive History Tour",
-              "deep_link": null,
-              "platform": "Theater app (deep link TBD)",
+              "url": "https://apps.apple.com/us/app/spatial-film/id6670564820",
+              "platform": "Spatial Film app",
               "status": "available",
               "genre": "Documentary / History",
               "year": 2026,
               "note": "Dir: Keeley Turner. Guided tour of a medieval English almshouse.",
               "links": [
+                {
+                  "label": "Spatial Film app",
+                  "url": "https://apps.apple.com/us/app/spatial-film/id6670564820"
+                },
+                {
+                  "label": "Full YouTube playlist",
+                  "url": "https://www.youtube.com/playlist?list=PLAyCpxLR2TxvqNdgU4dMQNrRCu37zHyzT"
+                },
                 {
                   "label": "Reddit post",
                   "url": "https://www.reddit.com/r/AppleImmersiveVideo/comments/1th0l6h/visit_a_700yearold_english_almshouse_in_apple/"
@@ -860,9 +886,11 @@
               "id": "kids-elite-live",
               "title": "Kids Elite Live",
               "deep_link": null,
-              "status": "pending",
+              "status": "available",
               "genre": "Documentary / Culture",
               "duration": "9m 15s",
+              "thumbnail": "https://nmzfdjblmhrthistlmnc.supabase.co/storage/v1/object/public/theater-artwork/heroes/kids-elite-live.jpg",
+              "title_overlay": true,
               "note": "Kids Elite dancers in Paris. From upcoming doc 'Sabrina Lonis, From Kids to Elite Dancers.' By Immersive Flashback.",
               "links": [
                 {
