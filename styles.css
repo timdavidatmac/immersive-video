@@ -1,0 +1,336 @@
+/* ============================================================
+   Apple Immersive Video & Spatial Computing — Site Stylesheet
+   styles.css
+   Used by: index.html, creators.html, usecases.html,
+            newsletters/index.html, newsletter web versions
+   ============================================================ */
+
+/* ── Reset & Base ─────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #1d1d1f;
+  background-color: #f5f5f7;
+}
+
+a { color: #0176ba; text-decoration: none; }
+a:hover { text-decoration: underline; }
+a:focus-visible { outline: 2px solid #0176ba; outline-offset: 3px; border-radius: 2px; }
+
+img { max-width: 100%; display: block; }
+
+/* ── Layout ───────────────────────────────────────────────── */
+.site-wrap {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ── Site Header ──────────────────────────────────────────── */
+.site-header {
+  background-color: #1d1d1f;
+  padding: 0;
+}
+
+.site-header-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 56px;
+  gap: 24px;
+}
+
+.site-header-logo {
+  font-size: 14px;
+  font-weight: 600;
+  color: #f5f5f7;
+  white-space: nowrap;
+  text-decoration: none;
+  letter-spacing: -0.01em;
+}
+.site-header-logo:hover { text-decoration: none; color: #ffffff; }
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.site-nav li a {
+  display: block;
+  padding: 18px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #ababab;
+  text-decoration: none;
+  letter-spacing: 0.01em;
+  transition: color 0.15s;
+}
+.site-nav li a:hover,
+.site-nav li a.active { color: #ffffff; text-decoration: none; }
+
+/* ── Site Footer ──────────────────────────────────────────── */
+.site-footer {
+  background-color: #1d1d1f;
+  margin-top: 64px;
+  padding: 32px 24px;
+}
+
+.site-footer-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.site-footer p {
+  margin: 0 0 8px;
+  font-size: 12px;
+  color: #6e6e73;
+  line-height: 1.6;
+}
+
+.site-footer p:last-child { margin: 0; }
+
+.site-footer a { color: #6e6e73; text-decoration: underline; }
+.site-footer a:hover { color: #ababab; }
+
+/* ── Page Hero ────────────────────────────────────────────── */
+.page-hero {
+  background-color: #1d1d1f;
+  padding: 48px 24px 40px;
+  text-align: center;
+}
+
+/* Image variant — add this class alongside .page-hero for a background image with overlay */
+.page-hero-image {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Semi-transparent dark overlay sits between image and text */
+.page-hero-image::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.62);
+  z-index: 0;
+}
+
+/* Text must sit above the overlay */
+.page-hero-image h1,
+.page-hero-image p {
+  position: relative;
+  z-index: 1;
+}
+
+.page-hero h1 {
+  margin: 0 0 12px;
+  font-size: 32px;
+  font-weight: 600;
+  color: #ffffff;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.page-hero p {
+  margin: 0 auto;
+  max-width: 600px;
+  font-size: 16px;
+  color: #ababab;
+  line-height: 1.6;
+}
+
+/* ── Main Content Area ────────────────────────────────────── */
+.page-content {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 24px 64px;
+}
+
+/* ── Section Headings ─────────────────────────────────────── */
+.section-heading {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #6e6e73;
+  border-bottom: 1px solid #dddee1;
+  padding-bottom: 8px;
+  margin: 40px 0 16px;
+}
+
+.section-heading:first-child { margin-top: 0; }
+
+.subsection-heading {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #86868b;
+  margin: 24px 0 10px;
+}
+
+/* ── Catalog Entry List ───────────────────────────────────── */
+.catalog-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 8px;
+}
+
+.catalog-list li {
+  padding: 12px 0;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.catalog-list li:last-child { border-bottom: none; }
+
+.entry-name {
+  font-weight: 600;
+  font-size: 16px;
+  display: block;
+  color: #1d1d1f;
+  margin-bottom: 2px;
+}
+
+a.entry-name { color: #0176ba; }
+a.entry-name:hover { text-decoration: underline; }
+
+.entry-platform {
+  font-size: 12px;
+  color: #6e6e73;
+  display: block;
+  margin-bottom: 3px;
+}
+
+.entry-note {
+  font-size: 13px;
+  color: #6e6e73;
+  display: block;
+  line-height: 1.5;
+  margin-top: 4px;
+}
+
+/* ── Status Pills ─────────────────────────────────────────── */
+.pill {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 10px;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+
+.pill-new      { background: #dcfce7; color: #166534; }
+.pill-pending  { background: #fef3c7; color: #92400e; }
+.pill-gone     { background: #fee2e2; color: #991b1b; }
+
+/* ── Search Bar ───────────────────────────────────────────── */
+.search-wrap {
+  margin: 0 0 28px;
+}
+
+.search-input {
+  width: 100%;
+  max-width: 480px;
+  padding: 10px 16px;
+  font-size: 15px;
+  font-family: inherit;
+  color: #1d1d1f;
+  background: #ffffff;
+  border: 1px solid #dddee1;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.search-input:focus { border-color: #0176ba; }
+.search-input::placeholder { color: #ababab; }
+
+/* ── Newsletter Archive List ──────────────────────────────── */
+.newsletter-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.newsletter-list li {
+  padding: 16px 0;
+  border-bottom: 1px solid #f0f0f0;
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+}
+
+.newsletter-list li:last-child { border-bottom: none; }
+
+.newsletter-date {
+  font-size: 12px;
+  color: #6e6e73;
+  white-space: nowrap;
+  min-width: 90px;
+}
+
+.newsletter-title {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+/* ── Responsive ───────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .site-header-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 12px 16px;
+    gap: 8px;
+    min-height: auto;
+  }
+
+  .site-nav { flex-wrap: wrap; gap: 0; }
+  .site-nav li a { padding: 8px 10px; font-size: 12px; }
+
+  .page-hero h1 { font-size: 24px; }
+  .page-hero { padding: 32px 16px 28px; }
+  .page-content { padding: 24px 16px 48px; }
+}
+
+/* ── Newsletter Web Version ───────────────────────────────── */
+/* Used in newsletters/*.html — wider than email, takes advantage of browser width */
+/* Email version (immersive_next_draft.html) stays at 600px max-width */
+.nl-wrap { max-width: 900px; margin: 32px auto; background: #ffffff; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+.nl-section { padding: 32px 48px; }
+.nl-label { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600; color: #6e6e73; margin: 0 0 10px; }
+.nl-hr { border: none; border-top: 1px solid #dddee1; margin: 0; }
+.nl-h2 { font-size: 17px; font-weight: 600; color: #1d1d1f; margin: 0 0 8px; line-height: 1.3; }
+.nl-h3 { font-size: 15px; font-weight: 600; color: #1d1d1f; margin: 0 0 6px; }
+.nl-p { margin: 0 0 12px; font-size: 14px; color: #1d1d1f; line-height: 1.6; }
+.nl-img-crop { overflow: hidden; border-radius: 8px; }
+.nl-img-crop img { width: 100%; height: 100%; object-fit: cover; display: block; }
+@media (max-width: 640px) {
+  .nl-section { padding: 20px 16px; }
+}
+
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}
+
+.text-muted { color: #6e6e73; }
+.text-small { font-size: 13px; }

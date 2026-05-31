@@ -1,0 +1,1432 @@
+{
+  "meta": {
+    "title": "Apple Immersive Video & Spatial Computing — Content Catalog",
+    "updated": "2026-05-29",
+    "maintainer": "Tim David · td@apple.com"
+  },
+  "viewer": {
+    "apple_tv": {
+      "label": "Apple TV App",
+      "note": "Pre-installed on Apple Vision Pro. All content free or with Apple TV+.",
+      "sections": {
+        "travel_adventure": {
+          "label": "Travel & Adventure",
+          "entries": [
+            {
+              "id": "elevated",
+              "title": "Elevated",
+              "type": "series",
+              "url": "https://tv.apple.com/us/show/elevated/umc.cmc.5klf6wzriakqz7lcarzyp5bp1",
+              "status": "available",
+              "note": "Apple's flagship AIV travel series, 4 episodes.",
+              "episodes": [
+                {
+                  "title": "E1: Hawaii",
+                  "url": "https://tv.apple.com/us/episode/hawai%CA%BBi/umc.cmc.4ykhgdgdbw1fvp7pfk0sw7g96?showId=umc.cmc.5klf6wzriakqz7lcarzyp5bp1",
+                  "date": "2024-09",
+                  "guest": "Aulii Cravalho"
+                },
+                {
+                  "title": "E2: Maine",
+                  "url": "https://tv.apple.com/us/episode/maine/umc.cmc.ay21aysofxf2ekagr2vc6u5i?showId=umc.cmc.5klf6wzriakqz7lcarzyp5bp1",
+                  "date": "2025-10",
+                  "guest": "Tim Robbins"
+                },
+                {
+                  "title": "E3: Switzerland",
+                  "url": "https://tv.apple.com/us/episode/switzerland/umc.cmc.56aawstdpgqhsuhxpo6vxjdk4?showId=umc.cmc.5klf6wzriakqz7lcarzyp5bp1",
+                  "date": "2026-02",
+                  "guest": "Carla Juri"
+                },
+                {
+                  "title": "E4: New York City",
+                  "url": "https://tv.apple.com/us/episode/new-york-city/umc.cmc.6uubfgdtgma0cjnuqmbuxd79n?showId=umc.cmc.5klf6wzriakqz7lcarzyp5bp1",
+                  "date": "2026-04"
+                }
+              ],
+              "links": [
+                {
+                  "label": "UploadVR review — NYC",
+                  "url": "https://www.uploadvr.com/can-apple-immersive-video-convey-the-spirit-of-new-york/"
+                }
+              ],
+              "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/Ex-mBGCszrp7ZIdwvRZlfw/1200x675.jpg"
+            },
+            {
+              "id": "adventure",
+              "title": "Adventure",
+              "type": "series",
+              "url": "https://tv.apple.com/us/show/adventure/umc.cmc.5al10vz5fkqzxonreq110ony0",
+              "status": "available",
+              "note": "Adventure sports series, 5 episodes, 2024–2025.",
+              "episodes": [
+                {
+                  "title": "E1: Highlining",
+                  "url": "https://tv.apple.com/us/episode/highlining/umc.cmc.5s419yrml4xuumjywusbyjd2b?showId=umc.cmc.5al10vz5fkqzxonreq110ony0",
+                  "date": "2024-02"
+                },
+                {
+                  "title": "E2: Parkour",
+                  "url": "https://tv.apple.com/us/episode/parkour/umc.cmc.no9u63y3wpn8xl7s23jfia46?showId=umc.cmc.5al10vz5fkqzxonreq110ony0",
+                  "date": "2024-05"
+                },
+                {
+                  "title": "E3: Ice Dive",
+                  "url": "https://tv.apple.com/us/episode/ice-dive/umc.cmc.1lxb2q6h7pj1b6k1q2hgq25xt?showId=umc.cmc.5al10vz5fkqzxonreq110ony0",
+                  "date": "2024-12"
+                },
+                {
+                  "title": "E4: Deep Water Solo",
+                  "url": "https://tv.apple.com/us/episode/deep-water-solo/umc.cmc.75zy79ytgeqcstkkq8pyk98ci?showId=umc.cmc.5al10vz5fkqzxonreq110ony0",
+                  "date": "2025-02"
+                },
+                {
+                  "title": "E5: Hill Climb",
+                  "url": "https://tv.apple.com/us/episode/hill-climb/umc.cmc.4klex1b4fsohrpmncr5mho5pk?showId=umc.cmc.5al10vz5fkqzxonreq110ony0",
+                  "date": "2025-04"
+                }
+              ],
+              "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/fMpXBIFug0uv3o0yDNky3Q/1200x675.jpg"
+            },
+            {
+              "id": "boundless",
+              "title": "Boundless",
+              "type": "series",
+              "url": "https://tv.apple.com/us/show/boundless/umc.cmc.2y2ypiwhg8dp8027p47jfhlf1",
+              "status": "available",
+              "note": "Adventure series, 2024–2025.",
+              "episodes": [
+                {
+                  "title": "E1: Hot Air Balloons",
+                  "url": "https://tv.apple.com/us/episode/hot-air-balloons/umc.cmc.6s0zuechyw2i5t4ewgmr48iik?showId=umc.cmc.2y2ypiwhg8dp8027p47jfhlf1",
+                  "date": "2024-07",
+                  "location": "Cappadocia, Türkiye"
+                },
+                {
+                  "title": "E2: Arctic Surfing",
+                  "url": "https://tv.apple.com/us/episode/arctic-surfing/umc.cmc.3bjrm93ij86c726522v61bxi8?showId=umc.cmc.2y2ypiwhg8dp8027p47jfhlf1",
+                  "date": "2025-02",
+                  "location": "Norway"
+                }
+              ],
+              "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/9sNMklk8fgJNPcwO8gKPLQ/1200x675.jpg"
+            },
+            {
+              "id": "wild-life",
+              "title": "Wild Life",
+              "type": "series",
+              "url": "https://tv.apple.com/us/show/wild-life/umc.cmc.63jzn7b2c5w488vb72cabapqa",
+              "status": "available",
+              "note": "Adventure/nature series, 4 episodes, 2024–2025.",
+              "episodes": [
+                {
+                  "title": "E1: Rhinos",
+                  "url": "https://tv.apple.com/us/episode/rhinos/umc.cmc.3qvwcq3tjbg4bwij0x6g4yrh0?showId=umc.cmc.63jzn7b2c5w488vb72cabapqa",
+                  "date": "2024-02"
+                },
+                {
+                  "title": "E2: Elephants",
+                  "url": "https://tv.apple.com/us/episode/elephants/umc.cmc.1y0oyezs14pm2enm5v22i2qro?showId=umc.cmc.63jzn7b2c5w488vb72cabapqa",
+                  "date": "2024-08"
+                },
+                {
+                  "title": "E3: Sharks",
+                  "url": "https://tv.apple.com/us/episode/sharks/umc.cmc.1wehrlakivxxm0rr8fotl01s0?showId=umc.cmc.63jzn7b2c5w488vb72cabapqa",
+                  "date": "2024-12"
+                },
+                {
+                  "title": "E4: Orangutans",
+                  "url": "https://tv.apple.com/us/episode/orangutans/umc.cmc.65valpyigxg5b589wsjeyys2o?showId=umc.cmc.63jzn7b2c5w488vb72cabapqa",
+                  "date": "2025-08"
+                }
+              ],
+              "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/V_B1_Dw39Fm8Mi6d5ZP-xA/1200x675.jpg"
+            },
+            {
+              "id": "flight-ready",
+              "title": "Flight Ready",
+              "type": "film",
+              "url": "https://tv.apple.com/us/movie/flight-ready/umc.cmc.3z7h8273r7myfxlvpjt17futm",
+              "status": "available",
+              "duration": "14 min",
+              "year": 2025,
+              "note": "F-18 fighter pilots aboard the USS Nimitz.",
+              "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/crCpLqy72vkBgX3bVTo_pw/1200x675.jpg"
+            }
+          ]
+        },
+        "nature_documentary": {
+          "label": "Nature & Documentary",
+          "entries": [
+            {
+              "id": "prehistoric-planet",
+              "title": "Prehistoric Planet Immersive",
+              "type": "series",
+              "url": "https://tv.apple.com/us/show/prehistoric-planet-immersive/umc.cmc.4llk93xln0cw9wrwbmfduwbdx",
+              "status": "available",
+              "note": "Documentary series, 2 episodes, 2024.",
+              "episodes": [
+                {
+                  "title": "E1: Pterosaur Beach",
+                  "url": "https://tv.apple.com/us/episode/pterosaur-beach/umc.cmc.4kxr1p0klaw3biz9250at4lbg?showId=umc.cmc.4llk93xln0cw9wrwbmfduwbdx",
+                  "date": "2024-02"
+                },
+                {
+                  "title": "E2: Triceratops Forest",
+                  "url": "https://tv.apple.com/us/episode/triceratops-forest/umc.cmc.6m49y11kvxwsbp3zs5ejwfr9e?showId=umc.cmc.4llk93xln0cw9wrwbmfduwbdx",
+                  "date": "2024-04"
+                }
+              ],
+              "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/ENZFhup5qd5QjVZM6l7dXQ/1200x675.jpg"
+            },
+            {
+              "id": "top-dogs",
+              "title": "Top Dogs",
+              "type": "series",
+              "url": "https://tv.apple.com/us/show/top-dogs/umc.cmc.6snqtei46tkkch7odsnoq9nac",
+              "status": "available",
+              "note": "AIV documentary series, 2 episodes. Crufts dog show.",
+              "episodes": [
+                {
+                  "title": "E1: The Giant Killer",
+                  "url": "https://tv.apple.com/us/episode/the-giant-killer/umc.cmc.6d0vp8jnzz1hz73k97o2vx0z2?showId=umc.cmc.6snqtei46tkkch7odsnoq9nac",
+                  "date": "2026-01"
+                },
+                {
+                  "title": "E2: Best in Show",
+                  "url": "https://tv.apple.com/us/episode/best-in-show/umc.cmc.ptxc1tn9hzbrxcaumo7hlhqd?showId=umc.cmc.6snqtei46tkkch7odsnoq9nac",
+                  "date": "2026-01"
+                }
+              ],
+              "links": [
+                {
+                  "label": "UploadVR review",
+                  "url": "https://www.uploadvr.com/top-dogs-on-apple-immersive-brings-you-up-close-with-champions/"
+                }
+              ],
+              "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/2FkV8bpwLATSyp-9Vtca-w/1200x675.jpg"
+            },
+            {
+              "id": "world-of-red-bull",
+              "title": "World of Red Bull",
+              "type": "series",
+              "url": "https://tv.apple.com/us/show/world-of-red-bull/umc.cmc.h96ns9ovu03p34i6bnodn3h6",
+              "status": "available",
+              "note": "Sports series.",
+              "episodes": [
+                {
+                  "title": "E1: Backcountry Skiing",
+                  "url": "https://tv.apple.com/us/episode/backcountry-skiing/umc.cmc.1ksom5fsoafsx570vuwk717go?showId=umc.cmc.h96ns9ovu03p34i6bnodn3h6",
+                  "date": "2025-12",
+                  "duration": "11 min",
+                  "location": "Revelstoke, BC"
+                },
+                {
+                  "title": "E2: Big-Wave Surfing",
+                  "url": null,
+                  "status": "pending",
+                  "location": "Teahupoʻo, Tahiti",
+                  "note": "Available in 2026 — no specific date"
+                }
+              ],
+              "links": [
+                {
+                  "label": "Apple Newsroom",
+                  "url": "https://www.apple.com/newsroom/2025/09/apple-previews-new-immersive-films-for-apple-vision-pro/"
+                }
+              ],
+              "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/ArTX_SJPrY-UDHxhWCcKPw/1200x675.jpg"
+            }
+          ]
+        },
+        "sports": {
+          "label": "Sports",
+          "entries": [
+            {
+              "id": "real-madrid",
+              "title": "Real Madrid: The Weight of Greatness",
+              "type": "film",
+              "url": "https://tv.apple.com/us/movie/real-madrid-the-weight-of-greatness/umc.cmc.59n2yrotl8j6izhn13cj15kz9",
+              "status": "available",
+              "duration": "~21 min",
+              "year": 2026,
+              "free": true,
+              "added": "2026-05-22",
+              "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/s5pdJ0bt6RtrGo6q5kQw0A/1200x675.jpg",
+              "note": "Free on Apple TV. Shot over 5 days during the 2025 Champions League with 30+ URSA Cine Immersive cameras. Features Mbappé, Bellingham, Vinícius Jr., Courtois.",
+              "links": [
+                {
+                  "label": "Trailer",
+                  "url": "https://youtu.be/1yTXr5bX2wQ"
+                },
+                {
+                  "label": "UploadVR review",
+                  "url": "https://www.uploadvr.com/real-madrid-apple-immersive-documentary/"
+                }
+              ]
+            },
+            {
+              "id": "motogp-tour-de-force",
+              "title": "MotoGP: Tour De Force",
+              "type": "film",
+              "url": "https://tv.apple.com/us/movie/motogp-tour-de-force/umc.cmc.7anuf0yj59w24eoo74tyhmvyt",
+              "status": "available",
+              "duration": "30 min",
+              "year": 2025,
+              "note": "Johann Zarco's dramatic French MotoGP Grand Prix victory at Le Mans.",
+              "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/GwrK5725O7pGAIrQWsX5PA/1200x675.jpg"
+            },
+            {
+              "id": "vip",
+              "title": "VIP",
+              "type": "series",
+              "url": "https://tv.apple.com/us/show/vip/umc.cmc.e96b9gdwcrlwocbvapiyt6gv",
+              "status": "available",
+              "year": 2025,
+              "note": "Behind-the-scenes at iconic sports venues.",
+              "episodes": [
+                {
+                  "title": "E1: Yankee Stadium",
+                  "url": "https://tv.apple.com/us/episode/yankee-stadium/umc.cmc.4awwgdeond5reeitehveujxpu?showId=umc.cmc.e96b9gdwcrlwocbvapiyt6gv",
+                  "date": "2025-04",
+                  "duration": "13 min",
+                  "note": "Narrated by Joe Buck"
+                }
+              ],
+              "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/QKHdBCTV8oFXH-9nLN1t_A/1200x675.jpg"
+            },
+            {
+              "id": "man-vs-beast",
+              "title": "Man vs. Beast",
+              "type": "film",
+              "url": "https://tv.apple.com/us/movie/man-vs-beast/umc.cmc.5qftwm3bk4i7oh0wnagrur1oa",
+              "status": "available",
+              "duration": "10 min",
+              "note": "Professional bull riding — inside the rodeo.",
+              "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/F03X7XuV4GNop4mb27Gxig/1200x675.jpg"
+            },
+            {
+              "id": "mls-cup-2023",
+              "title": "2023 MLS Cup Highlights",
+              "type": "film",
+              "url": "https://tv.apple.com/us/movie/2023-mls-cup-highlights/umc.cmc.5qwb98zkomjt7dbahu9w7iyey",
+              "status": "available",
+              "duration": "5 min",
+              "note": "Columbus Crew's push for their third MLS crown.",
+              "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/Cp7uSZc-16Vncziy63WrSA/1200x675.jpg"
+            },
+            {
+              "id": "nba-all-star-2024",
+              "title": "2024 NBA All-Star Weekend",
+              "type": "film",
+              "url": "https://tv.apple.com/us/movie/2024-nba-all-star-weekend/umc.cmc.2v9frg323a8bofmfs9r4g1dm",
+              "status": "available",
+              "duration": "4 min",
+              "note": "Gravity-defying icons at NBA's star-packed weekend.",
+              "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/6988Br6m44QapGfggOcAUQ/1200x675.jpg"
+            },
+            {
+              "id": "nba-lakers",
+              "title": "NBA Lakers Games (6 games)",
+              "type": "live",
+              "url": "https://apps.apple.com/us/app/spectrum-sportsnet-live-games/id563316826?platform=vision",
+              "status": "available",
+              "thumbnail": "https://www.apple.com/newsroom/images/2026/01/spectrum-front-row-tips-off-january-9-on-apple-vision-pro/article/Apple-Immersive-Video-Spectrum-SportsNet-app_big.jpg.large_2x.jpg",
+              "note": "Six Lakers games via Spectrum Front Row, Jan–Mar 2026. Links in Apple TV app.",
+              "links": [
+                {
+                  "label": "Spectrum SportsNet app",
+                  "url": "https://apps.apple.com/us/app/spectrum-sportsnet-live-games/id563316826?platform=vision"
+                },
+                {
+                  "label": "Apple Newsroom",
+                  "url": "https://www.apple.com/newsroom/2026/01/spectrum-front-row-tips-off-january-9-on-apple-vision-pro/"
+                }
+              ]
+            }
+          ]
+        },
+        "music_performance": {
+          "label": "Music & Performance",
+          "entries": [
+            {
+              "id": "metallica",
+              "title": "Metallica",
+              "type": "film",
+              "url": "https://tv.apple.com/us/movie/metallica/umc.cmc.603856djrpllqck781mj4qknj",
+              "status": "available",
+              "duration": "25 min",
+              "year": 2025,
+              "note": "First-of-its-kind immersive concert.",
+              "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/skP6-kIF6_iWIcz27tSLmw/1200x675.jpg"
+            },
+            {
+              "id": "bbc-proms",
+              "title": "BBC Proms — Debut at the BBC Proms",
+              "type": "film",
+              "url": "https://tv.apple.com/us/movie/debut-at-the-bbc-proms/umc.cmc.12u6qljhkbg7up6p3oehb0gbs",
+              "status": "available",
+              "duration": "35 min",
+              "free": true,
+              "note": "Lukas Sternath + BBC Symphony Orchestra at Royal Albert Hall. Shot by Livewire Pictures on URSA Cine Immersive.",
+              "links": [
+                {
+                  "label": "MacRumors",
+                  "url": "https://www.macrumors.com/2026/03/27/apple-immersive-video-bbc-proms-concert-vision-pro/"
+                }
+              ],
+              "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/1g6KpmhwU_iVfEQzMMz8wA/1200x675.jpg"
+            },
+            {
+              "id": "alicia-keys",
+              "title": "Alicia Keys: Rehearsal Room",
+              "type": "film",
+              "url": "https://tv.apple.com/us/movie/alicia-keys-rehearsal-room/umc.cmc.t9iydetu9oavhk8i00qvduup",
+              "status": "available",
+              "duration": "20 min",
+              "year": 2024,
+              "note": "Intimate rehearsal featuring 'No One,' 'If I Ain't Got You,' and 'You Don't Know My Name'.",
+              "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/c-b6uDZkum2D-MeJ1HuV_w/1200x675.jpg"
+            },
+            {
+              "id": "nearest-cortis",
+              "title": "NEAREST CORTIS",
+              "type": "film",
+              "url": "https://tv.apple.com/us/movie/nearest-cortis/umc.cmc.zzb8y2ums5f8gj2qgi8c94vu",
+              "status": "available",
+              "duration": "5 min",
+              "year": 2026,
+              "note": "CORTIS backstage rehearsal room. BIGHIT/HYBE boy band, track 'GO!'.",
+              "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/CQXW8LBR1roZrEGuogookA/1200x675.jpg"
+            },
+            {
+              "id": "concert-for-one",
+              "title": "Concert For One",
+              "type": "series",
+              "url": "https://tv.apple.com/us/show/concert-for-one/umc.cmc.2khlg44095l5tdllfpt2rgv9h",
+              "status": "available",
+              "year": 2024,
+              "note": "Exclusive private performances.",
+              "episodes": [
+                {
+                  "title": "E1: RAYE",
+                  "url": "https://tv.apple.com/us/episode/raye/umc.cmc.2brt23wsqrd4wqqtwdynq6ise?showId=umc.cmc.2khlg44095l5tdllfpt2rgv9h",
+                  "date": "2024-11",
+                  "duration": "8 min",
+                  "note": "'Genesis' and 'Escapism' from AIR Studios London"
+                }
+              ],
+              "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/e-_y1vdm7z4Uf6oF_jSoIA/1200x675.jpg"
+            },
+            {
+              "id": "weeknd-open-hearts",
+              "title": "The Weeknd: Open Hearts",
+              "type": "film",
+              "url": "https://tv.apple.com/us/movie/the-weeknd-open-hearts/umc.cmc.514y68fx73q3blcgkvcoe1lie",
+              "status": "available",
+              "duration": "5 min",
+              "note": "Music video. The Weeknd navigates a surreal, haunting cityscape.",
+              "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/rIPRuE2Ww_eqRM7Qcf0Y7g/1200x675.jpg"
+            },
+            {
+              "id": "bono-stories",
+              "title": "Bono: Stories of Surrender",
+              "type": "film",
+              "url": "https://tv.apple.com/us/movie/bono-stories-of-surrender-immersive/umc.cmc.476rdiiy032587avqkafo07ty",
+              "status": "available",
+              "duration": "1 hr 26 min",
+              "note": "First feature-length AIV film. Directed by Elad Offer.",
+              "links": [
+                {
+                  "label": "CineD article",
+                  "url": "https://www.cined.com/inside-the-first-feature-length-immersive-film-for-apple-vision-pro-bono-stories-of-surrender/"
+                },
+                {
+                  "label": "YouTube trailer",
+                  "url": "https://www.youtube.com/watch?v=BV39J6KM58U"
+                }
+              ],
+              "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/9Kxmr2RD_RRz-1NvYhAjQA/1200x675.jpg"
+            }
+          ]
+        },
+        "narrative": {
+          "label": "Narrative & Thriller",
+          "entries": [
+            {
+              "id": "submerged",
+              "title": "Submerged",
+              "type": "film",
+              "url": "https://tv.apple.com/us/movie/submerged/umc.cmc.vy97m4adbovp4zrxsuny0mua",
+              "status": "available",
+              "duration": "17 min",
+              "note": "WWII submarine crew under torpedo attack. Directed by Edward Berger (All Quiet on the Western Front).",
+              "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/UMjP6brNL_49K0j3m_idZw/1200x675.jpg"
+            }
+          ]
+        },
+        "sampler": {
+          "label": "Sampler",
+          "entries": [
+            {
+              "id": "experience-immersive",
+              "title": "Experience Immersive",
+              "type": "film",
+              "url": "https://tv.apple.com/us/movie/experience-immersive/umc.cmc.7dmcpfiecefqyqs17h9v4llrw",
+              "status": "available",
+              "duration": "3 min",
+              "year": 2025,
+              "note": "Preview/sampler. Clips from Metallica, Yankees, and Submerged.",
+              "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/vezho3tzKbSgmRNRgQ9y_A/1200x675.jpg"
+            }
+          ]
+        },
+        "announced": {
+          "label": "Announced — Not Yet Available",
+          "entries": [
+            {
+              "id": "julaymba",
+              "title": "Julaymba",
+              "status": "pending",
+              "note": "Award-winning documentary by PHORIA. Daintree Rainforest, Australia. Scheduled Oct 2025 — still unreleased as of May 2026. Shot on URSA Cine Immersive."
+            },
+            {
+              "id": "experience-paris",
+              "title": "Experience Paris",
+              "status": "pending",
+              "note": "By The Explorers. Three-Michelin-star kitchen, Eiffel Tower, Montmartre. Fall 2025 — still unreleased."
+            },
+            {
+              "id": "cnn-antarctica",
+              "title": "CNN — Journey to Antarctica",
+              "status": "pending",
+              "note": "Emperor penguins on Snow Hill Island with CNN's Bill Weir. Spring 2026 — may still be unreleased."
+            },
+            {
+              "id": "audi-f1",
+              "title": "Audi F1 Project",
+              "status": "pending",
+              "note": "Mentioned in Apple Newsroom Sep 2025 — no details yet."
+            }
+          ]
+        },
+        "unavailable": {
+          "label": "No Longer Available",
+          "entries": [
+            {
+              "id": "super-bowl-lviii",
+              "title": "4 Minutes Inside Super Bowl LVIII",
+              "status": "gone",
+              "note": "Chiefs vs. 49ers. Was available Sep 2024."
+            },
+            {
+              "id": "f1-hot-lap",
+              "title": "F1 The Movie: Hot Lap Immersive",
+              "status": "gone",
+              "note": "High-speed test drive with Brad Pitt. Was available Jun 2025."
+            }
+          ]
+        }
+      }
+    },
+    "theater_app": {
+      "label": "Theater App",
+      "app_store": "https://apps.apple.com/us/app/theater-cinema-events/id6502666560",
+      "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/dd/b3/a9/ddb3a9b7-e37f-c89d-45c6-32cb1d27edb8/AppIcon.lsr/512x512bb.jpg",
+      "website": "https://theater.sandwich.vision",
+      "marquee": "https://sandwich.vision/sandwich-vision/render/theater/theater-marquee#aiv",
+      "note": "Tap any title to open directly in the Theater app — deep links require Theater to be installed.",
+      "sections": {
+        "main_course_films": {
+          "label": "Ben Allan & Clara Chong",
+          "entries": [
+            {
+              "id": "fine-dining-bakery",
+              "title": "The Fine Dining Bakery",
+              "deep_link": "theater://view/the-fine-dining",
+              "status": "available",
+              "genre": "Documentary / Food",
+              "duration": "5 min",
+              "note": "Clara Chong dir, Ben Allan prod. About Christopher Thé and the world's most Instagrammed cake.",
+              "links": [
+                {
+                  "label": "Main Course Films",
+                  "url": "https://www.maincoursefilms.com/production/mcf_apple-immersive-video/apple-immersive-projects/the-fine-dining-bakery/"
+                }
+              ],
+              "thumbnail": "https://nmzfdjblmhrthistlmnc.supabase.co/storage/v1/object/public/theater-artwork/movies/the-fine-dining-v2-splash.jpg",
+              "title_overlay": true
+            },
+            {
+              "id": "dobos-connection",
+              "title": "The Dobos Connection",
+              "deep_link": "theater://view/the-dobos-connection",
+              "status": "available",
+              "genre": "Drama / Narrative",
+              "duration": "9 min",
+              "note": "Clara Chong dir, Ben Allan & Mike Seymour PhD prod. Romantic drama set over one evening at a university.",
+              "links": [
+                {
+                  "label": "fxguide deep dive",
+                  "url": "https://www.fxguide.com/fxfeatured/immersive-drama-more-than-vr-more-than-film/"
+                },
+                {
+                  "label": "fxguide streaming workflow",
+                  "url": "https://www.fxguide.com/quicktakes/delivering-apple-immersive-video-for-streaming-a-new-practical-workflow/"
+                }
+              ]
+            }
+          ]
+        },
+        "sandwich_vision": {
+          "label": "Sandwich Vision",
+          "entries": [
+            {
+              "id": "jenna-paints-vidiots",
+              "title": "Jenna Paints Vidiots",
+              "deep_link": "theater://view/jenna-paints-vidiots",
+              "status": "available",
+              "genre": "Documentary / Culture",
+              "duration": "8m 21s",
+              "note": "Sign painter Jenna Homen at the IRL Eagle Theater and Vidiots video store.",
+              "thumbnail": "https://nmzfdjblmhrthistlmnc.supabase.co/storage/v1/object/public/theater-artwork/movies/jenna-paints-vidiots-v2-splash.jpg",
+              "title_overlay": true
+            },
+            {
+              "id": "robot-dot-com",
+              "title": "Robot.com",
+              "deep_link": "theater://view/robot-dot-com",
+              "status": "available",
+              "genre": "Ad / Tech",
+              "duration": "1m 17s",
+              "note": "First-ever brand commercial in Apple Immersive Video. Shot on URSA Cine Immersive.",
+              "links": [
+                {
+                  "label": "Blackmagic press release",
+                  "url": "https://www.blackmagicdesign.com/media/release/20251119-01"
+                }
+              ],
+              "thumbnail": "https://nmzfdjblmhrthistlmnc.supabase.co/storage/v1/object/public/theater-artwork/movies/robot-dot-com-v2-splash.jpg",
+              "title_overlay": true
+            },
+            {
+              "id": "urban-theory-teaser",
+              "title": "Urban Theory Teaser",
+              "deep_link": "theater://view/urban-theory-teaser",
+              "status": "available",
+              "genre": "Art / Culture",
+              "duration": "37s",
+              "note": "Italian dance crew Urban Theory collaboration.",
+              "thumbnail": "https://nmzfdjblmhrthistlmnc.supabase.co/storage/v1/object/public/theater-artwork/movies/urban-theory-splash.jpg",
+              "title_overlay": true
+            },
+            {
+              "id": "seeing-things-sensorama",
+              "title": "Seeing Things: Sensorama",
+              "deep_link": "theater://view/seeing-things-sensorama",
+              "status": "available",
+              "genre": "Documentary / History",
+              "duration": "5m 40s",
+              "note": "Part one of a three-part VR history. In association with the Immersive Archive at USC."
+            },
+            {
+              "id": "yo-yo-technique",
+              "title": "Yo-yo Technique",
+              "deep_link": "theater://view/yo-yo-technique",
+              "status": "available",
+              "genre": "Documentary / Art",
+              "duration": "5 min",
+              "note": "First-of-its-kind documentary on the Spirit Yo team and the art of yo-yo.",
+              "thumbnail": "https://nmzfdjblmhrthistlmnc.supabase.co/storage/v1/object/public/theater-artwork/movies/yo-yo-technique-v2-splash.jpg",
+              "title_overlay": true
+            }
+          ]
+        },
+        "vj_wooo": {
+          "label": "VJ WOOO",
+          "entries": [
+            {
+              "id": "wai-000",
+              "title": "WAI-000",
+              "deep_link": "theater://view/wai",
+              "status": "available",
+              "genre": "Narrative / Sci-fi",
+              "duration": "1 min",
+              "note": "VJ WOOO & Emmy-winning Gryun Kim. Spatial sound by Echoic Audio. 'If AI is fed from human memories, what happens when it grows nostalgic?'",
+              "thumbnail": "https://nmzfdjblmhrthistlmnc.supabase.co/storage/v1/object/public/theater-artwork/movies/wai-v2-splash.jpg",
+              "title_overlay": true
+            },
+            {
+              "id": "nebula-junkyard",
+              "title": "Nebula Junkyard",
+              "deep_link": "theater://view/nebula-junkyard",
+              "status": "available",
+              "genre": "Music / AV",
+              "duration": "3 min",
+              "note": "SUPER POP Festival collaboration between VJ WOOO and K-Pop producer TOYO.",
+              "thumbnail": "https://nmzfdjblmhrthistlmnc.supabase.co/storage/v1/object/public/theater-artwork/movies/nebula-junkyard-v4-splash.jpg",
+              "title_overlay": true
+            }
+          ]
+        },
+        "carl_amadeus_hiller": {
+          "label": "Carl Amadeus Hiller",
+          "entries": [
+            {
+              "id": "we-make-belonging",
+              "title": "We Make Belonging",
+              "deep_link": "theater://view/we-make-belonging",
+              "status": "available",
+              "genre": "Documentary / Art",
+              "duration": "13 min",
+              "year": 2026,
+              "note": "Color artist Morag Myerscough transforms Munich's Flux Museum. Dir: Carl Amadeus Hiller & Isabelle Vlahos."
+            },
+            {
+              "id": "resonance",
+              "title": "Resonance",
+              "deep_link": "theater://view/resonance",
+              "status": "available",
+              "genre": "Documentary / Music",
+              "duration": "10 min",
+              "year": 2026,
+              "note": "Master luthier Niklaus Weber crafts a violin. Dir: Carl Amadeus Hiller & Sheila Uschkurat.",
+              "thumbnail": "https://nmzfdjblmhrthistlmnc.supabase.co/storage/v1/object/public/theater-artwork/movies/resonance-v2-splash.jpg",
+              "title_overlay": true
+            }
+          ]
+        },
+        "altitude_101": {
+          "label": "altitude.101",
+          "entries": [
+            {
+              "id": "altitude-kick",
+              "title": "KICK",
+              "deep_link": "theater://view/altitude101-kick",
+              "status": "available",
+              "also_on": "Amplium",
+              "genre": "Sports / Action",
+              "duration": "8m 28s",
+              "note": "Elite freeriders build the ultimate jump in the French Alps. Shot on URSA Cine Immersive.",
+              "thumbnail": "https://nmzfdjblmhrthistlmnc.supabase.co/storage/v1/object/public/theater-artwork/movies/altitude101-kick-v2-splash.jpg",
+              "title_overlay": true
+            },
+            {
+              "id": "altitude-echoes",
+              "title": "Echoes of the Middle East",
+              "deep_link": "theater://view/altitude101-echoes",
+              "status": "available",
+              "also_on": "Amplium",
+              "genre": "Documentary / Travel",
+              "duration": "5m 7s",
+              "note": "UAE and Oman travelogue. Shot on URSA Cine Immersive.",
+              "thumbnail": "https://nmzfdjblmhrthistlmnc.supabase.co/storage/v1/object/public/theater-artwork/movies/echoes-v3-splash.jpg",
+              "title_overlay": true
+            }
+          ]
+        },
+        "keeley_turner_hugh_hou": {
+          "label": "Keeley Turner & Hugh Hou",
+          "entries": [
+            {
+              "id": "multnomah-falls",
+              "title": "Multnomah Falls",
+              "url": "https://apps.apple.com/us/app/spatial-film/id6670564820",
+              "platform": "Spatial Film app",
+              "status": "available",
+              "added": "2026-05-25",
+              "genre": "Nature / Adventure",
+              "note": "Native AIV, 90fps HDR. Shot by Hugh Hou on URSA Cine Immersive. Best quality via Spatial Film app.",
+              "links": [
+                {
+                  "label": "YouTube (free, 8K on M5)",
+                  "url": "https://youtu.be/x0bawA7DIvs"
+                },
+                {
+                  "label": "Production Q&A thread",
+                  "url": "https://www.reddit.com/r/VisionPro/comments/1tnd5pp/just_shipped_a_new_apple_immersive_video_at/"
+                }
+              ]
+            },
+            {
+              "id": "tudor-period-piece",
+              "title": "Tudor Period Piece — Auggie Award Finalist",
+              "deep_link": null,
+              "platform": "Theater app (deep link TBD)",
+              "status": "available",
+              "genre": "Narrative",
+              "year": 2026,
+              "note": "Dir: Keeley Turner. Shot by Hugh Hou. Auggie Award finalist.",
+              "links": [
+                {
+                  "label": "Reddit post",
+                  "url": "https://www.reddit.com/r/VisionPro/comments/1tkxbgu/we_filmed_a_tudor_period_piece_in_immersive_for/"
+                }
+              ]
+            },
+            {
+              "id": "almshouse",
+              "title": "700-Year-Old English Almshouse — Guided Immersive History Tour",
+              "deep_link": null,
+              "platform": "Theater app (deep link TBD)",
+              "status": "available",
+              "genre": "Documentary / History",
+              "year": 2026,
+              "note": "Dir: Keeley Turner. Guided tour of a medieval English almshouse.",
+              "links": [
+                {
+                  "label": "Reddit post",
+                  "url": "https://www.reddit.com/r/AppleImmersiveVideo/comments/1th0l6h/visit_a_700yearold_english_almshouse_in_apple/"
+                }
+              ]
+            }
+          ]
+        },
+        "sliceoflifevr": {
+          "label": "SliceoflifeVR",
+          "entries": [
+            {
+              "id": "el-capitan-summit",
+              "title": "Yosemite: El Capitan Summit",
+              "url": "https://www.sliceoflifevr.com",
+              "status": "available",
+              "added": "2026-05-20",
+              "genre": "Nature / Adventure",
+              "note": "16K VR180. Shot on Blackmagic URSA Cine Immersive. 28-hour journey to El Capitan summit. Monthly releases planned — Times Square and Central Park upcoming.",
+              "links": [
+                {
+                  "label": "YouTube (compressed)",
+                  "url": "https://youtu.be/S923fCG_Asc"
+                },
+                {
+                  "label": "Reddit post",
+                  "url": "https://www.reddit.com/r/VisionPro/comments/1tixjr7/yosemite_el_capitan_summit_with_ursa_cine/"
+                }
+              ]
+            }
+          ]
+        },
+        "other_theater": {
+          "label": "Other Theater Content",
+          "entries": [
+            {
+              "id": "harvest-in-the-bogs",
+              "title": "Harvest in the Bogs",
+              "deep_link": "theater://view/harvest-in-the-bogs",
+              "status": "available",
+              "genre": "Documentary / Culture",
+              "duration": "6m 31s",
+              "thumbnail": "https://nmzfdjblmhrthistlmnc.supabase.co/storage/v1/object/public/theater-artwork/movies/harvest-in-the-bogs-splash.jpg",
+              "title_overlay": true,
+              "note": "Cranberry harvest documentary. Sam Baumel, NYU Tisch faculty. Shot on URSA Cine Immersive."
+            },
+            {
+              "id": "open-air",
+              "title": "Open Air",
+              "deep_link": "theater://view/open-air",
+              "status": "available",
+              "genre": "Documentary / Adventure",
+              "duration": "3m 5s",
+              "note": "First-of-its-kind air-to-air immersive. Stunt plane aerobatics by the aerial team behind Top Gun: Maverick. By Rogue Labs.",
+              "thumbnail": "https://nmzfdjblmhrthistlmnc.supabase.co/storage/v1/object/public/theater-artwork/movies/rogue-labs-open-air-v2-splash.jpg",
+              "title_overlay": true
+            },
+            {
+              "id": "mario-luraschi",
+              "title": "Mario Luraschi",
+              "deep_link": "theater://view/mario-luraschi",
+              "status": "available",
+              "genre": "Documentary / Profile",
+              "duration": "5 min",
+              "year": 2025,
+              "note": "World's most famous horse trainer. By Berrox. French with subtitles.",
+              "thumbnail": "https://nmzfdjblmhrthistlmnc.supabase.co/storage/v1/object/public/theater-artwork/movies/berrox-mario-luraschi-v2-splash.jpg",
+              "title_overlay": true
+            },
+            {
+              "id": "blueplanet-sojourn",
+              "title": "Blueplanet VR — Sojourn, a trilogy",
+              "deep_link": null,
+              "status": "available",
+              "genre": "Visual Music",
+              "duration": "16 min",
+              "note": "Fulldome format (~140–150° FOV), not AIV. Includes STRATUM — a 16K×16K stereoscopic visual music short. $2.99 rental.",
+              "thumbnail": "https://nmzfdjblmhrthistlmnc.supabase.co/storage/v1/object/public/theater-artwork/movies/bpvr-sojourn-v2-splash.jpg",
+              "title_overlay": true
+            },
+            {
+              "id": "kids-elite-live",
+              "title": "Kids Elite Live",
+              "deep_link": null,
+              "status": "pending",
+              "genre": "Documentary / Culture",
+              "duration": "9m 15s",
+              "note": "Kids Elite dancers in Paris. From upcoming doc 'Sabrina Lonis, From Kids to Elite Dancers.' By Immersive Flashback.",
+              "links": [
+                {
+                  "label": "immersiveflashback.com",
+                  "url": "https://www.immersiveflashback.com"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "amplium": {
+      "label": "Amplium",
+      "app_store": "https://apps.apple.com/us/app/amplium/id6612011166",
+      "website": "https://home.theamplium.com",
+      "entries": [
+        {
+          "id": "amplium-kick",
+          "title": "altitude.101 — KICK",
+          "status": "available",
+          "genre": "Sports / Action",
+          "duration": "8m 28s",
+          "note": "Also on Theater app."
+        },
+        {
+          "id": "amplium-echoes",
+          "title": "altitude.101 — Echoes of the Middle East",
+          "status": "available",
+          "genre": "Documentary / Travel",
+          "duration": "5m 7s",
+          "note": "Also on Theater app."
+        }
+      ]
+    },
+    "other_apps": {
+      "label": "Other Apps with Immersive Content",
+      "entries": [
+        {
+          "id": "prima-immersive",
+          "title": "Prima Immersive",
+          "app_store": "https://apps.apple.com/app/prima-immersive/id6740540865",
+          "website": "https://www.immersivecompany.com/platform",
+          "note": "Native 16K/90fps/HDR distribution. Content: The Spatialists: Sessions. New content in production."
+        },
+        {
+          "id": "frontrow",
+          "title": "FrontRow",
+          "app_store": "https://apps.apple.com/us/app/front-row-experiences/id6572327261",
+          "website": "https://www.frontrow.co",
+          "note": "Spatial video concerts, comedy specials, and white label brand experiences."
+        },
+        {
+          "id": "blue-frog",
+          "title": "Blue Frog Immersive",
+          "app_store": "https://apps.apple.com/app/blue-frog-immersive/id6759308230",
+          "website": "https://bluefrogstudios.ca/pages/immersive-download",
+          "note": "Immersive 3D concert performances with spatial audio.",
+          "links": [
+            {
+              "label": "musically.com article",
+              "url": "https://musically.com/2026/05/18/blue-frog-immersive-gives-vr-concerts-a-go-on-apple-vision-pro/"
+            }
+          ]
+        },
+        {
+          "id": "amazevr",
+          "title": "AmazeVR",
+          "app_store": "https://apps.apple.com/us/app/amazevr-concerts-immersive-3d/id6474842602",
+          "website": "https://www.amazevr.com",
+          "note": "VR concerts bringing fans face-to-face with artists."
+        },
+        {
+          "id": "acute-immersive",
+          "title": "Acute Immersive",
+          "website": "https://acuteimmersive.com/apps/",
+          "note": "AIV content platform.",
+          "links": [
+            {
+              "label": "What is AIV? explainer",
+              "url": "https://acuteimmersive.com/apple-immersive-video/"
+            }
+          ]
+        },
+        {
+          "id": "spatial-film",
+          "title": "Spatial Film",
+          "app_store": "https://apps.apple.com/us/app/spatial-film/id6670564820",
+          "note": "Streaming library of 180° and 360° spatial films. Bi-weekly new titles. Vision Pro exclusive. Known titles include Multnomah Falls by Hugh Hou (native AIV, 90fps HDR)."
+        },
+        {
+          "id": "youtube-visionos",
+          "title": "YouTube for visionOS",
+          "app_store": "https://apps.apple.com/us/app/youtube-for-visionos/id6745572359",
+          "note": "Supports 3D 360°, VR180, standard video. 8K on M5 Vision Pro.",
+          "links": [
+            {
+              "label": "App Store story",
+              "url": "https://apps.apple.com/us/story/id1876711467"
+            }
+          ]
+        },
+        {
+          "id": "explore-pov",
+          "title": "Explore POV",
+          "app_store": "https://apps.apple.com/us/app/explore-pov/id6479555991",
+          "website": "https://www.explorepov.com/",
+          "note": "2025 Apple Vision Pro App of the Year. Immersive content library.",
+          "links": [
+            {
+              "label": "Apple announcement",
+              "url": "https://www.apple.com/newsroom/2025/12/apple-unveils-the-winners-of-the-2025-app-store-awards/"
+            }
+          ]
+        },
+        {
+          "id": "arluma360",
+          "title": "ARLUMA360",
+          "app_store": "https://apps.apple.com/app/apple-store/id6761225329",
+          "website": "https://arlumastudios.com",
+          "added": "2026-05-25",
+          "note": "VR180 immersive content player. First release: Finland Icescapes Pt. 1 (May 2026)."
+        },
+        {
+          "id": "immersa",
+          "title": "Immersa — Spatial Cinema",
+          "app_store": "https://apps.apple.com/us/app/immersa-spatial-cinema/id6759059321",
+          "website": "https://immersa.app",
+          "added": "2026-05-19",
+          "note": "Professional delivery platform for immersive filmmakers and studios."
+        },
+        {
+          "id": "justvr",
+          "title": "JustVR",
+          "app_store": "https://apps.apple.com/us/app/justvr/id6759510255",
+          "website": "https://www.justvr.cn/",
+          "note": "Cross-platform immersive video app (Vision Pro, Meta Quest, Pico). Creator-built library."
+        }
+      ]
+    },
+    "web_platforms": {
+      "label": "Web & Other Platforms",
+      "entries": [
+        {
+          "id": "immersive-america-waterfalls",
+          "title": "Immersive America — Waterfalls",
+          "url": "https://www.youtube.com/@ImmersiveAmerica",
+          "website": "https://immersiveam.com",
+          "note": "California & Kauai waterfalls. 8K on YouTube VR. 8K on M5 Vision Pro, 4K on M2."
+        },
+        {
+          "id": "immersive-america-southwest",
+          "title": "Immersive America — American Southwest",
+          "url": "https://immersiveam.com/favorites/",
+          "note": "Grand Canyon, Bryce Canyon, Monument Valley, Zion, Las Vegas. WebXR + APMP format."
+        },
+        {
+          "id": "blueplanet-vr-web",
+          "title": "Blueplanet VR Explore",
+          "url": "https://blueplanetvr.com/",
+          "note": "100+ photogrammetric spatial experiences via WebXR."
+        },
+        {
+          "id": "yosemite-in-snow",
+          "title": "Yosemite in Snow",
+          "url": "https://buymeacoffee.com/realityofvision/yosemite-in-snow2026",
+          "note": "Community creator. Canon R5C + Qoocam3 VR180. Also on YouTube and DeoVR."
+        },
+        {
+          "id": "bastille-day",
+          "title": "Bastille Day France — Immersive Flashback",
+          "url": "https://www.immersiveflashback.com/works/bastille-day",
+          "note": "President Macron as narrator. 8 min. May be geo-locked to France. Available at Maison Élysée on Vision Pro.",
+          "links": [
+            {
+              "label": "CineD",
+              "url": "https://www.cined.com/from-elysee-to-vision-pro-behind-the-ursa-cine-immersive-bastille-day-film/"
+            },
+            {
+              "label": "Blackmagic press release",
+              "url": "https://www.blackmagicdesign.com/media/release/20251013-01"
+            }
+          ]
+        },
+        {
+          "id": "twin-peaks-180vr",
+          "title": "Twin Peaks in 180VR",
+          "url": "https://youtu.be/65avEdxyA4U",
+          "note": "VR180, May 2026. By Brendan Parker. Real Twin Peaks locations in Washington State."
+        },
+        {
+          "id": "cartagena-8k-vr180",
+          "title": "Cartagena, Colombia in 8K VR180",
+          "url": "https://youtu.be/k-Gc-HrTJ28",
+          "note": "By u/BeyondVRMedia, May 2026. Walled City, San Felipe Fortress, colonial streets, flamingos.",
+          "links": [
+            {
+              "label": "DeoVR version (8K on M2)",
+              "url": "https://deovr.com/wyznhd"
+            }
+          ]
+        },
+        {
+          "id": "mulan-2125",
+          "title": "Mulan 2125",
+          "url": "https://www.well-linktech.com/mulan/index.html",
+          "note": "VR epic, Venice Immersive Competition 2025. Film-grade CG. Chinese developer — verify English accessibility."
+        }
+      ]
+    },
+    "brand_apps": {
+      "label": "Brand & Standalone Apps",
+      "entries": [
+        {
+          "id": "caradise",
+          "title": "Caradise",
+          "app_store": "https://apps.apple.com/us/app/caradise/id6751403753",
+          "website": "https://caradise.app",
+          "added": "2026-05-19",
+          "note": "Explore iconic car designs in spatial computing. Vision Pro exclusive. Solo developer: Peder Sandqvist. Apple Design Awards 2026 finalist.",
+          "links": [
+            {
+              "label": "Apple Design Awards",
+              "url": "https://developer.apple.com/design/awards/"
+            }
+          ]
+        },
+        {
+          "id": "what-if",
+          "title": "What If…? An Immersive Story",
+          "app_store": "https://apps.apple.com/us/app/what-if-an-immersive-story/id6479251303",
+          "website": "https://www.marvel.com/WhatIfImmersive",
+          "note": "Disney+ Original interactive experience. Marvel Studios' What If…? universe. Not AIV — interactive immersive experience.",
+          "links": [
+            {
+              "label": "Trailer",
+              "url": "https://www.youtube.com/watch?v=lLk-IkPktMo"
+            }
+          ]
+        },
+        {
+          "id": "blueplanet-vr-app",
+          "title": "Blueplanet VR",
+          "website": "https://blueplanetvr.com/",
+          "note": "100+ photogrammetric spatial experiences of UNESCO World Heritage Sites. By Eric Hanson, USC faculty.",
+          "links": [
+            {
+              "label": "Vimeo preview",
+              "url": "https://vimeo.com/1167013109"
+            }
+          ]
+        },
+        {
+          "id": "balenciaga",
+          "title": "Balenciaga — Summer 26 Show",
+          "note": "Pier Paolo Piccioli's debut Balenciaga collection. Available in Balenciaga's own Vision Pro app. Shot on URSA Cine Immersive.",
+          "links": [
+            {
+              "label": "UploadVR review",
+              "url": "https://www.uploadvr.com/attending-balenciagas-summer-26-show-in-apple-vision-pro/"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "creators": {
+    "note": "Tools, hardware, cameras, learning resources, and spatial audio — for immersive content producers.",
+    "tools_software": {
+      "label": "Tools & Software",
+      "entries": [
+        {
+          "id": "aivu",
+          "title": "Apple Immersive Video Utility (AIVU)",
+          "app_store": "https://apps.apple.com/us/app/apple-immersive-video-utility/id6477489398",
+          "guide": "https://support.apple.com/guide/immersive-video-utility/welcome/web",
+          "note": "Import media, create .aivu files, prepare AIV content for playback or distribution."
+        },
+        {
+          "id": "colorfront",
+          "title": "Colorfront Immersive Utility",
+          "app_store": "https://apps.apple.com/app/id6758009531",
+          "website": "https://immersive.colorfront.cloud/cfiu",
+          "added": "2026-04-23",
+          "note": "Professional Mac app (Apple Silicon M1+, macOS 26+). GPU-accelerated .aivu creation from ProRes or MV-HEVC. Free tier available; MV-HEVC License $299/year.",
+          "links": [
+            {
+              "label": "Press release",
+              "url": "https://colorfront.com/news/colorfront-immersive"
+            },
+            {
+              "label": "Cinematography.world article",
+              "url": "https://www.cinematography.world/colorfront-introduces-immersive-utility-app/"
+            }
+          ]
+        },
+        {
+          "id": "aime-generator",
+          "title": "AIME Generator",
+          "url": "https://github.com/silverqsy/AIMEGenerator",
+          "note": "Creates AIV lens profile files (.aime) for virtually any VR180 camera. Mac only. Democratizes AIV creation beyond the URSA."
+        },
+        {
+          "id": "mainconcept-sdk",
+          "title": "MainConcept MV-HEVC Encoder SDK",
+          "url": "https://www.mainconcept.com/news-mainconcept-announces-multiview-encoding-for-apple-immersive-video",
+          "note": "Codec SDK 16.2. DaVinci Resolve Studio + Colorfront integration. April 14, 2026."
+        }
+      ]
+    },
+    "cameras_hardware": {
+      "label": "Cameras & Hardware",
+      "entries": [
+        {
+          "id": "ursa-cine-100g",
+          "title": "Blackmagic URSA Cine Immersive 100G",
+          "url": "https://www.blackmagicdesign.com/media/release/20260414-04",
+          "note": "World's first live production AIV camera. Dual 8K×8K RGBW sensors, 100G Ethernet, 16 stops DR. NAB 2026."
+        },
+        {
+          "id": "ursa-manual",
+          "title": "Blackmagic URSA Cine Immersive Camera Manual",
+          "url": "https://documents.blackmagicdesign.com/UserManuals/BlackmagicURSACineImmersiveGuide.pdf",
+          "note": "Full guide covering camera operation and DaVinci Resolve AIV workflows. PDF."
+        },
+        {
+          "id": "wooden-camera",
+          "title": "Wooden Camera — URSA Cine Immersive Accessories",
+          "url": "https://woodencamera.com/pages/blackmagic-ursa-cine",
+          "added": "2026-05-21",
+          "note": "Redesigned Top Plate, Side Rails, Riser Plate, D-Box Gold Mount Plus power system.",
+          "links": [
+            {
+              "label": "ProVideo Coalition",
+              "url": "https://www.provideocoalition.com/wooden-camera-new-accessories-for-blackmagic-ursa-cine-immersive/"
+            }
+          ]
+        },
+        {
+          "id": "gates-housing",
+          "title": "Gates Immersive Housing",
+          "url": "https://www.gateshousings.com/gates_immersive_housing/",
+          "note": "Underwater housing for URSA Cine Immersive. Developed with Apple and Blackmagic Design. 12-inch AR-coated glass dome port. Depth-rated. Available for sale and hire."
+        },
+        {
+          "id": "achtel-3deep",
+          "title": "ACHTEL 3Deep Immersive Camera",
+          "url": "https://achtel.com/immersive/",
+          "note": "Underwater housing using dual submersible lenses — eliminates dome port. For ACHTEL 9×7 camera. Depth-rated to 60m. Titanium, ~20kg.",
+          "links": [
+            {
+              "label": "Newsshooter article",
+              "url": "https://www.newsshooter.com/2026/05/04/the-new-frontier-of-underwater-immersive-content-achtel-3deep-apple-vision-pro/"
+            }
+          ]
+        },
+        {
+          "id": "logitech-muse",
+          "title": "Logitech MUSE Stylus for Vision Pro",
+          "url": "https://www.logitech.com/en-us/shop/p/muse-for-apple-vision-pro",
+          "note": "Precision stylus for Vision Pro."
+        },
+        {
+          "id": "psvr2-sense",
+          "title": "PlayStation VR2 Sense Controller & Charging Station",
+          "url": "https://www.apple.com/shop/product/hs8h2zm/a/playstation-vr2-sense-controller-charging-station",
+          "note": "Traditional gaming controller support for Vision Pro. Available on Apple Store."
+        }
+      ]
+    },
+    "spatial_audio": {
+      "label": "Spatial Audio",
+      "entries": [
+        {
+          "id": "asaf-meet",
+          "title": "Meet Apple Spatial Audio Format and APAC",
+          "url": "https://www.youtube.com/watch?v=DpvR_74V4T4",
+          "note": "Official Apple session introducing ASAF and the Apple Positional Audio Codec (APAC)."
+        },
+        {
+          "id": "fxguide-audio",
+          "title": "fxguide — Believable and Immersive Audio",
+          "url": "https://www.fxguide.com/quicktakes/believable-and-immersive-audio/",
+          "added": "2026-05-20",
+          "note": "By Mike Seymour. FMX spatial audio recording + ASAF deep dive for AIV. Includes downloadable ASAF example file."
+        }
+      ]
+    },
+    "learning": {
+      "label": "Learning Resources",
+      "entries": [
+        {
+          "id": "cinematic-immersive-book",
+          "title": "Cinematic Immersive for Professionals",
+          "url": "https://books.apple.com/us/book/cinematic-immersive-for-professionals/id6754396227",
+          "note": "By Ben Allan & Clara Chong. First comprehensive guide to AIV creative and technical workflow. Apple Books."
+        },
+        {
+          "id": "creator-week",
+          "title": "Creator Week Educational Series",
+          "url": "https://www.youtube.com/watch?v=KHRagR9LtDU&list=PLjODKV8YBFHYB_BKAmt-Ez79wGdx44riR",
+          "note": "Overview of all media types for visionOS apps, games, and experiences."
+        },
+        {
+          "id": "team2films-masterclass",
+          "title": "Team2Films Immersive Master Class",
+          "url": "https://www.youtube.com/watch?v=5N7MDJrZRkM&list=PLny27uDaErSWGYEvRFQ7jSg_M5afMS0XQ",
+          "note": "What it takes to create an AIV documentary."
+        },
+        {
+          "id": "hugh-hou-masterclass",
+          "title": "Hugh Hou AIV Master Class",
+          "url": "https://www.youtube.com/watch?v=0dm_zYf09rQ&list=PLAyCpxLR2Txsoi3uR8i3SSOm0JeRIxeAW",
+          "note": "Complete URSA Cine Immersive to Apple Vision Pro workflow in DaVinci Resolve."
+        },
+        {
+          "id": "aiv-community-playlist",
+          "title": "AIV Community YouTube Playlist",
+          "url": "https://youtube.com/playlist?list=PLOZjstLsDIAwobj8gNRNJuq2U-l0Ui68b",
+          "note": "Community-curated collection of AIV production videos."
+        },
+        {
+          "id": "wwdc25-aiv-tech",
+          "title": "Learn About Apple Immersive Video Technologies (WWDC25)",
+          "url": "https://developer.apple.com/videos/play/wwdc2025/403/",
+          "note": "AIV format, ImmersiveMediaSupport framework, encoding, and HLS streaming."
+        },
+        {
+          "id": "wwdc25-video-experiences",
+          "title": "Explore Video Experiences for visionOS (WWDC25)",
+          "url": "https://developer.apple.com/videos/play/wwdc2025/304/",
+          "note": "Profiles for 180°, 360°, Wide FOV, AIV, 2D, 3D, and spatial video."
+        },
+        {
+          "id": "what-is-aiv",
+          "title": "What is Apple Immersive Video? — Acute Immersive",
+          "url": "https://acuteimmersive.com/apple-immersive-video/",
+          "note": "Clear, accessible explainer on the format, hardware, and what makes it different."
+        },
+        {
+          "id": "immersive-media-support",
+          "title": "ImmersiveMediaSupport Framework",
+          "url": "https://developer.apple.com/documentation/ImmersiveMediaSupport",
+          "note": "Apple developer documentation for immersive media technologies."
+        }
+      ]
+    }
+  },
+  "use_cases": {
+    "label": "Enterprise & Real-World Use Cases",
+    "entries": [
+      {
+        "id": "gb-railfreight",
+        "title": "GB Railfreight + JigSpace — Spatial Training",
+        "url": "https://www.gbrailfreight.com/gb-railfreight-adopts-spatial-computing-for-operational-training/",
+        "note": "One of the UK's first freight operators to use spatial computing for immersive remote training."
+      },
+      {
+        "id": "u-mich-vr-ms",
+        "title": "University of Michigan — VR for MS Depression",
+        "url": "https://www.cbsnews.com/detroit/news/um-professor-earns-national-recognition-for-using-vr-to-treat-depression-in-ms-patients/",
+        "note": "Professor earns national recognition for using VR to bring nature experiences to MS patients with limited mobility."
+      },
+      {
+        "id": "brain-games-bci",
+        "title": "Brain Games Studio — Rodney ALS + BCI + XR",
+        "url": "https://www.linkedin.com/posts/braingamesstd_gamification-gamedevelopment-gamebasedlearning-activity-7458093901627682817-FtGO",
+        "note": "Thought-controlled BCI technology combined with XR for a person with ALS."
+      },
+      {
+        "id": "mandalorian-imax",
+        "title": "The Mandalorian Director Uses Vision Pro to Preview IMAX",
+        "url": "https://www.engadget.com/entertainment/tv-movies/the-mandalorian-and-grogu-director-used-apple-vision-pro-to-preview-the-film-in-imax-140331311.html",
+        "note": "Jon Favreau used a custom Vision Pro app to preview the full IMAX scope during filming."
+      },
+      {
+        "id": "nasa-artemis",
+        "title": "NASA Artemis II — Filmed in Immersive Video",
+        "url": "https://macdailynews.com/2026/03/31/apple-vision-pro-users-will-be-able-to-experience-nasas-artemis-ii-launch-in-immersive-video/",
+        "note": "Artemis II launch captured in Apple Immersive Video. Content not yet released as of May 2026."
+      },
+      {
+        "id": "met-museum",
+        "title": "Met Museum — HD 3D Scans of Art Objects",
+        "url": "https://www.thisiscolossal.com/2026/03/metropolitan-museum-of-art-3d-models-art-history/",
+        "note": "Metropolitan Museum of Art releases high-detail 3D models of art objects."
+      },
+      {
+        "id": "autodesk-vred",
+        "title": "Immersive for Autodesk VRED",
+        "app_store": "https://apps.apple.com/us/app/immersive-for-autodesk-vred/id6758212763",
+        "website": "https://innoactive.io/immersive-for-autodesk-vred",
+        "added": "2026-05-20",
+        "note": "Stream Autodesk VRED from on-premises RTX workstations to Vision Pro. Four-way collaboration: Autodesk, Apple, NVIDIA, Innoactive. Up to 2 participants.",
+        "links": [
+          {
+            "label": "Autodesk blog",
+            "url": "https://blogs.autodesk.com/design-studio/2026/05/20/immersive-for-autodesk-vred-is-now-available-on-apple-vision-pro/"
+          }
+        ]
+      },
+      {
+        "id": "see-the-bravo",
+        "title": "See The Bravo",
+        "url": "https://seethebravo.com",
+        "note": "Aviation airspace 3D visualization for pilot training. Students see shelves, altitudes, and procedures in 3D space instead of flat charts."
+      },
+      {
+        "id": "full-sail",
+        "title": "Full Sail University — Spatial Computing Innovation Lab",
+        "url": "https://www.fullsail.edu/press-releases/2025/full-sail-unveils-spatial-computing-innovation-lab",
+        "added": "2025-09-10",
+        "note": "First higher education institution in the US with URSA Cine Immersive. 50 Apple Vision Pro devices. Winter Park, FL."
+      },
+      {
+        "id": "purdue-pvm",
+        "title": "Purdue PVM Pro Tips for Animal Health",
+        "app_store": "https://apps.apple.com/us/app/purdue-vet-med/id6759265022",
+        "website": "https://vet.purdue.edu/protips/",
+        "added": "2026-05",
+        "note": "Vision Pro exclusive from Purdue College of Veterinary Medicine. Step-by-step at-home pet care tutorials created by Purdue vets."
+      },
+      {
+        "id": "intune-ade",
+        "title": "Intune Userless ADE for visionOS",
+        "url": "https://learn.microsoft.com/en-us/intune/whats-new/#microsoft-intune-supports-userless-ade-for-visionos-and-tvos-devices",
+        "note": "Vision Pro can be enrolled and managed through Apple Business Manager via Microsoft Intune."
+      },
+      {
+        "id": "iracing-connect",
+        "title": "iRacing Connect",
+        "app_store": "https://apps.apple.com/us/app/iracing-connect/id6759957108",
+        "note": "World's most popular online racing simulator on Vision Pro. visionOS 26.4 foveated streaming + Nvidia CloudXR.",
+        "links": [
+          {
+            "label": "Announcement",
+            "url": "https://www.iracing.com/iracing-for-apple-vision-pro-now-available/"
+          }
+        ]
+      },
+      {
+        "id": "spatialgen-zeus",
+        "title": "SpatialGen Zeus — Live AIV Streaming Hardware",
+        "url": "https://spatialgen.com/live",
+        "status": "pending",
+        "added": "2026-05",
+        "note": "Dedicated hardware for live AIV streaming — 16K at 90 FPS. Announced via Justin Ryan/Spatial Insider. No official press release yet."
+      },
+      {
+        "id": "steam-link",
+        "title": "Steam Link",
+        "app_store": "https://apps.apple.com/us/app/steam-link/id1580272896",
+        "added": "2026-05-26",
+        "note": "Native Vision Pro app. Stream your full Steam library wirelessly from a PC."
+      }
+    ]
+  },
+  "communities": {
+    "label": "Apple Immersive Communities on Reddit",
+    "entries": [
+      {
+        "id": "reddit-feed",
+        "title": "Apple Immersive & Spatial Computing — Curated Reddit Feed",
+        "url": "https://www.reddit.com/user/photoboy-td/m/apple_immereive/",
+        "note": "Curated multireddit covering r/AppleImmersiveVideo, r/VisionPro, r/VR180Film, and more."
+      }
+    ]
+  }
+}
