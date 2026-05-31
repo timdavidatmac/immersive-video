@@ -792,6 +792,23 @@
                   "url": "https://www.reddit.com/r/AppleImmersiveVideo/comments/1th0l6h/visit_a_700yearold_english_almshouse_in_apple/"
                 }
               ]
+            },
+            {
+              "id": "immersive-nyc-high-line",
+              "title": "Immersive NYC | Floating Island & The High Line",
+              "url": "https://apps.apple.com/us/app/spatial-film/id6670564820",
+              "status": "available",
+              "genre": "Nature / Travel",
+              "year": 2026,
+              "thumbnail": "https://i.ytimg.com/vi/rmALaK3nGoI/hqdefault.jpg",
+              "title_overlay": true,
+              "note": "Dir: Keeley Turner. Shot by Hugh Hou on URSA Cine Immersive. 16K captured, supersampled to 8K per eye 3D HDR. Hudson River floating park to The High Line and Vessel at night.",
+              "links": [
+                {
+                  "label": "YouTube (set to 8K before watching)",
+                  "url": "https://youtu.be/rmALaK3nGoI"
+                }
+              ]
             }
           ]
         },
