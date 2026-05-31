@@ -728,9 +728,34 @@
               "note": "UAE and Oman travelogue. Shot on URSA Cine Immersive.",
               "thumbnail": "https://nmzfdjblmhrthistlmnc.supabase.co/storage/v1/object/public/theater-artwork/movies/echoes-v3-splash.jpg",
               "title_overlay": true
+            },
+            {
+              "id": "kids-elite-live",
+              "title": "Kids Elite Live",
+              "status": "pending",
+              "genre": "Documentary / Culture",
+              "duration": "9m 15s",
+              "thumbnail": "https://nmzfdjblmhrthistlmnc.supabase.co/storage/v1/object/public/theater-artwork/heroes/kids-elite-live.jpg",
+              "title_overlay": true,
+              "note": "Kids Elite dancers in Paris. From upcoming doc 'Sabrina Lonis, From Kids to Elite Dancers.' By Immersive Flashback. Not yet released.",
+              "links": [
+                {
+                  "label": "immersiveflashback.com",
+                  "url": "https://www.immersiveflashback.com"
+                }
+              ]
             }
           ]
-        },
+        }
+      }
+    },
+    "spatial_film": {
+      "label": "Spatial Film",
+      "app_store": "https://apps.apple.com/us/app/spatial-film/id6670564820",
+      "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/1f/b7/94/1fb79439-f2a5-8881-e31e-b7e54f06f9a4/AppIcon.lsr/512x512bb.jpg",
+      "youtube_playlist": "https://www.youtube.com/playlist?list=PLAyCpxLR2TxvqNdgU4dMQNrRCu37zHyzT",
+      "note": "Streaming library of 180° and 360° spatial films on Vision Pro. Content by Keeley Turner, Hugh Hou, and SliceoflifeVR.",
+      "sections": {
         "keeley_turner_hugh_hou": {
           "label": "Keeley Turner & Hugh Hou",
           "entries": [
@@ -738,25 +763,16 @@
               "id": "multnomah-falls",
               "title": "Multnomah Falls",
               "url": "https://apps.apple.com/us/app/spatial-film/id6670564820",
-              "platform": "Spatial Film app",
               "status": "available",
               "added": "2026-05-25",
               "genre": "Nature / Adventure",
               "thumbnail": "https://i.ytimg.com/vi/x0bawA7DIvs/hqdefault.jpg",
               "title_overlay": true,
-              "note": "Native AIV, 90fps HDR. Shot by Hugh Hou on URSA Cine Immersive. Best quality via Spatial Film app.",
+              "note": "Native AIV, 90fps HDR. Shot by Hugh Hou on URSA Cine Immersive.",
               "links": [
-                {
-                  "label": "Spatial Film app",
-                  "url": "https://apps.apple.com/us/app/spatial-film/id6670564820"
-                },
                 {
                   "label": "YouTube (free, 8K on M5)",
                   "url": "https://youtu.be/x0bawA7DIvs"
-                },
-                {
-                  "label": "Full YouTube playlist",
-                  "url": "https://www.youtube.com/playlist?list=PLAyCpxLR2TxvqNdgU4dMQNrRCu37zHyzT"
                 }
               ]
             },
@@ -764,20 +780,11 @@
               "id": "tudor-period-piece",
               "title": "Tudor Period Piece — Auggie Award Finalist",
               "url": "https://apps.apple.com/us/app/spatial-film/id6670564820",
-              "platform": "Spatial Film app",
               "status": "available",
               "genre": "Narrative",
               "year": 2026,
               "note": "Dir: Keeley Turner. Shot by Hugh Hou. Auggie Award finalist.",
               "links": [
-                {
-                  "label": "Spatial Film app",
-                  "url": "https://apps.apple.com/us/app/spatial-film/id6670564820"
-                },
-                {
-                  "label": "Full YouTube playlist",
-                  "url": "https://www.youtube.com/playlist?list=PLAyCpxLR2TxvqNdgU4dMQNrRCu37zHyzT"
-                },
                 {
                   "label": "Reddit post",
                   "url": "https://www.reddit.com/r/VisionPro/comments/1tkxbgu/we_filmed_a_tudor_period_piece_in_immersive_for/"
@@ -788,20 +795,11 @@
               "id": "almshouse",
               "title": "700-Year-Old English Almshouse — Guided Immersive History Tour",
               "url": "https://apps.apple.com/us/app/spatial-film/id6670564820",
-              "platform": "Spatial Film app",
               "status": "available",
               "genre": "Documentary / History",
               "year": 2026,
               "note": "Dir: Keeley Turner. Guided tour of a medieval English almshouse.",
               "links": [
-                {
-                  "label": "Spatial Film app",
-                  "url": "https://apps.apple.com/us/app/spatial-film/id6670564820"
-                },
-                {
-                  "label": "Full YouTube playlist",
-                  "url": "https://www.youtube.com/playlist?list=PLAyCpxLR2TxvqNdgU4dMQNrRCu37zHyzT"
-                },
                 {
                   "label": "Reddit post",
                   "url": "https://www.reddit.com/r/AppleImmersiveVideo/comments/1th0l6h/visit_a_700yearold_english_almshouse_in_apple/"
@@ -829,73 +827,6 @@
                 {
                   "label": "Reddit post",
                   "url": "https://www.reddit.com/r/VisionPro/comments/1tixjr7/yosemite_el_capitan_summit_with_ursa_cine/"
-                }
-              ]
-            }
-          ]
-        },
-        "other_theater": {
-          "label": "Other Theater Content",
-          "entries": [
-            {
-              "id": "harvest-in-the-bogs",
-              "title": "Harvest in the Bogs",
-              "deep_link": "theater://view/harvest-in-the-bogs",
-              "status": "available",
-              "genre": "Documentary / Culture",
-              "duration": "6m 31s",
-              "thumbnail": "https://nmzfdjblmhrthistlmnc.supabase.co/storage/v1/object/public/theater-artwork/movies/harvest-in-the-bogs-splash.jpg",
-              "title_overlay": true,
-              "note": "Cranberry harvest documentary. Sam Baumel, NYU Tisch faculty. Shot on URSA Cine Immersive."
-            },
-            {
-              "id": "open-air",
-              "title": "Open Air",
-              "deep_link": "theater://view/open-air",
-              "status": "available",
-              "genre": "Documentary / Adventure",
-              "duration": "3m 5s",
-              "note": "First-of-its-kind air-to-air immersive. Stunt plane aerobatics by the aerial team behind Top Gun: Maverick. By Rogue Labs.",
-              "thumbnail": "https://nmzfdjblmhrthistlmnc.supabase.co/storage/v1/object/public/theater-artwork/movies/rogue-labs-open-air-v2-splash.jpg",
-              "title_overlay": true
-            },
-            {
-              "id": "mario-luraschi",
-              "title": "Mario Luraschi",
-              "deep_link": "theater://view/mario-luraschi",
-              "status": "available",
-              "genre": "Documentary / Profile",
-              "duration": "5 min",
-              "year": 2025,
-              "note": "World's most famous horse trainer. By Berrox. French with subtitles.",
-              "thumbnail": "https://nmzfdjblmhrthistlmnc.supabase.co/storage/v1/object/public/theater-artwork/movies/berrox-mario-luraschi-v2-splash.jpg",
-              "title_overlay": true
-            },
-            {
-              "id": "blueplanet-sojourn",
-              "title": "Blueplanet VR — Sojourn, a trilogy",
-              "deep_link": null,
-              "status": "available",
-              "genre": "Visual Music",
-              "duration": "16 min",
-              "note": "Fulldome format (~140–150° FOV), not AIV. Includes STRATUM — a 16K×16K stereoscopic visual music short. $2.99 rental.",
-              "thumbnail": "https://nmzfdjblmhrthistlmnc.supabase.co/storage/v1/object/public/theater-artwork/movies/bpvr-sojourn-v2-splash.jpg",
-              "title_overlay": true
-            },
-            {
-              "id": "kids-elite-live",
-              "title": "Kids Elite Live",
-              "deep_link": null,
-              "status": "available",
-              "genre": "Documentary / Culture",
-              "duration": "9m 15s",
-              "thumbnail": "https://nmzfdjblmhrthistlmnc.supabase.co/storage/v1/object/public/theater-artwork/heroes/kids-elite-live.jpg",
-              "title_overlay": true,
-              "note": "Kids Elite dancers in Paris. From upcoming doc 'Sabrina Lonis, From Kids to Elite Dancers.' By Immersive Flashback.",
-              "links": [
-                {
-                  "label": "immersiveflashback.com",
-                  "url": "https://www.immersiveflashback.com"
                 }
               ]
             }
