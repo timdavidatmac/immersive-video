@@ -181,19 +181,23 @@
       // Thumbnail (optional inline poster)
       const hasThumbnail = !!entry.thumbnail;
       const hasOverlay = hasThumbnail && !!entry.title_overlay;
+      const url = entry.url || entry.deep_link || entry.app_store || entry.website;
       let thumbHTML = '';
       if (hasThumbnail) {
         const img = `<img src="${entry.thumbnail}" alt="${entry.title}" loading="lazy" style="width:90px;height:51px;object-fit:cover;border-radius:4px;display:block;">`;
+        let inner;
         if (hasOverlay) {
           const overlay = `<div aria-hidden="true" style="position:absolute;bottom:0;left:0;right:0;padding:3px 5px;background:linear-gradient(transparent,rgba(0,0,0,0.72));border-radius:0 0 4px 4px;font-size:7.5px;font-weight:700;color:#ffffff;line-height:1.25;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">${entry.title}</div>`;
-          thumbHTML = `<div style="position:relative;width:90px;height:51px;flex-shrink:0;border-radius:4px;overflow:hidden;">${img}${overlay}</div>`;
+          inner = `<div style="position:relative;width:90px;height:51px;flex-shrink:0;border-radius:4px;overflow:hidden;">${img}${overlay}</div>`;
         } else {
-          thumbHTML = `<div style="width:90px;height:51px;flex-shrink:0;">${img}</div>`;
+          inner = `<div style="width:90px;height:51px;flex-shrink:0;">${img}</div>`;
         }
+        thumbHTML = (url && !pending && !gone)
+          ? `<a href="${url}" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1" style="display:block;flex-shrink:0;">${inner}</a>`
+          : inner;
       }
 
       // Title line
-      const url = entry.url || entry.deep_link || entry.app_store || entry.website;
       let titleHTML;
       if (gone) {
         titleHTML = `<span class="entry-name" style="color:#86868b;text-decoration:line-through">${entry.title}</span>`;
@@ -319,6 +323,34 @@
         const sec = theater.sections[s.key];
         if (sec) html += renderSection('', sec.entries, 'theater', s.label);
       });
+
+      // ── Spatial Film ──────────────────────────────────────
+      const spatialFilm = data.viewer.spatial_film;
+      if (spatialFilm) {
+        html += `<h2 class="section-heading" id="spatial-film">🎬 Spatial Film App</h2>`;
+        if (spatialFilm.app_icon) {
+          html += `<ul class="catalog-list" style="margin-bottom:0;">
+            <li class="catalog-entry" data-category="apps" data-search="spatial film app download" style="display:flex;gap:12px;align-items:flex-start;">
+              <div style="width:90px;height:51px;flex-shrink:0;display:flex;align-items:center;justify-content:center;">
+                <img src="${spatialFilm.app_icon}" alt="Spatial Film app icon" loading="lazy" style="width:46px;height:46px;border-radius:10px;display:block;">
+              </div>
+              <div style="min-width:0;flex:1;padding-top:2px;">
+                <a class="entry-name" href="${spatialFilm.app_store}" target="_blank" rel="noopener">Spatial Film</a>
+                <span class="platform-note">Download on the App Store · <a href="${spatialFilm.youtube_playlist}" target="_blank" rel="noopener">YouTube playlist</a></span>
+              </div>
+            </li>
+          </ul>`;
+        }
+        html += `<p class="text-muted text-small" style="margin:8px 0 20px;">${spatialFilm.note || ''}</p>`;
+        const sfSections = [
+          { key: 'keeley_turner_hugh_hou', label: 'Keeley Turner & Hugh Hou' },
+          { key: 'sliceoflifevr', label: 'SliceoflifeVR' }
+        ];
+        sfSections.forEach(s => {
+          const sec = spatialFilm.sections[s.key];
+          if (sec) html += renderSection('', sec.entries, 'apps', s.label);
+        });
+      }
 
       // ── Amplium ───────────────────────────────────────────
       const amplium = data.viewer.amplium;
