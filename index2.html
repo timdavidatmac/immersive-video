@@ -133,63 +133,56 @@
     .card-links a { margin-right: 10px; }
     .card-platform { font-size: 11.5px; color: #86868b; }
 
-    /* ── Series hero row ── */
-    .series-row {
-      display: flex;
-      gap: 16px;
-      align-items: flex-start;
+    /* ── Series card (stacked: thumb on top, text below, episodes flush underneath) ── */
+    .series-card {
       background: #ffffff;
-      border-radius: 14px;
+      border-radius: 14px 14px 0 0;
       overflow: hidden;
       box-shadow: 0 2px 10px rgba(0,0,0,0.07);
-      margin-bottom: 0;
     }
-    .series-row-thumb {
-      flex: 0 0 180px;
-      height: 101px; /* 16:9 of 180px */
+    .series-card-thumb {
+      width: 100%;
+      aspect-ratio: 16/9;
       overflow: hidden;
-      flex-shrink: 0;
+      display: block;
     }
-    .series-row-thumb img {
+    .series-card-thumb img {
       width: 100%; height: 100%;
       object-fit: cover; display: block;
     }
-    .series-row-body {
-      flex: 1;
-      min-width: 0;
-      padding: 12px 16px 12px 0;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 4px;
+    .series-card-body {
+      padding: 12px 16px 14px;
     }
-    .series-row-title {
-      font-size: 16px;
+    .series-card-title {
+      font-size: 17px;
       font-weight: 700;
       color: #1d1d1f;
       text-decoration: none;
       line-height: 1.2;
+      display: block;
+      margin-bottom: 5px;
     }
-    a.series-row-title:hover { text-decoration: underline; }
-    .series-row-desc {
+    a.series-card-title:hover { text-decoration: underline; }
+    .series-card-desc {
       font-size: 13px;
       color: #6e6e73;
       line-height: 1.5;
-      margin: 0;
+      margin: 0 0 6px;
       display: -webkit-box;
-      -webkit-line-clamp: 2;
+      -webkit-line-clamp: 3;
       -webkit-box-orient: vertical;
       overflow: hidden;
     }
-    .series-row-links { font-size: 12.5px; margin-top: 2px; }
-    .series-row-links a { margin-right: 10px; }
+    .series-card-links { font-size: 12.5px; }
+    .series-card-links a { margin-right: 10px; }
 
-    /* ── Episode strip ── */
+    /* ── Episode strip — flush to series card, rounded only at bottom ── */
     .episode-strip-wrap {
-      background: #f5f5f7;
+      background: #f0f0f3;
       border-radius: 0 0 14px 14px;
-      padding: 10px 14px 12px;
+      padding: 10px 14px 14px;
       margin-bottom: 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.07);
     }
     .episode-strip-label {
       font-size: 10px;
@@ -205,25 +198,36 @@
       overflow-x: auto;
       padding-bottom: 4px;
       scrollbar-width: thin;
-      scrollbar-color: #dddee1 transparent;
+      scrollbar-color: #c7c7cc transparent;
     }
     .episode-strip::-webkit-scrollbar { height: 4px; }
     .episode-strip::-webkit-scrollbar-track { background: transparent; }
-    .episode-strip::-webkit-scrollbar-thumb { background: #dddee1; border-radius: 2px; }
+    .episode-strip::-webkit-scrollbar-thumb { background: #c7c7cc; border-radius: 2px; }
     .episode-chip {
       flex: 0 0 160px;
       text-decoration: none;
       display: block;
       border-radius: 8px;
       overflow: hidden;
-      background: #ffffff;
+      position: relative;
       transition: transform 0.15s, box-shadow 0.15s;
     }
-    .episode-chip:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+    .episode-chip:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.18); }
     .episode-chip img { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; }
-    .episode-chip-body { padding: 5px 7px 7px; }
-    .episode-chip-title { font-size: 11.5px; font-weight: 600; color: #1d1d1f; line-height: 1.3; margin: 0 0 1px; }
-    .episode-chip-meta { font-size: 11px; color: #86868b; }
+    .episode-chip-overlay {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 16px 8px 7px;
+      background: linear-gradient(transparent, rgba(0,0,0,0.78));
+      border-radius: 0 0 8px 8px;
+    }
+    .episode-chip-title {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.3;
+      margin: 0;
+    }
   </style>
 </head>
 <body>
@@ -363,11 +367,11 @@
       const isSeries = entry.type === 'series' || (entry.episodes && entry.episodes.length > 0);
       const episodesWithThumbs = (entry.episodes || []).filter(ep => ep.thumbnail && ep.status !== 'pending');
 
-      // ── SERIES: hero row + episode strip ──
+      // ── SERIES: stacked card + episode strip ──
       if (isSeries && entry.thumbnail) {
         const titleEl = (url && !pending && !gone)
-          ? `<a class="series-row-title" href="${url}" target="_blank" rel="noopener">${entry.title}</a>`
-          : `<span class="series-row-title">${entry.title}</span>`;
+          ? `<a class="series-card-title" href="${url}" target="_blank" rel="noopener">${entry.title}</a>`
+          : `<span class="series-card-title">${entry.title}</span>`;
 
         const desc = entry.description || entry.note || '';
         const links = renderLinks(entry.links);
@@ -376,32 +380,29 @@
           <div class="episode-strip-wrap">
             <p class="episode-strip-label">Episodes</p>
             <div class="episode-strip" role="list">
-              ${episodesWithThumbs.map(ep => {
-                const meta = [ep.guest, ep.location].filter(Boolean).join(' · ');
-                return `<a class="episode-chip" href="${ep.url}" target="_blank" rel="noopener" role="listitem">
+              ${episodesWithThumbs.map(ep => `
+                <a class="episode-chip" href="${ep.url}" target="_blank" rel="noopener" role="listitem">
                   <img src="${ep.thumbnail}" alt="${ep.title}" loading="lazy">
-                  <div class="episode-chip-body">
+                  <div class="episode-chip-overlay" aria-hidden="true">
                     <div class="episode-chip-title">${ep.title}</div>
-                    ${meta ? `<div class="episode-chip-meta">${meta}</div>` : ''}
                   </div>
-                </a>`;
-              }).join('')}
+                </a>`).join('')}
             </div>
           </div>` : '';
 
         return `
           <li class="catalog-entry" ${dataCategory} ${dataNew} ${dataFree} data-search="${searchText.replace(/"/g,'&quot;')}" style="padding:0;background:none;border-bottom:none;">
             ${badges ? `<div style="margin-bottom:6px;">${badges}</div>` : ''}
-            <div class="series-row">
-              <div class="series-row-thumb">
+            <div class="series-card">
+              <div class="series-card-thumb">
                 ${(url && !pending && !gone)
                   ? `<a href="${url}" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img src="${entry.thumbnail}" alt="${entry.title}" loading="lazy"></a>`
                   : `<img src="${entry.thumbnail}" alt="${entry.title}" loading="lazy">`}
               </div>
-              <div class="series-row-body">
+              <div class="series-card-body">
                 ${titleEl}
-                ${desc ? `<p class="series-row-desc">${desc}</p>` : ''}
-                ${links ? `<div class="series-row-links">${links}</div>` : ''}
+                ${desc ? `<p class="series-card-desc">${desc}</p>` : ''}
+                ${links ? `<div class="series-card-links">${links}</div>` : ''}
               </div>
             </div>
             ${stripHTML}
