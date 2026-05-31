@@ -365,19 +365,47 @@
 
       // ── Amplium ───────────────────────────────────────────
       const amplium = data.viewer.amplium;
-      html += `<h2 class="section-heading" id="amplium">📦 Amplium</h2>`;
-      html += `<p class="text-muted text-small" style="margin:0 0 20px;">
-        <a href="${amplium.app_store}" target="_blank" rel="noopener">App Store</a> ·
-        <a href="${amplium.website}" target="_blank" rel="noopener">home.theamplium.com</a>
-      </p>`;
+      html += `<h2 class="section-heading" id="amplium">Amplium</h2>`;
+      if (amplium.app_icon) {
+        html += `<ul class="catalog-list" style="margin-bottom:0;">
+          <li class="catalog-entry" data-category="apps" data-search="amplium app download" style="display:flex;gap:12px;align-items:flex-start;">
+            <div style="width:90px;height:51px;flex-shrink:0;display:flex;align-items:center;justify-content:center;">
+              <img src="${amplium.app_icon}" alt="Amplium app icon" loading="lazy" style="width:46px;height:46px;border-radius:10px;display:block;">
+            </div>
+            <div style="min-width:0;flex:1;padding-top:2px;">
+              <a class="entry-name" href="${amplium.app_store}" target="_blank" rel="noopener">Amplium</a>
+              <span class="platform-note"><a href="${amplium.website}" target="_blank" rel="noopener">home.theamplium.com</a></span>
+            </div>
+          </li>
+        </ul>`;
+      }
       html += `<ul class="catalog-list">`;
       html += amplium.entries.map(e => entryHTML(e, 'apps')).join('');
       html += `</ul>`;
 
       // ── Other Apps ────────────────────────────────────────
-      html += `<h2 class="section-heading" id="other-apps">📱 Other Apps with Immersive Content</h2>`;
+      html += `<h2 class="section-heading" id="other-apps">Other Apps with Immersive Content</h2>`;
       html += `<ul class="catalog-list">`;
-      html += data.viewer.other_apps.entries.map(e => entryHTML(e, 'apps')).join('');
+      data.viewer.other_apps.entries.forEach(e => {
+        if (e.app_icon) {
+          const url = e.app_store || e.website;
+          const website = e.website ? e.website.replace(/^https?:\/\//, '').replace(/\/$/, '') : '';
+          html += `
+          <li class="catalog-entry" data-category="apps" data-search="${(e.title + ' ' + (e.note||'')).toLowerCase().replace(/"/g,'&quot;')}" style="display:flex;gap:12px;align-items:flex-start;">
+            <div style="width:90px;height:51px;flex-shrink:0;display:flex;align-items:center;justify-content:center;">
+              ${url ? `<a href="${url}" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="${e.app_icon}" alt="${e.title} app icon" loading="lazy" style="width:46px;height:46px;border-radius:10px;display:block;"></a>` : `<img src="${e.app_icon}" alt="${e.title} app icon" loading="lazy" style="width:46px;height:46px;border-radius:10px;display:block;">`}
+            </div>
+            <div style="min-width:0;flex:1;padding-top:2px;">
+              ${url ? `<a class="entry-name" href="${url}" target="_blank" rel="noopener">${e.title}</a>` : `<span class="entry-name">${e.title}</span>`}
+              ${website ? `<span class="platform-note">${website}</span>` : ''}
+              ${e.note ? `<span class="entry-note">${e.note}</span>` : ''}
+              ${renderLinks(e.links)}
+            </div>
+          </li>`;
+        } else {
+          html += entryHTML(e, 'apps');
+        }
+      });
       html += `</ul>`;
 
       // ── Brand Apps ────────────────────────────────────────
