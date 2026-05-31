@@ -133,41 +133,61 @@
     .card-links a { margin-right: 10px; }
     .card-platform { font-size: 11.5px; color: #86868b; }
 
-    /* ── Episode strip ── */
-    .episode-strip-wrap { margin-top: 16px; }
-    .episode-strip-label {
-      font-size: 11px;
+    /* ── Expandable episode drawer (Option C) ── */
+    .expand-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: 10px;
+      font-size: 12px;
       font-weight: 600;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      color: #86868b;
-      margin: 0 0 8px;
+      color: #0176ba;
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      font-family: inherit;
     }
-    .episode-strip {
-      display: flex;
-      gap: 10px;
-      overflow-x: auto;
-      padding-bottom: 6px;
-      scrollbar-width: thin;
-      scrollbar-color: #dddee1 transparent;
+    .expand-btn:hover { text-decoration: underline; }
+    .expand-icon {
+      display: inline-block;
+      transition: transform 0.2s;
+      font-size: 10px;
     }
-    .episode-strip::-webkit-scrollbar { height: 4px; }
-    .episode-strip::-webkit-scrollbar-track { background: transparent; }
-    .episode-strip::-webkit-scrollbar-thumb { background: #dddee1; border-radius: 2px; }
-    .episode-mini {
-      flex: 0 0 160px;
+    .expand-btn[aria-expanded="true"] .expand-icon { transform: rotate(90deg); }
+
+    .episode-drawer {
+      overflow: hidden;
+      max-height: 0;
+      opacity: 0;
+      transition: max-height 0.3s ease, opacity 0.2s ease;
+    }
+    .episode-drawer.open {
+      max-height: 800px;
+      opacity: 1;
+    }
+
+    .episode-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      padding: 12px 14px 14px;
       background: #f5f5f7;
+    }
+
+    .episode-grid-card {
+      background: #ffffff;
       border-radius: 8px;
       overflow: hidden;
       text-decoration: none;
       display: block;
       transition: transform 0.15s, box-shadow 0.15s;
     }
-    .episode-mini:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-    .episode-mini img { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; }
-    .episode-mini-body { padding: 6px 8px 8px; }
-    .episode-mini-title { font-size: 11.5px; font-weight: 600; color: #1d1d1f; line-height: 1.3; margin: 0 0 2px; }
-    .episode-mini-meta { font-size: 11px; color: #86868b; }
+    .episode-grid-card:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+    .episode-grid-card img { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; }
+    .episode-grid-body { padding: 6px 8px 8px; }
+    .episode-grid-title { font-size: 11.5px; font-weight: 600; color: #1d1d1f; line-height: 1.3; margin: 0 0 2px; }
+    .episode-grid-meta { font-size: 11px; color: #86868b; }
   </style>
 </head>
 <body>
@@ -315,19 +335,27 @@
 
       const platform = entry.platform || '';
 
-      // Episode strip — only when episodes have thumbnails
+      // Use Apple TV description if available, fall back to note
+      const cardNote = entry.description || entry.note || '';
+
+      // Expandable episode drawer — only when episodes have thumbnails
       const episodesWithThumbs = (entry.episodes || []).filter(ep => ep.thumbnail && ep.status !== 'pending');
-      const stripHTML = episodesWithThumbs.length ? `
-        <div class="episode-strip-wrap">
-          <p class="episode-strip-label">Episodes</p>
-          <div class="episode-strip" role="list">
+      const drawerId = `ep-${entry.id}`;
+      const drawerHTML = episodesWithThumbs.length ? `
+        <button class="expand-btn" aria-expanded="false" aria-controls="${drawerId}" onclick="toggleDrawer(this,'${drawerId}')">
+          <span class="expand-icon" aria-hidden="true">▶</span> ${episodesWithThumbs.length} Episode${episodesWithThumbs.length !== 1 ? 's' : ''}
+        </button>` : '';
+
+      const episodeGridHTML = episodesWithThumbs.length ? `
+        <div id="${drawerId}" class="episode-drawer" aria-hidden="true">
+          <div class="episode-grid">
             ${episodesWithThumbs.map(ep => {
               const meta = [ep.date, ep.guest, ep.location].filter(Boolean).join(' · ');
-              return `<a class="episode-mini" href="${ep.url}" target="_blank" rel="noopener" role="listitem">
+              return `<a class="episode-grid-card" href="${ep.url}" target="_blank" rel="noopener">
                 <img src="${ep.thumbnail}" alt="${ep.title}" loading="lazy">
-                <div class="episode-mini-body">
-                  <div class="episode-mini-title">${ep.title}</div>
-                  ${meta ? `<div class="episode-mini-meta">${meta}</div>` : ''}
+                <div class="episode-grid-body">
+                  <div class="episode-grid-title">${ep.title}</div>
+                  ${meta ? `<div class="episode-grid-meta">${meta}</div>` : ''}
                 </div>
               </a>`;
             }).join('')}
@@ -344,10 +372,11 @@
             ${badges ? `<div class="card-badges">${badges}</div>` : ''}
             ${titleEl}
             ${platform ? `<span class="card-platform">${platform}</span>` : ''}
-            ${entry.note ? `<p class="card-note">${entry.note}</p>` : ''}
+            ${cardNote ? `<p class="card-note">${cardNote}</p>` : ''}
             ${renderLinks(entry.links)}
+            ${drawerHTML}
           </div>
-          ${stripHTML}
+          ${episodeGridHTML}
         </li>`;
     }
 
@@ -653,6 +682,14 @@
       });
 
   })();
+
+  function toggleDrawer(btn, drawerId) {
+    const drawer = document.getElementById(drawerId);
+    const expanded = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', String(!expanded));
+    drawer.setAttribute('aria-hidden', String(expanded));
+    drawer.classList.toggle('open', !expanded);
+  }
   </script>
 
 </body>
