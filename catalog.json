@@ -24,24 +24,28 @@
                   "title": "E1: Hawaii",
                   "url": "https://tv.apple.com/us/episode/hawai%CA%BBi/umc.cmc.4ykhgdgdbw1fvp7pfk0sw7g96?showId=umc.cmc.5klf6wzriakqz7lcarzyp5bp1",
                   "date": "2024-09",
-                  "guest": "Aulii Cravalho"
+                  "guest": "Aulii Cravalho",
+                  "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/-b-aIhwcvo-2gC_07mhETQ/1200x675.jpg"
                 },
                 {
                   "title": "E2: Maine",
                   "url": "https://tv.apple.com/us/episode/maine/umc.cmc.ay21aysofxf2ekagr2vc6u5i?showId=umc.cmc.5klf6wzriakqz7lcarzyp5bp1",
                   "date": "2025-10",
-                  "guest": "Tim Robbins"
+                  "guest": "Tim Robbins",
+                  "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/lrpTFfWinbRU3CcG9FgWOg/1200x675.jpg"
                 },
                 {
                   "title": "E3: Switzerland",
                   "url": "https://tv.apple.com/us/episode/switzerland/umc.cmc.56aawstdpgqhsuhxpo6vxjdk4?showId=umc.cmc.5klf6wzriakqz7lcarzyp5bp1",
                   "date": "2026-02",
-                  "guest": "Carla Juri"
+                  "guest": "Carla Juri",
+                  "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/Ib-zDRgKIbF910oPt3d0eA/1200x675.jpg"
                 },
                 {
                   "title": "E4: New York City",
                   "url": "https://tv.apple.com/us/episode/new-york-city/umc.cmc.6uubfgdtgma0cjnuqmbuxd79n?showId=umc.cmc.5klf6wzriakqz7lcarzyp5bp1",
-                  "date": "2026-04"
+                  "date": "2026-04",
+                  "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/pxEddPRSvLnEM7ogcStnKg/1200x675.jpg"
                 }
               ],
               "links": [
