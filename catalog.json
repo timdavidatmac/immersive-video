@@ -565,6 +565,8 @@
               "genre": "Drama / Narrative",
               "duration": "9 min",
               "note": "Clara Chong dir, Ben Allan & Mike Seymour PhD prod. Romantic drama set over one evening at a university.",
+              "thumbnail": "https://nmzfdjblmhrthistlmnc.supabase.co/storage/v1/object/public/theater-artwork/movies/the-dobos-connection-temp-thumb.jpg",
+              "title_overlay": true,
               "links": [
                 {
                   "label": "fxguide deep dive",
