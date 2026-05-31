@@ -132,6 +132,42 @@
     .card-links { margin-top: 6px; font-size: 12.5px; }
     .card-links a { margin-right: 10px; }
     .card-platform { font-size: 11.5px; color: #86868b; }
+
+    /* ── Episode strip ── */
+    .episode-strip-wrap { margin-top: 16px; }
+    .episode-strip-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #86868b;
+      margin: 0 0 8px;
+    }
+    .episode-strip {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding-bottom: 6px;
+      scrollbar-width: thin;
+      scrollbar-color: #dddee1 transparent;
+    }
+    .episode-strip::-webkit-scrollbar { height: 4px; }
+    .episode-strip::-webkit-scrollbar-track { background: transparent; }
+    .episode-strip::-webkit-scrollbar-thumb { background: #dddee1; border-radius: 2px; }
+    .episode-mini {
+      flex: 0 0 160px;
+      background: #f5f5f7;
+      border-radius: 8px;
+      overflow: hidden;
+      text-decoration: none;
+      display: block;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .episode-mini:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+    .episode-mini img { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; }
+    .episode-mini-body { padding: 6px 8px 8px; }
+    .episode-mini-title { font-size: 11.5px; font-weight: 600; color: #1d1d1f; line-height: 1.3; margin: 0 0 2px; }
+    .episode-mini-meta { font-size: 11px; color: #86868b; }
   </style>
 </head>
 <body>
@@ -279,6 +315,25 @@
 
       const platform = entry.platform || '';
 
+      // Episode strip — only when episodes have thumbnails
+      const episodesWithThumbs = (entry.episodes || []).filter(ep => ep.thumbnail && ep.status !== 'pending');
+      const stripHTML = episodesWithThumbs.length ? `
+        <div class="episode-strip-wrap">
+          <p class="episode-strip-label">Episodes</p>
+          <div class="episode-strip" role="list">
+            ${episodesWithThumbs.map(ep => {
+              const meta = [ep.date, ep.guest, ep.location].filter(Boolean).join(' · ');
+              return `<a class="episode-mini" href="${ep.url}" target="_blank" rel="noopener" role="listitem">
+                <img src="${ep.thumbnail}" alt="${ep.title}" loading="lazy">
+                <div class="episode-mini-body">
+                  <div class="episode-mini-title">${ep.title}</div>
+                  ${meta ? `<div class="episode-mini-meta">${meta}</div>` : ''}
+                </div>
+              </a>`;
+            }).join('')}
+          </div>
+        </div>` : '';
+
       return `
         <li class="catalog-card" ${dataCategory} ${dataNew} ${dataFree} data-search="${searchText.replace(/"/g,'&quot;')}">
           <div class="card-thumb">
@@ -290,9 +345,9 @@
             ${titleEl}
             ${platform ? `<span class="card-platform">${platform}</span>` : ''}
             ${entry.note ? `<p class="card-note">${entry.note}</p>` : ''}
-            ${renderEpisodes(entry.episodes)}
             ${renderLinks(entry.links)}
           </div>
+          ${stripHTML}
         </li>`;
     }
 
