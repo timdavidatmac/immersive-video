@@ -843,6 +843,7 @@
     "amplium": {
       "label": "Amplium",
       "app_store": "https://apps.apple.com/us/app/amplium/id6612011166",
+      "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/ae/c1/2b/aec12b2a-ab88-e554-a946-2009634b7f67/AppIcon.lsr/512x512bb.jpg",
       "website": "https://home.theamplium.com",
       "entries": [
         {
@@ -870,6 +871,7 @@
           "id": "prima-immersive",
           "title": "Prima Immersive",
           "app_store": "https://apps.apple.com/app/prima-immersive/id6740540865",
+          "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/86/bc/1b/86bc1bfe-84fb-6ee4-02fc-7322b5d4b123/AppIcon.lsr/512x512bb.jpg",
           "website": "https://www.immersivecompany.com/platform",
           "note": "Native 16K/90fps/HDR distribution. Content: The Spatialists: Sessions. New content in production."
         },
@@ -877,6 +879,7 @@
           "id": "frontrow",
           "title": "FrontRow",
           "app_store": "https://apps.apple.com/us/app/front-row-experiences/id6572327261",
+          "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/f1/81/54/f18154fe-2f01-a125-9df2-383eff767649/AppIcon.lsr/512x512bb.jpg",
           "website": "https://www.frontrow.co",
           "note": "Spatial video concerts, comedy specials, and white label brand experiences."
         },
@@ -884,6 +887,7 @@
           "id": "blue-frog",
           "title": "Blue Frog Immersive",
           "app_store": "https://apps.apple.com/app/blue-frog-immersive/id6759308230",
+          "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/06/74/f5/0674f5ab-b892-f326-98d2-72221fa387f3/AppIcon.lsr/512x512bb.jpg",
           "website": "https://bluefrogstudios.ca/pages/immersive-download",
           "note": "Immersive 3D concert performances with spatial audio.",
           "links": [
@@ -897,6 +901,7 @@
           "id": "amazevr",
           "title": "AmazeVR",
           "app_store": "https://apps.apple.com/us/app/amazevr-concerts-immersive-3d/id6474842602",
+          "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/c8/39/f6/c839f68d-70c8-fa9b-992c-37afb7abd602/AppIcon.lsr/512x512bb.jpg",
           "website": "https://www.amazevr.com",
           "note": "VR concerts bringing fans face-to-face with artists."
         },
@@ -916,12 +921,14 @@
           "id": "spatial-film",
           "title": "Spatial Film",
           "app_store": "https://apps.apple.com/us/app/spatial-film/id6670564820",
+          "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/1f/b7/94/1fb79439-f2a5-8881-e31e-b7e54f06f9a4/AppIcon.lsr/512x512bb.jpg",
           "note": "Streaming library of 180° and 360° spatial films. Bi-weekly new titles. Vision Pro exclusive. Known titles include Multnomah Falls by Hugh Hou (native AIV, 90fps HDR)."
         },
         {
           "id": "youtube-visionos",
           "title": "YouTube for visionOS",
           "app_store": "https://apps.apple.com/us/app/youtube-for-visionos/id6745572359",
+          "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/8d/d2/da/8dd2da3f-be66-d8ea-f8f9-8facc51d3fdb/AppIcon.lsr/512x512bb.jpg",
           "note": "Supports 3D 360°, VR180, standard video. 8K on M5 Vision Pro.",
           "links": [
             {
@@ -934,6 +941,7 @@
           "id": "explore-pov",
           "title": "Explore POV",
           "app_store": "https://apps.apple.com/us/app/explore-pov/id6479555991",
+          "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/9c/51/b7/9c51b7c4-b8f7-f37e-31e2-48ee881ca8a2/AppIcon.lsr/512x512bb.jpg",
           "website": "https://www.explorepov.com/",
           "note": "2025 Apple Vision Pro App of the Year. Immersive content library.",
           "links": [
@@ -947,6 +955,7 @@
           "id": "arluma360",
           "title": "ARLUMA360",
           "app_store": "https://apps.apple.com/app/apple-store/id6761225329",
+          "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/37/6a/64/376a6405-e2ae-8904-e96f-c75bbc8cdde4/AppIcon.lsr/512x512bb.jpg",
           "website": "https://arlumastudios.com",
           "added": "2026-05-25",
           "note": "VR180 immersive content player. First release: Finland Icescapes Pt. 1 (May 2026)."
@@ -955,6 +964,7 @@
           "id": "immersa",
           "title": "Immersa — Spatial Cinema",
           "app_store": "https://apps.apple.com/us/app/immersa-spatial-cinema/id6759059321",
+          "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/6a/66/01/6a660152-b8b2-d55f-ae60-765132ae9c67/AppIcon.lsr/512x512bb.jpg",
           "website": "https://immersa.app",
           "added": "2026-05-19",
           "note": "Professional delivery platform for immersive filmmakers and studios."
@@ -963,6 +973,7 @@
           "id": "justvr",
           "title": "JustVR",
           "app_store": "https://apps.apple.com/us/app/justvr/id6759510255",
+          "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/a6/a0/fe/a6a0fed6-d291-477e-db93-73cf5a555d83/AppIcon.lsr/512x512bb.jpg",
           "website": "https://www.justvr.cn/",
           "note": "Cross-platform immersive video app (Vision Pro, Meta Quest, Pico). Creator-built library."
         }
