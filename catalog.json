@@ -777,28 +777,15 @@
               ]
             },
             {
-              "id": "tudor-period-piece",
-              "title": "Tudor Period Piece — Auggie Award Finalist",
-              "url": "https://apps.apple.com/us/app/spatial-film/id6670564820",
-              "status": "available",
-              "genre": "Narrative",
-              "year": 2026,
-              "note": "Dir: Keeley Turner. Shot by Hugh Hou. Auggie Award finalist.",
-              "links": [
-                {
-                  "label": "Reddit post",
-                  "url": "https://www.reddit.com/r/VisionPro/comments/1tkxbgu/we_filmed_a_tudor_period_piece_in_immersive_for/"
-                }
-              ]
-            },
-            {
-              "id": "almshouse",
-              "title": "700-Year-Old English Almshouse — Guided Immersive History Tour",
+              "id": "lord-leycester-hospital",
+              "title": "Lord Leycester Hospital: 900 Years of History",
               "url": "https://apps.apple.com/us/app/spatial-film/id6670564820",
               "status": "available",
               "genre": "Documentary / History",
               "year": 2026,
-              "note": "Dir: Keeley Turner. Guided tour of a medieval English almshouse.",
+              "thumbnail": "https://preview.redd.it/visit-a-700-year-old-english-almshouse-in-apple-vision-pro-v0-1fncgiegdy1h1.jpeg?width=1080&crop=smart&auto=webp&s=ef0b2d64856b7d3e2fe00771289cfa076be063bd",
+              "title_overlay": true,
+              "note": "Dir: Keeley Turner. Shot by Hugh Hou. Auggie Award finalist. A medieval almshouse tied to Robert Dudley and Queen Elizabeth I — retired soldiers still live here today.",
               "links": [
                 {
                   "label": "Reddit post",
