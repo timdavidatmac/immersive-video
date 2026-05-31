@@ -18,7 +18,7 @@
               "type": "series",
               "url": "https://tv.apple.com/us/show/elevated/umc.cmc.5klf6wzriakqz7lcarzyp5bp1",
               "status": "available",
-              "note": "Apple's flagship AIV travel series, 4 episodes.",
+              "note": "Apple's flagship AIV travel series, 4 episodes. UploadVR review — NYC episode: can Apple Immersive Video convey the spirit of New York?",
               "description": "Gain an all-new perspective as you take aerial tours of the world's most remarkable landscapes, led by well-known guides with a special connection to each place.",
               "episodes": [
                 {
@@ -47,12 +47,6 @@
                   "url": "https://tv.apple.com/us/episode/new-york-city/umc.cmc.6uubfgdtgma0cjnuqmbuxd79n?showId=umc.cmc.5klf6wzriakqz7lcarzyp5bp1",
                   "date": "2026-04",
                   "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/pxEddPRSvLnEM7ogcStnKg/1200x675.jpg"
-                }
-              ],
-              "links": [
-                {
-                  "label": "UploadVR review — NYC",
-                  "url": "https://www.uploadvr.com/can-apple-immersive-video-convey-the-spirit-of-new-york/"
                 }
               ],
               "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/Ex-mBGCszrp7ZIdwvRZlfw/1200x675.jpg"
