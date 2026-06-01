@@ -76,7 +76,13 @@
                   "title": "E3: Ice Dive",
                   "url": "https://tv.apple.com/us/episode/ice-dive/umc.cmc.1lxb2q6h7pj1b6k1q2hgq25xt?showId=umc.cmc.5al10vz5fkqzxonreq110ony0",
                   "date": "2024-12",
-                  "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/uFq0G6WkTUkSWXTiSLWqNg/1200x675.jpg"
+                  "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/uFq0G6WkTUkSWXTiSLWqNg/1200x675.jpg",
+                  "links": [
+                    {
+                      "label": "Ant Williams — production interview",
+                      "url": "https://youtu.be/cfus6EKmKp8"
+                    }
+                  ]
                 },
                 {
                   "title": "E4: Deep Water Solo",
