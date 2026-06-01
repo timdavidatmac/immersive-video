@@ -289,6 +289,7 @@
               "duration": "30 min",
               "year": 2025,
               "note": "Johann Zarco's dramatic French MotoGP Grand Prix victory at Le Mans.",
+              "description": "An electric atmosphere. A dramatic scenario. An historical moment in MotoGP™, the pinnacle of motorcycle racing. May 2025. On the starting grid of the French MotoGP™ Grand Prix, Johann Zarco doesn't seem ready to end France's 71-year wait for a home victory in the first class of motorcycle racing. After a crazy race week gathering more than 300,000 fans at Le Mans circuit — an all-time attendance record for a MotoGP™ event — he starts only 11th. But as the riders control their machines at more than 190 miles per hour, the rain begins to fall... and it may change everything.",
               "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/GwrK5725O7pGAIrQWsX5PA/1200x675.jpg"
             },
             {
@@ -299,13 +300,15 @@
               "status": "available",
               "year": 2025,
               "note": "Behind-the-scenes at iconic sports venues.",
+              "description": "Experience the cathedrals of sport — with a behind-the-scenes look at how elite athletes, dedicated staff, diehard fans, and unforgettable moments make the world's most iconic venues come alive.",
               "episodes": [
                 {
                   "title": "E1: Yankee Stadium",
                   "url": "https://tv.apple.com/us/episode/yankee-stadium/umc.cmc.4awwgdeond5reeitehveujxpu?showId=umc.cmc.e96b9gdwcrlwocbvapiyt6gv",
                   "date": "2025-04",
                   "duration": "13 min",
-                  "note": "Narrated by Joe Buck"
+                  "note": "Narrated by Joe Buck",
+                  "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/NCKJzE6eJv5ObLZK8SaVWA/1200x675.jpg"
                 }
               ],
               "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/QKHdBCTV8oFXH-9nLN1t_A/1200x675.jpg"
