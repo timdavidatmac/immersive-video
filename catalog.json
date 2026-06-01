@@ -1019,6 +1019,7 @@
           "id": "acute-immersive",
           "title": "Acute Immersive",
           "website": "https://acuteimmersive.com/apps/",
+          "favicon_url": "catalog-images/acuteimmersive_logo.jpg",
           "note": "AIV content platform.",
           "links": [
             {
@@ -1097,30 +1098,35 @@
           "title": "Immersive America — Waterfalls",
           "url": "https://www.youtube.com/@ImmersiveAmerica",
           "website": "https://immersiveam.com",
+          "favicon_url": "https://immersiveam.com/wp-content/uploads/2026/03/cropped-site-icon-180x180.png",
           "note": "California & Kauai waterfalls. 8K on YouTube VR. 8K on M5 Vision Pro, 4K on M2."
         },
         {
           "id": "immersive-america-southwest",
           "title": "Immersive America — American Southwest",
           "url": "https://immersiveam.com/favorites/",
+          "favicon_url": "https://immersiveam.com/wp-content/uploads/2026/03/cropped-site-icon-180x180.png",
           "note": "Grand Canyon, Bryce Canyon, Monument Valley, Zion, Las Vegas. WebXR + APMP format."
         },
         {
           "id": "blueplanet-vr-web",
           "title": "Blueplanet VR Explore",
           "url": "https://blueplanetvr.com/",
+          "favicon_url": "https://blueplanetvr.com/wp-content/uploads/2023/01/cropped-bluep_logo.gif",
           "note": "100+ photogrammetric spatial experiences via WebXR."
         },
         {
           "id": "yosemite-in-snow",
           "title": "Yosemite in Snow",
           "url": "https://buymeacoffee.com/realityofvision/yosemite-in-snow2026",
+          "favicon_url": "https://buymeacoffee.com/favicon.ico",
           "note": "Community creator. Canon R5C + Qoocam3 VR180. Also on YouTube and DeoVR."
         },
         {
           "id": "bastille-day",
           "title": "Bastille Day France — Immersive Flashback",
           "url": "https://www.immersiveflashback.com/works/bastille-day",
+          "favicon_url": "https://framerusercontent.com/images/AGMrPRDTcalRCYGMvOsGMGXYBc.png",
           "note": "President Macron as narrator. 8 min. May be geo-locked to France. Available at Maison Élysée on Vision Pro.",
           "links": [
             {
@@ -1137,12 +1143,14 @@
           "id": "twin-peaks-180vr",
           "title": "Twin Peaks in 180VR",
           "url": "https://youtu.be/65avEdxyA4U",
+          "favicon_url": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/32/eb/ea/32ebea9d-8f35-c18a-504e-28d6afcd3eb5/logo_youtube_2024_q4_color-0-0-1x_U007emarketing-0-0-0-7-0-0-0-85-220.png/512x512bb.jpg",
           "note": "VR180, May 2026. By Brendan Parker. Real Twin Peaks locations in Washington State."
         },
         {
           "id": "cartagena-8k-vr180",
           "title": "Cartagena, Colombia in 8K VR180",
           "url": "https://youtu.be/k-Gc-HrTJ28",
+          "favicon_url": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/32/eb/ea/32ebea9d-8f35-c18a-504e-28d6afcd3eb5/logo_youtube_2024_q4_color-0-0-1x_U007emarketing-0-0-0-7-0-0-0-85-220.png/512x512bb.jpg",
           "note": "By u/BeyondVRMedia, May 2026. Walled City, San Felipe Fortress, colonial streets, flamingos.",
           "links": [
             {
@@ -1155,6 +1163,7 @@
           "id": "mulan-2125",
           "title": "Mulan 2125",
           "url": "https://www.well-linktech.com/mulan/index.html",
+          "favicon_url": "https://www.well-linktech.com/favicon.ico",
           "note": "VR epic, Venice Immersive Competition 2025. Film-grade CG. Chinese developer — verify English accessibility."
         }
       ]
@@ -1166,6 +1175,7 @@
           "id": "caradise",
           "title": "Caradise",
           "app_store": "https://apps.apple.com/us/app/caradise/id6751403753",
+          "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/d9/94/84/d99484e8-9153-f29f-94b8-c00835561cc0/AppIcon.lsr/512x512bb.jpg",
           "website": "https://caradise.app",
           "added": "2026-05-19",
           "note": "Explore iconic car designs in spatial computing. Vision Pro exclusive. Solo developer: Peder Sandqvist. Apple Design Awards 2026 finalist.",
@@ -1180,6 +1190,7 @@
           "id": "what-if",
           "title": "What If…? An Immersive Story",
           "app_store": "https://apps.apple.com/us/app/what-if-an-immersive-story/id6479251303",
+          "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/ce/79/0f/ce790fa7-12d6-5ce9-22f1-4ae7fe2ce413/AppIcon.lsr/512x512bb.jpg",
           "website": "https://www.marvel.com/WhatIfImmersive",
           "note": "Disney+ Original interactive experience. Marvel Studios' What If…? universe. Not AIV — interactive immersive experience.",
           "links": [
@@ -1193,6 +1204,7 @@
           "id": "blueplanet-vr-app",
           "title": "Blueplanet VR",
           "website": "https://blueplanetvr.com/",
+          "favicon_url": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/57/1f/fc/571ffcba-b238-eac4-3e98-ff1ea0f5dceb/AppIcon.lsr/512x512bb.jpg",
           "note": "100+ photogrammetric spatial experiences of UNESCO World Heritage Sites. By Eric Hanson, USC faculty.",
           "links": [
             {
