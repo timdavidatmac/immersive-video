@@ -264,9 +264,14 @@
               "added": "2026-05-22",
               "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/s5pdJ0bt6RtrGo6q5kQw0A/1200x675.jpg",
               "note": "Free on Apple TV. Shot over 5 days during the 2025 Champions League with 30+ URSA Cine Immersive cameras. Features Mbappé, Bellingham, Vinícius Jr., Courtois.",
+              "description": "Experience an unprecedented, all-access look inside a Real Madrid Champions League match day, revealing up close what it takes to live up to the legacy of the world's most successful football club.",
               "links": [
                 {
-                  "label": "Trailer",
+                  "label": "Trailer (Apple TV)",
+                  "url": "https://tv.apple.com/us/clip/trailer/umc.cmc.1werfso93kzo27xghyllcy9ut?targetId=umc.cmc.59n2yrotl8j6izhn13cj15kz9&targetType=Movie"
+                },
+                {
+                  "label": "Trailer (YouTube)",
                   "url": "https://youtu.be/1yTXr5bX2wQ"
                 },
                 {
