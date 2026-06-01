@@ -348,19 +348,58 @@
             },
             {
               "id": "nba-lakers",
-              "title": "NBA Lakers Games (6 games)",
-              "type": "live",
+              "title": "Spectrum Front Row — Lakers in Apple Immersive",
+              "type": "series",
               "url": "https://apps.apple.com/us/app/spectrum-sportsnet-live-games/id563316826?platform=vision",
               "status": "available",
               "thumbnail": "https://www.apple.com/newsroom/images/2026/01/spectrum-front-row-tips-off-january-9-on-apple-vision-pro/article/Apple-Immersive-Video-Spectrum-SportsNet-app_big.jpg.large_2x.jpg",
-              "note": "Six Lakers games via Spectrum Front Row, Jan–Mar 2026. Links in Apple TV app.",
+              "note": "Six Lakers games via Spectrum Front Row, Jan–Mar 2026. Available via Spectrum SportsNet app or NBA app depending on region.",
+              "description": "Get a front-row seat to Los Angeles Lakers basketball in Apple Immersive — a revolutionary storytelling format available only on Apple Vision Pro. Six games from January through March 2026, captured in stunning 180-degree 8K with Spatial Audio.",
+              "episodes": [
+                {
+                  "title": "Bucks at Lakers",
+                  "url": "https://tv.apple.com/us/show/bucks-at-lakers/umc.cmc.11rjj7xfawlqz0wu299vsl98p",
+                  "date": "2026-01-09",
+                  "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/wMnJ4DR2IexOPAcJVlyHlQ/1200x675.jpg"
+                },
+                {
+                  "title": "76ers at Lakers",
+                  "url": "https://tv.apple.com/us/show/76ers-at-lakers/umc.cmc.1c3aahowk6095v2fgvg23x8jf",
+                  "date": "2026-02-05",
+                  "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/U0Ekei-aO_vSWBCcpATwZA/1200x675.jpg"
+                },
+                {
+                  "title": "Clippers at Lakers",
+                  "url": "https://tv.apple.com/us/show/clippers-at-lakers/umc.cmc.6azhzg81u1sahmwnfepgw9n0y",
+                  "date": "2026-02-20",
+                  "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/DFvqnBHG0FY-_8fcsaN8EQ/1200x675.jpg"
+                },
+                {
+                  "title": "Lakers at Nuggets",
+                  "url": "https://tv.apple.com/us/show/lakers-at-nuggets/umc.cmc.6vwisc2ksnn7pdbzresy8bmig",
+                  "date": "2026-03-05",
+                  "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/RlSz-UNqZ5zMAb9krAWTxA/1200x675.jpg"
+                },
+                {
+                  "title": "Timberwolves at Lakers",
+                  "url": "https://tv.apple.com/us/show/timberwolves-at-lakers/umc.cmc.qnjftq8zilyj5u6o16rh0k3w",
+                  "date": "2026-03-10",
+                  "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/65L_I5XbFAq2yHfJfJvisA/1200x675.jpg"
+                },
+                {
+                  "title": "Wizards at Lakers",
+                  "url": "https://tv.apple.com/us/show/wizards-at-lakers/umc.cmc.6xekkpu886juua2i6cn5ukc0x",
+                  "date": "2026-03-30",
+                  "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/KOgFgLzLqNEtkmL-orwHNA/1200x675.jpg"
+                }
+              ],
               "links": [
                 {
                   "label": "Spectrum SportsNet app",
                   "url": "https://apps.apple.com/us/app/spectrum-sportsnet-live-games/id563316826?platform=vision"
                 },
                 {
-                  "label": "Apple Newsroom",
+                  "label": "How to watch — Apple Newsroom",
                   "url": "https://www.apple.com/newsroom/2026/01/spectrum-front-row-tips-off-january-9-on-apple-vision-pro/"
                 }
               ]
