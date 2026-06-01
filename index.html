@@ -428,8 +428,8 @@
       return `
         <li class="catalog-card" ${dataCategory} ${dataNew} ${dataFree} data-search="${searchText.replace(/"/g,'&quot;')}">
           <div class="card-thumb">
-            ${thumbLink}<img src="${entry.thumbnail}" alt="${entry.title}" loading="lazy">${thumbClose}
-            <div class="card-thumb-overlay" aria-hidden="true">${entry.title}</div>
+            ${thumbLink}<img src="${entry.thumbnail}" alt="${entry.title}" loading="lazy" ${gone ? 'style="filter:grayscale(1);opacity:0.55;"' : ''}>${thumbClose}
+            <div class="card-thumb-overlay" aria-hidden="true" ${gone ? 'style="background:linear-gradient(transparent,rgba(0,0,0,0.85));"' : ''}>${gone ? 'No Longer Available' : entry.title}</div>
           </div>
           <div class="card-body">
             ${badges ? `<div class="card-badges">${badges}</div>` : ''}
