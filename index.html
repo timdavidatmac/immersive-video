@@ -550,9 +550,8 @@
         html += `</ul>`;
       }
       if (atv.unavailable) {
-        html += `<h3 class="subsection-heading" style="color:#991b1b;">No Longer Available</h3><ul class="catalog-list">`;
-        html += atv.unavailable.entries.map(e => entryHTML(e, 'apple-tv')).join('');
-        html += `</ul>`;
+        html += `<h3 class="subsection-heading" style="color:#991b1b;">No Longer Available</h3>`;
+        html += renderSection(atv.unavailable.entries, 'apple-tv', '');
       }
 
       // ── Theater App ───────────────────────────────────────
