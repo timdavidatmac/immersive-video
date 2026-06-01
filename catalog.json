@@ -552,25 +552,32 @@
               "id": "julaymba",
               "title": "Julaymba",
               "status": "pending",
-              "note": "Award-winning documentary by PHORIA. Daintree Rainforest, Australia. Scheduled Oct 2025 — still unreleased as of May 2026. Shot on URSA Cine Immersive."
+              "note": "Still unreleased as of June 2026. By PHORIA. Shot on URSA Cine Immersive.",
+              "description": "Step into the heart of the world's oldest rainforest. In the lush Daintree Rainforest of North Tropical Queensland, Australia, journey with the Eastern Kuku Yalanji people — the Indigenous Traditional Custodians — where an Elder welcomes you through stories, ceremony, and a profound connection to country.",
+              "thumbnail": "https://www.apple.com/newsroom/images/2025/09/apple-previews-new-immersive-films-for-apple-vision-pro/article/Apple-Vision-Pro-Immersive-films-Julaymba_big.jpg.large_2x.jpg"
             },
             {
               "id": "experience-paris",
               "title": "Experience Paris",
               "status": "pending",
-              "note": "By The Explorers. Three-Michelin-star kitchen, Eiffel Tower, Montmartre. Fall 2025 — still unreleased."
+              "note": "By The Explorers. Still unreleased as of June 2026.",
+              "description": "An immersive film from The Explorers celebrating French heritage. Discover the quiet precision of a three-Michelin-star kitchen, ascend to breathtaking heights atop the city's most iconic tower, and experience the timeless charm of Montmartre's historic streets.",
+              "thumbnail": "https://www.apple.com/newsroom/images/2025/09/apple-previews-new-immersive-films-for-apple-vision-pro/article/Apple-Vision-Pro-Immersive-films-Experience-Paris_big.jpg.large_2x.jpg"
             },
             {
               "id": "cnn-antarctica",
-              "title": "CNN — Journey to Antarctica",
+              "title": "Journey to Antarctica to Find Emperor Penguins with CNN's Bill Weir",
               "status": "pending",
-              "note": "Emperor penguins on Snow Hill Island with CNN's Bill Weir. Spring 2026 — may still be unreleased."
+              "note": "Spring 2026 — may still be unreleased.",
+              "description": "CNN's chief climate correspondent Bill Weir joins a scientific expedition to Antarctica, bringing audiences into unbelievable proximity with emperor penguins emerging from winter with newborn chicks on Snow Hill Island.",
+              "thumbnail": "https://www.apple.com/newsroom/images/2025/09/apple-previews-new-immersive-films-for-apple-vision-pro/article/Apple-Vision-Pro-Immersive-films-Bill-Weir-CNN_big.jpg.large_2x.jpg"
             },
             {
               "id": "audi-f1",
               "title": "Audi F1 Project",
               "status": "pending",
-              "note": "Mentioned in Apple Newsroom Sep 2025 — no details yet."
+              "note": "Mentioned in the Apple Newsroom in September 2025 — no further details yet.",
+              "url": "https://www.apple.com/newsroom/2025/09/apple-previews-new-immersive-films-for-apple-vision-pro/"
             }
           ]
         },
