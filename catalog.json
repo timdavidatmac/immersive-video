@@ -126,26 +126,31 @@
               "url": "https://tv.apple.com/us/show/wild-life/umc.cmc.63jzn7b2c5w488vb72cabapqa",
               "status": "available",
               "note": "Adventure/nature series, 4 episodes, 2024–2025.",
+              "description": "Get up close and personal with some of the most charismatic creatures on the planet — and uncover what makes them unique with the experts who know them best.",
               "episodes": [
                 {
                   "title": "E1: Rhinos",
                   "url": "https://tv.apple.com/us/episode/rhinos/umc.cmc.3qvwcq3tjbg4bwij0x6g4yrh0?showId=umc.cmc.63jzn7b2c5w488vb72cabapqa",
-                  "date": "2024-02"
+                  "date": "2024-02",
+                  "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/wQiPug3PyUvhSoMOz-h8EQ/1200x675.jpg"
                 },
                 {
                   "title": "E2: Elephants",
                   "url": "https://tv.apple.com/us/episode/elephants/umc.cmc.1y0oyezs14pm2enm5v22i2qro?showId=umc.cmc.63jzn7b2c5w488vb72cabapqa",
-                  "date": "2024-08"
+                  "date": "2024-08",
+                  "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/PuIJ5pVjYNC3dEP8gbXSFg/1200x675.jpg"
                 },
                 {
                   "title": "E3: Sharks",
                   "url": "https://tv.apple.com/us/episode/sharks/umc.cmc.1wehrlakivxxm0rr8fotl01s0?showId=umc.cmc.63jzn7b2c5w488vb72cabapqa",
-                  "date": "2024-12"
+                  "date": "2024-12",
+                  "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/Llpec41nNQmiJo-6cw5vgQ/1200x675.jpg"
                 },
                 {
                   "title": "E4: Orangutans",
                   "url": "https://tv.apple.com/us/episode/orangutans/umc.cmc.65valpyigxg5b589wsjeyys2o?showId=umc.cmc.63jzn7b2c5w488vb72cabapqa",
-                  "date": "2025-08"
+                  "date": "2025-08",
+                  "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/FE4ENmiv_IVD8xy-o8oSxw/1200x675.jpg"
                 }
               ],
               "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/V_B1_Dw39Fm8Mi6d5ZP-xA/1200x675.jpg"
@@ -159,6 +164,7 @@
               "duration": "14 min",
               "year": 2025,
               "note": "F-18 fighter pilots aboard the USS Nimitz.",
+              "description": "Report to the flight deck of the USS Nimitz and strap in with F-18 fighter pilots for a full-throttle ride through the skies.",
               "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/crCpLqy72vkBgX3bVTo_pw/1200x675.jpg"
             }
           ]
@@ -173,16 +179,19 @@
               "url": "https://tv.apple.com/us/show/prehistoric-planet-immersive/umc.cmc.4llk93xln0cw9wrwbmfduwbdx",
               "status": "available",
               "note": "Documentary series, 2 episodes, 2024.",
+              "description": "Transport yourself into the daily lives of dinosaurs, and follow the struggles and triumphs of these majestic animals amid spectacular scenery.",
               "episodes": [
                 {
                   "title": "E1: Pterosaur Beach",
                   "url": "https://tv.apple.com/us/episode/pterosaur-beach/umc.cmc.4kxr1p0klaw3biz9250at4lbg?showId=umc.cmc.4llk93xln0cw9wrwbmfduwbdx",
-                  "date": "2024-02"
+                  "date": "2024-02",
+                  "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/Nl8lf_AWg8kS0ArxuMr_rQ/1200x675.jpg"
                 },
                 {
                   "title": "E2: Triceratops Forest",
                   "url": "https://tv.apple.com/us/episode/triceratops-forest/umc.cmc.6m49y11kvxwsbp3zs5ejwfr9e?showId=umc.cmc.4llk93xln0cw9wrwbmfduwbdx",
-                  "date": "2024-04"
+                  "date": "2024-04",
+                  "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/NROwgTlZ5d-vx07irPCXkw/1200x675.jpg"
                 }
               ],
               "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/ENZFhup5qd5QjVZM6l7dXQ/1200x675.jpg"
@@ -194,22 +203,19 @@
               "url": "https://tv.apple.com/us/show/top-dogs/umc.cmc.6snqtei46tkkch7odsnoq9nac",
               "status": "available",
               "note": "AIV documentary series, 2 episodes. Crufts dog show.",
+              "description": "They're chasing greatness — and they'll stop at nothing to win. Get up close with these cute, fiercely competitive canine stars (and their humans) as they face off at Crufts, the world's biggest dog show.",
               "episodes": [
                 {
                   "title": "E1: The Giant Killer",
                   "url": "https://tv.apple.com/us/episode/the-giant-killer/umc.cmc.6d0vp8jnzz1hz73k97o2vx0z2?showId=umc.cmc.6snqtei46tkkch7odsnoq9nac",
-                  "date": "2026-01"
+                  "date": "2026-01",
+                  "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/X320bAl7Eeu_NScA3ZnNEA/1200x675.jpg"
                 },
                 {
                   "title": "E2: Best in Show",
                   "url": "https://tv.apple.com/us/episode/best-in-show/umc.cmc.ptxc1tn9hzbrxcaumo7hlhqd?showId=umc.cmc.6snqtei46tkkch7odsnoq9nac",
-                  "date": "2026-01"
-                }
-              ],
-              "links": [
-                {
-                  "label": "UploadVR review",
-                  "url": "https://www.uploadvr.com/top-dogs-on-apple-immersive-brings-you-up-close-with-champions/"
+                  "date": "2026-01",
+                  "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/YmmjmFj2-zR8ZRMnw5eNfg/1200x675.jpg"
                 }
               ],
               "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/2FkV8bpwLATSyp-9Vtca-w/1200x675.jpg"
@@ -221,13 +227,15 @@
               "url": "https://tv.apple.com/us/show/world-of-red-bull/umc.cmc.h96ns9ovu03p34i6bnodn3h6",
               "status": "available",
               "note": "Sports series.",
+              "description": "Get ready for a rush like no other. Tackle the biggest waves, tallest mountains, and fastest speeds with Red Bull's fearless athletes.",
               "episodes": [
                 {
                   "title": "E1: Backcountry Skiing",
                   "url": "https://tv.apple.com/us/episode/backcountry-skiing/umc.cmc.1ksom5fsoafsx570vuwk717go?showId=umc.cmc.h96ns9ovu03p34i6bnodn3h6",
                   "date": "2025-12",
                   "duration": "11 min",
-                  "location": "Revelstoke, BC"
+                  "location": "Revelstoke, BC",
+                  "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/iqJopgftgX8PsqjQP8il_Q/1200x675.jpg"
                 },
                 {
                   "title": "E2: Big-Wave Surfing",
@@ -235,12 +243,6 @@
                   "status": "pending",
                   "location": "Teahupoʻo, Tahiti",
                   "note": "Available in 2026 — no specific date"
-                }
-              ],
-              "links": [
-                {
-                  "label": "Apple Newsroom",
-                  "url": "https://www.apple.com/newsroom/2025/09/apple-previews-new-immersive-films-for-apple-vision-pro/"
                 }
               ],
               "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/ArTX_SJPrY-UDHxhWCcKPw/1200x675.jpg"
