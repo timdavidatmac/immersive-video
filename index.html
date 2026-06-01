@@ -411,14 +411,14 @@
       }
 
       // ── FILM: standard card ──
-      const thumbLink = (url && !pending && !gone)
+      const thumbLink = (url && !gone)
         ? `<a href="${url}" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">`
         : '';
-      const thumbClose = (url && !pending && !gone) ? '</a>' : '';
+      const thumbClose = (url && !gone) ? '</a>' : '';
 
       const titleEl = gone
         ? `<span class="card-title" style="color:#86868b;text-decoration:line-through;">${entry.title}</span>`
-        : (url && !pending)
+        : url
           ? `<a class="card-title" href="${url}" target="_blank" rel="noopener">${entry.title}</a>`
           : `<span class="card-title">${entry.title}</span>`;
 

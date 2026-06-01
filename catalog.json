@@ -360,7 +360,13 @@
                   "title": "Bucks at Lakers",
                   "url": "https://tv.apple.com/us/show/bucks-at-lakers/umc.cmc.11rjj7xfawlqz0wu299vsl98p",
                   "date": "2026-01-09",
-                  "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/wMnJ4DR2IexOPAcJVlyHlQ/1200x675.jpg"
+                  "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/wMnJ4DR2IexOPAcJVlyHlQ/1200x675.jpg",
+                  "links": [
+                    {
+                      "label": "Hugh Hou broadcast breakdown",
+                      "url": "https://youtu.be/yLIfWv9ecg8"
+                    }
+                  ]
                 },
                 {
                   "title": "76ers at Lakers",
@@ -524,8 +530,19 @@
               "url": "https://tv.apple.com/us/movie/submerged/umc.cmc.vy97m4adbovp4zrxsuny0mua",
               "status": "available",
               "duration": "17 min",
-              "note": "WWII submarine crew under torpedo attack. Directed by Edward Berger (All Quiet on the Western Front).",
-              "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/UMjP6brNL_49K0j3m_idZw/1200x675.jpg"
+              "note": "WWII submarine crew under torpedo attack. Directed by Edward Berger (All Quiet on the Western Front). First scripted film in Apple Immersive Video.",
+              "description": "A WWII submarine crew combats a harrowing torpedo attack in this adrenaline-pumping thrill ride. From filmmaker Edward Berger, director of the Academy Award®-winning All Quiet on the Western Front.",
+              "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/UMjP6brNL_49K0j3m_idZw/1200x675.jpg",
+              "links": [
+                {
+                  "label": "The Making of Submerged (Apple TV)",
+                  "url": "https://tv.apple.com/us/clip/the-making-of-submerged/umc.cmc.1ut1sa5j7zzd1ol7yrdar0mem?targetId=umc.cmc.vy97m4adbovp4zrxsuny0mua&targetType=Movie"
+                },
+                {
+                  "label": "The Making of Submerged (YouTube)",
+                  "url": "https://youtu.be/4SlcvPsoAxw"
+                }
+              ]
             }
           ]
         },
@@ -541,6 +558,7 @@
               "duration": "3 min",
               "year": 2025,
               "note": "Preview/sampler. Clips from Metallica, Yankees, and Submerged.",
+              "description": "Go backstage, onstage, and beyond with Metallica. Feel the game-day adrenaline inside Yankee Stadium. Plunge into a gripping submarine thriller. Experience the awe-inspiring like never before with this special preview of Apple Immersive Video.",
               "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/vezho3tzKbSgmRNRgQ9y_A/1200x675.jpg"
             }
           ]
@@ -551,6 +569,7 @@
             {
               "id": "julaymba",
               "title": "Julaymba",
+              "url": "https://www.apple.com/newsroom/2025/09/apple-previews-new-immersive-films-for-apple-vision-pro/",
               "status": "pending",
               "note": "Still unreleased as of June 2026. By PHORIA. Shot on URSA Cine Immersive.",
               "description": "Step into the heart of the world's oldest rainforest. In the lush Daintree Rainforest of North Tropical Queensland, Australia, journey with the Eastern Kuku Yalanji people — the Indigenous Traditional Custodians — where an Elder welcomes you through stories, ceremony, and a profound connection to country.",
@@ -559,6 +578,7 @@
             {
               "id": "experience-paris",
               "title": "Experience Paris",
+              "url": "https://www.apple.com/newsroom/2025/09/apple-previews-new-immersive-films-for-apple-vision-pro/",
               "status": "pending",
               "note": "By The Explorers. Still unreleased as of June 2026.",
               "description": "An immersive film from The Explorers celebrating French heritage. Discover the quiet precision of a three-Michelin-star kitchen, ascend to breathtaking heights atop the city's most iconic tower, and experience the timeless charm of Montmartre's historic streets.",
@@ -567,6 +587,7 @@
             {
               "id": "cnn-antarctica",
               "title": "Journey to Antarctica to Find Emperor Penguins with CNN's Bill Weir",
+              "url": "https://www.apple.com/newsroom/2025/09/apple-previews-new-immersive-films-for-apple-vision-pro/",
               "status": "pending",
               "note": "Spring 2026 — may still be unreleased.",
               "description": "CNN's chief climate correspondent Bill Weir joins a scientific expedition to Antarctica, bringing audiences into unbelievable proximity with emperor penguins emerging from winter with newborn chicks on Snow Hill Island.",
