@@ -441,6 +441,29 @@
         </li>`;
     }
 
+    // ── Icon entry — for brand/web entries with app_icon or favicon_url ──
+    function iconEntryHTML(e, category) {
+      const icon = e.app_icon || e.favicon_url;
+      if (!icon) return entryHTML(e, category);
+      const url = e.url || e.app_store || e.website;
+      const website = e.website ? e.website.replace(/^https?:\/\//, '').replace(/\/$/, '') : '';
+      const searchText = (e.title + ' ' + (e.note||'')).toLowerCase().replace(/"/g,'&quot;');
+      const fresh = isNew(e.added);
+      const dataNew = fresh ? 'data-new="true"' : '';
+      return `
+        <li class="catalog-entry" data-category="${category}" ${dataNew} data-search="${searchText}" style="display:flex;gap:12px;align-items:flex-start;">
+          <div style="width:90px;height:51px;flex-shrink:0;display:flex;align-items:center;justify-content:center;">
+            ${url ? `<a href="${url}" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="${icon}" alt="${e.title} icon" loading="lazy" style="width:46px;height:46px;border-radius:10px;display:block;object-fit:cover;"></a>` : `<img src="${icon}" alt="${e.title} icon" loading="lazy" style="width:46px;height:46px;border-radius:10px;display:block;object-fit:cover;">`}
+          </div>
+          <div style="min-width:0;flex:1;padding-top:2px;">
+            ${url ? `<a class="entry-name" href="${url}" target="_blank" rel="noopener">${e.title}</a>` : `<span class="entry-name">${e.title}</span>`}
+            ${website ? `<span class="platform-note">${website}</span>` : ''}
+            ${e.note ? `<span class="entry-note">${e.note}</span>` : ''}
+            ${renderLinks(e.links)}
+          </div>
+        </li>`;
+    }
+
     // ── List layout — for entries without thumbnails ────────────
     function entryHTML(entry, category) {
       const fresh = isNew(entry.added);
@@ -670,13 +693,17 @@
       // ── Brand Apps ────────────────────────────────────────
       html += `<h2 class="section-heading" id="brand-apps">📦 Brand &amp; Standalone Apps</h2>`;
       html += `<ul class="catalog-list">`;
-      html += data.viewer.brand_apps.entries.map(e => entryHTML(e, 'apps')).join('');
+      data.viewer.brand_apps.entries.forEach(e => {
+        html += iconEntryHTML(e, 'apps');
+      });
       html += `</ul>`;
 
       // ── Web Platforms ─────────────────────────────────────
       html += `<h2 class="section-heading" id="web">🌐 Web &amp; Other Platforms</h2>`;
       html += `<ul class="catalog-list">`;
-      html += data.viewer.web_platforms.entries.map(e => entryHTML(e, 'web')).join('');
+      data.viewer.web_platforms.entries.forEach(e => {
+        html += iconEntryHTML(e, 'web');
+      });
       html += `</ul>`;
 
       root.innerHTML = html;
