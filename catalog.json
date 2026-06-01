@@ -1162,9 +1162,10 @@
         {
           "id": "mulan-2125",
           "title": "Mulan 2125",
-          "url": "https://www.well-linktech.com/mulan/index.html",
-          "favicon_url": "https://www.well-linktech.com/favicon.ico",
-          "note": "VR epic, Venice Immersive Competition 2025. Film-grade CG. Chinese developer — verify English accessibility."
+          "url": "https://apps.apple.com/us/app/mulan-2125/id6747658557",
+          "app_store": "https://apps.apple.com/us/app/mulan-2125/id6747658557",
+          "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/bb/7f/7d/bb7f7d11-2599-df35-7e26-a3a4aa628baa/AppIcon.lsr/512x512bb.jpg",
+          "note": "VR epic by <a href=\"https://www.well-linktech.com/mulan/index.html\" target=\"_blank\" rel=\"noopener\">Well-Ink</a>. Film-grade CG, monocular 4K 3D immersion. Mulan's awakening in a post-apocalyptic world. Venice Immersive Competition 2025 official selection."
         }
       ]
     },

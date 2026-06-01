@@ -669,13 +669,14 @@
       html += `<h2 class="section-heading" id="other-apps">Other Apps with Immersive Content</h2>`;
       html += `<ul class="catalog-list">`;
       data.viewer.other_apps.entries.forEach(e => {
-        if (e.app_icon) {
+        if (e.app_icon || e.favicon_url) {
+          const icon = e.app_icon || e.favicon_url;
           const url = e.app_store || e.website;
           const website = e.website ? e.website.replace(/^https?:\/\//, '').replace(/\/$/, '') : '';
           html += `
           <li class="catalog-entry" data-category="apps" data-search="${(e.title + ' ' + (e.note||'')).toLowerCase().replace(/"/g,'&quot;')}" style="display:flex;gap:12px;align-items:flex-start;">
             <div style="width:90px;height:51px;flex-shrink:0;display:flex;align-items:center;justify-content:center;">
-              ${url ? `<a href="${url}" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="${e.app_icon}" alt="${e.title} app icon" loading="lazy" style="width:46px;height:46px;border-radius:10px;display:block;"></a>` : `<img src="${e.app_icon}" alt="${e.title} app icon" loading="lazy" style="width:46px;height:46px;border-radius:10px;display:block;">`}
+              ${url ? `<a href="${url}" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="${icon}" alt="${e.title} app icon" loading="lazy" style="width:46px;height:46px;border-radius:10px;display:block;"></a>` : `<img src="${icon}" alt="${e.title} app icon" loading="lazy" style="width:46px;height:46px;border-radius:10px;display:block;">`}
             </div>
             <div style="min-width:0;flex:1;padding-top:2px;">
               ${url ? `<a class="entry-name" href="${url}" target="_blank" rel="noopener">${e.title}</a>` : `<span class="entry-name">${e.title}</span>`}
