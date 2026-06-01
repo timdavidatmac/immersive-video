@@ -434,6 +434,7 @@
               "duration": "25 min",
               "year": 2025,
               "note": "First-of-its-kind immersive concert.",
+              "description": "Get unprecedented access to the hard rock band in this first-of-its-kind concert experience.",
               "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/skP6-kIF6_iWIcz27tSLmw/1200x675.jpg"
             },
             {
@@ -445,12 +446,7 @@
               "duration": "35 min",
               "free": true,
               "note": "Lukas Sternath + BBC Symphony Orchestra at Royal Albert Hall. Shot by Livewire Pictures on URSA Cine Immersive.",
-              "links": [
-                {
-                  "label": "MacRumors",
-                  "url": "https://www.macrumors.com/2026/03/27/apple-immersive-video-bbc-proms-concert-vision-pro/"
-                }
-              ],
+              "description": "Pianist Lukas Sternath makes his BBC Proms debut performing Edvard Grieg's Piano Concerto in A minor with the BBC Symphony Orchestra at the Royal Albert Hall.",
               "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/1g6KpmhwU_iVfEQzMMz8wA/1200x675.jpg"
             },
             {
@@ -462,6 +458,7 @@
               "duration": "20 min",
               "year": 2024,
               "note": "Intimate rehearsal featuring 'No One,' 'If I Ain't Got You,' and 'You Don't Know My Name'.",
+              "description": "Get a rare glimpse into the GRAMMY® winner's creative process with this intimate rehearsal session featuring renditions of her hits.",
               "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/c-b6uDZkum2D-MeJ1HuV_w/1200x675.jpg"
             },
             {
@@ -473,6 +470,7 @@
               "duration": "5 min",
               "year": 2026,
               "note": "CORTIS backstage rehearsal room. BIGHIT/HYBE boy band, track 'GO!'.",
+              "description": "What goes on in CORTIS's rehearsal room? Let's get up close and personal with CORTIS offstage.",
               "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/CQXW8LBR1roZrEGuogookA/1200x675.jpg"
             },
             {
@@ -483,13 +481,15 @@
               "status": "available",
               "year": 2024,
               "note": "Exclusive private performances.",
+              "description": "Enjoy exclusive, up-close access to private performances from today's most electrifying artists.",
               "episodes": [
                 {
                   "title": "E1: RAYE",
                   "url": "https://tv.apple.com/us/episode/raye/umc.cmc.2brt23wsqrd4wqqtwdynq6ise?showId=umc.cmc.2khlg44095l5tdllfpt2rgv9h",
                   "date": "2024-11",
                   "duration": "8 min",
-                  "note": "'Genesis' and 'Escapism' from AIR Studios London"
+                  "note": "'Genesis' and 'Escapism' from AIR Studios London",
+                  "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/uct4VLztnIqlpb6bT3O7GQ/1200x675.jpg"
                 }
               ],
               "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/e-_y1vdm7z4Uf6oF_jSoIA/1200x675.jpg"
@@ -502,6 +502,7 @@
               "status": "available",
               "duration": "5 min",
               "note": "Music video. The Weeknd navigates a surreal, haunting cityscape.",
+              "description": "Journey alongside The Weeknd as he weaves his way through a surreal, haunting cityscape in this electrifying sonic voyage.",
               "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/rIPRuE2Ww_eqRM7Qcf0Y7g/1200x675.jpg"
             },
             {
@@ -512,16 +513,7 @@
               "status": "available",
               "duration": "1 hr 26 min",
               "note": "First feature-length AIV film. Directed by Elad Offer.",
-              "links": [
-                {
-                  "label": "CineD article",
-                  "url": "https://www.cined.com/inside-the-first-feature-length-immersive-film-for-apple-vision-pro-bono-stories-of-surrender/"
-                },
-                {
-                  "label": "YouTube trailer",
-                  "url": "https://www.youtube.com/watch?v=BV39J6KM58U"
-                }
-              ],
+              "description": "Through words, music, and mischief, Bono pulls back the curtain on his deeply personal experiences that have shaped him as a son, father, husband, activist, and artist.",
               "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/9Kxmr2RD_RRz-1NvYhAjQA/1200x675.jpg"
             }
           ]
