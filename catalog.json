@@ -446,7 +446,7 @@
               "duration": "35 min",
               "free": true,
               "note": "Lukas Sternath + BBC Symphony Orchestra at Royal Albert Hall. Shot by Livewire Pictures on URSA Cine Immersive.",
-              "description": "Pianist Lukas Sternath makes his BBC Proms debut performing Edvard Grieg's Piano Concerto in A minor with the BBC Symphony Orchestra at the Royal Albert Hall.",
+              "description": "Pianist Lukas Sternath makes his BBC Proms debut performing Edvard Grieg's Piano Concerto in A minor with the BBC Symphony Orchestra and their Chief Conductor, Sakari Oramo. The first classical music concert available in Apple Immersive — viewers enjoy the performance inches from the pianist's hands, surrounded by the power of the orchestra in Spatial Audio, and enveloped by the historic architecture of the Royal Albert Hall.",
               "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/1g6KpmhwU_iVfEQzMMz8wA/1200x675.jpg"
             },
             {
@@ -458,7 +458,7 @@
               "duration": "20 min",
               "year": 2024,
               "note": "Intimate rehearsal featuring 'No One,' 'If I Ain't Got You,' and 'You Don't Know My Name'.",
-              "description": "Get a rare glimpse into the GRAMMY® winner's creative process with this intimate rehearsal session featuring renditions of her hits.",
+              "description": "Get a rare glimpse into the GRAMMY® winner's creative process with this intimate rehearsal session featuring renditions of her hits \"No One,\" \"If I Ain't Got You,\" and \"You Don't Know My Name.\"",
               "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/c-b6uDZkum2D-MeJ1HuV_w/1200x675.jpg"
             },
             {
@@ -513,7 +513,7 @@
               "status": "available",
               "duration": "1 hr 26 min",
               "note": "First feature-length AIV film. Directed by Elad Offer.",
-              "description": "Through words, music, and mischief, Bono pulls back the curtain on his deeply personal experiences that have shaped him as a son, father, husband, activist, and artist.",
+              "description": "Through words, music, and mischief, Bono pulls back the curtain on his deeply personal experiences that have shaped him as a son, father, husband, activist, and U2 frontman.",
               "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/9Kxmr2RD_RRz-1NvYhAjQA/1200x675.jpg"
             }
           ]
@@ -1204,6 +1204,8 @@
         {
           "id": "balenciaga",
           "title": "Balenciaga — Summer 26 Show",
+          "app_store": "https://apps.apple.com/us/app/balenciaga/id6526492361",
+          "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/3e/33/09/3e330919-9e7b-7e0e-da94-b77dd4b850bf/AppIcon.lsr/512x512bb.jpg",
           "note": "Pier Paolo Piccioli's debut Balenciaga collection. Available in Balenciaga's own Vision Pro app. Shot on URSA Cine Immersive.",
           "links": [
             {
