@@ -396,7 +396,11 @@
               "links": [
                 {
                   "label": "Spectrum SportsNet app",
-                  "url": "https://apps.apple.com/us/app/spectrum-sportsnet-live-games/id563316826?platform=vision"
+                  "url": "https://apps.apple.com/us/app/spectrum-sportsnet-live-games/id563316826"
+                },
+                {
+                  "label": "NBA app",
+                  "url": "https://apps.apple.com/us/app/nba-live-games-scores/id484672289?platform=vision"
                 },
                 {
                   "label": "How to watch — Apple Newsroom",
@@ -577,13 +581,33 @@
               "id": "super-bowl-lviii",
               "title": "4 Minutes Inside Super Bowl LVIII",
               "status": "gone",
-              "note": "Chiefs vs. 49ers. Was available Sep 2024."
+              "note": "Chiefs vs. 49ers. Was available Sep 2024.",
+              "description": "Experience four thrilling minutes on the field during Super Bowl LVIII between the Kansas City Chiefs and the San Francisco 49ers — captured in Apple Immersive Video.",
+              "thumbnail": "https://storage.ghost.io/c/2a/2f/2a2f38f0-4b71-407a-9c7e-18a9e2541980/content/images/size/w800/format/webp/2024/09/4-Minutes-Inside-Super-Bowl-LVIII---Apple-Immersive-Video-1.png",
+              "links": [
+                {
+                  "label": "UploadVR review",
+                  "url": "https://www.uploadvr.com/apple-immersive-video-super-bowl-highlights/"
+                }
+              ]
             },
             {
               "id": "f1-hot-lap",
               "title": "F1 The Movie: Hot Lap Immersive",
               "status": "gone",
-              "note": "High-speed test drive with Brad Pitt. Was available Jun 2025."
+              "note": "High-speed test drive with Brad Pitt. Was available Jun 2025.",
+              "description": "Strap in alongside Brad Pitt's character Sonny Hayes for a high-speed test drive around the Yas Marina Circuit in Abu Dhabi — directed by Joe Kosinski (Top Gun: Maverick) and captured in 180-degree 8K Apple Immersive Video.",
+              "thumbnail": "https://i0.wp.com/9to5mac.com/wp-content/uploads/sites/6/2025/06/apple-f1-movie-immersive-hot-lap.jpg",
+              "links": [
+                {
+                  "label": "UploadVR review",
+                  "url": "https://www.uploadvr.com/f1-the-movie-hot-lap-immersive-teaser/"
+                },
+                {
+                  "label": "YouTube walkthrough",
+                  "url": "https://youtu.be/Esf49lXmEzc"
+                }
+              ]
             }
           ]
         }
