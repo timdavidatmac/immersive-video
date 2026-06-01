@@ -100,18 +100,21 @@
               "url": "https://tv.apple.com/us/show/boundless/umc.cmc.2y2ypiwhg8dp8027p47jfhlf1",
               "status": "available",
               "note": "Adventure series, 2024–2025.",
+              "description": "Embark on the kind of bucket-list trips you've only dreamed of as you explore extraordinary places and meet inspiring people.",
               "episodes": [
                 {
                   "title": "E1: Hot Air Balloons",
                   "url": "https://tv.apple.com/us/episode/hot-air-balloons/umc.cmc.6s0zuechyw2i5t4ewgmr48iik?showId=umc.cmc.2y2ypiwhg8dp8027p47jfhlf1",
                   "date": "2024-07",
-                  "location": "Cappadocia, Türkiye"
+                  "location": "Cappadocia, Türkiye",
+                  "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/Ey9E-d1uX26M0KHh5D0HIg/1200x675.jpg"
                 },
                 {
                   "title": "E2: Arctic Surfing",
                   "url": "https://tv.apple.com/us/episode/arctic-surfing/umc.cmc.3bjrm93ij86c726522v61bxi8?showId=umc.cmc.2y2ypiwhg8dp8027p47jfhlf1",
                   "date": "2025-02",
-                  "location": "Norway"
+                  "location": "Norway",
+                  "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/wd285eJdYpixc64K7rntLA/1200x675.jpg"
                 }
               ],
               "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/9sNMklk8fgJNPcwO8gKPLQ/1200x675.jpg"
