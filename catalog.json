@@ -58,31 +58,37 @@
               "url": "https://tv.apple.com/us/show/adventure/umc.cmc.5al10vz5fkqzxonreq110ony0",
               "status": "available",
               "note": "Adventure sports series, 5 episodes, 2024–2025.",
+              "description": "Join pioneering athletes as they take on awe-inspiring challenges in some of the world's most spectacular locations.",
               "episodes": [
                 {
                   "title": "E1: Highlining",
                   "url": "https://tv.apple.com/us/episode/highlining/umc.cmc.5s419yrml4xuumjywusbyjd2b?showId=umc.cmc.5al10vz5fkqzxonreq110ony0",
-                  "date": "2024-02"
+                  "date": "2024-02",
+                  "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/JNdzQWYpcQWTne9X5KgjfQ/1200x675.jpg"
                 },
                 {
                   "title": "E2: Parkour",
                   "url": "https://tv.apple.com/us/episode/parkour/umc.cmc.no9u63y3wpn8xl7s23jfia46?showId=umc.cmc.5al10vz5fkqzxonreq110ony0",
-                  "date": "2024-05"
+                  "date": "2024-05",
+                  "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/nsEMiRIAFYAoPZ_Hx1ieWg/1200x675.jpg"
                 },
                 {
                   "title": "E3: Ice Dive",
                   "url": "https://tv.apple.com/us/episode/ice-dive/umc.cmc.1lxb2q6h7pj1b6k1q2hgq25xt?showId=umc.cmc.5al10vz5fkqzxonreq110ony0",
-                  "date": "2024-12"
+                  "date": "2024-12",
+                  "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/uFq0G6WkTUkSWXTiSLWqNg/1200x675.jpg"
                 },
                 {
                   "title": "E4: Deep Water Solo",
                   "url": "https://tv.apple.com/us/episode/deep-water-solo/umc.cmc.75zy79ytgeqcstkkq8pyk98ci?showId=umc.cmc.5al10vz5fkqzxonreq110ony0",
-                  "date": "2025-02"
+                  "date": "2025-02",
+                  "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/G6geySxLdC5dIMfy27e4MA/1200x675.jpg"
                 },
                 {
                   "title": "E5: Hill Climb",
                   "url": "https://tv.apple.com/us/episode/hill-climb/umc.cmc.4klex1b4fsohrpmncr5mho5pk?showId=umc.cmc.5al10vz5fkqzxonreq110ony0",
-                  "date": "2025-04"
+                  "date": "2025-04",
+                  "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/pM_QRHWUIn3skyET3HotBQ/1200x675.jpg"
                 }
               ],
               "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/fMpXBIFug0uv3o0yDNky3Q/1200x675.jpg"
