@@ -1166,6 +1166,20 @@
           "app_store": "https://apps.apple.com/us/app/mulan-2125/id6747658557",
           "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/bb/7f/7d/bb7f7d11-2599-df35-7e26-a3a4aa628baa/AppIcon.lsr/512x512bb.jpg",
           "note": "VR epic by <a href=\"https://www.well-linktech.com/mulan/index.html\" target=\"_blank\" rel=\"noopener\">Well-Ink</a>. Film-grade CG, monocular 4K 3D immersion. Mulan's awakening in a post-apocalyptic world. Venice Immersive Competition 2025 official selection."
+        },
+        {
+          "id": "expedition-geforce-vr",
+          "title": "3D Expedition GeForce — 25 YRS Unbeaten VR Roller Coaster",
+          "url": "https://youtu.be/pVStUEaFn_s",
+          "favicon_url": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/32/eb/ea/32ebea9d-8f35-c18a-504e-28d6afcd3eb5/logo_youtube_2024_q4_color-0-0-1x_U007emarketing-0-0-0-7-0-0-0-85-220.png/512x512bb.jpg",
+          "added": "2026-05-30",
+          "note": "Ride Expedition GeForce at Holiday Park, Germany — 25th anniversary of the world's best coaster. 8K Spatial 3D VR180, May 2026.",
+          "links": [
+            {
+              "label": "Higher quality on DeoVR",
+              "url": "https://deovr.com/p6tcrk"
+            }
+          ]
         }
       ]
     },
@@ -1213,6 +1227,14 @@
               "url": "https://vimeo.com/1167013109"
             }
           ]
+        },
+        {
+          "id": "pulse-of-time",
+          "title": "Pulse of Time",
+          "app_store": "https://apps.apple.com/us/app/pulse-of-time/id6770068403",
+          "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/d0/ea/50/d0ea5089-71a8-2989-6563-8188c4374046/AppIcon.lsr/512x512bb.jpg",
+          "added": "2026-05-30",
+          "note": "Immersive 3D experiences built for Apple Vision Pro — not video on a screen. You are placed at the center of defining moments as they unfold around you. Includes Dinosaur Apocalypse. Vision Pro exclusive."
         },
         {
           "id": "balenciaga",
