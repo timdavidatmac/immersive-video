@@ -1198,7 +1198,10 @@
           "added": "2026-06-02",
           "status": "available",
           "free": true,
-          "note": "7-min AIV flight experience over the American Southwest in a Cirrus SR22T. Shot in 180° 3D with Spatial Audio using Blackmagic Design. Also includes full-scale AR models of SR Series and Vision Jet. Built as a sales and marketing tool for Cirrus's global team — usable at trade shows and off-airport events. Cirrus has a Greater Orlando, FL location."
+          "note": "7-min AIV flight experience over the American Southwest in a Cirrus SR22T, plus full-scale interactive 3D models of SR Series and Vision Jet built from engineering CAD files. Shot at 16K (8K per eye) on the Blackmagic URSA Cine Immersive — aerial footage captured by the Top Gun: Maverick filming crew using a specialized aircraft and aerial stabilization platform. Built as a global sales tool — usable at trade shows and off-airport events. Future roadmap includes cockpit interaction and spatial pre-flight orientation training. Cirrus has a Greater Orlando, FL location.",
+          "links": [
+            { "label": "Interview with Anthony Bottini, Director of Media Development (Himels Tech, Jun 2026)", "url": "https://youtu.be/3TabJkcDykg" }
+          ]
         },
         {
           "id": "caradise",
