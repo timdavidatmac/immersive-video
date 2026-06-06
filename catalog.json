@@ -648,7 +648,7 @@
       "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/dd/b3/a9/ddb3a9b7-e37f-c89d-45c6-32cb1d27edb8/AppIcon.lsr/512x512bb.jpg",
       "website": "https://theater.sandwich.vision",
       "marquee": "https://sandwich.vision/sandwich-vision/render/theater/theater-marquee#aiv",
-      "note": "Tap any title to open directly in the Theater app — deep links require Theater to be installed.",
+      "note": "Tap any title to open directly in the Theater app — deep links require Theater to be installed. ⏳ Watch: Tennessee Aquarium immersive film (alligators, lemurs) coming soon — shot June 2026 by SpatialGen and Sandwich Vision at the Tennessee Aquarium in Chattanooga, TN.",
       "sections": {
         "main_course_films": {
           "label": "Ben Allan & Clara Chong",
@@ -1547,9 +1547,13 @@
         "id": "spatialgen-zeus",
         "title": "SpatialGen Zeus — Live AIV Streaming Hardware",
         "url": "https://spatialgen.com/live",
-        "status": "pending",
+        "status": "available",
         "added": "2026-05",
-        "note": "Dedicated hardware for live AIV streaming — 16K at 90 FPS. Announced via Justin Ryan/Spatial Insider. No official press release yet."
+        "updated": "2026-06-04",
+        "note": "On-premise 3U server unit for live Apple Immersive Video streaming — 4320×4320 per eye at 90 FPS, believed to be the first time full-spec live MV-HEVC has been achieved on Vision Pro. ProRes 2110 in → MV-HEVC stream out, handles all dynamic metadata and segmenting. Configurable to customer CDN. Lifetime license, hardware owned by customer, 1 year white glove support. Deposit available now at spatialgen.com/live. SpatialGen is also the infrastructure behind approximately 90% of all non-Apple-TV Apple Immersive Video streaming. Featured by Justin Ryan / Spatial Insider, June 4, 2026.",
+        "links": [
+          { "label": "Spatial Insider interview (Justin Ryan, Jun 4, 2026)", "url": "https://youtu.be/l5dSeT3RdbY" }
+        ]
       },
       {
         "id": "steam-link",
