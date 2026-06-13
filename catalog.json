@@ -1084,6 +1084,13 @@
           "note": "Professional delivery platform for immersive filmmakers and studios."
         },
         {
+          "id": "voola",
+          "title": "Voola — Immersive Photo/Video",
+          "app_store": "https://apps.apple.com/us/app/voola-immersive-photo-video/id6743655345",
+          "added": "2026-06-12",
+          "note": "Immersive photo and video viewer for Apple Vision Pro. Includes AIV content from Chinese productions — confirmed to carry 'Land Your Dream in Space: Zhuque-3 Launch Vehicle Flight Test Mission' (first AIV rocket launch film, June 2026)."
+        },
+        {
           "id": "justvr",
           "title": "JustVR",
           "app_store": "https://apps.apple.com/us/app/justvr/id6759510255",
