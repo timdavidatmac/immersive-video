@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apple Immersive Video and Spatial Computing | WWDC26 Special Edition</title>
+  <link rel="stylesheet" href="../styles.css">
+  <style>
+    .nl-wrap { max-width: 860px; margin: 32px auto; background: #ffffff; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+    .nl-section { padding: 32px 48px; }
+    .nl-label { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600; color: #6e6e73; margin: 0 0 10px; }
+    .nl-hr { border: none; border-top: 1px solid #dddee1; margin: 0; }
+    .nl-h3 { font-size: 16px; font-weight: 600; color: #1d1d1f; margin: 0 0 8px; line-height: 1.3; }
+    .nl-p { margin: 0 0 12px; font-size: 15px; color: #1d1d1f; line-height: 1.7; }
+    .nl-sub { font-size: 13px; color: #6e6e73; margin: 0 0 6px; line-height: 1.6; }
+    .nl-img-crop { overflow: hidden; }
+    .nl-img-crop img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .track-pill { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 3px 9px; border-radius: 20px; margin-bottom: 10px; }
+    .pill-aiv { background: #fff7ed; color: #92400e; }
+    .pill-spatial { background: #eff6ff; color: #1e3a8a; }
+    .pill-dev { background: #f0fdf4; color: #166534; }
+    ul.resource-list { list-style: none; padding: 0; margin: 8px 0 0; }
+    ul.resource-list li { padding: 10px 0; border-bottom: 1px solid #f0f0f0; font-size: 15px; line-height: 1.6; }
+    ul.resource-list li:last-child { border-bottom: none; }
+    ul.plain-list { padding-left: 22px; margin: 8px 0 0; }
+    ul.plain-list li { margin-bottom: 10px; font-size: 15px; line-height: 1.7; }
+    .back-to-top { display: block; text-align: right; font-size: 11px; margin-top: 16px; color: #6e6e73; text-decoration: none; }
+    .back-to-top:hover { text-decoration: underline; }
+    @media (max-width: 700px) {
+      .nl-wrap { margin: 0; border-radius: 0; box-shadow: none; }
+      .nl-section { padding: 24px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════ SITE HEADER -->
+  <header class="site-header" role="banner">
+    <div class="site-header-inner">
+      <a href="../index.html" class="site-header-logo" aria-label="Apple Immersive Video &amp; Spatial Computing — home">
+        <img src="../logo.svg" alt="" aria-hidden="true" width="28" height="28" style="display:inline-block; vertical-align:middle; margin-right:10px;">Apple Immersive Video &amp; Spatial Computing
+      </a>
+      <nav aria-label="Site navigation">
+        <ul class="site-nav">
+          <li><a href="../index.html">Watch</a></li>
+          <li><a href="../creators.html">Create</a></li>
+          <li><a href="../usecases.html">Use Cases</a></li>
+          <li><a href="index.html" class="active" aria-current="page">Newsletter</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════ NEWSLETTER CONTENT -->
+  <main role="main" id="main-content" style="padding: 0 16px;">
+  <div class="nl-wrap">
+
+    <!-- HEADER IMAGE -->
+    <div class="nl-img-crop" style="height:280px; border-radius:0;">
+      <img src="https://devimages-cdn.apple.com/wwdc-services/articles/images/693AA6DA-E6EB-478A-B8BB-FDA656ED2436/2048.png"
+           alt="Liquid Glass in the shape of Vision Pro — WWDC26"
+           style="object-position: center center;">
+    </div>
+
+    <!-- HEADER -->
+    <div id="top" style="background-color:#000000; padding:32px 48px;">
+      <p style="margin:0 0 4px; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:#a1a1a6; font-weight:500;">Apple Vision Pro · WWDC26 Special Edition</p>
+      <h1 style="margin:0 0 6px; font-size:28px; font-weight:600; color:#ffffff; line-height:1.2;">Apple Immersive Video<br>and Spatial Computing</h1>
+      <p style="margin:0; font-size:14px; color:#a1a1a6;">June 2026</p>
+    </div>
+
+    <!-- PERSONAL NOTE -->
+    <div class="nl-section" style="background-color:#fafafa; border-bottom:1px solid #dddee1;">
+      <p style="margin:0; font-size:15px; color:#1d1d1f; line-height:1.7;">Hi everyone,<br><br>WWDC26 was a big week for Apple Immersive Video and spatial computing. With so many announcements, articles, and videos coming out at once, I wanted to make sure the highlights that matter most to this audience didn't get lost in the noise. I'm especially excited about the new resources now available for immersive content creators, and the powerful new features coming this fall with visionOS 27. I hope you find something here that's useful or inspiring. I'd love to hear what you're most excited about from WWDC26.</p>
+    </div>
+
+    <!-- INDEX -->
+    <nav class="nl-section" style="background-color:#fafafa;" role="navigation" aria-label="Newsletter contents">
+      <p class="nl-label">In This Special Edition</p>
+      <ol style="margin:0; padding-left:20px; line-height:2.4; font-size:15px;">
+        <li><a href="#aiv-wwdc">🎬 Apple Immersive Video at WWDC26</a></li>
+        <li><a href="#visionos27">🥽 visionOS 27 — What's Coming This Fall</a></li>
+        <li><a href="#developer">👨‍💻 For Developers — Sessions &amp; Resources</a></li>
+        <li><a href="#accessories">🔩 Spatial Accessories — An Emerging Category</a></li>
+      </ol>
+    </nav>
+    <hr class="nl-hr" aria-hidden="true">
+
+    <!-- SECTION IMAGE — AIV -->
+    <div class="nl-img-crop" style="height:220px; border-radius:0;">
+      <img src="https://developer.apple.com/apple-immersive-video/images/screenshot-hero_2x.png"
+           alt="A person seated on a couch immersed in underwater video of a diver and sharks"
+           style="object-position: center center;">
+    </div>
+
+    <!-- SECTION 1: AIV AT WWDC26 -->
+    <div id="aiv-wwdc" class="nl-section">
+      <span class="track-pill pill-aiv">🎬 Apple Immersive Video</span>
+      <p class="nl-label" style="margin:0 0 16px;">Apple Immersive Video at WWDC26</p>
+
+      <h2 class="nl-h3">Apple Launches a Dedicated Home for Apple Immersive Video</h2>
+      <p class="nl-p">This week at WWDC26, Apple introduced a new dedicated developer portal for Apple Immersive Video — a single destination for creators, developers, and production teams to learn about the format, explore what's new, and find tools, best practices, and documentation. It's the clearest signal yet that Apple wants the format used for more than first-party productions.</p>
+      <p class="nl-sub">The portal brings together the full AIV stack in one place for the first time, with official specs now stated publicly: 90fps, greater than 50MP per eye, 60 pixels per degree acuity, and up to 230° field of view.</p>
+      <p class="nl-sub" style="margin:0 0 22px;">Apple describes AIV as <strong>a new creative canvas</strong> — one that places audiences directly inside the moment with unprecedented fidelity. Four qualities define the experience: <strong>presence</strong>, through high-resolution high-frame-rate capture that honors world scale and spatial relationships; <strong>authenticity</strong>, which brings new value that simply isn't possible with 2D media; <strong>proximity</strong>, letting audiences sit mere feet from wildlife in a documentary or feel the emotional power of subtle facial expressions; and <strong>connection</strong>, Apple Immersive Video creates genuine connection between viewers and your content. Through spatial audio that responds naturally to head movement and coherent world scale that honors human perception, audiences feel they're sharing space rather than observing from outside.</p>
+      <p style="margin:0 0 22px;">
+        <a href="https://developer.apple.com/apple-immersive-video/" aria-label="Visit the Apple Immersive Video developer portal">AIV Developer Portal <span aria-hidden="true">→</span></a>
+        &nbsp;|&nbsp;
+        <a href="https://developer.apple.com/apple-immersive-video/whats-new/" aria-label="See what's new in Apple Immersive Video at WWDC26">What's New <span aria-hidden="true">→</span></a>
+        &nbsp;|&nbsp;
+        <a href="https://developer.apple.com/apple-immersive-video/resources/" aria-label="Browse Apple Immersive Video tools and resources">Resources <span aria-hidden="true">→</span></a>
+      </p>
+
+      <h2 class="nl-h3">What's New in Apple Immersive Video</h2>
+      <p class="nl-p">The WWDC26 updates push AIV from a capture-and-post curiosity toward a complete, broadcastable production pipeline. CineD's Nino Leitner put it well: <em>"the toolchain argument is getting harder to dismiss."</em> Five headline additions:</p>
+      <ul class="plain-list" style="margin:0 0 14px;">
+        <li><strong>Apple Immersive Live formats</strong> — A live streaming pipeline built on SMPTE 2110, transporting ProRes video, Spatial Audio, and calibrated lens metadata before encoding to MV-HEVC. Real-time events delivered at lifelike acuity and scale.</li>
+        <li><strong>ImmersiveMediaSupport on iPhone and iPad</strong> — The IMS framework, previously limited to visionOS and macOS, now extends to iPadOS and iOS through the same cross-platform API.</li>
+        <li><strong>Static foveation for distribution</strong> — Streaming AIV has always been technically hard. Static foveation preserves ~40 pixels per degree where viewers look — the same density as the original capture — while reducing to a streamable 4K frame size.</li>
+        <li><strong>Custom portal aspect ratio</strong> — Apps can now define a wide aspect ratio for portal viewing mode, solving the 16:9 cropping problem when users aren't in full immersion.</li>
+        <li><strong>ASAF Pro Tools AAX plugin updates</strong> — New scene compressor, enhanced heat map drawing, object positioning relative to reference video, DAW session state saving.</li>
+      </ul>
+      <p style="margin:0 0 22px;">
+        <a href="https://www.cined.com/apple-immersive-video-gets-live-formats-iphone-playback-and-static-foveation-streaming-at-wwdc26/" aria-label="Read CineD's editorial breakdown of the WWDC26 AIV updates">CineD editorial breakdown <span aria-hidden="true">→</span></a>
+      </p>
+
+      <h2 class="nl-h3">The Live AIV Ecosystem Is Taking Shape</h2>
+      <p class="nl-p">Apple's live AIV pipeline doesn't exist in isolation. Two companies were specifically cited by Apple at WWDC26 as part of the immersive broadcast ecosystem:</p>
+      <p class="nl-p"><strong>SpatialGen</strong> — the company behind approximately 90% of all non-Apple-TV Apple Immersive Video streaming — has been building the cloud infrastructure for live AIV with their Zeus on-premise encoder. Their live demo achieved 4320×4320 per eye at 90fps — believed to be the first full-spec live MV-HEVC on Vision Pro. <a href="https://youtu.be/l5dSeT3RdbY" aria-label="Watch the Spatial Insider interview with SpatialGen founders">Watch the Spatial Insider interview <span aria-hidden="true">→</span></a></p>
+      <p style="margin:0 0 22px;"><strong>Ateme</strong> — a broadcast encoding company whose TITAN and NEA products handle SMPTE 2110-22 acquisition, MV-HEVC compression, HLS packaging, and ASAF/APAC audio, with ad insertion and NVIDIA-assisted pixel processing. Their involvement confirms the live AIV pipeline is being built on serious broadcast infrastructure. <a href="https://www.sportsvideo.org/2026/06/09/ateme-referenced-by-apple-at-wwdc26-for-apple-immersive-video-workflow-support/" aria-label="Read the Sports Video Group article on Ateme and Apple Immersive Video">Sports Video Group <span aria-hidden="true">→</span></a></p>
+
+      <a href="#top" class="back-to-top" aria-label="Back to top of newsletter">Back to top <span aria-hidden="true">↑</span></a>
+    </div>
+    <hr class="nl-hr" aria-hidden="true">
+
+    <!-- SECTION IMAGE — visionOS 27 -->
+    <div class="nl-img-crop" style="height:220px; border-radius:0;">
+      <img src="https://www.apple.com/v/os/f/images/visionos/highlights/highlights_spatial_scenes_endframe__d4kz9tm4ims2_large_2x.jpg"
+           alt="Apple Vision Pro view, a panoramic image of rocky green cliffs with a stream cutting through them and blue sky stretching beyond the cliffs"
+           style="object-position: center center;">
+    </div>
+
+    <!-- SECTION 2: visionOS 27 -->
+    <div id="visionos27" class="nl-section">
+      <span class="track-pill pill-spatial">🥽 Spatial Computing</span>
+      <p class="nl-label" style="margin:0 0 16px;">visionOS 27 — What's Coming This Fall</p>
+
+      <h2 class="nl-h3">visionOS 27 Overview</h2>
+      <p class="nl-p">visionOS 27 arrives this fall, with Siri AI coming in English later this year. The most relevant updates for immersive and spatial practitioners:</p>
+      <ul class="plain-list" style="margin:0 0 14px;">
+        <li><strong>Apple Immersive Video enhancements</strong> — Camera presentation commands for live production overrides; real-time AIV preview from Mac during editorial; custom compositor pipelines; wide-aspect ratio portal support</li>
+        <li><strong>Foveated Streaming framework</strong> — Session-based API for streaming from PCs, workstations, and cloud servers; OpenXR + NVIDIA CloudXR integration; bidirectional message channel with streaming endpoints; RealityKit spatial content alongside streamed content</li>
+        <li><strong>Immersive panoramas</strong> — Turn any panorama into a spatial scene and set it as a personal Environment</li>
+        <li><strong>New Environment — Thórsmörk</strong> — An Icelandic aurora with dynamic, shifting hues</li>
+        <li><strong>Reality Composer Pro 3</strong> — Live Preview on Vision Pro instantly from Mac; faster scene iteration</li>
+        <li><strong>Enhanced object tracking</strong> — Dynamic experiences that instantly react as people pick up and interact with physical objects</li>
+        <li><strong>Siri AI / Visual Intelligence</strong> — Ask Siri about virtually anything just by looking at it</li>
+      </ul>
+      <p style="margin:0 0 22px;">
+        <a href="https://developer.apple.com/wwdc26/guides/visionos/" aria-label="Read the full What's New in visionOS 27 guide on Apple Developer">What's New in visionOS 27 <span aria-hidden="true">→</span></a>
+        &nbsp;|&nbsp;
+        <a href="https://www.apple.com/os/visionos/" aria-label="See the visionOS 27 preview on apple.com">apple.com/os/visionos <span aria-hidden="true">→</span></a>
+      </p>
+
+      <h2 class="nl-h3">In Conversation with Apple: What visionOS 27 Means for Spatial Computing</h2>
+      <p class="nl-p">Justin Ryan of Spatial Insider sat down with Steve Sinclair, Senior Director at Apple responsible for visionOS product management and marketing, for a wide-ranging conversation on visionOS 27 — the platform's direction, Siri AI, immersive panoramas, Reality Composer Pro 3, and Apple's long-term commitment to spatial computing. He also asked directly about the Vision Pro rumors.</p>
+      <p style="margin:0 0 22px;"><a href="https://youtu.be/7PAFElCmPmg" aria-label="Watch the Spatial Insider interview with Apple's Steve Sinclair about visionOS 27">Watch on YouTube <span aria-hidden="true">→</span></a></p>
+
+      <a href="#top" class="back-to-top" aria-label="Back to top of newsletter">Back to top <span aria-hidden="true">↑</span></a>
+    </div>
+    <hr class="nl-hr" aria-hidden="true">
+
+    <!-- SECTION IMAGE — Developer -->
+    <div class="nl-img-crop" style="height:220px; border-radius:0;">
+      <img src="https://www.apple.com/v/os/f/images/visionos/spatial_experiences/new_environment__p9uehusa5yim_large_2x.jpg"
+           alt="Apple Vision Pro view of an Icelandic Environment, snowy mountains and the Northern Lights sit against a dark background"
+           style="object-position: center center;">
+    </div>
+
+    <!-- SECTION 3: DEVELOPER -->
+    <div id="developer" class="nl-section">
+      <span class="track-pill pill-dev">👨‍💻 Developer Resources</span>
+      <p class="nl-label" style="margin:0 0 16px;">WWDC26 Sessions &amp; Resources</p>
+
+      <h2 class="nl-h3">Two Sessions You Should Watch First</h2>
+      <p class="nl-p">If you're building for live AIV or working on streaming immersive content, these are the essential WWDC26 sessions:</p>
+      <ul class="resource-list" style="margin:0 0 22px;">
+        <li><strong><a href="https://developer.apple.com/videos/play/wwdc2026/338/" aria-label="Watch Build Live Production Tools for Apple Immersive Video at WWDC26">Build Live Production Tools for Apple Immersive Video</a></strong> — Packaging immersive video, spatial audio, and scene metadata for IP transport via SMPTE 2110. Uses IMS, Video Toolbox, and AVFoundation for real-time workflows.</li>
+        <li><strong><a href="https://developer.apple.com/videos/play/wwdc2026/286/" aria-label="Watch Use Foveated Streaming to Bring Immersive Content to visionOS at WWDC26">Use Foveated Streaming to Bring Immersive Content to visionOS</a></strong> — How foveated streaming delivers remotely rendered scenes to Vision Pro in full fidelity, wirelessly. FoveatedStreaming framework + NVIDIA CloudXR SDK.</li>
+      </ul>
+
+      <h2 class="nl-h3">Also from WWDC26</h2>
+      <ul class="resource-list" style="margin:0 0 22px;">
+        <li><a href="https://developer.apple.com/videos/play/wwdc2026/234/" aria-label="Watch Design Immersive Environments for visionOS Apps and the Spatial Web">Design Immersive Environments for visionOS Apps and the Spatial Web</a> — Photoreal environments for apps, websites, and SharePlay</li>
+        <li><a href="https://developer.apple.com/videos/play/wwdc2026/320/" aria-label="Watch Explore Immersive Website Environments in visionOS">Explore Immersive Website Environments in visionOS</a> — New Immersive API in JavaScript for real-world-scale web experiences</li>
+        <li><a href="https://developer.apple.com/videos/play/wwdc2026/285/" aria-label="Watch Discover USDKit and What's New in OpenUSD">Discover USDKit and What's New in OpenUSD</a></li>
+        <li><a href="https://developer.apple.com/videos/play/wwdc2026/280/" aria-label="Watch Iterate Your Spatial Scenes Faster with Reality Composer Pro 3">Iterate Your Spatial Scenes Faster with Reality Composer Pro 3</a> — plus <a href="https://developer.apple.com/videos/play/wwdc2026/281/" aria-label="Watch Extend Reality Composer Pro 3 functionality with Xcode">Extend with Xcode</a> and <a href="https://developer.apple.com/videos/play/wwdc2026/393/" aria-label="Watch Supercharge your spatial workflows with Reality Composer Pro 3">Supercharge spatial workflows</a></li>
+      </ul>
+
+      <h2 class="nl-h3">Key Documentation</h2>
+      <ul class="resource-list" style="margin:0 0 22px;">
+        <li><a href="https://developer.apple.com/wwdc26/guides/visionos/" aria-label="Read What's New in visionOS 27">What's New in visionOS 27</a> — The definitive WWDC26 reference</li>
+        <li><a href="https://developer.apple.com/documentation/technologyoverviews/immersive-media" aria-label="Read Spatial and Immersive Media technology overview">Spatial and Immersive Media</a> — Technology overview covering all visionOS video formats and the IMS framework</li>
+        <li><a href="https://developer.apple.com/documentation/immersivemediasupport/processing-apple-immersive-video-with-foveation" aria-label="See Apple's foveation sample code">Processing AIV with Foveation</a> — Apple's official sample code: 10 billion pixels/sec reduced to streamable 4K while preserving perceptual resolution</li>
+        <li><a href="https://developer.apple.com/apple-immersive-video/" aria-label="Visit the Apple Immersive Video developer portal">Apple Immersive Video Developer Portal</a> — the new home for everything AIV</li>
+      </ul>
+
+      <p class="nl-sub">Full WWDC26 spatial computing session catalog: <a href="https://developer.apple.com/videos/spatial-computing/" aria-label="Browse all WWDC26 spatial computing sessions">developer.apple.com/videos/spatial-computing/</a></p>
+
+      <a href="#top" class="back-to-top" aria-label="Back to top of newsletter">Back to top <span aria-hidden="true">↑</span></a>
+    </div>
+    <hr class="nl-hr" aria-hidden="true">
+
+    <!-- SECTION IMAGE — Accessories -->
+    <div class="nl-img-crop" style="height:220px; border-radius:0;">
+      <img src="https://developer.apple.com/apple-immersive-video/images/avp-immersive-films_2x.jpg"
+           alt="Immersive video content of 2 divers surrounded by sharks"
+           style="object-position: center 50%;">
+    </div>
+
+    <!-- SECTION 4: ACCESSORIES -->
+    <div id="accessories" class="nl-section">
+      <span class="track-pill pill-spatial">🔩 Spatial Accessories</span>
+      <p class="nl-label" style="margin:0 0 16px;">An Emerging Category</p>
+
+      <h2 class="nl-h3">Physical Spatial Input Arrives for Vision Pro</h2>
+      <p class="nl-p">Apple's Accessory Design Guidelines R30 adds a new section: <strong>Spatial Accessories</strong> — a developer preview category in visionOS 27. Spatial accessories provide inertial data, direct user actions, and a power-efficient synchronized infrared location reference. The device computes position and orientation in real time for use as spatial input. The use cases are industrial training, guided repair, medical education, design review, and spatial content creation.</p>
+      <p class="nl-sub">Two companies are already building to this spec:</p>
+      <ul class="resource-list" style="margin:0 0 22px;">
+        <li><strong><a href="https://www.mikroe.com/blog/spatial-anchor-s1-and-r1-precision-spatial-tracking-for-apple-vision-pro" aria-label="Read about Mikroe Spatial Anchor S1 and R1">Mikroe — Spatial Anchor S1 &amp; R1</a></strong> — Now available. Mount on any physical tool or instrument to make it trackable in visionOS. S1 is palm-sized with four infrared markers; R1 is larger with eight markers for wider-angle visibility. Combines infrared tracking, inertial sensing, and low-latency wireless.</li>
+        <li><strong><a href="https://www.dfrobot.com/blog-21077.html" aria-label="Read the DFRobot seeMote Cap and Cube announcement">DFRobot — seeMote Cap &amp; Cube</a></strong> — Coming Fall 2026. seeMote Cap attaches to tools for 6DoF motion input; seeMote Cube is a handheld device with buttons and haptics for prototyping spatial controls.</li>
+      </ul>
+      <p class="nl-sub">Apple's spec: <a href="https://developer.apple.com/accessories/Accessory-Design-Guidelines.pdf#page=135" aria-label="Read the Apple Accessory Design Guidelines spatial accessories section">Accessory Design Guidelines R30, Section 20 (PDF, p.135)</a></p>
+
+      <a href="#top" class="back-to-top" aria-label="Back to top of newsletter">Back to top <span aria-hidden="true">↑</span></a>
+    </div>
+    <hr class="nl-hr" aria-hidden="true">
+
+    <!-- CATALOG LINK -->
+    <div class="nl-section" style="background-color:#fafafa;">
+      <p class="nl-label">📱 Immersive Content Catalog</p>
+      <p class="nl-p">For a comprehensive, curated guide to Apple Immersive Video content and spatial computing apps, explore the full catalog at:</p>
+      <p style="margin:0;"><a href="https://timdavidatmac.github.io/immersive-video/" aria-label="Explore the Apple Immersive Video and spatial computing content catalog">timdavidatmac.github.io/immersive-video <span aria-hidden="true">→</span></a></p>
+    </div>
+    <hr class="nl-hr" aria-hidden="true">
+
+    <!-- CONTACT -->
+    <div class="nl-section" style="background-color:#fafafa;">
+      <p class="nl-label">Contact</p>
+      <p style="margin:0 0 2px;"><strong>Tim David</strong></p>
+      <p style="margin:0;"><a href="mailto:timdavid@mac.com">timdavid@mac.com</a></p>
+    </div>
+
+  </div><!-- end .nl-wrap -->
+  </main>
+
+  <!-- ═══════════════════════ SITE FOOTER -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="site-footer-inner">
+      <p>The Apple Immersive Video &amp; Spatial Computing catalog and newsletter are independent publications by Tim David. They are not affiliated with, endorsed by, or sponsored by Apple, Blackmagic Design, or any other company mentioned. Apple, Apple Vision Pro, and Apple Immersive Video are trademarks of Apple Inc.</p>
+      <p>Maintained by <a href="mailto:timdavid@mac.com">Tim David</a> &nbsp;·&nbsp; <a href="index.html">Newsletter Archive</a> &nbsp;·&nbsp; <a href="../index.html">Content Catalog</a></p>
+    </div>
+  </footer>
+
+</body>
+</html>
