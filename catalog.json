@@ -845,12 +845,14 @@
             {
               "id": "kids-elite-live",
               "title": "Kids Elite Live",
-              "status": "pending",
+              "status": "available",
+              "deep_link": "theater://view/kids-elite-live",
               "genre": "Documentary / Culture",
               "duration": "9m 15s",
+              "added": "2026-06-13",
               "thumbnail": "https://nmzfdjblmhrthistlmnc.supabase.co/storage/v1/object/public/theater-artwork/heroes/kids-elite-live.jpg",
               "title_overlay": true,
-              "note": "Kids Elite dancers in Paris. From upcoming doc 'Sabrina Lonis, From Kids to Elite Dancers.' By Immersive Flashback. Not yet released.",
+              "note": "Kids Elite dancers in Paris. From upcoming doc 'Sabrina Lonis, From Kids to Elite Dancers.' By Immersive Flashback. Deep link guessed from slug — verify when marquee updates.",
               "links": [
                 {
                   "label": "immersiveflashback.com",
