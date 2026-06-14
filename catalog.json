@@ -1087,6 +1087,7 @@
           "id": "voola",
           "title": "Voola — Immersive Photo/Video",
           "app_store": "https://apps.apple.com/us/app/voola-immersive-photo-video/id6743655345",
+          "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/45/1e/7f/451e7f65-05bc-1925-693e-42f6836158e2/AppIcon.lsr/512x512bb.jpg",
           "added": "2026-06-12",
           "note": "Immersive photo and video viewer for Apple Vision Pro. Includes AIV content from Chinese productions — confirmed to carry 'Land Your Dream in Space: Zhuque-3 Launch Vehicle Flight Test Mission' (first AIV rocket launch film, June 2026)."
         },
@@ -1201,6 +1202,7 @@
           "title": "Let's Go Fly! by Cirrus Aircraft",
           "type": "film",
           "app_store": "https://apps.apple.com/us/app/lets-go-fly/id6757612693",
+          "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/c5/51/61/c5516138-6c54-3781-6908-a5ed0b988e1d/AppIcon.lsr/512x512bb.jpg",
           "website": "https://cirrusaircraft.com/story/cirrus-launches-lets-go-fly-immersive-apple-vision-pro-flight-experience/",
           "added": "2026-06-02",
           "status": "available",
