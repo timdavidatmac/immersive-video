@@ -1283,14 +1283,6 @@
           "website": "https://www.laloensemble.com/laloimmersive",
           "added": "2026-06-13",
           "note": "Filipino-American choral music for Apple Vision Pro. The LALÒ Ensemble performs in Apple Immersive Video captured on the Blackmagic URSA Cine Immersive with Apple Spatial Audio Format (higher-order ambisonics). Also includes photogrammetry-based venue recreations, spatial music sheets, and behind-the-scenes content. Created by Paolo Villanueva — presented at Apple's first Developer Community Meetup at Apple HQ during WWDC26. iPhone companion app also available."
-        },
-        {
-          "id": "lalo-immersive",
-          "title": "LALÒ Immersive",
-          "app_store": "https://apps.apple.com/us/app/lalo-immersive/id6740135829",
-          "website": "https://www.laloensemble.com/laloimmersive",
-          "added": "2026-06-13",
-          "note": "Filipino-American choral music for Apple Vision Pro. Watch the LALÒ Ensemble perform in Apple Immersive Video captured on the Blackmagic URSA Cine Immersive with Apple Spatial Audio Format. Also includes photogrammetry-based venue recreations, spatial music sheets, behind-the-scenes content, and venue tours. Created by Paolo Villanueva — tenor, musician, product designer, and creative technologist. Presented at Apple's first Developer Community Meetup during WWDC26 at Apple HQ. iPhone companion app also available."
         }
       ]
     }
