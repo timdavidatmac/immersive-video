@@ -1168,7 +1168,7 @@
           "links": [
             {
               "label": "DeoVR version (8K on M2)",
-              "url": "https://deovr.com/wyznhd"
+              "url": "https://apps.apple.com/us/app/deovr-hyper-vr-videos/id6746857675"
             }
           ]
         },
@@ -1190,9 +1190,17 @@
           "links": [
             {
               "label": "Higher quality on DeoVR",
-              "url": "https://deovr.com/p6tcrk"
+              "url": "https://apps.apple.com/us/app/deovr-hyper-vr-videos/id6746857675"
             }
           ]
+        },
+        {
+          "id": "deovr",
+          "title": "DeoVR — Hyper VR Videos",
+          "app_store": "https://apps.apple.com/us/app/deovr-hyper-vr-videos/id6746857675",
+          "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/ef/0b/fa/ef0bfa74-3880-4a45-ccfd-67502951b9ee/AppIcon.lsr/512x512bb.jpg",
+          "added": "2026-06-13",
+          "note": "VR video player for Apple Vision Pro. Carries immersive content including Chinese AIV productions — confirmed to carry the Zhuque-3 rocket launch film."
         }
       ]
     },
