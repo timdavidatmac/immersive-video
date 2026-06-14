@@ -600,6 +600,26 @@
               "status": "pending",
               "note": "Mentioned in the Apple Newsroom in September 2025 — no further details yet.",
               "url": "https://www.apple.com/newsroom/2025/09/apple-previews-new-immersive-films-for-apple-vision-pro/"
+            },
+            {
+              "id": "f1-hot-lap",
+              "title": "F1 The Movie: Hot Lap Immersive",
+              "status": "available",
+              "url": "https://tv.apple.com/us/clip/hot-lap/umc.cmc.3ldlqqkv4y8nym61p8ul3zlr6?targetId=umc.cmc.3t6dvnnr87zwd4wmvpdx5came&targetType=Movie",
+              "added": "2026-06-13",
+              "note": "Now available again as bonus content for the F1 feature film. Was previously available as a standalone title Jun 2025.",
+              "description": "Strap in alongside Brad Pitt's character Sonny Hayes for a high-speed test drive around the Yas Marina Circuit in Abu Dhabi — directed by Joe Kosinski (Top Gun: Maverick) and captured in 180-degree 8K Apple Immersive Video.",
+              "thumbnail": "https://i0.wp.com/9to5mac.com/wp-content/uploads/sites/6/2025/06/apple-f1-movie-immersive-hot-lap.jpg",
+              "links": [
+                {
+                  "label": "UploadVR review",
+                  "url": "https://www.uploadvr.com/f1-the-movie-hot-lap-immersive-teaser/"
+                },
+                {
+                  "label": "YouTube walkthrough",
+                  "url": "https://youtu.be/Esf49lXmEzc"
+                }
+              ]
             }
           ]
         },
@@ -617,24 +637,6 @@
                 {
                   "label": "UploadVR review",
                   "url": "https://www.uploadvr.com/apple-immersive-video-super-bowl-highlights/"
-                }
-              ]
-            },
-            {
-              "id": "f1-hot-lap",
-              "title": "F1 The Movie: Hot Lap Immersive",
-              "status": "gone",
-              "note": "High-speed test drive with Brad Pitt. Was available Jun 2025.",
-              "description": "Strap in alongside Brad Pitt's character Sonny Hayes for a high-speed test drive around the Yas Marina Circuit in Abu Dhabi — directed by Joe Kosinski (Top Gun: Maverick) and captured in 180-degree 8K Apple Immersive Video.",
-              "thumbnail": "https://i0.wp.com/9to5mac.com/wp-content/uploads/sites/6/2025/06/apple-f1-movie-immersive-hot-lap.jpg",
-              "links": [
-                {
-                  "label": "UploadVR review",
-                  "url": "https://www.uploadvr.com/f1-the-movie-hot-lap-immersive-teaser/"
-                },
-                {
-                  "label": "YouTube walkthrough",
-                  "url": "https://youtu.be/Esf49lXmEzc"
                 }
               ]
             }
