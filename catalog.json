@@ -1531,6 +1531,10 @@
           {
             "label": "Autodesk blog",
             "url": "https://blogs.autodesk.com/design-studio/2026/05/20/immersive-for-autodesk-vred-is-now-available-on-apple-vision-pro/"
+          },
+          {
+            "label": "Spatial anchoring deep dive (Innoactive, Jun 2026)",
+            "url": "https://innoactive.io/post/spatial-anchoring-automotive-seating-buck"
           }
         ]
       },
