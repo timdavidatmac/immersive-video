@@ -22,6 +22,20 @@
           <li><a href="newsletters/index.html">Newsletter</a></li>
         </ul>
       </nav>
+
+      <!-- ── Site-wide search ── -->
+      <div class="site-search" role="search" aria-label="Site-wide search">
+        <input
+          type="search"
+          class="site-search-input"
+          id="site-search-input"
+          placeholder="Search…"
+          aria-label="Search all content"
+          autocomplete="off"
+          spellcheck="false"
+        >
+        <div class="site-search-results" id="site-search-results" role="listbox" aria-live="polite"></div>
+      </div>
     </div>
   </header>
 
@@ -271,5 +285,79 @@
       <p>A publication of <a href="mailto:imaginationave@mac.com">Imagination Ave</a> &nbsp;·&nbsp; <a href="newsletters/index.html">Newsletter Archive</a></p>
   </footer>
 
+
+  <!-- ── Site-wide search JS ── -->
+  <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.min.js"></script>
+  <script>
+  (function() {
+    const input  = document.getElementById('site-search-input');
+    const box    = document.getElementById('site-search-results');
+    if (!input || !box) return;
+
+    let fuse = null;
+
+    function loadIndex() {
+      fetch('search-index.json')
+        .then(r => r.json())
+        .then(data => {
+          fuse = new Fuse(data, {
+            keys: [
+              { name: 'title',   weight: 0.6 },
+              { name: 'body',    weight: 0.3 },
+              { name: 'section', weight: 0.1 },
+            ],
+            threshold: 0.35,
+            includeScore: true,
+            minMatchCharLength: 2,
+          });
+        });
+    }
+
+    // Load index on first focus
+    input.addEventListener('focus', function onFocus() {
+      if (!fuse) loadIndex();
+      input.removeEventListener('focus', onFocus);
+    }, { once: true });
+
+    input.addEventListener('input', function() {
+      const q = this.value.trim();
+      if (!q || !fuse) { close(); return; }
+      const results = fuse.search(q, { limit: 10 });
+      if (!results.length) {
+        box.innerHTML = '<div class="search-no-results">No results found</div>';
+        box.classList.add('active');
+        return;
+      }
+      box.innerHTML = results.map(r => {
+        const item = r.item;
+        const base = '';
+        const url  = base + item.url;
+        return `<a class="search-result-item" href="${url}">
+          <span class="search-result-title">${item.title}</span>
+          <span class="search-result-meta">
+            <span class="search-result-page">${item.page}</span>
+            ${item.section}
+          </span>
+        </a>`;
+      }).join('');
+      box.classList.add('active');
+    });
+
+    // Close on outside click
+    document.addEventListener('click', function(e) {
+      if (!input.contains(e.target) && !box.contains(e.target)) close();
+    });
+
+    // Keyboard: Escape to close
+    input.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') { close(); input.blur(); }
+    });
+
+    function close() {
+      box.classList.remove('active');
+      box.innerHTML = '';
+    }
+  })();
+  </script>
 </body>
 </html>
