@@ -759,7 +759,8 @@
               "duration": "8m 35s",
               "added": "2026-06-17",
               "description": "How an artist engineered one of the pivotal machines of virtual reality, from the MIT Architecture Machine Group, to Atari and NASA.",
-              "note": "Part two of a three-part series. Sandwich Vision in association with the Immersive Archive at USC. ⏳ Thumbnail pending.",
+              "note": "Part two of a three-part series. Sandwich Vision in association with the Immersive Archive at USC.",
+              "thumbnail": "https://nmzfdjblmhrthistlmnc.supabase.co/storage/v1/object/public/theater-artwork/heroes/seeing-things-scott-fisher.jpg",
               "title_overlay": true
             },
             {
@@ -875,6 +876,7 @@
               "added": "2026-06-17",
               "description": "altitude.101 follows triathlete Jules Gabbiadini through the brutal arc of training and competition, from the first stroke to the finish line.",
               "note": "Altitude101. A journey where failure is not an option. Shot on URSA Cine Immersive.",
+              "thumbnail": "https://nmzfdjblmhrthistlmnc.supabase.co/storage/v1/object/public/theater-artwork/heroes/the-longest-day.jpg",
               "title_overlay": true
             },
             {
