@@ -828,9 +828,15 @@
               "also_on": "Amplium",
               "genre": "Sports / Action",
               "duration": "8m 28s",
-              "note": "Elite freeriders build the ultimate jump in the French Alps. Shot on URSA Cine Immersive.",
+              "note": "Three French freeriders build and ride the ultimate jump deep in the French Alps, culminating in a double backflip. Shot over two days on URSA Cine Immersive. ~10% of shots are in-motion. Dir: Antoine Baille. In-depth production craft article in IBC (June 2026) covers camera placement, movement, pacing, and post workflow.",
               "thumbnail": "https://nmzfdjblmhrthistlmnc.supabase.co/storage/v1/object/public/theater-artwork/movies/altitude101-kick-v2-splash.jpg",
-              "title_overlay": true
+              "title_overlay": true,
+              "links": [
+                {
+                  "label": "IBC production craft article (Jun 2026)",
+                  "url": "https://www.ibc.org/production/features/kick-writing-the-rules-of-high-altitude-immersive-production/22794?type=.html"
+                }
+              ]
             },
             {
               "id": "altitude-echoes",
@@ -840,8 +846,17 @@
               "also_on": "Amplium",
               "genre": "Documentary / Travel",
               "duration": "5m 7s",
-              "note": "UAE and Oman travelogue. Shot on URSA Cine Immersive.",
+              "note": "Desert, mountain, and undersea environments across the UAE and Oman. Shot on URSA Cine Immersive. By Altitude101 (Amaury Pierlot).",
               "thumbnail": "https://nmzfdjblmhrthistlmnc.supabase.co/storage/v1/object/public/theater-artwork/movies/echoes-v3-splash.jpg",
+              "title_overlay": true
+            },
+            {
+              "id": "altitude-longest-day",
+              "title": "The Longest Day",
+              "status": "pending",
+              "also_on": "Amplium",
+              "genre": "Sports / Documentary",
+              "note": "Upcoming Altitude101 film following an amateur triathlete through the physical and mental demands of preparing to qualify for the Triathlon World Championships. Shot on URSA Cine Immersive. Announced in IBC article, June 2026.",
               "title_overlay": true
             },
             {
