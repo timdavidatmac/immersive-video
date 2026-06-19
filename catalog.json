@@ -926,6 +926,40 @@
                   "url": "https://youtu.be/rmALaK3nGoI"
                 }
               ]
+            },
+            {
+              "id": "henry-viii-in-warwick",
+              "title": "Henry VIII in Warwick",
+              "url": "https://apps.apple.com/us/app/spatial-film/id6670564820",
+              "status": "available",
+              "added": "2026-06-15",
+              "genre": "Narrative / Historical Drama",
+              "year": 2026,
+              "title_overlay": true,
+              "note": "Narrative short. Dir: Keeley Turner. Shot by Hugh Hou on URSA Cine Immersive. Set in 16th century England — candlelit Tudor interiors. Featured in Blackmagic press release Jun 15, 2026.",
+              "links": [
+                {
+                  "label": "Blackmagic press release",
+                  "url": "https://www.blackmagicdesign.com/media/release/20260615-01"
+                }
+              ]
+            },
+            {
+              "id": "aspen-cowgirl",
+              "title": "Aspen Cowgirl",
+              "url": "https://apps.apple.com/us/app/spatial-film/id6670564820",
+              "status": "available",
+              "added": "2026-06-15",
+              "genre": "Narrative / Western",
+              "year": 2026,
+              "title_overlay": true,
+              "note": "Narrative short. Dir: Keeley Turner. Shot by Hugh Hou on URSA Cine Immersive. Set in the wild west of Colorado — shot in shifting outdoor sunlight. Featured in Blackmagic press release Jun 15, 2026.",
+              "links": [
+                {
+                  "label": "Blackmagic press release",
+                  "url": "https://www.blackmagicdesign.com/media/release/20260615-01"
+                }
+              ]
             }
           ]
         },
