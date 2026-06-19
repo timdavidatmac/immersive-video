@@ -54,7 +54,7 @@
     <h2 class="section-heading" id="tools">Tools &amp; Software</h2>
     <ul class="catalog-list">
 
-      <li>
+      <li id="tool-aivu">
         <a class="entry-name" href="https://apps.apple.com/us/app/apple-immersive-video-utility/id6477489398" target="_blank" rel="noopener">Apple Immersive Video Utility (AIVU)</a>
         <span class="entry-note">Apple's own tool for importing media, creating .aivu files, and preparing Apple Immersive Video content for playback or distribution. Free on the Mac App Store.</span>
         <div class="entry-links">
@@ -62,7 +62,7 @@
         </div>
       </li>
 
-      <li>
+      <li id="tool-colorfront-immersive-utility">
         <span class="pill pill-new" aria-label="New">New</span>
         <a class="entry-name" href="https://immersive.colorfront.cloud/cfiu" target="_blank" rel="noopener">Colorfront Immersive Utility</a>
         <span class="entry-note">Professional Mac app (Apple Silicon M1+, macOS 26 Tahoe+) for creating .aivu files from ProRes or MV-HEVC source. GPU-accelerated encoding, foveation, APAC spatial audio conversion, and multi-shot assembly via FCP XML. Free tier available. MV-HEVC License: $299/year. "From camera original to Apple Vision Pro — in one click."</span>
@@ -73,12 +73,12 @@
         </div>
       </li>
 
-      <li>
+      <li id="tool-mainconcept-mv-hevc">
         <a class="entry-name" href="https://www.mainconcept.com/news-mainconcept-announces-multiview-encoding-for-apple-immersive-video" target="_blank" rel="noopener">MainConcept MV-HEVC Encoder SDK</a>
         <span class="entry-note">Codec SDK 16.2 with DaVinci Resolve Studio and Colorfront integration for MV-HEVC encoding. April 2026.</span>
       </li>
 
-      <li>
+      <li id="tool-apmp-metadata">
         <span class="pill pill-new" aria-label="New">New</span>
         <a class="entry-name" href="https://cranialdev.com/apmpmetadata" target="_blank" rel="noopener">APMP Metadata</a>
         <span class="entry-note">Mac app for injecting, previewing, and exporting Apple Projected Media Profile (APMP) metadata — no command line required. Supports the full APMP specification including spatial, parametric, stereoscopic, and 360° workflows. Includes integrated VEXU (Video Extension Universal) metadata editing, video preview before export, and automatic metadata validation. Designed for developers and content creators working with immersive video pipelines and Vision Pro.</span>
@@ -88,7 +88,7 @@
         </div>
       </li>
 
-      <li>
+      <li id="tool-gracia-4dgs">
         <span class="pill pill-new" aria-label="New">New</span>
         <a class="entry-name" href="https://gracia.ai" target="_blank" rel="noopener">Gracia — 4D Gaussian Splat Encoding &amp; Distribution</a>
         <span class="entry-note">Processing and distribution pipeline for 4D Gaussian Splat (4DGS) volumetric content — Gracia handles processing only, not capture. Workflow: client shoots with a capture partner (Gracia refers clients to the nearest partner if needed), footage comes to Gracia, and delivery is typically 3–5 days as .mint/.PLY files. Gracia reconstructs temporally consistent 4DGS, removes unwanted objects, applies color LUTs, and compresses to near-lossless quality. One capture, three delivery targets: VFX (1M splats/frame), XR headsets (300–400K), and streaming (up to 125K). Output is compatible with Houdini, Cinema 4D, Nuke, Blender, After Effects, and DaVinci Resolve. View on Vision Pro with the <a href="https://apps.apple.com/us/app/gracia-4dgs-viewer/id6773024890" target="_blank" rel="noopener">Gracia: 4DGS Viewer</a> app.</span>
@@ -106,7 +106,7 @@
     <h3 class="subsection-heading">Cameras</h3>
     <ul class="catalog-list">
 
-      <li>
+      <li id="camera-ursa-cine-immersive-100g">
         <a class="entry-name" href="https://www.blackmagicdesign.com/media/release/20260414-04" target="_blank" rel="noopener">Blackmagic URSA Cine Immersive 100G</a>
         <span class="entry-note">World's first live-production Apple Immersive Video camera. Dual 8K×8K RGBW sensors, 16 stops of dynamic range, 100G Ethernet output. Pairs with the URSA Live Encoder for real-time ProRes output — live sports, concerts, and events in AIV are now possible. Announced NAB 2026.</span>
         <div class="entry-links">
@@ -121,12 +121,12 @@
     <p style="margin:0 0 16px; font-size:14px; color:#6e6e73;">The following tools were created by independent developers in the immersive video community. They're worth knowing about — but haven't been through commercial QA. Test before using in a production workflow.</p>
     <ul class="catalog-list">
 
-      <li>
+      <li id="community-aime-generator">
         <a class="entry-name" href="https://github.com/silverqsy/AIMEGenerator" target="_blank" rel="noopener">AIME Generator</a>
         <span class="entry-note">Creates Apple Immersive Video lens profile files (.aime) for virtually any VR180 camera — not just the URSA Cine Immersive. Mac only.</span>
       </li>
 
-      <li>
+      <li id="community-aivu-trimmer">
         <span class="pill pill-new" aria-label="New">New</span>
         <a class="entry-name" href="https://github.com/balldeela/aivu-trimmer" target="_blank" rel="noopener">AIVU Trimmer</a>
         <span class="entry-note">macOS tool for trimming .aivu files without re-encoding — preserves all Apple immersive metadata (AIME, VenueDescriptor, spatial audio). Also exports: SBS MP4 for Meta Quest 3 preview (7680×3840, 60fps HEVC), rectilinear 16:9 for flat screen editing using a Blackmagic ST map EXR, and supports .cube LUT baking with live preview. Visual in/out point editor with timecode display at 45fps. Built by Elad Offer.</span>
@@ -141,7 +141,7 @@
     <h3 class="subsection-heading">Accessories</h3>
     <ul class="catalog-list">
 
-      <li>
+      <li id="camera-wooden-camera-ursa-accessories">
         <a class="entry-name" href="https://woodencamera.com/pages/blackmagic-ursa-cine" target="_blank" rel="noopener">Wooden Camera — URSA Cine Immersive Accessories</a>
         <span class="entry-note">Redesigned Top Plate and Side Rails for the URSA Cine Immersive's dual-lens form factor, Riser Plate with airflow spacing, and D-Box Gold Mount Plus power system. "The market for immersive filmmaking is still emerging, but it's important that our accessories evolve alongside it." — Dominick Aiello, Creative Solutions. May 2026.</span>
         <div class="entry-links">
@@ -149,12 +149,12 @@
         </div>
       </li>
 
-      <li>
+      <li id="camera-logitech-muse">
         <a class="entry-name" href="https://www.logitech.com/en-us/shop/p/muse-for-apple-vision-pro" target="_blank" rel="noopener">Logitech MUSE Stylus for Vision Pro</a>
         <span class="entry-note">Precision stylus for Vision Pro. Enables collaborative spatial workflows — developers have demonstrated two users annotating the same 3D object simultaneously using MUSE and Nearby Sharing.</span>
       </li>
 
-      <li>
+      <li id="camera-playstation-vr2-controller">
         <a class="entry-name" href="https://www.apple.com/shop/product/hs8h2zm/a/playstation-vr2-sense-controller-charging-station" target="_blank" rel="noopener">PlayStation VR2 Sense Controller &amp; Charging Station</a>
         <span class="entry-note">Traditional gaming controller support for Vision Pro. Available on the Apple Store.</span>
       </li>
@@ -164,12 +164,12 @@
     <h3 class="subsection-heading">Underwater Housing</h3>
     <ul class="catalog-list">
 
-      <li>
+      <li id="camera-gates-immersive-housing">
         <a class="entry-name" href="https://www.gateshousings.com/gates_immersive_housing/" target="_blank" rel="noopener">Gates Immersive Housing</a>
         <span class="entry-note">Developed in close collaboration with Apple and Blackmagic Design specifically for the URSA Cine Immersive. 12-inch AR-coated glass dome port. Precise camera alignment with custom system calibration — the calibration file is unique to each camera/housing/dome combination and applied in DaVinci Resolve Studio. Solo diver controls or optional surface tethers. Gates Seal Check and Buoyancy Trim systems. Available for sale and hire from Gates Underwater Products (Poway, CA) and Esprit Film and Television (Bristol, UK).</span>
       </li>
 
-      <li>
+      <li id="camera-achtel-3deep">
         <a class="entry-name" href="https://achtel.com/immersive/" target="_blank" rel="noopener">ACHTEL 3Deep Immersive Camera</a>
         <span class="entry-note">A different approach — dual submersible lenses in direct contact with water, eliminating the dome port and solving the stereoscopic fusion problems inherent to traditional underwater 3D. Designed for the ACHTEL 9×7 camera. Depth-rated to 60m. Precision-machined from titanium at approximately 20kg ready to dive. Available for sale and rental.</span>
         <div class="entry-links">
@@ -184,7 +184,7 @@
     <p class="text-muted text-small" style="margin:0 0 20px;">Spatial audio is the other half of immersive video. ASAF (Apple Spatial Audio Format) and APAC (Apple Positional Audio Codec) are the audio counterparts to MV-HEVC — worth understanding alongside the image pipeline.</p>
     <ul class="catalog-list">
 
-      <li>
+      <li id="audio-asaf-aax-plugin">
         <span class="pill pill-new" aria-label="New">New</span>
         <a class="entry-name" href="https://developer.apple.com/apple-immersive-video/resources/" target="_blank" rel="noopener">Apple Spatial Audio Format — AAX Plugin Suite (Pro Tools)</a>
         <span class="entry-note">Official Apple production suite for Avid Pro Tools built on psychoacoustic principles. Delivers compelling, externalized audio experiences for Apple Immersive Video. Download from the AIV Resources page.</span>
@@ -193,12 +193,12 @@
         </div>
       </li>
 
-      <li>
+      <li id="audio-meet-asaf-apac">
         <a class="entry-name" href="https://www.youtube.com/watch?v=DpvR_74V4T4" target="_blank" rel="noopener">Meet Apple Spatial Audio Format and APAC</a>
         <span class="entry-note">Official Apple session introducing ASAF and the Apple Positional Audio Codec — how spatial audio is captured, encoded, and delivered for Apple Vision Pro.</span>
       </li>
 
-      <li>
+      <li id="audio-fxguide-believable-immersive">
         <span class="pill pill-new" aria-label="New">New</span>
         <a class="entry-name" href="https://www.fxguide.com/quicktakes/believable-and-immersive-audio/" target="_blank" rel="noopener">fxguide — Believable and Immersive Audio</a>
         <span class="entry-note">By Mike Seymour, May 20, 2026. Two threads woven together: an FMX session on concert-crowd spatial audio recording by Emmy and Golden Reel-winning sound editor Jens Rosenlund Petersen (Bohemian Rhapsody, Saltburn) and a practical deep dive on ASAF for Apple Immersive Video. Includes a downloadable ASAF example file. "Believable cinematic worlds are not just built with pixels: they come alive through sound."</span>
@@ -210,22 +210,22 @@
     <h2 class="section-heading" id="books">Books &amp; Guides</h2>
     <ul class="catalog-list">
 
-      <li>
+      <li id="guide-cinematic-immersive-for-professionals">
         <a class="entry-name" href="https://books.apple.com/us/book/cinematic-immersive-for-professionals/id6754396227" target="_blank" rel="noopener">Cinematic Immersive for Professionals</a>
         <span class="entry-note">By Ben Allan &amp; Clara Chong. The first comprehensive guide to the creative and technical aspects of Apple Immersive Video — from concept through post-production. Available on Apple Books.</span>
       </li>
 
-      <li>
+      <li id="guide-ursa-cine-immersive-manual">
         <a class="entry-name" href="https://documents.blackmagicdesign.com/UserManuals/BlackmagicURSACineImmersiveGuide.pdf" target="_blank" rel="noopener">Blackmagic URSA Cine Immersive Camera Manual</a>
         <span class="entry-note">Full guide covering camera operation and DaVinci Resolve AIV workflows. PDF. Essential reference for URSA Cine Immersive operators.</span>
       </li>
 
-      <li>
+      <li id="guide-acute-immersive-explainer">
         <a class="entry-name" href="https://acuteimmersive.com/apple-immersive-video/" target="_blank" rel="noopener">What is Apple Immersive Video? — Acute Immersive</a>
         <span class="entry-note">Clear, accessible explainer on the AIV format, the hardware, and what makes it different from other immersive media. Good starting point for anyone new to the format.</span>
       </li>
 
-      <li>
+      <li id="guide-apple-support-watch-aiv">
         <a class="entry-name" href="https://support.apple.com/guide/apple-vision-pro/watch-apple-immersive-video-and-3d-movies-tanc09caabb3/26/visionos/26" target="_blank" rel="noopener">Watch Apple Immersive Video and 3D Movies — Apple Support</a>
         <span class="entry-note">Official Apple guide to finding and watching Apple Immersive Video in the Apple TV app on Vision Pro. Covers how to browse, download for offline viewing, and switch between 2D and 3D.</span>
       </li>
@@ -236,27 +236,27 @@
     <h2 class="section-heading" id="learning">Video Learning Series</h2>
     <ul class="catalog-list">
 
-      <li>
+      <li id="learn-creator-week">
         <a class="entry-name" href="https://www.youtube.com/watch?v=KHRagR9LtDU&amp;list=PLjODKV8YBFHYB_BKAmt-Ez79wGdx44riR" target="_blank" rel="noopener">Creator Week Educational Series</a>
         <span class="entry-note">Apple-produced series covering all media types for visionOS apps, games, and experiences — 2D, 3D, spatial video, 180°, 360°, Wide FOV, and Apple Immersive Video. Best overview of the full format landscape.</span>
       </li>
 
-      <li>
+      <li id="learn-team2films-master-class">
         <a class="entry-name" href="https://www.youtube.com/watch?v=5N7MDJrZRkM&amp;list=PLny27uDaErSWGYEvRFQ7jSg_M5afMS0XQ" target="_blank" rel="noopener">Team2Films Immersive Master Class</a>
         <span class="entry-note">Team 2 Films walks through what it takes to create an immersive documentary for Apple Vision Pro — production, workflow, and lessons learned.</span>
       </li>
 
-      <li>
+      <li id="learn-hugh-hou-master-class">
         <a class="entry-name" href="https://www.youtube.com/watch?v=0dm_zYf09rQ&amp;list=PLAyCpxLR2Txsui3uR8i3SSOm0JeRIxeAW" target="_blank" rel="noopener">Hugh Hou AIV Master Class</a>
         <span class="entry-note">Complete URSA Cine Immersive to Apple Vision Pro workflow in DaVinci Resolve. Targeted tutorials from beginner to advanced.</span>
       </li>
 
-      <li>
+      <li id="learn-aiv-community-playlist">
         <a class="entry-name" href="https://youtube.com/playlist?list=PLOZjstLsDIAwobj8gNRNJuq2U-l0Ui68b" target="_blank" rel="noopener">AIV Community YouTube Playlist</a>
         <span class="entry-note">Community-curated collection of Apple Immersive Video production videos.</span>
       </li>
 
-      <li>
+      <li id="learn-hugh-hou-patreon">
         <a class="entry-name" href="https://www.patreon.com/posts/134414081" target="_blank" rel="noopener">Hugh Hou Patreon</a>
         <span class="entry-note">Extended tutorials and behind-the-scenes production content from Hugh Hou. Paid subscription.</span>
       </li>
@@ -272,37 +272,37 @@
     <p style="margin:0 0 12px; font-size:13px; color:#6e6e73;">New sessions from WWDC26. Full catalog: <a href="https://developer.apple.com/videos/spatial-computing/" target="_blank" rel="noopener">developer.apple.com/videos/spatial-computing/</a></p>
     <ul class="catalog-list">
 
-      <li>
+      <li id="dev-build-live-production-tools-for-apple-immersive-video">
         <span class="pill pill-new" aria-label="New">New</span>
         <a class="entry-name" href="https://developer.apple.com/videos/play/wwdc2026/338/" target="_blank" rel="noopener">Build Live Production Tools for Apple Immersive Video</a>
         <span class="entry-note">The essential session for live AIV. Covers packaging immersive video, spatial audio, and scene metadata for IP transport using SMPTE 2110. Uses Immersive Media Support, Video Toolbox, and AVFoundation for real-time workflows. Watch WWDC25 "Learn about Apple Immersive Video technologies" first.</span>
       </li>
 
-      <li>
+      <li id="dev-use-foveated-streaming-to-bring-immersive-content-to-visiono">
         <span class="pill pill-new" aria-label="New">New</span>
         <a class="entry-name" href="https://developer.apple.com/videos/play/wwdc2026/286/" target="_blank" rel="noopener">Use Foveated Streaming to Bring Immersive Content to visionOS</a>
         <span class="entry-note">How foveated streaming delivers remotely rendered scenes to Vision Pro at full fidelity, completely wirelessly. Covers the FoveatedStreaming framework, NVIDIA CloudXR SDK integration, and dynamic foveation with privacy preservation.</span>
       </li>
 
-      <li>
+      <li id="dev-design-immersive-environments-for-visionos-apps-and-the-spat">
         <span class="pill pill-new" aria-label="New">New</span>
         <a class="entry-name" href="https://developer.apple.com/videos/play/wwdc2026/234/" target="_blank" rel="noopener">Design Immersive Environments for visionOS Apps and the Spatial Web</a>
         <span class="entry-note">Creating photoreal visionOS environments for apps, websites, and SharePlay — design principles, CG asset prep, real-time motion and lighting effects.</span>
       </li>
 
-      <li>
+      <li id="dev-explore-immersive-website-environments-in-visionos">
         <span class="pill pill-new" aria-label="New">New</span>
         <a class="entry-name" href="https://developer.apple.com/videos/play/wwdc2026/320/" target="_blank" rel="noopener">Explore Immersive Website Environments in visionOS</a>
         <span class="entry-note">New Immersive API in JavaScript — request immersive transitions from inline model elements, build real-world-scale web experiences with video docking, all from a few lines of code.</span>
       </li>
 
-      <li>
+      <li id="dev-discover-usdkit-and-whats-new-in-openusd">
         <span class="pill pill-new" aria-label="New">New</span>
         <a class="entry-name" href="https://developer.apple.com/videos/play/wwdc2026/285/" target="_blank" rel="noopener">Discover USDKit and What's New in OpenUSD</a>
         <span class="entry-note">WWDC26 update on USDKit and the latest in OpenUSD for spatial content creation.</span>
       </li>
 
-      <li>
+      <li id="dev-iterate-your-spatial-scenes-faster-with-reality-composer-pro">
         <span class="pill pill-new" aria-label="New">New</span>
         <a class="entry-name" href="https://developer.apple.com/videos/play/wwdc2026/280/" target="_blank" rel="noopener">Iterate Your Spatial Scenes Faster with Reality Composer Pro 3</a>
         <span class="entry-note">WWDC26 · Reality Composer Pro 3 — faster iteration on spatial scenes.</span>
@@ -317,12 +317,12 @@
     <h3 class="subsection-heading">Start Here — Full-Day Sessions</h3>
     <ul class="catalog-list">
 
-      <li>
+      <li id="dev-day-1-immersive-amp-interactive-storytelling-for-visionos">
         <a class="entry-name" href="https://youtu.be/leGqoF8HJxU" target="_blank" rel="noopener">Day 1 — Immersive &amp; Interactive Storytelling for visionOS</a>
         <span class="entry-note">Oct 21, 2025 · 6+ hours. What's new in immersive and interactive media for visionOS 26; creating stories with immersive video and audio; design fundamentals; D-Day: The Camera Soldier learnings; RealityKit; SharePlay and spatial Personas; Q&amp;A.</span>
       </li>
 
-      <li>
+      <li id="dev-day-2-apple-immersive-video-amp-spatial-audio-deep-dive">
         <a class="entry-name" href="https://youtu.be/4V_7-1bm4Rk" target="_blank" rel="noopener">Day 2 — Apple Immersive Video &amp; Spatial Audio Deep Dive</a>
         <span class="entry-note">Oct 22, 2025 · 4+ hours. AIV format; ASAF and APAC audio; capturing on location; spatial audio workflow; Blackmagic Design post workflows; Colorfront dailies and mastering; SpatialGen hosting and distribution; The Weeknd "Open Hearts" pre-vis learnings; live events; unscripted productions; post production; Q&amp;A.</span>
       </li>
@@ -332,22 +332,22 @@
     <h3 class="subsection-heading">Format &amp; Audio</h3>
     <ul class="catalog-list">
 
-      <li>
+      <li id="dev-whats-new-in-immersive-media-for-visionos">
         <a class="entry-name" href="https://youtu.be/KHRagR9LtDU" target="_blank" rel="noopener">What's New in Immersive Media for visionOS</a>
         <span class="entry-note">Dec 1, 2025 · Updates for 2D/3D video, spatial video, and Apple Immersive Video — new tools and APIs.</span>
       </li>
 
-      <li>
+      <li id="dev-meet-the-apple-immersive-video-format">
         <a class="entry-name" href="https://youtu.be/g9El5wZFFM0" target="_blank" rel="noopener">Meet the Apple Immersive Video Format</a>
         <span class="entry-note">Dec 3, 2025 · AIV format foundations — acuity targets, acquisition requirements, file format structure, foveation, ILPD and motion comfort metadata.</span>
       </li>
 
-      <li>
+      <li id="dev-meet-apple-spatial-audio-format-and-apac">
         <a class="entry-name" href="https://youtu.be/DpvR_74V4T4" target="_blank" rel="noopener">Meet Apple Spatial Audio Format and APAC</a>
         <span class="entry-note">Dec 3, 2025 · How ASAF brings together Higher Order Ambisonics and object-based audio. APAC codec for immersive audio delivery.</span>
       </li>
 
-      <li>
+      <li id="dev-create-stories-with-immersive-video-and-audio">
         <a class="entry-name" href="https://youtu.be/jK58gKCyyBg" target="_blank" rel="noopener">Create Stories with Immersive Video and Audio</a>
         <span class="entry-note">Dec 1, 2025 · Presence, authenticity, proximity, and connection — the storytelling foundations unique to AIV.</span>
       </li>
@@ -357,27 +357,27 @@
     <h3 class="subsection-heading">Production &amp; Capture</h3>
     <ul class="catalog-list">
 
-      <li>
+      <li id="dev-an-introduction-to-capturing-apple-immersive-video">
         <a class="entry-name" href="https://youtu.be/ghpBTIbTZlg" target="_blank" rel="noopener">An Introduction to Capturing Apple Immersive Video</a>
         <span class="entry-note">Dec 4, 2025 · Equipment setup, power and media management, spatial audio capture, and safe on-set practices with the URSA Cine Immersive.</span>
       </li>
 
-      <li>
+      <li id="dev-production-expectations-for-aiv-learnings-from-submerged">
         <a class="entry-name" href="https://youtu.be/XzxQxcBpPFI" target="_blank" rel="noopener">Production Expectations for AIV — Learnings from "Submerged"</a>
         <span class="entry-note">Dec 5, 2025 · Scripted immersive production — development, camera testing, pre-vis, crew prep, set design, lighting, and on-set review practices.</span>
       </li>
 
-      <li>
+      <li id="dev-capturing-live-events-for-aiv-learnings-from-metallica">
         <a class="entry-name" href="https://youtu.be/0qRzxDZOJj4" target="_blank" rel="noopener">Capturing Live Events for AIV — Learnings from "Metallica"</a>
         <span class="entry-note">Dec 8, 2025 · Live event capture — framing, viewer-comfortable distances, spatial audio for attention guidance.</span>
       </li>
 
-      <li>
+      <li id="dev-the-power-of-simplicity-lessons-from-unscripted-aiv-titles">
         <a class="entry-name" href="https://youtu.be/Qv5g3mY-Or8" target="_blank" rel="noopener">The Power of Simplicity — Lessons from Unscripted AIV Titles</a>
         <span class="entry-note">Dec 8, 2025 · Natural framing, subject trust, and why longer immersive shots require a different approach than traditional documentary.</span>
       </li>
 
-      <li>
+      <li id="dev-previsualization-for-aiv-learnings-from-the-weeknd-open-hear">
         <a class="entry-name" href="https://youtu.be/Gc7y9izKfd0" target="_blank" rel="noopener">Previsualization for AIV — Learnings from The Weeknd "Open Hearts"</a>
         <span class="entry-note">Dec 5, 2025 · How CG pre-vis was used to test framing, motion comfort, and VFX concepts before the shoot.</span>
       </li>
@@ -387,27 +387,27 @@
     <h3 class="subsection-heading">Post Production</h3>
     <ul class="catalog-list">
 
-      <li>
+      <li id="dev-spatial-audio-workflows-for-apple-immersive-video">
         <a class="entry-name" href="https://youtu.be/nUAS1yJVluI" target="_blank" rel="noopener">Spatial Audio Workflows for Apple Immersive Video</a>
         <span class="entry-note">Dec 4, 2025 · Step-by-step — ambisonic beds, close-miked sources, editorial layering, mixing in headphones, reviewing on Vision Pro.</span>
       </li>
 
-      <li>
+      <li id="dev-preserving-presence-for-aiv-learnings-from-post-production">
         <a class="entry-name" href="https://youtu.be/XsPG1a8egqk" target="_blank" rel="noopener">Preserving Presence for AIV — Learnings from Post Production</a>
         <span class="entry-note">Dec 8, 2025 · Dailies review on Vision Pro, editorial transitions for depth reset, spatial audio accuracy, VFX 3D behavior, grading for an idealized natural look.</span>
       </li>
 
-      <li>
+      <li id="dev-hands-on-editing-for-apple-immersive-video-ben-allan-amp-cla">
         <a class="entry-name" href="https://youtu.be/lKoC3_yuBNA" target="_blank" rel="noopener">Hands-On: Editing for Apple Immersive Video | Ben Allan &amp; Clara Chong</a>
         <span class="entry-note">Dec 9, 2025 · Proxy workflows, shot choice, sequencing, and sound design — with Main Course Films.</span>
       </li>
 
-      <li>
+      <li id="dev-hands-on-visual-effects-for-apple-immersive-video-blackmagic">
         <a class="entry-name" href="https://youtu.be/vu5x1YU5VHY" target="_blank" rel="noopener">Hands-On: Visual Effects for Apple Immersive Video | Blackmagic Design</a>
         <span class="entry-note">Dec 9, 2025 · Stereoscopic title placement, patching, and stabilization in Fusion — with Matt DeJohn.</span>
       </li>
 
-      <li>
+      <li id="dev-hands-on-spatial-audio-for-apple-immersive-video-blackmagic-">
         <a class="entry-name" href="https://youtu.be/ukFdrUfA06A" target="_blank" rel="noopener">Hands-On: Spatial Audio for Apple Immersive Video | Blackmagic Design</a>
         <span class="entry-note">Dec 10, 2025 · ASAF session setup, mixing, spatializing, and delivery with APAC in Fairlight — with David Lebolt.</span>
       </li>
@@ -417,17 +417,17 @@
     <h3 class="subsection-heading">Partner Tools</h3>
     <ul class="catalog-list">
 
-      <li>
+      <li id="dev-apple-immersive-video-workflows-blackmagic-design">
         <a class="entry-name" href="https://youtu.be/U13CmCkAJS4" target="_blank" rel="noopener">Apple Immersive Video Workflows | Blackmagic Design</a>
         <span class="entry-note">Dec 4, 2025 · End-to-end workflow — URSA Cine Immersive through DaVinci Resolve Studio 20. On-set review on Vision Pro, spatial audio mixing, motion data, and delivery presets.</span>
       </li>
 
-      <li>
+      <li id="dev-dailies-and-mastering-for-aiv-colorfront">
         <a class="entry-name" href="https://youtu.be/Qy3bA-T3sSg" target="_blank" rel="noopener">Dailies and Mastering for AIV | Colorfront</a>
         <span class="entry-note">Dec 4, 2025 · On Set Dailies and Transcoder — Apple Silicon-optimized, distributed rendering, metadata handling, MainConcept encoding integration.</span>
       </li>
 
-      <li>
+      <li id="dev-hosting-and-distributing-apple-immersive-video-spatialgen">
         <a class="entry-name" href="https://youtu.be/p2n_OtrjNCc" target="_blank" rel="noopener">Hosting and Distributing Apple Immersive Video | SpatialGen</a>
         <span class="entry-note">Dec 5, 2025 · Automating MV-HEVC and HLS stream creation, FairPlay DRM support, generating stream links for Vision Pro apps.</span>
       </li>
@@ -437,22 +437,22 @@
     <h3 class="subsection-heading">Design &amp; Shared Experiences</h3>
     <ul class="catalog-list">
 
-      <li>
+      <li id="dev-design-immersive-and-interactive-experiences">
         <a class="entry-name" href="https://youtu.be/muthEMhOq0Q" target="_blank" rel="noopener">Design Immersive and Interactive Experiences</a>
         <span class="entry-note">Dec 2, 2025 · Design fundamentals and best practices for immersive and interactive media, games, and experiences in visionOS.</span>
       </li>
 
-      <li>
+      <li id="dev-whats-new-in-interactive-media-for-visionos">
         <a class="entry-name" href="https://youtu.be/nYy9MdyCgho" target="_blank" rel="noopener">What's New in Interactive Media for visionOS</a>
         <span class="entry-note">Dec 1, 2025 · Latest visionOS 26 updates for interactive apps, games, and experiences.</span>
       </li>
 
-      <li>
+      <li id="dev-build-shared-experiences-for-visionos">
         <a class="entry-name" href="https://youtu.be/ITXwxtdcGtk" target="_blank" rel="noopener">Build Shared Experiences for visionOS</a>
         <span class="entry-note">Dec 2, 2025 · SharePlay and FaceTime for media apps and games. Spatial Personas for connected experiences.</span>
       </li>
 
-      <li>
+      <li id="dev-build-spatial-experiences-with-realitykit">
         <a class="entry-name" href="https://youtu.be/HDs2NtXqh_Y" target="_blank" rel="noopener">Build Spatial Experiences with RealityKit</a>
         <span class="entry-note">Dec 2, 2025 · SwiftUI and RealityKit for visionOS — 3D assets, environments, animations in Reality Composer Pro.</span>
       </li>
@@ -462,7 +462,7 @@
     <h3 class="subsection-heading">Apple Developer Documentation</h3>
     <ul class="catalog-list">
 
-      <li>
+      <li id="dev-apple-immersive-video-official-developer-portal">
         <span class="pill pill-new" aria-label="New">New</span>
         <a class="entry-name" href="https://developer.apple.com/apple-immersive-video/" target="_blank" rel="noopener">Apple Immersive Video — Official Developer Portal</a>
         <span class="entry-note">Apple's comprehensive reference for the AIV format — 90fps at 50MP+ per eye, 60 pixels per degree acuity, 230° field of view capability, and the full compound file format explained. The authoritative starting point for anyone building with or producing for AIV.</span>
@@ -472,7 +472,7 @@
         </div>
       </li>
 
-      <li>
+      <li id="dev-whats-new-in-apple-immersive-video-wwdc26">
         <span class="pill pill-new" aria-label="New">New</span>
         <a class="entry-name" href="https://developer.apple.com/apple-immersive-video/whats-new/" target="_blank" rel="noopener">What's New in Apple Immersive Video (WWDC26)</a>
         <span class="entry-note">WWDC26 updates: Apple Immersive Live formats (official live pipeline built on SMPTE 2110 — ProRes, Spatial Audio, and lens metadata before MV-HEVC encoding); ImmersiveMediaSupport framework now on iPadOS and iOS; camera override capabilities for live production; Y-axis flipping for inverted camera rigs in visionOS 27; static foveation for streaming distribution.</span>
@@ -481,50 +481,50 @@
         </div>
       </li>
 
-      <li>
+      <li id="dev-whats-new-in-visionos-27-wwdc26-guide">
         <span class="pill pill-new" aria-label="New">New</span>
         <a class="entry-name" href="https://developer.apple.com/wwdc26/guides/visionos/" target="_blank" rel="noopener">What's New in visionOS 27 (WWDC26 Guide)</a>
         <span class="entry-note">The definitive WWDC26 reference for visionOS 27 — AIV enhancements, Foveated Streaming framework, Reality Composer Pro 3, Spatial Preview, enhanced object tracking, and more. Coming this fall.</span>
       </li>
 
-      <li>
+      <li id="dev-spatial-and-immersive-media-technology-overview">
         <span class="pill pill-new" aria-label="New">New</span>
         <a class="entry-name" href="https://developer.apple.com/documentation/technologyoverviews/immersive-media" target="_blank" rel="noopener">Spatial and Immersive Media — Technology Overview</a>
         <span class="entry-note">Apple's comprehensive overview of immersive media capabilities in visionOS — covering all video formats, AIV architecture, and the IMS framework for custom workflows.</span>
       </li>
 
-      <li>
+      <li id="dev-processing-aiv-with-foveation-sample-code">
         <span class="pill pill-new" aria-label="New">New</span>
         <a class="entry-name" href="https://developer.apple.com/documentation/immersivemediasupport/processing-apple-immersive-video-with-foveation" target="_blank" rel="noopener">Processing AIV with Foveation — Sample Code</a>
         <span class="entry-note">Apple's official sample project demonstrating static foveation: reduces 8K/eye at 90fps (10 billion pixels/sec) to a streamable 4K while maintaining perceptual resolution.</span>
       </li>
 
-      <li>
+      <li id="dev-learn-about-apple-immersive-video-technologies-wwdc25">
         <a class="entry-name" href="https://developer.apple.com/videos/play/wwdc2025/403/" target="_blank" rel="noopener">Learn About Apple Immersive Video Technologies (WWDC25)</a>
         <span class="entry-note">AIV format deep dive: ImmersiveMediaSupport framework, encoding pipeline, and HLS streaming delivery.</span>
       </li>
 
-      <li>
+      <li id="dev-explore-video-experiences-for-visionos-wwdc25">
         <a class="entry-name" href="https://developer.apple.com/videos/play/wwdc2025/304/" target="_blank" rel="noopener">Explore Video Experiences for visionOS (WWDC25)</a>
         <span class="entry-note">Full overview of all visionOS video formats — 180°, 360°, Wide FOV, AIV, 2D, 3D, and spatial video.</span>
       </li>
 
-      <li>
+      <li id="dev-immersivemediasupport-framework">
         <a class="entry-name" href="https://developer.apple.com/documentation/ImmersiveMediaSupport" target="_blank" rel="noopener">ImmersiveMediaSupport Framework</a>
         <span class="entry-note">Apple developer documentation for immersive media technologies and frameworks.</span>
       </li>
 
-      <li>
+      <li id="dev-converting-3d-video-to-multiview-hevc-amp-spatial-video">
         <a class="entry-name" href="https://developer.apple.com/documentation/AVFoundation/converting-side-by-side-3d-video-to-multiview-hevc-and-spatial-video" target="_blank" rel="noopener">Converting 3D Video to Multiview HEVC &amp; Spatial Video</a>
         <span class="entry-note">How to convert existing 3D HEVC files to multiview HEVC and spatial video format for visionOS.</span>
       </li>
 
-      <li>
+      <li id="dev-spatial-amp-immersive-media-isobmff-extensions-pdf">
         <a class="entry-name" href="https://developer.apple.com/av-foundation/Stereo-Video-ISOBMFF-Extensions.pdf" target="_blank" rel="noopener">Spatial &amp; Immersive Media — ISOBMFF Extensions (PDF)</a>
         <span class="entry-note">Apple's technical specification for ISOBMFF extensions supporting spatial and immersive media formats.</span>
       </li>
 
-      <li>
+      <li id="dev-streamingsession-apple-github">
         <a class="entry-name" href="https://github.com/apple/StreamingSession" target="_blank" rel="noopener">StreamingSession — Apple GitHub</a>
         <span class="entry-note">Apple's open-source reference implementation for CloudXR/OpenXR streaming on visionOS.</span>
       </li>
@@ -535,7 +535,7 @@
     <h2 class="section-heading" id="workflow">Workflow Articles &amp; Interviews</h2>
     <ul class="catalog-list">
 
-      <li>
+      <li id="workflow-fxguide-delivering-aiv-for-streaming-a-practical-workflow">
         <a class="entry-name" href="https://www.fxguide.com/quicktakes/delivering-apple-immersive-video-for-streaming-a-new-practical-workflow/" target="_blank" rel="noopener">fxguide — Delivering AIV for Streaming: A Practical Workflow</a>
         <span class="entry-note">By Mike Seymour, March 26, 2026. MV-HEVC delivery pipeline using The Dobos Connection as case study. Key result: 83 GB upload instead of 1.3 TB — roughly 1/16th the size. Uses DaVinci Resolve, no proprietary tools.</span>
         <div class="entry-links">
@@ -543,32 +543,32 @@
         </div>
       </li>
 
-      <li>
+      <li id="workflow-fxguide-immersive-drama-more-than-vr-more-than-film">
         <a class="entry-name" href="https://www.fxguide.com/fxfeatured/immersive-drama-more-than-vr-more-than-film/" target="_blank" rel="noopener">fxguide — Immersive Drama: More Than VR, More Than Film</a>
         <span class="entry-note">By Clara Chong, March 11, 2026. Deep dive into the making of The Dobos Connection — the creative and technical choices that make AIV drama work differently from film or VR.</span>
       </li>
 
-      <li>
+      <li id="workflow-flashback-to-the-future-frank-david-cohen-of-immersive-flash">
         <a class="entry-name" href="https://sandwich.vision/newsletter/010-flashback-to-the-future-with-frank-david-cohen" target="_blank" rel="noopener">Flashback to the Future — Frank-David Cohen of Immersive Flashback</a>
         <span class="entry-note">Sandwich Vision interview with Immersive Flashback co-founder Frank-David Cohen. Covers filming Bastille Day with President Macron, building a studio from a passion project, and the honest economics of immersive content. May 2026.</span>
       </li>
 
-      <li>
+      <li id="workflow-spatial-insider-inside-aiv-with-ben-allan-amp-clara-chong">
         <a class="entry-name" href="https://youtu.be/eRoTqjfnLqw" target="_blank" rel="noopener">Spatial Insider — Inside AIV with Ben Allan &amp; Clara Chong</a>
         <span class="entry-note">34-minute interview with the filmmakers behind The Fine Dining Bakery and Cinematic Immersive for Professionals. Covers the full URSA Cine Immersive workflow, post-production in DaVinci Resolve, and the storytelling challenges unique to 180° space.</span>
       </li>
 
-      <li>
+      <li id="workflow-cined-filmmaking-for-the-vision-pro-era">
         <a class="entry-name" href="https://www.cined.com/filmmaking-for-the-vision-pro-era-apple-and-blackmagics-immersive-video-workflow/" target="_blank" rel="noopener">CineD — Filmmaking for the Vision Pro Era</a>
         <span class="entry-note">By Leon Barnard, June 2025. Overview of the Apple and Blackmagic immersive video workflow.</span>
       </li>
 
-      <li>
+      <li id="workflow-fxguide-ursa-cine-immersive-first-look-test-footage">
         <a class="entry-name" href="https://www.fxguide.com/quicktakes/first-look-blackmagic-ursa-cine-immersive-test-footage-for-apple-vision-pro/" target="_blank" rel="noopener">fxguide — URSA Cine Immersive: First Look Test Footage</a>
         <span class="entry-note">First look at footage from the Blackmagic URSA Cine Immersive — technical and visual assessment.</span>
       </li>
 
-      <li>
+      <li id="workflow-movement-principles-for-apple-immersive-video-hugh-hou">
         <a class="entry-name" href="https://www.linkedin.com/pulse/movement-principles-apple-immersive-video-science-camera-hugh-hou-zg8ec" target="_blank" rel="noopener">Movement Principles for Apple Immersive Video — Hugh Hou</a>
         <span class="entry-note">In-depth exploration of camera motion in XR — what works, what doesn't, and why. Includes a companion immersive video watchable on Vision Pro.</span>
         <div class="entry-links">
@@ -576,7 +576,7 @@
         </div>
       </li>
 
-      <li>
+      <li id="workflow-light-sail-vr-10-years-of-immersive-cinema-production">
         <a class="entry-name" href="https://secure.businesswire.com/news/home/20260203309549/en/Light-Sail-VR-Marks-10-Years-of-Immersive-Cinema-Production" target="_blank" rel="noopener">Light Sail VR — 10 Years of Immersive Cinema Production</a>
         <span class="entry-note">Emmy-winning studio (SNL 50th Anniversary VR). Feb 2026. 200+ projects over 10 years. Practical perspective on 2026 production realities: budget discipline, reliability, multiformat delivery. Co-founders Matthew Celia and Robert Watts, Los Angeles.</span>
         <div class="entry-links">
@@ -590,7 +590,7 @@
     <h2 class="section-heading" id="distribution">Platforms &amp; Distribution</h2>
     <ul class="catalog-list">
 
-      <li>
+      <li id="platform-immersa-professional-delivery-platform">
         <a class="entry-name" href="https://immersa.app" target="_blank" rel="noopener">Immersa — Professional Delivery Platform</a>
         <span class="entry-note">Upload 180°/360° immersive video and distribute via branded links or white label Vision Pro apps — without building a custom app from scratch. Designed for filmmakers and studios.</span>
         <div class="entry-links">
@@ -598,7 +598,7 @@
         </div>
       </li>
 
-      <li>
+      <li id="platform-spatialgen-zeus-live-aiv-streaming-hardware">
         <span class="pill pill-new" aria-label="New">New</span>
         <a class="entry-name" href="https://spatialgen.com/live" target="_blank" rel="noopener">SpatialGen Zeus — Live AIV Streaming Hardware</a>
         <span class="entry-note">On-premise 3U server for live Apple Immersive Video streaming — 4320×4320 per eye at 90 FPS (believed to be the first full-spec live MV-HEVC on Vision Pro). ProRes 2110 in → MV-HEVC stream out, handles all dynamic metadata. Configurable to your own CDN. Lifetime license, customer-owned hardware, 1 year white glove support. Deposit available now. SpatialGen also powers approximately 90% of all non-Apple-TV Apple Immersive Video streaming.</span>
@@ -608,12 +608,12 @@
         </div>
       </li>
 
-      <li>
+      <li id="platform-vivaldi-immersive">
         <a class="entry-name" href="https://vivaldi-immersive.com" target="_blank" rel="noopener">Vivaldi Immersive</a>
         <span class="entry-note">Showing "coming soon" as of May 2026 — check each build session for availability.</span>
       </li>
 
-      <li>
+      <li id="platform-spatialgen">
         <a class="entry-name" href="https://spatialgen.com" target="_blank" rel="noopener">SpatialGen</a>
         <span class="entry-note">Immersive video hosting and distribution platform. Also covers AIV news and releases.</span>
       </li>

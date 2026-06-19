@@ -399,7 +399,7 @@
           </div>` : '';
 
         return `
-          <li class="catalog-entry" ${dataCategory} ${dataNew} ${dataFree} data-search="${searchText.replace(/"/g,'&quot;')}" style="padding:0;background:none;border-bottom:none;display:flex;flex-direction:column;">
+          <li class="catalog-entry" id="entry-${entry.id || ''}" ${dataCategory} ${dataNew} ${dataFree} data-search="${searchText.replace(/"/g,'&quot;')}" style="padding:0;background:none;border-bottom:none;display:flex;flex-direction:column;">
             ${badges ? `<div style="margin-bottom:6px;">${badges}</div>` : ''}
             <div class="series-card">
               <div class="series-card-thumb">
@@ -433,7 +433,7 @@
       const platform = entry.platform || '';
 
       return `
-        <li class="catalog-card" ${dataCategory} ${dataNew} ${dataFree} data-search="${searchText.replace(/"/g,'&quot;')}">
+        <li class="catalog-card" id="entry-${entry.id || ''}" ${dataCategory} ${dataNew} ${dataFree} data-search="${searchText.replace(/"/g,'&quot;')}">
           <div class="card-thumb">
             ${thumbLink}<img src="${entry.thumbnail}" alt="${entry.title}" loading="lazy" ${gone ? 'style="filter:grayscale(1);opacity:0.55;"' : ''}>${thumbClose}
             <div class="card-thumb-overlay" aria-hidden="true" ${gone ? 'style="background:linear-gradient(transparent,rgba(0,0,0,0.85));"' : ''}>${gone ? 'No Longer Available' : entry.title}</div>
@@ -458,7 +458,7 @@
       const fresh = isNew(e.added);
       const dataNew = fresh ? 'data-new="true"' : '';
       return `
-        <li class="catalog-entry" data-category="${category}" ${dataNew} data-search="${searchText}" style="display:flex;gap:12px;align-items:flex-start;">
+        <li class="catalog-entry" id="entry-${e.id || ''}" data-category="${category}" ${dataNew} data-search="${searchText}" style="display:flex;gap:12px;align-items:flex-start;">
           <div style="width:90px;height:51px;flex-shrink:0;display:flex;align-items:center;justify-content:center;">
             ${url ? `<a href="${url}" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="${icon}" alt="${e.title} icon" loading="lazy" style="width:46px;height:46px;border-radius:10px;display:block;object-fit:cover;"></a>` : `<img src="${icon}" alt="${e.title} icon" loading="lazy" style="width:46px;height:46px;border-radius:10px;display:block;object-fit:cover;">`}
           </div>
@@ -513,7 +513,7 @@
       const noteHTML = entry.note ? `<span class="entry-note">${entry.note}</span>` : '';
 
       return `
-        <li class="catalog-entry" ${dataCategory} ${dataNew} ${dataFree} data-search="${searchText.replace(/"/g, '&quot;')}">
+        <li class="catalog-entry" id="entry-${entry.id || ''}" ${dataCategory} ${dataNew} ${dataFree} data-search="${searchText.replace(/"/g, '&quot;')}">
           ${badges ? `<div style="margin-bottom:4px;">${badges}</div>` : ''}
           ${titleHTML}
           ${platformHTML}
