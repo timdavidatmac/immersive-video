@@ -981,9 +981,16 @@
               "added": "2026-06-17",
               "genre": "Adventure / Time Travel",
               "year": 2026,
+              "thumbnail": "https://i.ytimg.com/vi/nyGmNCkz-Xk/hqdefault.jpg",
               "title_overlay": true,
-              "note": "31-minute time-travel adventure in 4K HDR Spatial Video — NOT Apple Immersive Video. Available in the Spatial Film app. ⏳ Thumbnail URL pending correction.",
-              "description": "A 31-minute time-travel adventure crafted in 4K HDR Spatial Video, designed for Apple Vision Pro."
+              "note": "31-minute time-travel adventure in 4K HDR Spatial Video — NOT Apple Immersive Video. Available in the Spatial Film app.",
+              "description": "A 31-minute time-travel adventure crafted in 4K HDR Spatial Video, designed for Apple Vision Pro.",
+              "links": [
+                {
+                  "label": "YouTube",
+                  "url": "https://youtu.be/nyGmNCkz-Xk"
+                }
+              ]
             }
           ]
         },
