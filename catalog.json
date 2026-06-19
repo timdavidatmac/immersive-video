@@ -935,6 +935,7 @@
               "added": "2026-06-15",
               "genre": "Narrative / Historical Drama",
               "year": 2026,
+              "thumbnail": "https://spatial.film/brand_assets/HenryVIII-Movie-Poster.jpg",
               "title_overlay": true,
               "note": "Narrative short. Dir: Keeley Turner. Shot by Hugh Hou on URSA Cine Immersive. Set in 16th century England — candlelit Tudor interiors. Featured in Blackmagic press release Jun 15, 2026.",
               "links": [
@@ -952,6 +953,7 @@
               "added": "2026-06-15",
               "genre": "Narrative / Western",
               "year": 2026,
+              "thumbnail": "https://spatial.film/brand_assets/Aspen%20Cowgir%20Movei%20Poster.jpg",
               "title_overlay": true,
               "note": "Narrative short. Dir: Keeley Turner. Shot by Hugh Hou on URSA Cine Immersive. Set in the wild west of Colorado — shot in shifting outdoor sunlight. Featured in Blackmagic press release Jun 15, 2026.",
               "links": [
@@ -960,6 +962,28 @@
                   "url": "https://www.blackmagicdesign.com/media/release/20260615-01"
                 }
               ]
+            },
+            {
+              "id": "dolce-mia",
+              "title": "Dolce Mia",
+              "url": "https://apps.apple.com/us/app/spatial-film/id6670564820",
+              "status": "available",
+              "added": "2026-06-17",
+              "thumbnail": "https://spatial.film/brand_assets/DolceMia-opt.jpg",
+              "title_overlay": true,
+              "note": "Available in the Spatial Film app. Description pending."
+            },
+            {
+              "id": "vanilla-lily-brushstrokes",
+              "title": "Vanilla Lily – Brushstrokes of Time",
+              "url": "https://apps.apple.com/us/app/spatial-film/id6670564820",
+              "status": "available",
+              "added": "2026-06-17",
+              "genre": "Adventure / Time Travel",
+              "year": 2026,
+              "title_overlay": true,
+              "note": "31-minute time-travel adventure in 4K HDR Spatial Video — NOT Apple Immersive Video. Available in the Spatial Film app. ⏳ Thumbnail URL pending correction.",
+              "description": "A 31-minute time-travel adventure crafted in 4K HDR Spatial Video, designed for Apple Vision Pro."
             }
           ]
         },
