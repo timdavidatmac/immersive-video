@@ -1203,6 +1203,21 @@
           "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/ef/0b/fa/ef0bfa74-3880-4a45-ccfd-67502951b9ee/AppIcon.lsr/512x512bb.jpg",
           "added": "2026-06-13",
           "note": "VR video player for Apple Vision Pro. Carries immersive content including Chinese AIV productions — confirmed to carry the Zhuque-3 rocket launch film."
+        },
+        {
+          "id": "gracia-4dgs",
+          "title": "Gracia: 4DGS Viewer",
+          "app_store": "https://apps.apple.com/us/app/gracia-4dgs-viewer/id6773024890",
+          "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/ad/a7/2b/ada72bee-6408-f0d7-7e23-9ca335912dc4/AppIcon.lsr/512x512bb.jpg",
+          "website": "https://roguelabs.com",
+          "added": "2026-06-16",
+          "note": "Stream and view 4D Gaussian Splat (4DGS) volumetric content on Apple Vision Pro. By Rogue Labs. Launched June 16, 2026. YouTube walkthrough by Himels Tech: https://youtu.be/j3aaXpFe8so",
+          "links": [
+            {
+              "label": "Walkthrough — Himels Tech (YouTube)",
+              "url": "https://youtu.be/j3aaXpFe8so"
+            }
+          ]
         }
       ]
     },
