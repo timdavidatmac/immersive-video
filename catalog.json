@@ -965,13 +965,21 @@
             },
             {
               "id": "dolce-mia",
-              "title": "Dolce Mia",
+              "title": "Dolce Mia: A Love Story in Florence, Italy",
               "url": "https://apps.apple.com/us/app/spatial-film/id6670564820",
               "status": "available",
               "added": "2026-06-17",
-              "thumbnail": "https://spatial.film/brand_assets/DolceMia-opt.jpg",
+              "genre": "Narrative / Romance",
+              "year": 2026,
+              "thumbnail": "https://i.ytimg.com/vi/iAG2AN94tZA/hqdefault.jpg",
               "title_overlay": true,
-              "note": "Available in the Spatial Film app. Description pending."
+              "description": "Mia finds herself at a crossroads when a cherished heirloom — a symbol of her family's legacy passed down through generations — mysteriously disappears. Determined to reclaim what is rightfully hers, she embarks on a journey that transcends time and borders, retracing her ancestors' footsteps through the cobblestone streets and hidden alleys of Florence.",
+              "links": [
+                {
+                  "label": "YouTube",
+                  "url": "https://youtu.be/iAG2AN94tZA"
+                }
+              ]
             },
             {
               "id": "vanilla-lily-brushstrokes",
