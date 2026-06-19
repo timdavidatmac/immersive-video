@@ -727,13 +727,15 @@
               "title_overlay": true
             },
             {
-              "id": "urban-theory-teaser",
-              "title": "Urban Theory Teaser",
-              "deep_link": "theater://view/urban-theory-teaser",
+              "id": "urban-theory",
+              "title": "Urban Theory",
+              "deep_link": "theater://view/urban-theory",
               "status": "available",
               "genre": "Art / Culture",
-              "duration": "37s",
-              "note": "Italian dance crew Urban Theory collaboration.",
+              "duration": "1m 58s",
+              "added": "2026-06-17",
+              "description": "They came, they Tutted, you loved it. A Sandwich Vision collaboration with the Italian dance crew Urban Theory.",
+              "note": "Updated from teaser to full film June 2026.",
               "thumbnail": "https://nmzfdjblmhrthistlmnc.supabase.co/storage/v1/object/public/theater-artwork/movies/urban-theory-splash.jpg",
               "title_overlay": true
             },
@@ -744,8 +746,20 @@
               "status": "available",
               "genre": "Documentary / History",
               "duration": "5m 40s",
-              "note": "Part one of a three-part VR history. In association with the Immersive Archive at USC.",
+              "note": "Part one of a three-part VR history series. In association with the Immersive Archive at USC.",
               "thumbnail": "https://nmzfdjblmhrthistlmnc.supabase.co/storage/v1/object/public/theater-artwork/heroes/seeing-things-sensorama.jpg",
+              "title_overlay": true
+            },
+            {
+              "id": "seeing-things-scott-fisher",
+              "title": "Seeing Things: Scott Fisher",
+              "deep_link": "theater://view/seeing-things-scott-fisher",
+              "status": "available",
+              "genre": "Documentary / History",
+              "duration": "8m 35s",
+              "added": "2026-06-17",
+              "description": "How an artist engineered one of the pivotal machines of virtual reality, from the MIT Architecture Machine Group, to Atari and NASA.",
+              "note": "Part two of a three-part series. Sandwich Vision in association with the Immersive Archive at USC. ⏳ Thumbnail pending.",
               "title_overlay": true
             },
             {
@@ -853,10 +867,14 @@
             {
               "id": "altitude-longest-day",
               "title": "The Longest Day",
-              "status": "pending",
+              "deep_link": "theater://view/the-longest-day",
+              "status": "available",
               "also_on": "Amplium",
               "genre": "Sports / Documentary",
-              "note": "Upcoming Altitude101 film following an amateur triathlete through the physical and mental demands of preparing to qualify for the Triathlon World Championships. Shot on URSA Cine Immersive. Announced in IBC article, June 2026.",
+              "duration": "12m 39s",
+              "added": "2026-06-17",
+              "description": "altitude.101 follows triathlete Jules Gabbiadini through the brutal arc of training and competition, from the first stroke to the finish line.",
+              "note": "Altitude101. A journey where failure is not an option. Shot on URSA Cine Immersive.",
               "title_overlay": true
             },
             {
