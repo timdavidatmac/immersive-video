@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3D Models — Apple Immersive Video & Spatial Computing</title>
+  <meta property="og:title" content="3D Models — Apple Immersive Video &amp; Spatial Computing">
+  <meta property="og:description" content="Interactive 3D models of immersive video hardware viewable in AR on Apple Vision Pro, iPhone, and iPad.">
+  <meta property="og:url" content="https://imaginationave.com/models.html">
+  <meta property="og:type" content="website">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .models-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 28px;
+      margin-top: 8px;
+    }
+
+    .model-card {
+      background: #fff;
+      border: 1px solid #e5e5ea;
+      border-radius: 14px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .model-preview {
+      background: #f5f5f7;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 24px;
+      min-height: 220px;
+    }
+
+    .model-preview img {
+      max-width: 100%;
+      max-height: 180px;
+      object-fit: contain;
+      display: block;
+    }
+
+    .model-info {
+      padding: 18px 20px 20px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .model-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: #1d1d1f;
+      margin: 0 0 6px;
+    }
+
+    .model-desc {
+      font-size: 14px;
+      color: #6e6e73;
+      line-height: 1.6;
+      margin: 0 0 16px;
+      flex: 1;
+    }
+
+    .model-ar-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #0176ba;
+      color: #fff;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 10px 18px;
+      border-radius: 20px;
+      text-decoration: none;
+      align-self: flex-start;
+      transition: background 0.15s;
+    }
+    .model-ar-link:hover { background: #0160a0; color: #fff; text-decoration: none; }
+
+    .model-ar-icon {
+      width: 18px;
+      height: 18px;
+    }
+
+    .model-note {
+      font-size: 12px;
+      color: #ababab;
+      margin-top: 10px;
+    }
+
+    .models-intro {
+      background: #f5f5f7;
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin-bottom: 32px;
+      font-size: 14px;
+      color: #444;
+      line-height: 1.7;
+    }
+    .models-intro strong { color: #1d1d1f; }
+  </style>
+</head>
+<body>
+
+  <header class="site-header" role="banner">
+    <div class="site-header-inner">
+      <div class="site-header-row1">
+        <a href="./" class="site-header-logo" aria-label="Apple Immersive Video &amp; Spatial Computing — home">
+          <img src="logo.svg" alt="" aria-hidden="true" width="28" height="28" style="display:inline-block; vertical-align:middle; margin-right:10px;">Apple Immersive Video &amp; Spatial Computing
+        </a>
+      </div>
+      <div class="site-header-row2">
+        <nav aria-label="Site navigation">
+          <ul class="site-nav">
+            <li><a href="./">Watch</a></li>
+            <li><a href="creators.html">Create</a></li>
+            <li><a href="usecases.html">Use Cases</a></li>
+            <li><a href="models.html" class="active" aria-current="page">3D Models</a></li>
+            <li><a href="newsletters/">Newsletter</a></li>
+          </ul>
+        </nav>
+        <!-- ── Site-wide search ── -->
+        <div class="site-search" role="search" aria-label="Site-wide search">
+          <input
+            type="search"
+            class="site-search-input"
+            id="site-search-input"
+            placeholder="Search…"
+            aria-label="Search all content"
+            autocomplete="off"
+            spellcheck="false"
+          >
+          <div class="site-search-results" id="site-search-results" role="listbox" aria-live="polite"></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════ PAGE HERO -->
+  <div class="page-hero" role="presentation">
+    <h1>3D Models</h1>
+    <p>Interactive USDZ models of immersive video hardware. Tap any model to view it in augmented reality on Apple Vision Pro, iPhone, or iPad — placed at real-world scale in your space.</p>
+  </div>
+
+  <!-- ═══════════════════════ MAIN CONTENT -->
+  <main class="page-content" role="main" id="main-content">
+
+    <div class="models-intro">
+      <strong>How it works:</strong> Tap <em>View in AR</em> on a supported Apple device. On <strong>Apple Vision Pro</strong>, the model opens in Quick Look and is placed in your physical space at true scale. On <strong>iPhone or iPad</strong>, point your camera at a flat surface to place the model. No app required — powered by Apple AR Quick Look.
+    </div>
+
+    <div class="models-grid">
+
+      <!-- Apple Vision Pro -->
+      <div class="model-card" id="model-avp">
+        <div class="model-preview">
+          <img src="catalog-images/USD/AVP-usdz-preview.png" alt="Apple Vision Pro headset 3D model, front view showing the front glass and aluminium frame">
+        </div>
+        <div class="model-info">
+          <h2 class="model-title">Apple Vision Pro</h2>
+          <p class="model-desc">Explore the Apple Vision Pro headset in full 3D. Examine the front glass, aluminium frame, and dual-knit band at true scale in your space.</p>
+          <a href="catalog-images/USD/AVP.usdz" rel="ar" class="model-ar-link" aria-label="View Apple Vision Pro 3D model in augmented reality">
+            <svg class="model-ar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+            View in AR
+          </a>
+          <p class="model-note">USDZ · 11.8 MB · Apple AR Quick Look</p>
+        </div>
+      </div>
+
+      <!-- Blackmagic URSA Cine Immersive -->
+      <div class="model-card" id="model-bmd">
+        <div class="model-preview">
+          <img src="catalog-images/USD/BMD_Immersive-usdz-preview.png" alt="Blackmagic URSA Cine Immersive camera 3D model showing the dual-lens front and camera body">
+        </div>
+        <div class="model-info">
+          <h2 class="model-title">Blackmagic URSA Cine Immersive</h2>
+          <p class="model-desc">The world's first cinema camera designed for Apple Immersive Video. Examine the dual 8K lens configuration, camera body, and build quality at true scale.</p>
+          <a href="https://github.com/timdavidatmac/immersive-video/releases/download/1.0-models/BMD_Immersive.usdz" rel="ar" class="model-ar-link" aria-label="View Blackmagic URSA Cine Immersive 3D model in augmented reality">
+            <svg class="model-ar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+            View in AR
+          </a>
+          <p class="model-note">USDZ · 161.8 MB · Apple AR Quick Look</p>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- ═══════════════════════ FOOTER -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="site-footer-inner">
+      <p>The Apple Immersive Video &amp; Spatial Computing catalog and newsletter are independent publications. They are not affiliated with, endorsed by, or sponsored by Apple, Blackmagic Design, or any other company mentioned. Apple, Apple Vision Pro, and Apple Immersive Video are trademarks of Apple Inc.</p>
+      <p>A publication of <a href="mailto:imaginationave@mac.com">Imagination Ave</a> &nbsp;·&nbsp; <a href="newsletters/">Newsletter Archive</a></p>
+    </div>
+  </footer>
+
+  <!-- ── Site-wide search JS ── -->
+  <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.min.js"></script>
+  <script>
+  (function() {
+    const input  = document.getElementById('site-search-input');
+    const box    = document.getElementById('site-search-results');
+    if (!input || !box) return;
+
+    let fuse = null;
+
+    function loadIndex() {
+      fetch('search-index.json')
+        .then(r => r.json())
+        .then(data => {
+          fuse = new Fuse(data, {
+            keys: [
+              { name: 'title',   weight: 0.6 },
+              { name: 'body',    weight: 0.3 },
+              { name: 'section', weight: 0.1 },
+            ],
+            threshold: 0.35,
+            includeScore: true,
+            minMatchCharLength: 2,
+          });
+        });
+    }
+
+    input.addEventListener('focus', function onFocus() {
+      if (!fuse) loadIndex();
+      input.removeEventListener('focus', onFocus);
+    }, { once: true });
+
+    input.addEventListener('input', function() {
+      const q = this.value.trim();
+      if (!q || !fuse) { close(); return; }
+      const results = fuse.search(q, { limit: 10 });
+      if (!results.length) {
+        box.innerHTML = '<div class="search-no-results">No results found</div>';
+        box.classList.add('active');
+        return;
+      }
+      box.innerHTML = results.map(r => {
+        const item = r.item;
+        const url  = item.url;
+        return `<a class="search-result-item" href="${url}">
+          <span class="search-result-title">${item.title}</span>
+          <span class="search-result-meta">
+            <span class="search-result-page">${item.page}</span>
+            ${item.section}
+          </span>
+        </a>`;
+      }).join('');
+      box.classList.add('active');
+    });
+
+    document.addEventListener('click', function(e) {
+      if (!input.contains(e.target) && !box.contains(e.target)) close();
+    });
+
+    input.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') { close(); input.blur(); }
+    });
+
+    function close() {
+      box.classList.remove('active');
+      box.innerHTML = '';
+    }
+  })();
+  </script>
+
+</body>
+</html>

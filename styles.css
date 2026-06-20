@@ -42,10 +42,21 @@ img { max-width: 100%; display: block; }
   margin: 0 auto;
   padding: 0 24px;
   display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.site-header-row1 {
+  display: flex;
   align-items: center;
-  justify-content: space-between;
-  min-height: 56px;
-  gap: 24px;
+  padding: 12px 0 8px;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+
+.site-header-row2 {
+  display: flex;
+  align-items: center;
+  gap: 0;
 }
 
 .site-header-logo {
@@ -65,11 +76,12 @@ img { max-width: 100%; display: block; }
   list-style: none;
   margin: 0;
   padding: 0;
+  flex: 1;
 }
 
 .site-nav li a {
   display: block;
-  padding: 18px 14px;
+  padding: 12px 14px;
   font-size: 13px;
   font-weight: 500;
   color: #ababab;
@@ -385,13 +397,9 @@ a.entry-name:hover { text-decoration: underline; }
 /* ── Responsive ───────────────────────────────────────────── */
 @media (max-width: 640px) {
   .site-header-inner {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 12px 16px;
-    gap: 8px;
-    min-height: auto;
+    padding: 0 16px;
   }
-
+  .site-header-row1 { padding: 10px 0 6px; }
   .site-nav { flex-wrap: wrap; gap: 0; }
   .site-nav li a { padding: 8px 10px; font-size: 12px; }
 
