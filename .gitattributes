@@ -1,1 +1,2 @@
+*.usdz filter=lfs diff=lfs merge=lfs -text
 catalog-images/USD/AVP.usdz !text !filter !merge !diff
