@@ -876,6 +876,16 @@
               "added": "2026-06-17",
               "description": "altitude.101 follows triathlete Jules Wagner through the brutal arc of training and competition, from the first stroke to the finish line. Subtitles: English on Amplium; English, German, Japanese on Theater.",
               "note": "Altitude101. Free in both Theater and Amplium. Shot on URSA Cine Immersive with custom underwater housing and crane-mounted Jeep sequences. UploadVR review: https://www.uploadvr.com/the-longest-day-explores-new-paths-for-immersive-sports-stories/",
+              "links": [
+                {
+                  "label": "Behind the scenes — altitude101.com",
+                  "url": "https://altitude101.com/work/the-longest-day"
+                },
+                {
+                  "label": "UploadVR review",
+                  "url": "https://www.uploadvr.com/the-longest-day-explores-new-paths-for-immersive-sports-stories/"
+                }
+              ],
               "thumbnail": "https://nmzfdjblmhrthistlmnc.supabase.co/storage/v1/object/public/theater-artwork/heroes/the-longest-day.jpg",
               "title_overlay": true
             },
