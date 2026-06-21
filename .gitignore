@@ -1,1 +1,7 @@
 .DS_Store
+
+# Large USDZ models — not served by GitHub Pages
+# AVP.usdz hosted by Apple directly (no local copy needed)
+# BMD_Immersive.usdz hosted via GitHub Release (local copy kept for reference)
+catalog-images/USD/BMD_Immersive.usdz
+catalog-images/USD/BMD_Immersive-bad.usdz
