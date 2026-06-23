@@ -1511,18 +1511,6 @@
           "note": "Underwater housing for URSA Cine Immersive. Developed with Apple and Blackmagic Design. 12-inch AR-coated glass dome port. Depth-rated. Available for sale and hire."
         },
         {
-          "id": "achtel-3deep",
-          "title": "ACHTEL 3Deep Immersive Camera",
-          "url": "https://achtel.com/immersive/",
-          "note": "Underwater housing using dual submersible lenses — eliminates dome port. For ACHTEL 9×7 camera. Depth-rated to 60m. Titanium, ~20kg.",
-          "links": [
-            {
-              "label": "Newsshooter article",
-              "url": "https://www.newsshooter.com/2026/05/04/the-new-frontier-of-underwater-immersive-content-achtel-3deep-apple-vision-pro/"
-            }
-          ]
-        },
-        {
           "id": "logitech-muse",
           "title": "Logitech MUSE Stylus for Vision Pro",
           "url": "https://www.logitech.com/en-us/shop/p/muse-for-apple-vision-pro",
