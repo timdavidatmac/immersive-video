@@ -1349,6 +1349,14 @@
           "note": "Companion app to the Acute Immersive Platform — a publishing CMS for spatial and immersive video. Features in-team and external sharing, timecoded comments exportable to DaVinci Resolve, and publishing to visionOS apps with IAP, push notifications, and analytics. By Acute Immersive."
         },
         {
+          "id": "aegis-core",
+          "title": "Aegis Core",
+          "app_store": "https://apps.apple.com/us/app/aegis-core/id6740557443",
+          "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/c9/8b/11/c98b114d-1dfc-20e7-a638-91dc35fa38b4/AppIcon.lsr/512x512bb.jpg",
+          "added": "2026-06-21",
+          "note": "Immersive AR arcade shooter for Apple Vision Pro. Your space becomes a battlefield against a robotic uprising — custom hand gestures, room scanning, positional awareness. Written entirely in RealityKit, ARKit, and Swift by developer Michael Bundy."
+        },
+        {
           "id": "gracia-4dgs",
           "title": "Gracia: 4DGS Viewer",
           "app_store": "https://apps.apple.com/us/app/gracia-4dgs-viewer/id6773024890",
