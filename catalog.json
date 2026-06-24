@@ -1323,6 +1323,24 @@
           "note": "VR video player for Apple Vision Pro. Carries immersive content including Chinese AIV productions — confirmed to carry the Zhuque-3 rocket launch film."
         },
         {
+          "id": "openimmersive",
+          "title": "OpenImmersive",
+          "app_store": "https://apps.apple.com/us/app/openimmersive/id6737087083",
+          "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/68/a5/e6/68a5e6a5-155f-3322-efd0-e8f406d82486/AppIcon.lsr/512x512bb.jpg",
+          "website": "https://acuteimmersive.com/apps/",
+          "added": "2026-06-20",
+          "note": "Free, open-source immersive and spatial video player for Apple Vision Pro. Supports AIV, spatial, 180, 360, mono, stereo, side-by-side, and over-under formats. Built on RealityKit by Acute Immersive."
+        },
+        {
+          "id": "acute-pro",
+          "title": "Acute Pro",
+          "app_store": "https://apps.apple.com/us/app/acute-pro/id6744127101",
+          "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/71/ff/ea/71ffea3b-999b-8547-a688-76abbea94fcf/AppIcon.lsr/512x512bb.jpg",
+          "website": "https://acuteimmersive.com/apps/",
+          "added": "2026-06-20",
+          "note": "Companion app to the Acute Immersive Platform — a publishing CMS for spatial and immersive video. Features in-team and external sharing, timecoded comments exportable to DaVinci Resolve, and publishing to visionOS apps with IAP, push notifications, and analytics. By Acute Immersive."
+        },
+        {
           "id": "gracia-4dgs",
           "title": "Gracia: 4DGS Viewer",
           "app_store": "https://apps.apple.com/us/app/gracia-4dgs-viewer/id6773024890",
