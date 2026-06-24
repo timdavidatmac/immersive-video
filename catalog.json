@@ -469,9 +469,18 @@
               "description": "Pianist Lukas Sternath makes his BBC Proms debut performing Edvard Grieg's Piano Concerto in A minor with the BBC Symphony Orchestra and their Chief Conductor, Sakari Oramo. The first classical music concert available in Apple Immersive — viewers enjoy the performance inches from the pianist's hands, surrounded by the power of the orchestra in Spatial Audio, and enveloped by the historic architecture of the Royal Albert Hall.",
               "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/1g6KpmhwU_iVfEQzMMz8wA/1200x675.jpg",
               "links": [
-                { "label": "UploadVR review", "url": "https://www.uploadvr.com/views-of-debut-at-the-bbc-proms-in-apple-immersive-video/" },
-                { "label": "CineD director interview", "url": "https://www.cined.com/inside-debut-at-the-bbc-proms-director-ian-russell-on-filming-classical-music-for-apple-vision-pro/" },
-                { "label": "YouTube interview", "url": "https://youtu.be/Zm6h9xFn17o" }
+                {
+                  "label": "UploadVR review",
+                  "url": "https://www.uploadvr.com/views-of-debut-at-the-bbc-proms-in-apple-immersive-video/"
+                },
+                {
+                  "label": "CineD director interview",
+                  "url": "https://www.cined.com/inside-debut-at-the-bbc-proms-director-ian-russell-on-filming-classical-music-for-apple-vision-pro/"
+                },
+                {
+                  "label": "YouTube interview",
+                  "url": "https://youtu.be/Zm6h9xFn17o"
+                }
               ]
             },
             {
@@ -918,191 +927,39 @@
       "app_store": "https://apps.apple.com/us/app/spatial-film/id6670564820",
       "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/1f/b7/94/1fb79439-f2a5-8881-e31e-b7e54f06f9a4/AppIcon.lsr/512x512bb.jpg",
       "youtube_playlist": "https://www.youtube.com/playlist?list=PLAyCpxLR2TxvqNdgU4dMQNrRCu37zHyzT",
-      "note": "Streaming library of 180° and 360° spatial films on Vision Pro. Content by Keeley Turner, Hugh Hou, and SliceoflifeVR.",
-      "sections": {
-        "keeley_turner_hugh_hou": {
-          "label": "Keeley Turner & Hugh Hou",
-          "entries": [
-            {
-              "id": "multnomah-falls",
-              "title": "Multnomah Falls",
-              "url": "https://apps.apple.com/us/app/spatial-film/id6670564820",
-              "status": "available",
-              "added": "2026-05-25",
-              "genre": "Nature / Adventure",
-              "thumbnail": "https://i.ytimg.com/vi/x0bawA7DIvs/hqdefault.jpg",
-              "title_overlay": true,
-              "note": "Native AIV, 90fps HDR. Shot by Hugh Hou on URSA Cine Immersive.",
-              "links": [
-                {
-                  "label": "YouTube (free, 8K on M5)",
-                  "url": "https://youtu.be/x0bawA7DIvs"
-                }
-              ]
-            },
-            {
-              "id": "lord-leycester-hospital",
-              "title": "Lord Leycester Hospital: 900 Years of History",
-              "url": "https://apps.apple.com/us/app/spatial-film/id6670564820",
-              "status": "available",
-              "genre": "Documentary / History",
-              "year": 2026,
-              "thumbnail": "https://preview.redd.it/visit-a-700-year-old-english-almshouse-in-apple-vision-pro-v0-1fncgiegdy1h1.jpeg?width=1080&crop=smart&auto=webp&s=ef0b2d64856b7d3e2fe00771289cfa076be063bd",
-              "title_overlay": true,
-              "note": "Dir: Keeley Turner. Shot by Hugh Hou. Auggie Award finalist. A medieval almshouse tied to Robert Dudley and Queen Elizabeth I — retired soldiers still live here today.",
-              "links": [
-                {
-                  "label": "Reddit post",
-                  "url": "https://www.reddit.com/r/AppleImmersiveVideo/comments/1th0l6h/visit_a_700yearold_english_almshouse_in_apple/"
-                }
-              ]
-            },
-            {
-              "id": "immersive-nyc-high-line",
-              "title": "Immersive NYC | Floating Island & The High Line",
-              "url": "https://apps.apple.com/us/app/spatial-film/id6670564820",
-              "status": "available",
-              "genre": "Nature / Travel",
-              "year": 2026,
-              "thumbnail": "https://i.ytimg.com/vi/rmALaK3nGoI/hqdefault.jpg",
-              "title_overlay": true,
-              "note": "Dir: Keeley Turner. Shot by Hugh Hou on URSA Cine Immersive. 16K captured, supersampled to 8K per eye 3D HDR. Hudson River floating park to The High Line and Vessel at night.",
-              "links": [
-                {
-                  "label": "YouTube (set to 8K before watching)",
-                  "url": "https://youtu.be/rmALaK3nGoI"
-                }
-              ]
-            },
-            {
-              "id": "henry-viii-in-warwick",
-              "title": "Henry VIII in Warwick",
-              "url": "https://apps.apple.com/us/app/spatial-film/id6670564820",
-              "status": "available",
-              "added": "2026-06-15",
-              "genre": "Narrative / Historical Drama",
-              "year": 2026,
-              "thumbnail": "https://spatial.film/brand_assets/HenryVIII-Movie-Poster.jpg",
-              "title_overlay": true,
-              "note": "Narrative short. Dir: Keeley Turner. Shot by Hugh Hou on URSA Cine Immersive. Set in 16th century England — candlelit Tudor interiors. Featured in Blackmagic press release Jun 15, 2026.",
-              "links": [
-                {
-                  "label": "Blackmagic press release",
-                  "url": "https://www.blackmagicdesign.com/media/release/20260615-01"
-                }
-              ]
-            },
-            {
-              "id": "aspen-cowgirl",
-              "title": "Aspen Cowgirl",
-              "url": "https://apps.apple.com/us/app/spatial-film/id6670564820",
-              "status": "available",
-              "added": "2026-06-15",
-              "genre": "Narrative / Western",
-              "year": 2026,
-              "thumbnail": "https://spatial.film/brand_assets/Aspen%20Cowgir%20Movei%20Poster.jpg",
-              "title_overlay": true,
-              "note": "Narrative short. Dir: Keeley Turner. Shot by Hugh Hou on URSA Cine Immersive. Set in the wild west of Colorado — shot in shifting outdoor sunlight. Featured in Blackmagic press release Jun 15, 2026.",
-              "links": [
-                {
-                  "label": "Blackmagic press release",
-                  "url": "https://www.blackmagicdesign.com/media/release/20260615-01"
-                }
-              ]
-            },
-            {
-              "id": "dolce-mia",
-              "title": "Dolce Mia: A Love Story in Florence, Italy",
-              "url": "https://apps.apple.com/us/app/spatial-film/id6670564820",
-              "status": "available",
-              "added": "2026-06-17",
-              "genre": "Narrative / Romance",
-              "year": 2026,
-              "thumbnail": "https://i.ytimg.com/vi/iAG2AN94tZA/hqdefault.jpg",
-              "title_overlay": true,
-              "description": "Mia finds herself at a crossroads when a cherished heirloom — a symbol of her family's legacy passed down through generations — mysteriously disappears. Determined to reclaim what is rightfully hers, she embarks on a journey that transcends time and borders, retracing her ancestors' footsteps through the cobblestone streets and hidden alleys of Florence.",
-              "links": [
-                {
-                  "label": "YouTube",
-                  "url": "https://youtu.be/iAG2AN94tZA"
-                }
-              ]
-            },
-            {
-              "id": "vanilla-lily-brushstrokes",
-              "title": "Vanilla Lily – Brushstrokes of Time",
-              "url": "https://apps.apple.com/us/app/spatial-film/id6670564820",
-              "status": "available",
-              "added": "2026-06-17",
-              "genre": "Adventure / Time Travel",
-              "year": 2026,
-              "thumbnail": "https://i.ytimg.com/vi/nyGmNCkz-Xk/hqdefault.jpg",
-              "title_overlay": true,
-              "note": "31-minute time-travel adventure in 4K HDR Spatial Video — NOT Apple Immersive Video. Available in the Spatial Film app.",
-              "description": "A 31-minute time-travel adventure crafted in 4K HDR Spatial Video, designed for Apple Vision Pro.",
-              "links": [
-                {
-                  "label": "YouTube",
-                  "url": "https://youtu.be/nyGmNCkz-Xk"
-                }
-              ]
-            }
-          ]
+      "website": "",
+      "note": "Streaming library of 180° and 360° spatial films for Apple Vision Pro. Created by Keeley Turner, Hugh Hou, and SliceOfLifeVR. Open the app on Vision Pro to watch. Browse creator content on YouTube.",
+      "links": [
+        {
+          "label": "YouTube playlist",
+          "url": "https://www.youtube.com/playlist?list=PLAyCpxLR2TxvqNdgU4dMQNrRCu37zHyzT"
         },
-        "sliceoflifevr": {
-          "label": "SliceoflifeVR",
-          "entries": [
-            {
-              "id": "el-capitan-summit",
-              "title": "Yosemite: El Capitan Summit",
-              "url": "https://www.sliceoflifevr.com",
-              "status": "available",
-              "added": "2026-05-20",
-              "genre": "Nature / Adventure",
-              "thumbnail": "https://i.ytimg.com/vi/S923fCG_Asc/hqdefault.jpg",
-              "title_overlay": true,
-              "note": "16K VR180. Shot on Blackmagic URSA Cine Immersive. 28-hour journey to El Capitan summit. Monthly releases planned — Times Square and Central Park upcoming.",
-              "links": [
-                {
-                  "label": "YouTube (compressed)",
-                  "url": "https://youtu.be/S923fCG_Asc"
-                },
-                {
-                  "label": "Reddit post",
-                  "url": "https://www.reddit.com/r/VisionPro/comments/1tixjr7/yosemite_el_capitan_summit_with_ursa_cine/"
-                }
-              ]
-            }
-          ]
+        {
+          "label": "Spatial Film App Store",
+          "url": "https://apps.apple.com/us/app/spatial-film/id6670564820"
         }
-      }
+      ]
     },
     "amplium": {
       "label": "Amplium",
       "app_store": "https://apps.apple.com/us/app/amplium/id6612011166",
       "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/ae/c1/2b/aec12b2a-ab88-e554-a946-2009634b7f67/AppIcon.lsr/512x512bb.jpg",
       "website": "https://home.theamplium.com",
-      "entries": [
+      "note": "Curated immersive video platform for Apple Vision Pro. Carries altitude.101 titles including KICK, Echoes of the Middle East, and The Longest Day.",
+      "links": [
         {
-          "id": "amplium-kick",
-          "title": "altitude.101 — KICK",
-          "status": "available",
-          "genre": "Sports / Action",
-          "duration": "8m 28s",
-          "note": "Also on Theater app."
+          "label": "home.theamplium.com",
+          "url": "https://home.theamplium.com"
         },
         {
-          "id": "amplium-echoes",
-          "title": "altitude.101 — Echoes of the Middle East",
-          "status": "available",
-          "genre": "Documentary / Travel",
-          "duration": "5m 7s",
-          "note": "Also on Theater app."
+          "label": "App Store",
+          "url": "https://apps.apple.com/us/app/amplium/id6612011166"
         }
       ]
     },
-    "other_apps": {
-      "label": "Other Apps with Immersive Content",
+    "immersive_apps": {
+      "label": "More Immersive Video Apps",
+      "note": "Browse-and-watch platforms — same family as Apple TV, Theater, and Spatial Film above. Content varies and grows over time; visit each app to see what's available.",
       "entries": [
         {
           "id": "prima-immersive",
@@ -1143,26 +1000,6 @@
           "note": "VR concerts bringing fans face-to-face with artists."
         },
         {
-          "id": "acute-immersive",
-          "title": "Acute Immersive",
-          "website": "https://acuteimmersive.com/apps/",
-          "favicon_url": "catalog-images/acuteimmersive_logo.jpg",
-          "note": "AIV content platform.",
-          "links": [
-            {
-              "label": "What is AIV? explainer",
-              "url": "https://acuteimmersive.com/apple-immersive-video/"
-            }
-          ]
-        },
-        {
-          "id": "spatial-film",
-          "title": "Spatial Film",
-          "app_store": "https://apps.apple.com/us/app/spatial-film/id6670564820",
-          "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/1f/b7/94/1fb79439-f2a5-8881-e31e-b7e54f06f9a4/AppIcon.lsr/512x512bb.jpg",
-          "note": "Streaming library of 180° and 360° spatial films. Bi-weekly new titles. Vision Pro exclusive. Known titles include Multnomah Falls by Hugh Hou (native AIV, 90fps HDR)."
-        },
-        {
           "id": "youtube-visionos",
           "title": "YouTube for visionOS",
           "app_store": "https://apps.apple.com/us/app/youtube-for-visionos/id6745572359",
@@ -1190,24 +1027,6 @@
           ]
         },
         {
-          "id": "arluma360",
-          "title": "ARLUMA360",
-          "app_store": "https://apps.apple.com/app/apple-store/id6761225329",
-          "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/37/6a/64/376a6405-e2ae-8904-e96f-c75bbc8cdde4/AppIcon.lsr/512x512bb.jpg",
-          "website": "https://arlumastudios.com",
-          "added": "2026-05-25",
-          "note": "VR180 immersive content player. First release: Finland Icescapes Pt. 1 (May 2026)."
-        },
-        {
-          "id": "immersa",
-          "title": "Immersa — Spatial Cinema",
-          "app_store": "https://apps.apple.com/us/app/immersa-spatial-cinema/id6759059321",
-          "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/6a/66/01/6a660152-b8b2-d55f-ae60-765132ae9c67/AppIcon.lsr/512x512bb.jpg",
-          "website": "https://immersa.app",
-          "added": "2026-05-19",
-          "note": "Professional delivery platform for immersive filmmakers and studios."
-        },
-        {
           "id": "voola",
           "title": "Voola — Immersive Photo/Video",
           "app_store": "https://apps.apple.com/us/app/voola-immersive-photo-video/id6743655345",
@@ -1222,6 +1041,14 @@
           "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/a6/a0/fe/a6a0fed6-d291-477e-db93-73cf5a555d83/AppIcon.lsr/512x512bb.jpg",
           "website": "https://www.justvr.cn/",
           "note": "Cross-platform immersive video app (Vision Pro, Meta Quest, Pico). Creator-built library."
+        },
+        {
+          "id": "sliceoflifevr",
+          "title": "SliceOfLifeVR",
+          "url": "https://www.sliceoflifevr.com",
+          "app_icon": "https://www.sliceoflifevr.com/logo.png",
+          "note": "Independent immersive video platform. Titles available via web and DeoVR. Creator-focused library of VR180 and spatial content including Hugh Hou productions.",
+          "added": "2026-06-21"
         }
       ]
     },
@@ -1321,55 +1148,6 @@
               "url": "https://apps.apple.com/us/app/deovr-hyper-vr-videos/id6746857675"
             }
           ]
-        },
-        {
-          "id": "deovr",
-          "title": "DeoVR — Hyper VR Videos",
-          "app_store": "https://apps.apple.com/us/app/deovr-hyper-vr-videos/id6746857675",
-          "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/ef/0b/fa/ef0bfa74-3880-4a45-ccfd-67502951b9ee/AppIcon.lsr/512x512bb.jpg",
-          "added": "2026-06-13",
-          "note": "VR video player for Apple Vision Pro. Carries immersive content including Chinese AIV productions — confirmed to carry the Zhuque-3 rocket launch film."
-        },
-        {
-          "id": "openimmersive",
-          "title": "OpenImmersive",
-          "app_store": "https://apps.apple.com/us/app/openimmersive/id6737087083",
-          "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/68/a5/e6/68a5e6a5-155f-3322-efd0-e8f406d82486/AppIcon.lsr/512x512bb.jpg",
-          "website": "https://acuteimmersive.com/apps/",
-          "added": "2026-06-20",
-          "note": "Free, open-source immersive and spatial video player for Apple Vision Pro. Supports AIV, spatial, 180, 360, mono, stereo, side-by-side, and over-under formats. Built on RealityKit by Acute Immersive."
-        },
-        {
-          "id": "acute-pro",
-          "title": "Acute Pro",
-          "app_store": "https://apps.apple.com/us/app/acute-pro/id6744127101",
-          "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/71/ff/ea/71ffea3b-999b-8547-a688-76abbea94fcf/AppIcon.lsr/512x512bb.jpg",
-          "website": "https://acuteimmersive.com/apps/",
-          "added": "2026-06-20",
-          "note": "Companion app to the Acute Immersive Platform — a publishing CMS for spatial and immersive video. Features in-team and external sharing, timecoded comments exportable to DaVinci Resolve, and publishing to visionOS apps with IAP, push notifications, and analytics. By Acute Immersive."
-        },
-        {
-          "id": "aegis-core",
-          "title": "Aegis Core",
-          "app_store": "https://apps.apple.com/us/app/aegis-core/id6740557443",
-          "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/c9/8b/11/c98b114d-1dfc-20e7-a638-91dc35fa38b4/AppIcon.lsr/512x512bb.jpg",
-          "added": "2026-06-21",
-          "note": "Immersive AR arcade shooter for Apple Vision Pro. Your space becomes a battlefield against a robotic uprising — custom hand gestures, room scanning, positional awareness. Written entirely in RealityKit, ARKit, and Swift by developer Michael Bundy."
-        },
-        {
-          "id": "gracia-4dgs",
-          "title": "Gracia: 4DGS Viewer",
-          "app_store": "https://apps.apple.com/us/app/gracia-4dgs-viewer/id6773024890",
-          "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/ad/a7/2b/ada72bee-6408-f0d7-7e23-9ca335912dc4/AppIcon.lsr/512x512bb.jpg",
-          "website": "https://roguelabs.com",
-          "added": "2026-06-16",
-          "note": "Stream and view 4D Gaussian Splat (4DGS) volumetric content on Apple Vision Pro. By Rogue Labs. Launched June 16, 2026. YouTube walkthrough by Himels Tech: https://youtu.be/j3aaXpFe8so",
-          "links": [
-            {
-              "label": "Walkthrough — Himels Tech (YouTube)",
-              "url": "https://youtu.be/j3aaXpFe8so"
-            }
-          ]
         }
       ]
     },
@@ -1388,21 +1166,9 @@
           "free": true,
           "note": "7-min AIV flight experience over the American Southwest in a Cirrus SR22T, plus full-scale interactive 3D models of SR Series and Vision Jet built from engineering CAD files. Shot at 16K (8K per eye) on the Blackmagic URSA Cine Immersive — aerial footage captured by the Top Gun: Maverick filming crew using a specialized aircraft and aerial stabilization platform. Built as a global sales tool — usable at trade shows and off-airport events. Future roadmap includes cockpit interaction and spatial pre-flight orientation training. Cirrus has a Greater Orlando, FL location.",
           "links": [
-            { "label": "Interview with Anthony Bottini, Director of Media Development (Himels Tech, Jun 2026)", "url": "https://youtu.be/3TabJkcDykg" }
-          ]
-        },
-        {
-          "id": "caradise",
-          "title": "Caradise",
-          "app_store": "https://apps.apple.com/us/app/caradise/id6751403753",
-          "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/d9/94/84/d99484e8-9153-f29f-94b8-c00835561cc0/AppIcon.lsr/512x512bb.jpg",
-          "website": "https://caradise.app",
-          "added": "2026-05-19",
-          "note": "Explore iconic car designs in spatial computing. Vision Pro exclusive. Solo developer: Peder Sandqvist. Apple Design Awards 2026 finalist.",
-          "links": [
             {
-              "label": "Apple Design Awards",
-              "url": "https://developer.apple.com/design/awards/"
+              "label": "Interview with Anthony Bottini, Director of Media Development (Himels Tech, Jun 2026)",
+              "url": "https://youtu.be/3TabJkcDykg"
             }
           ]
         },
@@ -1462,6 +1228,69 @@
           "website": "https://www.laloensemble.com/laloimmersive",
           "added": "2026-06-13",
           "note": "Filipino-American choral music for Apple Vision Pro. The LALÒ Ensemble performs in Apple Immersive Video captured on the Blackmagic URSA Cine Immersive with Apple Spatial Audio Format (higher-order ambisonics). Also includes photogrammetry-based venue recreations, spatial music sheets, and behind-the-scenes content. Created by Paolo Villanueva — presented at Apple's first Developer Community Meetup at Apple HQ during WWDC26. iPhone companion app also available."
+        }
+      ]
+    },
+    "player_apps": {
+      "label": "Player Apps & Tools",
+      "note": "Open-format players, creator tools, and utilities. Not content catalogs.",
+      "entries": [
+        {
+          "id": "deovr",
+          "title": "DeoVR — Hyper VR Videos",
+          "app_store": "https://apps.apple.com/us/app/deovr-hyper-vr-videos/id6746857675",
+          "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/ef/0b/fa/ef0bfa74-3880-4a45-ccfd-67502951b9ee/AppIcon.lsr/512x512bb.jpg",
+          "added": "2026-06-13",
+          "note": "VR video player for Apple Vision Pro. Carries immersive content including Chinese AIV productions — confirmed to carry the Zhuque-3 rocket launch film."
+        },
+        {
+          "id": "openimmersive",
+          "title": "OpenImmersive",
+          "app_store": "https://apps.apple.com/us/app/openimmersive/id6737087083",
+          "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/68/a5/e6/68a5e6a5-155f-3322-efd0-e8f406d82486/AppIcon.lsr/512x512bb.jpg",
+          "website": "https://acuteimmersive.com/apps/",
+          "added": "2026-06-20",
+          "note": "Free, open-source immersive and spatial video player for Apple Vision Pro. Supports AIV, spatial, 180, 360, mono, stereo, side-by-side, and over-under formats. Built on RealityKit by Acute Immersive."
+        },
+        {
+          "id": "acute-pro",
+          "title": "Acute Pro",
+          "app_store": "https://apps.apple.com/us/app/acute-pro/id6744127101",
+          "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/71/ff/ea/71ffea3b-999b-8547-a688-76abbea94fcf/AppIcon.lsr/512x512bb.jpg",
+          "website": "https://acuteimmersive.com/apps/",
+          "added": "2026-06-20",
+          "note": "Companion app to the Acute Immersive Platform — a publishing CMS for spatial and immersive video. Features in-team and external sharing, timecoded comments exportable to DaVinci Resolve, and publishing to visionOS apps with IAP, push notifications, and analytics. By Acute Immersive."
+        },
+        {
+          "id": "acute-immersive",
+          "title": "Acute Immersive",
+          "website": "https://acuteimmersive.com/apps/",
+          "favicon_url": "catalog-images/acuteimmersive_logo.jpg",
+          "note": "AIV content platform.",
+          "links": [
+            {
+              "label": "What is AIV? explainer",
+              "url": "https://acuteimmersive.com/apple-immersive-video/"
+            }
+          ]
+        },
+        {
+          "id": "arluma360",
+          "title": "ARLUMA360",
+          "app_store": "https://apps.apple.com/app/apple-store/id6761225329",
+          "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/37/6a/64/376a6405-e2ae-8904-e96f-c75bbc8cdde4/AppIcon.lsr/512x512bb.jpg",
+          "website": "https://arlumastudios.com",
+          "added": "2026-05-25",
+          "note": "VR180 immersive content player. First release: Finland Icescapes Pt. 1 (May 2026)."
+        },
+        {
+          "id": "immersa",
+          "title": "Immersa — Spatial Cinema",
+          "app_store": "https://apps.apple.com/us/app/immersa-spatial-cinema/id6759059321",
+          "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/6a/66/01/6a660152-b8b2-d55f-ae60-765132ae9c67/AppIcon.lsr/512x512bb.jpg",
+          "website": "https://immersa.app",
+          "added": "2026-05-19",
+          "note": "Professional delivery platform for immersive filmmakers and studios."
         }
       ]
     }
@@ -1741,7 +1570,10 @@
         "updated": "2026-06-04",
         "note": "On-premise 3U server unit for live Apple Immersive Video streaming — 4320×4320 per eye at 90 FPS, believed to be the first time full-spec live MV-HEVC has been achieved on Vision Pro. ProRes 2110 in → MV-HEVC stream out, handles all dynamic metadata and segmenting. Configurable to customer CDN. Lifetime license, hardware owned by customer, 1 year white glove support. Deposit available now at spatialgen.com/live. SpatialGen is also the infrastructure behind approximately 90% of all non-Apple-TV Apple Immersive Video streaming. Featured by Justin Ryan / Spatial Insider, June 4, 2026.",
         "links": [
-          { "label": "Spatial Insider interview (Justin Ryan, Jun 4, 2026)", "url": "https://youtu.be/l5dSeT3RdbY" }
+          {
+            "label": "Spatial Insider interview (Justin Ryan, Jun 4, 2026)",
+            "url": "https://youtu.be/l5dSeT3RdbY"
+          }
         ]
       },
       {
@@ -1761,6 +1593,50 @@
         "title": "Apple Immersive & Spatial Computing — Curated Reddit Feed",
         "url": "https://www.reddit.com/user/photoboy-td/m/apple_immereive/",
         "note": "Curated multireddit covering r/AppleImmersiveVideo, r/VisionPro, r/VR180Film, and more."
+      }
+    ]
+  },
+  "spatial_apps": {
+    "label": "Spatial Apps",
+    "note": "visionOS apps for spatial experiences, design, games, and volumetric content — not immersive video catalogs.",
+    "entries": [
+      {
+        "id": "caradise",
+        "title": "Caradise",
+        "app_store": "https://apps.apple.com/us/app/caradise/id6751403753",
+        "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/d9/94/84/d99484e8-9153-f29f-94b8-c00835561cc0/AppIcon.lsr/512x512bb.jpg",
+        "website": "https://caradise.app",
+        "added": "2026-05-19",
+        "note": "Explore iconic car designs in spatial computing. Vision Pro exclusive. Solo developer: Peder Sandqvist. Apple Design Awards 2026 finalist.",
+        "links": [
+          {
+            "label": "Apple Design Awards",
+            "url": "https://developer.apple.com/design/awards/"
+          }
+        ]
+      },
+      {
+        "id": "gracia-4dgs",
+        "title": "Gracia: 4DGS Viewer",
+        "app_store": "https://apps.apple.com/us/app/gracia-4dgs-viewer/id6773024890",
+        "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/ad/a7/2b/ada72bee-6408-f0d7-7e23-9ca335912dc4/AppIcon.lsr/512x512bb.jpg",
+        "website": "https://roguelabs.com",
+        "added": "2026-06-16",
+        "note": "Stream and view 4D Gaussian Splat (4DGS) volumetric content on Apple Vision Pro. By Rogue Labs. Launched June 16, 2026. YouTube walkthrough by Himels Tech: https://youtu.be/j3aaXpFe8so",
+        "links": [
+          {
+            "label": "Walkthrough — Himels Tech (YouTube)",
+            "url": "https://youtu.be/j3aaXpFe8so"
+          }
+        ]
+      },
+      {
+        "id": "aegis-core",
+        "title": "Aegis Core",
+        "app_store": "https://apps.apple.com/us/app/aegis-core/id6740557443",
+        "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/c9/8b/11/c98b114d-1dfc-20e7-a638-91dc35fa38b4/AppIcon.lsr/512x512bb.jpg",
+        "added": "2026-06-21",
+        "note": "Immersive AR arcade shooter for Apple Vision Pro. Your space becomes a battlefield against a robotic uprising — custom hand gestures, room scanning, positional awareness. Written entirely in RealityKit, ARKit, and Swift by developer Michael Bundy."
       }
     ]
   }
