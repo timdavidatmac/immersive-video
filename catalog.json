@@ -465,11 +465,13 @@
               "status": "available",
               "duration": "35 min",
               "free": true,
-              "note": "Lukas Sternath + BBC Symphony Orchestra at Royal Albert Hall. Shot by Livewire Pictures on URSA Cine Immersive.",
+              "note": "Lukas Sternath + BBC Symphony Orchestra at Royal Albert Hall. Shot by Livewire Pictures on URSA Cine Immersive. Director: Ian Russell.",
               "description": "Pianist Lukas Sternath makes his BBC Proms debut performing Edvard Grieg's Piano Concerto in A minor with the BBC Symphony Orchestra and their Chief Conductor, Sakari Oramo. The first classical music concert available in Apple Immersive — viewers enjoy the performance inches from the pianist's hands, surrounded by the power of the orchestra in Spatial Audio, and enveloped by the historic architecture of the Royal Albert Hall.",
               "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/1g6KpmhwU_iVfEQzMMz8wA/1200x675.jpg",
               "links": [
-                { "label": "UploadVR review", "url": "https://www.uploadvr.com/views-of-debut-at-the-bbc-proms-in-apple-immersive-video/" }
+                { "label": "UploadVR review", "url": "https://www.uploadvr.com/views-of-debut-at-the-bbc-proms-in-apple-immersive-video/" },
+                { "label": "CineD director interview", "url": "https://www.cined.com/inside-debut-at-the-bbc-proms-director-ian-russell-on-filming-classical-music-for-apple-vision-pro/" },
+                { "label": "YouTube interview", "url": "https://youtu.be/Zm6h9xFn17o" }
               ]
             },
             {
