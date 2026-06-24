@@ -1251,9 +1251,15 @@
         {
           "id": "yosemite-in-snow",
           "title": "Yosemite in Snow",
-          "url": "https://buymeacoffee.com/realityofvision/yosemite-in-snow2026",
-          "favicon_url": "https://buymeacoffee.com/favicon.ico",
-          "note": "Community creator. Canon R5C + Qoocam3 VR180. Also on YouTube and DeoVR."
+          "url": "https://deovr.com/s6625p",
+          "app_icon": "https://cdn.buymeacoffee.com/uploads/profile_pictures/2024/05/NLK0oJF3wQJUoGZC.jpg@300w_0e.jpg",
+          "note": "Community creator. Canon R5C + Qoocam3 VR180. Stream on DeoVR. Full resolution versions available to download at buymeacoffee.com/realityofvision/yosemite-in-snow2026",
+          "links": [
+            {
+              "label": "Download full resolution",
+              "url": "https://buymeacoffee.com/realityofvision/yosemite-in-snow2026"
+            }
+          ]
         },
         {
           "id": "bastille-day",
