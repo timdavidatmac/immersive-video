@@ -1067,19 +1067,6 @@
           ]
         },
         {
-          "id": "blueplanet-vr-app",
-          "title": "Blueplanet VR",
-          "website": "https://blueplanetvr.com/",
-          "favicon_url": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/57/1f/fc/571ffcba-b238-eac4-3e98-ff1ea0f5dceb/AppIcon.lsr/512x512bb.jpg",
-          "note": "100+ photogrammetric spatial experiences of UNESCO World Heritage Sites. By Eric Hanson, USC faculty.",
-          "links": [
-            {
-              "label": "Vimeo preview",
-              "url": "https://vimeo.com/1167013109"
-            }
-          ]
-        },
-        {
           "id": "balenciaga",
           "title": "Balenciaga — Summer 26 Show",
           "app_store": "https://apps.apple.com/us/app/balenciaga/id6526492361",
@@ -1638,6 +1625,19 @@
         "app_store": "https://apps.apple.com/us/app/mulan-2125/id6747658557",
         "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/bb/7f/7d/bb7f7d11-2599-df35-7e26-a3a4aa628baa/AppIcon.lsr/512x512bb.jpg",
         "note": "VR epic by <a href=\"https://www.well-linktech.com/mulan/index.html\" target=\"_blank\" rel=\"noopener\">Well-Ink</a>. Film-grade CG, monocular 4K 3D immersion. Mulan's awakening in a post-apocalyptic world. Venice Immersive Competition 2025 official selection."
+      },
+      {
+        "id": "blueplanet-vr-app",
+        "title": "Blueplanet VR",
+        "website": "https://blueplanetvr.com/",
+        "favicon_url": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/57/1f/fc/571ffcba-b238-eac4-3e98-ff1ea0f5dceb/AppIcon.lsr/512x512bb.jpg",
+        "note": "100+ photogrammetric spatial experiences of UNESCO World Heritage Sites. By Eric Hanson, USC faculty.",
+        "links": [
+          {
+            "label": "Vimeo preview",
+            "url": "https://vimeo.com/1167013109"
+          }
+        ]
       }
     ]
   }
