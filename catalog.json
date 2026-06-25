@@ -1109,13 +1109,6 @@
           "note": "Grand Canyon, Bryce Canyon, Monument Valley, Zion, Las Vegas. WebXR + APMP format."
         },
         {
-          "id": "blueplanet-vr-web",
-          "title": "Blueplanet VR Explore",
-          "url": "https://blueplanetvr.com/",
-          "favicon_url": "https://blueplanetvr.com/wp-content/uploads/2023/01/cropped-bluep_logo.gif",
-          "note": "100+ photogrammetric spatial experiences via WebXR."
-        },
-        {
           "id": "yosemite-in-snow",
           "title": "Yosemite in Snow",
           "url": "https://deovr.com/s6625p",
