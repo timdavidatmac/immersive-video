@@ -1042,14 +1042,6 @@
           "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/a6/a0/fe/a6a0fed6-d291-477e-db93-73cf5a555d83/AppIcon.lsr/512x512bb.jpg",
           "website": "https://www.justvr.cn/",
           "note": "Cross-platform immersive video app (Vision Pro, Meta Quest, Pico). Creator-built library."
-        },
-        {
-          "id": "sliceoflifevr",
-          "title": "SliceOfLifeVR",
-          "url": "https://www.sliceoflifevr.com",
-          "app_icon": "https://www.sliceoflifevr.com/logo.png",
-          "note": "Independent immersive video platform. Titles available via web and DeoVR. Creator-focused library of VR180 and spatial content including Hugh Hou productions.",
-          "added": "2026-06-21"
         }
       ]
     },
@@ -1229,6 +1221,14 @@
               "url": "https://apps.apple.com/us/app/deovr-hyper-vr-videos/id6746857675"
             }
           ]
+        },
+        {
+          "id": "sliceoflifevr",
+          "title": "SliceOfLifeVR",
+          "url": "https://www.sliceoflifevr.com",
+          "app_icon": "https://www.sliceoflifevr.com/logo.png",
+          "note": "Independent immersive video platform. Titles available via web and DeoVR. Creator-focused library of VR180 and spatial content including Hugh Hou productions.",
+          "added": "2026-06-21"
         }
       ]
     },
