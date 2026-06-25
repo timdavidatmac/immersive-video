@@ -642,7 +642,6 @@
       .then(r => r.json())
       .then(data => {
         buildCatalog(data);
-        document.getElementById('catalog-search').addEventListener('input', applyFilters);
       })
       .catch(err => {
         document.getElementById('catalog-root').innerHTML =
