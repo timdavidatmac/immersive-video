@@ -1067,20 +1067,6 @@
           ]
         },
         {
-          "id": "what-if",
-          "title": "What If…? An Immersive Story",
-          "app_store": "https://apps.apple.com/us/app/what-if-an-immersive-story/id6479251303",
-          "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/ce/79/0f/ce790fa7-12d6-5ce9-22f1-4ae7fe2ce413/AppIcon.lsr/512x512bb.jpg",
-          "website": "https://www.marvel.com/WhatIfImmersive",
-          "note": "Disney+ Original interactive experience. Marvel Studios' What If…? universe. Not AIV — interactive immersive experience.",
-          "links": [
-            {
-              "label": "Trailer",
-              "url": "https://www.youtube.com/watch?v=lLk-IkPktMo"
-            }
-          ]
-        },
-        {
           "id": "blueplanet-vr-app",
           "title": "Blueplanet VR",
           "website": "https://blueplanetvr.com/",
@@ -1092,14 +1078,6 @@
               "url": "https://vimeo.com/1167013109"
             }
           ]
-        },
-        {
-          "id": "pulse-of-time",
-          "title": "Pulse of Time",
-          "app_store": "https://apps.apple.com/us/app/pulse-of-time/id6770068403",
-          "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/d0/ea/50/d0ea5089-71a8-2989-6563-8188c4374046/AppIcon.lsr/512x512bb.jpg",
-          "added": "2026-05-30",
-          "note": "Immersive 3D experiences built for Apple Vision Pro — not video on a screen. You are placed at the center of defining moments as they unfold around you. Includes Dinosaur Apocalypse. Vision Pro exclusive."
         },
         {
           "id": "balenciaga",
@@ -1199,14 +1177,6 @@
               "url": "https://apps.apple.com/us/app/deovr-hyper-vr-videos/id6746857675"
             }
           ]
-        },
-        {
-          "id": "mulan-2125",
-          "title": "Mulan 2125",
-          "url": "https://apps.apple.com/us/app/mulan-2125/id6747658557",
-          "app_store": "https://apps.apple.com/us/app/mulan-2125/id6747658557",
-          "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/bb/7f/7d/bb7f7d11-2599-df35-7e26-a3a4aa628baa/AppIcon.lsr/512x512bb.jpg",
-          "note": "VR epic by <a href=\"https://www.well-linktech.com/mulan/index.html\" target=\"_blank\" rel=\"noopener\">Well-Ink</a>. Film-grade CG, monocular 4K 3D immersion. Mulan's awakening in a post-apocalyptic world. Venice Immersive Competition 2025 official selection."
         },
         {
           "id": "expedition-geforce-vr",
@@ -1638,6 +1608,36 @@
         "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/c9/8b/11/c98b114d-1dfc-20e7-a638-91dc35fa38b4/AppIcon.lsr/512x512bb.jpg",
         "added": "2026-06-21",
         "note": "Immersive AR arcade shooter for Apple Vision Pro. Your space becomes a battlefield against a robotic uprising — custom hand gestures, room scanning, positional awareness. Written entirely in RealityKit, ARKit, and Swift by developer Michael Bundy."
+      },
+      {
+        "id": "what-if",
+        "title": "What If…? An Immersive Story",
+        "app_store": "https://apps.apple.com/us/app/what-if-an-immersive-story/id6479251303",
+        "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/ce/79/0f/ce790fa7-12d6-5ce9-22f1-4ae7fe2ce413/AppIcon.lsr/512x512bb.jpg",
+        "website": "https://www.marvel.com/WhatIfImmersive",
+        "note": "Disney+ Original interactive experience. Marvel Studios' What If…? universe. Not AIV — interactive immersive experience.",
+        "links": [
+          {
+            "label": "Trailer",
+            "url": "https://www.youtube.com/watch?v=lLk-IkPktMo"
+          }
+        ]
+      },
+      {
+        "id": "pulse-of-time",
+        "title": "Pulse of Time",
+        "app_store": "https://apps.apple.com/us/app/pulse-of-time/id6770068403",
+        "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/d0/ea/50/d0ea5089-71a8-2989-6563-8188c4374046/AppIcon.lsr/512x512bb.jpg",
+        "added": "2026-05-30",
+        "note": "Immersive 3D experiences built for Apple Vision Pro — not video on a screen. You are placed at the center of defining moments as they unfold around you. Includes Dinosaur Apocalypse. Vision Pro exclusive."
+      },
+      {
+        "id": "mulan-2125",
+        "title": "Mulan 2125",
+        "url": "https://apps.apple.com/us/app/mulan-2125/id6747658557",
+        "app_store": "https://apps.apple.com/us/app/mulan-2125/id6747658557",
+        "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/bb/7f/7d/bb7f7d11-2599-df35-7e26-a3a4aa628baa/AppIcon.lsr/512x512bb.jpg",
+        "note": "VR epic by <a href=\"https://www.well-linktech.com/mulan/index.html\" target=\"_blank\" rel=\"noopener\">Well-Ink</a>. Film-grade CG, monocular 4K 3D immersion. Mulan's awakening in a post-apocalyptic world. Venice Immersive Competition 2025 official selection."
       }
     ]
   }
