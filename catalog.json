@@ -1090,6 +1090,69 @@
         }
       ]
     },
+    "player_apps": {
+      "label": "Player Apps & Tools",
+      "note": "Open-format players, creator tools, and utilities. Not content catalogs.",
+      "entries": [
+        {
+          "id": "deovr",
+          "title": "DeoVR — Hyper VR Videos",
+          "app_store": "https://apps.apple.com/us/app/deovr-hyper-vr-videos/id6746857675",
+          "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/ef/0b/fa/ef0bfa74-3880-4a45-ccfd-67502951b9ee/AppIcon.lsr/512x512bb.jpg",
+          "added": "2026-06-13",
+          "note": "VR video player for Apple Vision Pro. Carries immersive content including Chinese AIV productions — confirmed to carry the Zhuque-3 rocket launch film."
+        },
+        {
+          "id": "openimmersive",
+          "title": "OpenImmersive",
+          "app_store": "https://apps.apple.com/us/app/openimmersive/id6737087083",
+          "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/68/a5/e6/68a5e6a5-155f-3322-efd0-e8f406d82486/AppIcon.lsr/512x512bb.jpg",
+          "website": "https://acuteimmersive.com/apps/",
+          "added": "2026-06-20",
+          "note": "Free, open-source immersive and spatial video player for Apple Vision Pro. Supports AIV, spatial, 180, 360, mono, stereo, side-by-side, and over-under formats. Built on RealityKit by Acute Immersive."
+        },
+        {
+          "id": "acute-pro",
+          "title": "Acute Pro",
+          "app_store": "https://apps.apple.com/us/app/acute-pro/id6744127101",
+          "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/71/ff/ea/71ffea3b-999b-8547-a688-76abbea94fcf/AppIcon.lsr/512x512bb.jpg",
+          "website": "https://acuteimmersive.com/apps/",
+          "added": "2026-06-20",
+          "note": "Companion app to the Acute Immersive Platform — a publishing CMS for spatial and immersive video. Features in-team and external sharing, timecoded comments exportable to DaVinci Resolve, and publishing to visionOS apps with IAP, push notifications, and analytics. By Acute Immersive."
+        },
+        {
+          "id": "acute-immersive",
+          "title": "Acute Immersive",
+          "website": "https://acuteimmersive.com/apps/",
+          "favicon_url": "catalog-images/acuteimmersive_logo.jpg",
+          "note": "AIV content platform.",
+          "links": [
+            {
+              "label": "What is AIV? explainer",
+              "url": "https://acuteimmersive.com/apple-immersive-video/"
+            }
+          ]
+        },
+        {
+          "id": "arluma360",
+          "title": "ARLUMA360",
+          "app_store": "https://apps.apple.com/app/apple-store/id6761225329",
+          "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/37/6a/64/376a6405-e2ae-8904-e96f-c75bbc8cdde4/AppIcon.lsr/512x512bb.jpg",
+          "website": "https://arlumastudios.com",
+          "added": "2026-05-25",
+          "note": "VR180 immersive content player. First release: Finland Icescapes Pt. 1 (May 2026)."
+        },
+        {
+          "id": "immersa",
+          "title": "Immersa — Spatial Cinema",
+          "app_store": "https://apps.apple.com/us/app/immersa-spatial-cinema/id6759059321",
+          "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/6a/66/01/6a660152-b8b2-d55f-ae60-765132ae9c67/AppIcon.lsr/512x512bb.jpg",
+          "website": "https://immersa.app",
+          "added": "2026-05-19",
+          "note": "Professional delivery platform for immersive filmmakers and studios."
+        }
+      ]
+    },
     "web_platforms": {
       "label": "Web & Other Platforms",
       "entries": [
@@ -1181,69 +1244,6 @@
           "app_icon": "https://www.sliceoflifevr.com/logo.png",
           "note": "Independent immersive video platform. Titles available via web and DeoVR. Creator-focused library of VR180 and spatial content including Hugh Hou productions.",
           "added": "2026-06-21"
-        }
-      ]
-    },
-    "player_apps": {
-      "label": "Player Apps & Tools",
-      "note": "Open-format players, creator tools, and utilities. Not content catalogs.",
-      "entries": [
-        {
-          "id": "deovr",
-          "title": "DeoVR — Hyper VR Videos",
-          "app_store": "https://apps.apple.com/us/app/deovr-hyper-vr-videos/id6746857675",
-          "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/ef/0b/fa/ef0bfa74-3880-4a45-ccfd-67502951b9ee/AppIcon.lsr/512x512bb.jpg",
-          "added": "2026-06-13",
-          "note": "VR video player for Apple Vision Pro. Carries immersive content including Chinese AIV productions — confirmed to carry the Zhuque-3 rocket launch film."
-        },
-        {
-          "id": "openimmersive",
-          "title": "OpenImmersive",
-          "app_store": "https://apps.apple.com/us/app/openimmersive/id6737087083",
-          "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/68/a5/e6/68a5e6a5-155f-3322-efd0-e8f406d82486/AppIcon.lsr/512x512bb.jpg",
-          "website": "https://acuteimmersive.com/apps/",
-          "added": "2026-06-20",
-          "note": "Free, open-source immersive and spatial video player for Apple Vision Pro. Supports AIV, spatial, 180, 360, mono, stereo, side-by-side, and over-under formats. Built on RealityKit by Acute Immersive."
-        },
-        {
-          "id": "acute-pro",
-          "title": "Acute Pro",
-          "app_store": "https://apps.apple.com/us/app/acute-pro/id6744127101",
-          "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/71/ff/ea/71ffea3b-999b-8547-a688-76abbea94fcf/AppIcon.lsr/512x512bb.jpg",
-          "website": "https://acuteimmersive.com/apps/",
-          "added": "2026-06-20",
-          "note": "Companion app to the Acute Immersive Platform — a publishing CMS for spatial and immersive video. Features in-team and external sharing, timecoded comments exportable to DaVinci Resolve, and publishing to visionOS apps with IAP, push notifications, and analytics. By Acute Immersive."
-        },
-        {
-          "id": "acute-immersive",
-          "title": "Acute Immersive",
-          "website": "https://acuteimmersive.com/apps/",
-          "favicon_url": "catalog-images/acuteimmersive_logo.jpg",
-          "note": "AIV content platform.",
-          "links": [
-            {
-              "label": "What is AIV? explainer",
-              "url": "https://acuteimmersive.com/apple-immersive-video/"
-            }
-          ]
-        },
-        {
-          "id": "arluma360",
-          "title": "ARLUMA360",
-          "app_store": "https://apps.apple.com/app/apple-store/id6761225329",
-          "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/37/6a/64/376a6405-e2ae-8904-e96f-c75bbc8cdde4/AppIcon.lsr/512x512bb.jpg",
-          "website": "https://arlumastudios.com",
-          "added": "2026-05-25",
-          "note": "VR180 immersive content player. First release: Finland Icescapes Pt. 1 (May 2026)."
-        },
-        {
-          "id": "immersa",
-          "title": "Immersa — Spatial Cinema",
-          "app_store": "https://apps.apple.com/us/app/immersa-spatial-cinema/id6759059321",
-          "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/6a/66/01/6a660152-b8b2-d55f-ae60-765132ae9c67/AppIcon.lsr/512x512bb.jpg",
-          "website": "https://immersa.app",
-          "added": "2026-05-19",
-          "note": "Professional delivery platform for immersive filmmakers and studios."
         }
       ]
     }

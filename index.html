@@ -658,13 +658,6 @@
       data.viewer.brand_apps.entries.forEach(e => { html += iconEntryHTML(e, 'apps'); });
       html += `</ul>`;
 
-      // ── Web Content ───────────────────────────────────────
-      html += `<h2 class="section-heading" id="web">🌐 Web Content</h2>`;
-      html += `<p class="text-muted text-small" style="margin:0 0 16px;">Immersive content available on the web, YouTube VR, or DeoVR — no app download required.</p>`;
-      html += `<ul class="catalog-list">`;
-      data.viewer.web_platforms.entries.forEach(e => { html += iconEntryHTML(e, 'web'); });
-      html += `</ul>`;
-
       // ── Player Apps & Tools ───────────────────────────────
       const playerApps = data.viewer.player_apps;
       if (playerApps && playerApps.entries && playerApps.entries.length) {
@@ -674,6 +667,13 @@
         playerApps.entries.forEach(e => { html += iconEntryHTML(e, 'apps'); });
         html += `</ul>`;
       }
+
+      // ── Web Content ───────────────────────────────────────
+      html += `<h2 class="section-heading" id="web">🌐 Web Content</h2>`;
+      html += `<p class="text-muted text-small" style="margin:0 0 16px;">Immersive content available on the web, YouTube VR, or DeoVR — no app download required.</p>`;
+      html += `<ul class="catalog-list">`;
+      data.viewer.web_platforms.entries.forEach(e => { html += iconEntryHTML(e, 'web'); });
+      html += `</ul>`;
 
       root.innerHTML = html;
     }
