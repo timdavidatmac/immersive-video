@@ -922,45 +922,46 @@
         }
       }
     },
-    "spatial_film": {
-      "label": "Spatial Film",
-      "app_store": "https://apps.apple.com/us/app/spatial-film/id6670564820",
-      "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/1f/b7/94/1fb79439-f2a5-8881-e31e-b7e54f06f9a4/AppIcon.lsr/512x512bb.jpg",
-      "youtube_playlist": "https://www.youtube.com/playlist?list=PLAyCpxLR2TxvqNdgU4dMQNrRCu37zHyzT",
-      "website": "",
-      "note": "Streaming library of 180° and 360° spatial films for Apple Vision Pro. Created by Keeley Turner, Hugh Hou, and SliceOfLifeVR. Open the app on Vision Pro to watch. Browse creator content on YouTube.",
-      "links": [
-        {
-          "label": "YouTube playlist",
-          "url": "https://www.youtube.com/playlist?list=PLAyCpxLR2TxvqNdgU4dMQNrRCu37zHyzT"
-        },
-        {
-          "label": "Spatial Film App Store",
-          "url": "https://apps.apple.com/us/app/spatial-film/id6670564820"
-        }
-      ]
-    },
-    "amplium": {
-      "label": "Amplium",
-      "app_store": "https://apps.apple.com/us/app/amplium/id6612011166",
-      "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/ae/c1/2b/aec12b2a-ab88-e554-a946-2009634b7f67/AppIcon.lsr/512x512bb.jpg",
-      "website": "https://home.theamplium.com",
-      "note": "Curated immersive video platform for Apple Vision Pro. Carries altitude.101 titles including KICK, Echoes of the Middle East, and The Longest Day.",
-      "links": [
-        {
-          "label": "home.theamplium.com",
-          "url": "https://home.theamplium.com"
-        },
-        {
-          "label": "App Store",
-          "url": "https://apps.apple.com/us/app/amplium/id6612011166"
-        }
-      ]
-    },
     "immersive_apps": {
       "label": "More Immersive Video Apps",
       "note": "Browse-and-watch platforms — same family as Apple TV, Theater, and Spatial Film above. Content varies and grows over time; visit each app to see what's available.",
       "entries": [
+        {
+          "id": "spatial-film",
+          "title": "Spatial Film",
+          "app_store": "https://apps.apple.com/us/app/spatial-film/id6670564820",
+          "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/1f/b7/94/1fb79439-f2a5-8881-e31e-b7e54f06f9a4/AppIcon.lsr/512x512bb.jpg",
+          "website": "",
+          "note": "Streaming library of 180° and 360° spatial films for Apple Vision Pro. Created by Keeley Turner, Hugh Hou, and SliceOfLifeVR. Open the app on Vision Pro to watch. Browse creator content on YouTube.",
+          "links": [
+            {
+              "label": "YouTube playlist",
+              "url": "https://www.youtube.com/playlist?list=PLAyCpxLR2TxvqNdgU4dMQNrRCu37zHyzT"
+            },
+            {
+              "label": "Spatial Film App Store",
+              "url": "https://apps.apple.com/us/app/spatial-film/id6670564820"
+            }
+          ]
+        },
+        {
+          "id": "amplium",
+          "title": "Amplium",
+          "app_store": "https://apps.apple.com/us/app/amplium/id6612011166",
+          "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/ae/c1/2b/aec12b2a-ab88-e554-a946-2009634b7f67/AppIcon.lsr/512x512bb.jpg",
+          "website": "https://home.theamplium.com",
+          "note": "Curated immersive video platform for Apple Vision Pro. Carries altitude.101 titles including KICK, Echoes of the Middle East, and The Longest Day.",
+          "links": [
+            {
+              "label": "home.theamplium.com",
+              "url": "https://home.theamplium.com"
+            },
+            {
+              "label": "App Store",
+              "url": "https://apps.apple.com/us/app/amplium/id6612011166"
+            }
+          ]
+        },
         {
           "id": "prima-immersive",
           "title": "Prima Immersive",
@@ -1049,6 +1050,86 @@
           "app_icon": "https://www.sliceoflifevr.com/logo.png",
           "note": "Independent immersive video platform. Titles available via web and DeoVR. Creator-focused library of VR180 and spatial content including Hugh Hou productions.",
           "added": "2026-06-21"
+        }
+      ]
+    },
+    "brand_apps": {
+      "label": "Brand & Standalone Apps",
+      "entries": [
+        {
+          "id": "cirrus-lets-go-fly",
+          "title": "Let's Go Fly! by Cirrus Aircraft",
+          "type": "film",
+          "app_store": "https://apps.apple.com/us/app/lets-go-fly/id6757612693",
+          "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/c5/51/61/c5516138-6c54-3781-6908-a5ed0b988e1d/AppIcon.lsr/512x512bb.jpg",
+          "website": "https://cirrusaircraft.com/story/cirrus-launches-lets-go-fly-immersive-apple-vision-pro-flight-experience/",
+          "added": "2026-06-02",
+          "status": "available",
+          "free": true,
+          "note": "7-min AIV flight experience over the American Southwest in a Cirrus SR22T, plus full-scale interactive 3D models of SR Series and Vision Jet built from engineering CAD files. Shot at 16K (8K per eye) on the Blackmagic URSA Cine Immersive — aerial footage captured by the Top Gun: Maverick filming crew using a specialized aircraft and aerial stabilization platform. Built as a global sales tool — usable at trade shows and off-airport events. Future roadmap includes cockpit interaction and spatial pre-flight orientation training. Cirrus has a Greater Orlando, FL location.",
+          "links": [
+            {
+              "label": "Interview with Anthony Bottini, Director of Media Development (Himels Tech, Jun 2026)",
+              "url": "https://youtu.be/3TabJkcDykg"
+            }
+          ]
+        },
+        {
+          "id": "what-if",
+          "title": "What If…? An Immersive Story",
+          "app_store": "https://apps.apple.com/us/app/what-if-an-immersive-story/id6479251303",
+          "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/ce/79/0f/ce790fa7-12d6-5ce9-22f1-4ae7fe2ce413/AppIcon.lsr/512x512bb.jpg",
+          "website": "https://www.marvel.com/WhatIfImmersive",
+          "note": "Disney+ Original interactive experience. Marvel Studios' What If…? universe. Not AIV — interactive immersive experience.",
+          "links": [
+            {
+              "label": "Trailer",
+              "url": "https://www.youtube.com/watch?v=lLk-IkPktMo"
+            }
+          ]
+        },
+        {
+          "id": "blueplanet-vr-app",
+          "title": "Blueplanet VR",
+          "website": "https://blueplanetvr.com/",
+          "favicon_url": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/57/1f/fc/571ffcba-b238-eac4-3e98-ff1ea0f5dceb/AppIcon.lsr/512x512bb.jpg",
+          "note": "100+ photogrammetric spatial experiences of UNESCO World Heritage Sites. By Eric Hanson, USC faculty.",
+          "links": [
+            {
+              "label": "Vimeo preview",
+              "url": "https://vimeo.com/1167013109"
+            }
+          ]
+        },
+        {
+          "id": "pulse-of-time",
+          "title": "Pulse of Time",
+          "app_store": "https://apps.apple.com/us/app/pulse-of-time/id6770068403",
+          "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/d0/ea/50/d0ea5089-71a8-2989-6563-8188c4374046/AppIcon.lsr/512x512bb.jpg",
+          "added": "2026-05-30",
+          "note": "Immersive 3D experiences built for Apple Vision Pro — not video on a screen. You are placed at the center of defining moments as they unfold around you. Includes Dinosaur Apocalypse. Vision Pro exclusive."
+        },
+        {
+          "id": "balenciaga",
+          "title": "Balenciaga — Summer 26 Show",
+          "app_store": "https://apps.apple.com/us/app/balenciaga/id6526492361",
+          "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/3e/33/09/3e330919-9e7b-7e0e-da94-b77dd4b850bf/AppIcon.lsr/512x512bb.jpg",
+          "note": "Pier Paolo Piccioli's debut Balenciaga collection. Available in Balenciaga's own Vision Pro app. Shot on URSA Cine Immersive.",
+          "links": [
+            {
+              "label": "UploadVR review",
+              "url": "https://www.uploadvr.com/attending-balenciagas-summer-26-show-in-apple-vision-pro/"
+            }
+          ]
+        },
+        {
+          "id": "lalo-immersive",
+          "title": "LALÒ Immersive",
+          "app_store": "https://apps.apple.com/us/app/lalo-immersive/id6740135829?platform=vision",
+          "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/19/ef/6c/19ef6c91-5390-97be-6be8-9c29efd53e63/AppIcon-0-0-1x_U007ephone-0-1-0-sRGB-85-220.png/512x512bb.jpg",
+          "website": "https://www.laloensemble.com/laloimmersive",
+          "added": "2026-06-13",
+          "note": "Filipino-American choral music for Apple Vision Pro. The LALÒ Ensemble performs in Apple Immersive Video captured on the Blackmagic URSA Cine Immersive with Apple Spatial Audio Format (higher-order ambisonics). Also includes photogrammetry-based venue recreations, spatial music sheets, and behind-the-scenes content. Created by Paolo Villanueva — presented at Apple's first Developer Community Meetup at Apple HQ during WWDC26. iPhone companion app also available."
         }
       ]
     },
@@ -1148,86 +1229,6 @@
               "url": "https://apps.apple.com/us/app/deovr-hyper-vr-videos/id6746857675"
             }
           ]
-        }
-      ]
-    },
-    "brand_apps": {
-      "label": "Brand & Standalone Apps",
-      "entries": [
-        {
-          "id": "cirrus-lets-go-fly",
-          "title": "Let's Go Fly! by Cirrus Aircraft",
-          "type": "film",
-          "app_store": "https://apps.apple.com/us/app/lets-go-fly/id6757612693",
-          "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/c5/51/61/c5516138-6c54-3781-6908-a5ed0b988e1d/AppIcon.lsr/512x512bb.jpg",
-          "website": "https://cirrusaircraft.com/story/cirrus-launches-lets-go-fly-immersive-apple-vision-pro-flight-experience/",
-          "added": "2026-06-02",
-          "status": "available",
-          "free": true,
-          "note": "7-min AIV flight experience over the American Southwest in a Cirrus SR22T, plus full-scale interactive 3D models of SR Series and Vision Jet built from engineering CAD files. Shot at 16K (8K per eye) on the Blackmagic URSA Cine Immersive — aerial footage captured by the Top Gun: Maverick filming crew using a specialized aircraft and aerial stabilization platform. Built as a global sales tool — usable at trade shows and off-airport events. Future roadmap includes cockpit interaction and spatial pre-flight orientation training. Cirrus has a Greater Orlando, FL location.",
-          "links": [
-            {
-              "label": "Interview with Anthony Bottini, Director of Media Development (Himels Tech, Jun 2026)",
-              "url": "https://youtu.be/3TabJkcDykg"
-            }
-          ]
-        },
-        {
-          "id": "what-if",
-          "title": "What If…? An Immersive Story",
-          "app_store": "https://apps.apple.com/us/app/what-if-an-immersive-story/id6479251303",
-          "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/ce/79/0f/ce790fa7-12d6-5ce9-22f1-4ae7fe2ce413/AppIcon.lsr/512x512bb.jpg",
-          "website": "https://www.marvel.com/WhatIfImmersive",
-          "note": "Disney+ Original interactive experience. Marvel Studios' What If…? universe. Not AIV — interactive immersive experience.",
-          "links": [
-            {
-              "label": "Trailer",
-              "url": "https://www.youtube.com/watch?v=lLk-IkPktMo"
-            }
-          ]
-        },
-        {
-          "id": "blueplanet-vr-app",
-          "title": "Blueplanet VR",
-          "website": "https://blueplanetvr.com/",
-          "favicon_url": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/57/1f/fc/571ffcba-b238-eac4-3e98-ff1ea0f5dceb/AppIcon.lsr/512x512bb.jpg",
-          "note": "100+ photogrammetric spatial experiences of UNESCO World Heritage Sites. By Eric Hanson, USC faculty.",
-          "links": [
-            {
-              "label": "Vimeo preview",
-              "url": "https://vimeo.com/1167013109"
-            }
-          ]
-        },
-        {
-          "id": "pulse-of-time",
-          "title": "Pulse of Time",
-          "app_store": "https://apps.apple.com/us/app/pulse-of-time/id6770068403",
-          "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/d0/ea/50/d0ea5089-71a8-2989-6563-8188c4374046/AppIcon.lsr/512x512bb.jpg",
-          "added": "2026-05-30",
-          "note": "Immersive 3D experiences built for Apple Vision Pro — not video on a screen. You are placed at the center of defining moments as they unfold around you. Includes Dinosaur Apocalypse. Vision Pro exclusive."
-        },
-        {
-          "id": "balenciaga",
-          "title": "Balenciaga — Summer 26 Show",
-          "app_store": "https://apps.apple.com/us/app/balenciaga/id6526492361",
-          "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/3e/33/09/3e330919-9e7b-7e0e-da94-b77dd4b850bf/AppIcon.lsr/512x512bb.jpg",
-          "note": "Pier Paolo Piccioli's debut Balenciaga collection. Available in Balenciaga's own Vision Pro app. Shot on URSA Cine Immersive.",
-          "links": [
-            {
-              "label": "UploadVR review",
-              "url": "https://www.uploadvr.com/attending-balenciagas-summer-26-show-in-apple-vision-pro/"
-            }
-          ]
-        },
-        {
-          "id": "lalo-immersive",
-          "title": "LALÒ Immersive",
-          "app_store": "https://apps.apple.com/us/app/lalo-immersive/id6740135829?platform=vision",
-          "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/19/ef/6c/19ef6c91-5390-97be-6be8-9c29efd53e63/AppIcon-0-0-1x_U007ephone-0-1-0-sRGB-85-220.png/512x512bb.jpg",
-          "website": "https://www.laloensemble.com/laloimmersive",
-          "added": "2026-06-13",
-          "note": "Filipino-American choral music for Apple Vision Pro. The LALÒ Ensemble performs in Apple Immersive Video captured on the Blackmagic URSA Cine Immersive with Apple Spatial Audio Format (higher-order ambisonics). Also includes photogrammetry-based venue recreations, spatial music sheets, and behind-the-scenes content. Created by Paolo Villanueva — presented at Apple's first Developer Community Meetup at Apple HQ during WWDC26. iPhone companion app also available."
         }
       ]
     },

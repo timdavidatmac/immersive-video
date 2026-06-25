@@ -641,44 +641,6 @@
         if (sec) html += renderSection(sec.entries, 'theater', s.label);
       });
 
-      // ── Spatial Film (app-list row, no cards) ─────────────
-      const sf = data.viewer.spatial_film;
-      if (sf) {
-        html += `<h2 class="section-heading" id="spatial-film">🎬 Spatial Film App</h2>`;
-        html += `<p class="text-muted text-small" style="margin:0 0 12px;">Titles link to YouTube previews or the App Store. Open the Spatial Film app on Vision Pro to watch in full quality.</p>`;
-        html += `<ul class="catalog-list" style="margin-bottom:0;">
-          <li class="catalog-entry" data-category="apps" data-search="spatial film app" style="display:flex;gap:12px;align-items:flex-start;">
-            <div style="width:90px;height:51px;flex-shrink:0;display:flex;align-items:center;justify-content:center;">
-              <img src="${sf.app_icon}" alt="Spatial Film app icon" loading="lazy" style="width:46px;height:46px;border-radius:10px;display:block;">
-            </div>
-            <div style="min-width:0;flex:1;padding-top:2px;">
-              <a class="entry-name" href="${sf.app_store}" target="_blank" rel="noopener">Spatial Film</a>
-              ${sf.youtube_playlist ? `<span class="platform-note"><a href="${sf.youtube_playlist}" target="_blank" rel="noopener">YouTube playlist</a></span>` : ''}
-              ${sf.note ? `<span class="entry-note">${sf.note}</span>` : ''}
-            </div>
-          </li>
-        </ul>`;
-      }
-
-      // ── Amplium (app-list row, no cards) ──────────────────
-      const amp = data.viewer.amplium;
-      if (amp) {
-        html += `<h2 class="section-heading" id="amplium">Amplium</h2>`;
-        html += `<p class="text-muted text-small" style="margin:0 0 12px;">Open the Amplium app on Vision Pro to browse and watch available content.</p>`;
-        html += `<ul class="catalog-list" style="margin-bottom:0;">
-          <li class="catalog-entry" data-category="apps" data-search="amplium app" style="display:flex;gap:12px;align-items:flex-start;">
-            <div style="width:90px;height:51px;flex-shrink:0;display:flex;align-items:center;justify-content:center;">
-              <img src="${amp.app_icon}" alt="Amplium app icon" loading="lazy" style="width:46px;height:46px;border-radius:10px;display:block;">
-            </div>
-            <div style="min-width:0;flex:1;padding-top:2px;">
-              <a class="entry-name" href="${amp.app_store}" target="_blank" rel="noopener">Amplium</a>
-              ${amp.website ? `<span class="platform-note"><a href="${amp.website}" target="_blank" rel="noopener">${amp.website.replace(/^https?:\/\//, '').replace(/\/$/, '')}</a></span>` : ''}
-              ${amp.note ? `<span class="entry-note">${amp.note}</span>` : ''}
-            </div>
-          </li>
-        </ul>`;
-      }
-
       // ── More Immersive Video Apps ──────────────────────────
       const immersiveApps = data.viewer.immersive_apps;
       if (immersiveApps && immersiveApps.entries && immersiveApps.entries.length) {
