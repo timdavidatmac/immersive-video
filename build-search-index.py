@@ -56,7 +56,7 @@ def walk_catalog(data, section_label=''):
                 'id': f"catalog-{entry_id}",
                 'title': title,
                 'section': section_label or 'Catalog',
-                'page': 'Watch',
+                'page': 'Immersive Video',
                 'url': url,
                 'body': clean(body),
             })
@@ -68,7 +68,7 @@ def walk_catalog(data, section_label=''):
                     'id': f"catalog-{entry_id}-{slugify(ep_title)}",
                     'title': f"{title} — {ep_title}",
                     'section': section_label or 'Catalog',
-                    'page': 'Watch',
+                    'page': 'Immersive Video',
                     'url': url,
                     'body': clean(ep.get('guest','') + ' ' + ep.get('date','')),
                 })
@@ -82,8 +82,27 @@ def walk_catalog(data, section_label=''):
 
 with open(os.path.join(REPO, 'catalog.json')) as f:
     catalog = json.load(f)
-walk_catalog(catalog)
-print(f"catalog.json: {len(index)} entries")
+
+# Walk viewer section (Immersive Video page)
+walk_catalog(catalog.get('viewer', {}))
+viewer_count = len(index)
+print(f"catalog.json viewer: {viewer_count} entries")
+
+# Walk spatial_apps section separately — points to spatial-apps.html
+spatial = catalog.get('spatial_apps', {})
+for entry in spatial.get('entries', []):
+    entry_id = entry.get('id', '')
+    title = entry.get('title', '')
+    body = ' '.join(filter(None, [entry.get('note',''), entry.get('description','')]))
+    index.append({
+        'id': f"spatial-{entry_id}",
+        'title': title,
+        'section': 'Spatial Apps',
+        'page': 'Spatial Apps',
+        'url': f"spatial-apps.html#spatial-{entry_id}",
+        'body': clean(body),
+    })
+print(f"catalog.json spatial_apps: {len(index) - viewer_count} entries")
 
 # ── 2. Static pages (creators.html, usecases.html) ───────────
 def extract_static_entries(filepath, page_name):
