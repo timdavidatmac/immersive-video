@@ -1094,19 +1094,21 @@
       "label": "Web & Other Platforms",
       "entries": [
         {
-          "id": "immersive-america-waterfalls",
-          "title": "Immersive America — Waterfalls",
-          "url": "https://www.youtube.com/@ImmersiveAmerica",
-          "website": "https://immersiveam.com",
+          "id": "immersive-america",
+          "title": "Immersive America",
+          "url": "https://immersiveam.com",
           "favicon_url": "https://immersiveam.com/wp-content/uploads/2026/03/cropped-site-icon-180x180.png",
-          "note": "California & Kauai waterfalls. 8K on YouTube VR. 8K on M5 Vision Pro, 4K on M2."
-        },
-        {
-          "id": "immersive-america-southwest",
-          "title": "Immersive America — American Southwest",
-          "url": "https://immersiveam.com/favorites/",
-          "favicon_url": "https://immersiveam.com/wp-content/uploads/2026/03/cropped-site-icon-180x180.png",
-          "note": "Grand Canyon, Bryce Canyon, Monument Valley, Zion, Las Vegas. WebXR + APMP format."
+          "note": "California & Kauai waterfalls, Grand Canyon, Bryce Canyon, Monument Valley, Zion, Las Vegas, and more. 8K on YouTube VR (8K on M5 Vision Pro, 4K on M2). Also available in WebXR + APMP format.",
+          "links": [
+            {
+              "label": "immersiveam.com",
+              "url": "https://immersiveam.com"
+            },
+            {
+              "label": "YouTube channel",
+              "url": "https://www.youtube.com/@ImmersiveAmerica"
+            }
+          ]
         },
         {
           "id": "yosemite-in-snow",
