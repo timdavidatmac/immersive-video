@@ -57,7 +57,7 @@
               "type": "series",
               "url": "https://tv.apple.com/us/show/adventure/umc.cmc.5al10vz5fkqzxonreq110ony0",
               "status": "available",
-              "note": "Adventure sports series, 5 episodes, 2024–2025.",
+              "note": "Adventure sports series, 4 episodes, 2024–2025. Co-produced by Atlantic Studios and Apple.",
               "description": "Join pioneering athletes as they take on awe-inspiring challenges in some of the world's most spectacular locations.",
               "episodes": [
                 {
@@ -1087,6 +1087,13 @@
           "website": "https://www.laloensemble.com/laloimmersive",
           "added": "2026-06-13",
           "note": "Filipino-American choral music for Apple Vision Pro. The LALÒ Ensemble performs in Apple Immersive Video captured on the Blackmagic URSA Cine Immersive with Apple Spatial Audio Format (higher-order ambisonics). Also includes photogrammetry-based venue recreations, spatial music sheets, and behind-the-scenes content. Created by Paolo Villanueva — presented at Apple's first Developer Community Meetup at Apple HQ during WWDC26. iPhone companion app also available."
+        },
+        {
+          "id": "cosmos-in-focus",
+          "title": "Cosmos in Focus",
+          "website": "https://www.atlanticproductions.tv",
+          "added": "2026-06-25",
+          "note": "Mixed reality experience transforming your room into a virtual planetarium built around James Webb Space Telescope imagery. Premiered at SXSW 2025. By Atlantic Studios — the same team behind the Adventure Apple Immersive Video series (Ice Dive, Highlining, Parkour, Deep Water Solo)."
         }
       ]
     },
