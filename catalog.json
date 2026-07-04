@@ -1633,6 +1633,14 @@
             "url": "https://vimeo.com/1167013109"
           }
         ]
+      },
+      {
+        "id": "panoramas-environments",
+        "title": "Panoramas Environments",
+        "app_store": "https://apps.apple.com/us/app/panoramas-environments/id6778558921",
+        "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/58/7b/79/587b79ed-eca5-31f4-afcc-fc41948e1e97/AppIcon.lsr/512x512bb.jpg",
+        "added": "2026-06-26",
+        "note": "Curated collection of wide-angle and 360° imagery to set as custom Vision Pro environments. Browse, preview, and save. Not immersive video — static environment backgrounds."
       }
     ]
   }
