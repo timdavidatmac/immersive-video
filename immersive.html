@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Immersive Catalog — Apple Immersive Video &amp; Spatial Computing</title>
+  <meta property="og:title" content="Immersive Catalog — step inside the library">
+  <meta property="og:description" content="Every immersive film on Apple Vision Pro, floating around you in your own space. An immersive website experience for Safari on visionOS 27.">
+  <meta property="og:url" content="https://imaginationave.com/immersive.html">
+  <meta property="og:type" content="website">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* ── Stage ─────────────────────────────────────────────── */
+    .stage-wrap {
+      background:
+        radial-gradient(1px 1px at 12% 22%, rgba(255,255,255,0.55) 50%, transparent 51%),
+        radial-gradient(1px 1px at 34% 68%, rgba(255,255,255,0.4) 50%, transparent 51%),
+        radial-gradient(1.5px 1.5px at 58% 18%, rgba(255,255,255,0.5) 50%, transparent 51%),
+        radial-gradient(1px 1px at 73% 51%, rgba(255,255,255,0.35) 50%, transparent 51%),
+        radial-gradient(1.5px 1.5px at 88% 79%, rgba(255,255,255,0.45) 50%, transparent 51%),
+        radial-gradient(1px 1px at 45% 88%, rgba(255,255,255,0.3) 50%, transparent 51%),
+        radial-gradient(ellipse at 50% 120%, #23233a 0%, #0b0b12 65%);
+      border-radius: 18px;
+      overflow: hidden;
+      position: relative;
+      margin: 20px 0 14px;
+    }
+
+    #stage {
+      width: 100%;
+      height: min(62vh, 560px);
+      display: block;
+      position: relative;
+    }
+
+    #stage model, #stage canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    #stage-status {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      color: #d6d6de;
+      font-size: 14px;
+      text-align: center;
+      padding: 24px;
+      pointer-events: none;
+    }
+
+    .progress-track {
+      width: min(320px, 70%);
+      height: 4px;
+      border-radius: 2px;
+      background: rgba(255,255,255,0.14);
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      border-radius: 2px;
+      background: linear-gradient(90deg, #0a84ff, #bf5af2);
+      transition: width 0.25s ease;
+    }
+
+    /* ── Controls ──────────────────────────────────────────── */
+    .galaxy-controls {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 10px;
+    }
+
+    .cat-chip {
+      border: 1px solid #d2d2d7;
+      background: #ffffff;
+      color: #1d1d1f;
+      font-size: 13px;
+      font-weight: 600;
+      font-family: inherit;
+      padding: 7px 14px;
+      border-radius: 17px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      transition: background 0.15s, border-color 0.15s, transform 0.15s;
+    }
+    .cat-chip:hover { transform: translateY(-1px); border-color: #86868b; }
+    .cat-chip .dot {
+      width: 9px; height: 9px; border-radius: 50%;
+      background: var(--chip-color, #0a84ff);
+      flex-shrink: 0;
+    }
+    .cat-chip[aria-pressed="true"] {
+      background: #1d1d1f;
+      border-color: #1d1d1f;
+      color: #ffffff;
+    }
+
+    .immerse-btn {
+      margin-left: auto;
+      border: none;
+      background: linear-gradient(135deg, #0a84ff, #bf5af2);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 700;
+      font-family: inherit;
+      padding: 11px 22px;
+      border-radius: 22px;
+      cursor: pointer;
+      display: none;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 16px rgba(96, 90, 255, 0.35);
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .immerse-btn:hover { transform: scale(1.04); box-shadow: 0 6px 22px rgba(96, 90, 255, 0.5); }
+    .immerse-btn.available { display: inline-flex; }
+
+    .drift-toggle {
+      border: 1px solid #d2d2d7;
+      background: #fff;
+      color: #6e6e73;
+      font-size: 12.5px;
+      font-weight: 600;
+      font-family: inherit;
+      padding: 7px 12px;
+      border-radius: 16px;
+      cursor: pointer;
+    }
+    .drift-toggle[aria-pressed="true"] { background: #e8f2ff; border-color: #0a84ff; color: #0a66c2; }
+
+    .support-note {
+      font-size: 13px;
+      color: #6e6e73;
+      margin: 4px 0 0;
+      line-height: 1.6;
+    }
+    .support-note strong { color: #1d1d1f; }
+
+    /* ── Explainer cards ───────────────────────────────────── */
+    .how-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+      margin-top: 12px;
+    }
+    .how-card {
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 18px 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+      font-size: 13.5px;
+      color: #6e6e73;
+      line-height: 1.65;
+    }
+    .how-card h3 { font-size: 15px; color: #1d1d1f; margin: 0 0 6px; }
+    .how-card code {
+      background: #f0f0f3; border-radius: 5px; padding: 1px 6px;
+      font-size: 12px; color: #1d1d1f;
+    }
+
+    /* ── Immersive "remote control" mode ───────────────────────
+       While the galaxy surrounds the viewer, the Safari window
+       collapses into a compact dark remote. ─────────────────── */
+    body.immersive { background: #101014; }
+    body.immersive .site-header,
+    body.immersive .page-hero,
+    body.immersive .how-section,
+    body.immersive .site-footer,
+    body.immersive .stage-wrap { display: none; }
+
+    body.immersive .page-content { padding-top: 26px; }
+
+    .remote-banner {
+      display: none;
+      color: #f5f5f7;
+      margin: 0 0 18px;
+    }
+    body.immersive .remote-banner { display: block; }
+    .remote-banner h2 { font-size: 21px; margin: 0 0 4px; }
+    .remote-banner p { font-size: 13.5px; color: #98989f; margin: 0; }
+
+    body.immersive .galaxy-controls { gap: 12px; }
+    body.immersive .cat-chip {
+      background: #1c1c21;
+      border-color: #3a3a40;
+      color: #f5f5f7;
+      font-size: 15px;
+      padding: 12px 20px;
+      border-radius: 22px;
+    }
+    body.immersive .cat-chip[aria-pressed="true"] {
+      background: var(--chip-color, #0a84ff);
+      border-color: transparent;
+      color: #fff;
+    }
+    body.immersive .drift-toggle { background: #1c1c21; border-color: #3a3a40; }
+    body.immersive .support-note { color: #98989f; }
+
+    .exit-btn {
+      display: none;
+      border: 1px solid #3a3a40;
+      background: #1c1c21;
+      color: #ff6961;
+      font-size: 14px;
+      font-weight: 700;
+      font-family: inherit;
+      padding: 11px 20px;
+      border-radius: 22px;
+      cursor: pointer;
+      margin-left: auto;
+    }
+    body.immersive .exit-btn.available { display: inline-flex; }
+    body.immersive .immerse-btn { display: none; }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════ SITE HEADER -->
+  <header class="site-header" role="banner">
+    <div class="site-header-inner">
+      <div class="site-header-row1">
+        <a href="./" class="site-header-logo" aria-label="Apple Immersive Video &amp; Spatial Computing — home">
+          <img src="./logo.svg" alt="" aria-hidden="true" width="28" height="28" style="display:inline-block; vertical-align:middle; margin-right:10px;">Apple Immersive Video &amp; Spatial Computing
+        </a>
+      </div>
+      <div class="site-header-row2">
+        <nav aria-label="Site navigation">
+          <ul class="site-nav">
+            <li><a href="./">Immersive Video</a></li>
+            <li><a href="spatial-apps.html">Spatial Apps</a></li>
+            <li><a href="creators.html">For Creators</a></li>
+            <li><a href="usecases.html">Use Cases</a></li>
+            <li><a href="models.html">3D Models</a></li>
+            <li><a href="immersive.html" class="active" aria-current="page">Immersive Catalog (beta)</a></li>
+            <li><a href="newsletters/">Newsletter</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════ PAGE HERO -->
+  <div class="page-hero" role="presentation" style="background: linear-gradient(160deg, #12121a, #23233a); ">
+    <h1 style="color:#f5f5f7;">The Immersive Catalog</h1>
+    <p style="color:#b8b8c2;">Every immersive film in the library, floating around you in your own space. Open this page in Safari on Apple Vision Pro and tap <strong style="color:#f5f5f7;">Step Inside</strong>.</p>
+  </div>
+
+  <!-- ═══════════════════════ MAIN CONTENT -->
+  <main class="page-content" role="main" id="main-content">
+
+    <!-- Visible only while immersed -->
+    <div class="remote-banner">
+      <h2>You're inside the catalog ✦</h2>
+      <p>Look around — titles are grouped into constellations by category. Use the buttons below to spin a category to face you.</p>
+    </div>
+
+    <!-- 3D stage -->
+    <div class="stage-wrap">
+      <div id="stage"></div>
+      <div id="stage-status" role="status">
+        <span id="status-text">Gathering the catalog…</span>
+        <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+      </div>
+    </div>
+
+    <!-- Controls -->
+    <div class="galaxy-controls" id="galaxy-controls">
+      <!-- category chips injected here -->
+      <button class="drift-toggle" id="drift-toggle" aria-pressed="false" title="Slowly rotate the galaxy">✦ Drift</button>
+      <button class="immerse-btn" id="immerse-btn">⬢ Step Inside</button>
+      <button class="exit-btn" id="exit-btn">Leave the galaxy</button>
+    </div>
+    <p class="support-note" id="support-note">Checking what your browser can do…</p>
+
+    <!-- Explainer -->
+    <section class="how-section">
+      <h2 class="section-heading" style="margin-top:36px;">How this page works</h2>
+      <div class="how-grid">
+        <div class="how-card">
+          <h3>Built from the live catalog</h3>
+          Your browser reads the same <code>catalog.json</code> that powers the
+          <a href="./">Immersive Video</a> page, composes a poster for every title,
+          and assembles a 3D galaxy of ~45 floating cards grouped into
+          constellations by category — travel, sports, music, indie Theater films, and more.
+        </div>
+        <div class="how-card">
+          <h3>A USDZ world, made on the fly</h3>
+          The galaxy is exported in your browser to <code>USDZ</code> and displayed with the
+          HTML <code>&lt;model&gt;</code> element — rendered in true stereoscopic 3D on
+          Apple Vision Pro. On a Mac, iPhone, or PC you get an interactive WebGL preview instead.
+        </div>
+        <div class="how-card">
+          <h3>Step inside on visionOS 27</h3>
+          Safari's new Immersive API (<code>requestImmersive()</code>) carries the model
+          beyond the browser window and places it around you at real-world scale —
+          while this page stays visible as your remote control. Tap a category to spin
+          that constellation in front of you.
+        </div>
+      </div>
+      <p class="support-note" style="margin-top:16px;">
+        Poster artwork is streamed from each film's original source and belongs to its rights holders.
+        Titles link out from the <a href="./">main catalog page</a> — this page is the view from inside.
+      </p>
+    </section>
+
+  </main>
+
+  <!-- ═══════════════════════ SITE FOOTER -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="site-footer-inner">
+      <p>The Apple Immersive Video &amp; Spatial Computing catalog and newsletter are independent publications. They are not affiliated with, endorsed by, or sponsored by Apple, Blackmagic Design, or any other company mentioned. Apple, Apple Vision Pro, and Apple Immersive Video are trademarks of Apple Inc.</p>
+      <p>A publication of <a href="mailto:imaginationave@mac.com">Imagination Ave</a> &nbsp;·&nbsp; <a href="newsletters/">Newsletter Archive</a></p>
+    </div>
+  </footer>
+
+  <!-- ═══════════════════════ GALAXY ENGINE -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"
+    }
+  }
+  </script>
+
+  <script type="module">
+  import * as THREE from 'three';
+
+  /* ════════════════════════════════════════════════════════════
+     Layout constants (metres — immersive mode is real-world scale,
+     origin at the viewer's feet)
+     ════════════════════════════════════════════════════════════ */
+  const CARD_W = 0.55;            // poster width
+  const CARD_H = CARD_W * 9 / 16; // poster height
+  const GAP_X = 0.09;             // horizontal gap between posters
+  const ROW_H = 0.46;             // vertical spacing between rows
+  const GROUP_GAP = 0.55;         // arc-length gap between constellations
+  const EYE = 1.5;                // galaxy centre height above the floor
+  const MIN_RADIUS = 2.4;
+
+  const stage = document.getElementById('stage');
+  const statusBox = document.getElementById('stage-status');
+  const statusText = document.getElementById('status-text');
+  const progressFill = document.getElementById('progress-fill');
+  const controlsBar = document.getElementById('galaxy-controls');
+  const immerseBtn = document.getElementById('immerse-btn');
+  const exitBtn = document.getElementById('exit-btn');
+  const driftToggle = document.getElementById('drift-toggle');
+  const supportNote = document.getElementById('support-note');
+
+  const supportsModel = typeof window.HTMLModelElement !== 'undefined';
+  const supportsImmersive = !!document.immersiveEnabled;
+
+  function setStatus(msg, pct) {
+    statusText.textContent = msg;
+    if (pct != null) progressFill.style.width = Math.round(pct) + '%';
+  }
+
+  /* ════════════════════════════════════════════════════════════
+     1 · Collect cards from catalog.json
+     ════════════════════════════════════════════════════════════ */
+  function collectGroups(data) {
+    const atv = data.viewer.apple_tv.sections || {};
+    const theater = (data.viewer.theater_app && data.viewer.theater_app.sections) || {};
+    const ent = s => (s && s.entries) ? s.entries : [];
+
+    const defs = [
+      { key: 'travel',    label: 'Travel & Adventure',   color: '#30d158', entries: ent(atv.travel_adventure) },
+      { key: 'nature',    label: 'Nature & Documentary', color: '#64d2ff', entries: ent(atv.nature_documentary) },
+      { key: 'sports',    label: 'Sports',               color: '#ff9f0a', entries: ent(atv.sports) },
+      { key: 'music',     label: 'Music & Performance',  color: '#bf5af2', entries: ent(atv.music_performance) },
+      { key: 'narrative', label: 'Narrative & Sampler',  color: '#ff375f', entries: [...ent(atv.narrative), ...ent(atv.sampler)] },
+      { key: 'announced', label: 'Coming Soon',          color: '#ffd60a', entries: ent(atv.announced) },
+      { key: 'theater',   label: 'Theater — Indie Films', color: '#0a84ff', entries: Object.values(theater).flatMap(ent) }
+    ];
+
+    for (const g of defs) {
+      g.cards = g.entries
+        .filter(e => e.status !== 'gone' && (e.thumbnail || e.status === 'pending'))
+        .map(e => {
+          const meta = [];
+          if (e.duration) meta.push(e.duration);
+          else if (e.episodes && e.episodes.length) meta.push(e.episodes.length + (e.episodes.length > 1 ? ' episodes' : ' episode'));
+          if (e.genre) meta.push(e.genre);
+          else if (e.year) meta.push(String(e.year));
+          return {
+            title: e.title,
+            thumb: e.thumbnail || null,
+            meta: meta.join(' · '),
+            pending: e.status === 'pending',
+            free: e.free === true
+          };
+        });
+    }
+    return defs.filter(g => g.cards.length > 0);
+  }
+
+  /* ════════════════════════════════════════════════════════════
+     2 · Poster + label textures (canvas-composed)
+     ════════════════════════════════════════════════════════════ */
+  function loadImage(url) {
+    return new Promise((resolve, reject) => {
+      if (!url) { reject(new Error('no url')); return; }
+      const img = new Image();
+      img.crossOrigin = 'anonymous';
+      const timer = setTimeout(() => { img.src = ''; reject(new Error('timeout')); }, 12000);
+      img.onload = () => { clearTimeout(timer); resolve(img); };
+      img.onerror = () => { clearTimeout(timer); reject(new Error('load failed')); };
+      img.src = url;
+    });
+  }
+
+  function drawCover(ctx, img, w, h) {
+    const s = Math.max(w / img.naturalWidth, h / img.naturalHeight);
+    const dw = img.naturalWidth * s, dh = img.naturalHeight * s;
+    ctx.drawImage(img, (w - dw) / 2, (h - dh) / 2, dw, dh);
+  }
+
+  function wrapTitle(ctx, text, maxWidth) {
+    const words = text.split(' ');
+    const lines = [];
+    let line = '';
+    for (const w of words) {
+      const probe = line ? line + ' ' + w : w;
+      if (ctx.measureText(probe).width > maxWidth && line) { lines.push(line); line = w; }
+      else line = probe;
+      if (lines.length === 2) break;
+    }
+    if (lines.length < 2 && line) lines.push(line);
+    else if (line && lines.length === 2) lines[1] = lines[1].replace(/\s*\S*$/, '…');
+    return lines;
+  }
+
+  function posterCanvas(card, group, img) {
+    const W = 512, H = 288;
+    const c = document.createElement('canvas');
+    c.width = W; c.height = H;
+    const ctx = c.getContext('2d');
+
+    if (img) {
+      drawCover(ctx, img, W, H);
+    } else {
+      // Generated poster for titles whose artwork can't be read cross-origin
+      const grad = ctx.createLinearGradient(0, 0, W, H);
+      grad.addColorStop(0, group.color);
+      grad.addColorStop(0.55, '#26262e');
+      grad.addColorStop(1, '#101014');
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, W, H);
+      ctx.fillStyle = 'rgba(255,255,255,0.08)';
+      ctx.font = '900 210px -apple-system, Helvetica, sans-serif';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(card.title.charAt(0), W - 150, H / 2 + 10);
+      ctx.textBaseline = 'alphabetic';
+    }
+
+    // Bottom gradient + title (echoes the 2D site's card overlay)
+    const grad2 = ctx.createLinearGradient(0, H - 118, 0, H);
+    grad2.addColorStop(0, 'rgba(0,0,0,0)');
+    grad2.addColorStop(1, 'rgba(0,0,0,0.85)');
+    ctx.fillStyle = grad2;
+    ctx.fillRect(0, H - 118, W, 118);
+
+    ctx.fillStyle = '#ffffff';
+    ctx.font = '700 30px -apple-system, Helvetica, sans-serif';
+    ctx.shadowColor = 'rgba(0,0,0,0.6)';
+    ctx.shadowBlur = 6;
+    const lines = wrapTitle(ctx, card.title, W - 44);
+    const baseY = card.meta ? H - 46 : H - 24;
+    lines.forEach((line, i) => ctx.fillText(line, 22, baseY - (lines.length - 1 - i) * 36));
+    ctx.shadowBlur = 0;
+
+    if (card.meta) {
+      ctx.fillStyle = '#d0d0d6';
+      ctx.font = '500 19px -apple-system, Helvetica, sans-serif';
+      ctx.fillText(card.meta, 22, H - 18);
+    }
+
+    if (card.pending || card.free) {
+      const txt = card.pending ? 'COMING SOON' : 'FREE';
+      ctx.font = '800 19px -apple-system, Helvetica, sans-serif';
+      const w = ctx.measureText(txt).width + 26;
+      ctx.fillStyle = card.pending ? '#ffd60a' : '#30d158';
+      ctx.beginPath();
+      ctx.roundRect(16, 16, w, 34, 8);
+      ctx.fill();
+      ctx.fillStyle = '#101014';
+      ctx.fillText(txt, 29, 40);
+    }
+    return c;
+  }
+
+  function labelCanvas(group) {
+    const W = 1024, H = 128;
+    const c = document.createElement('canvas');
+    c.width = W; c.height = H;
+    const ctx = c.getContext('2d');
+    ctx.fillStyle = '#141419';
+    ctx.beginPath();
+    ctx.roundRect(0, 0, W, H, 28);
+    ctx.fill();
+    ctx.fillStyle = group.color;
+    ctx.beginPath();
+    ctx.roundRect(34, H / 2 - 17, 34, 34, 17);
+    ctx.fill();
+    ctx.fillStyle = '#f5f5f7';
+    ctx.font = '700 58px -apple-system, Helvetica, sans-serif';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(group.label, 96, H / 2 + 3);
+    return c;
+  }
+
+  /* ════════════════════════════════════════════════════════════
+     3 · Build the galaxy scene
+     ════════════════════════════════════════════════════════════ */
+  function jitter(seed) { // deterministic, so USDZ + preview match
+    const x = Math.sin(seed * 127.1 + 311.7) * 43758.5453;
+    return (x - Math.floor(x)) - 0.5;
+  }
+
+  function makeTexture(canvas) {
+    const tex = new THREE.CanvasTexture(canvas);
+    tex.colorSpace = THREE.SRGBColorSpace;
+    tex.anisotropy = 4;
+    return tex;
+  }
+
+  async function buildGalaxy(groups) {
+    // Load artwork with progress
+    const allCards = groups.flatMap(g => g.cards.map(card => ({ card, group: g })));
+    let done = 0;
+    setStatus('Composing posters… 0 / ' + allCards.length, 5);
+    await Promise.all(allCards.map(async ({ card, group }) => {
+      let img = null;
+      try { img = await loadImage(card.thumb); } catch (e) { /* generated poster fallback */ }
+      card.texture = makeTexture(posterCanvas(card, group, img));
+      done++;
+      setStatus('Composing posters… ' + done + ' / ' + allCards.length, 5 + 70 * done / allCards.length);
+    }));
+
+    // Ring layout: arc lengths first, then radius so it closes into 360°
+    for (const g of groups) {
+      const n = g.cards.length;
+      g.rows = n > 10 ? 3 : n > 4 ? 2 : 1;
+      g.perRow = Math.ceil(n / g.rows);
+      g.arcLen = g.perRow * (CARD_W + GAP_X);
+    }
+    const totalLen = groups.reduce((a, g) => a + g.arcLen, 0) + groups.length * GROUP_GAP;
+    const R = Math.max(MIN_RADIUS, totalLen / (2 * Math.PI));
+
+    const scene = new THREE.Scene();
+    const root = new THREE.Group();
+    root.name = 'galaxy';
+    scene.add(root);
+
+    const geo = new THREE.PlaneGeometry(CARD_W, CARD_H);
+    let cursor = 0, idx = 0;
+
+    for (const g of groups) {
+      g.centerAngle = (cursor + g.arcLen / 2) / R;
+      const cluster = new THREE.Group();
+      cluster.name = g.key;
+
+      g.cards.forEach((card, i) => {
+        const row = Math.floor(i / g.perRow);
+        const col = i % g.perRow;
+        const cardsInRow = Math.min(g.perRow, g.cards.length - row * g.perRow);
+        const rowLen = cardsInRow * (CARD_W + GAP_X);
+        const inset = (g.arcLen - rowLen) / 2; // centre short rows
+        const a = (cursor + inset + (col + 0.5) * (CARD_W + GAP_X)) / R;
+        const r = R + jitter(idx * 3 + 1) * 0.24;
+        const y = EYE + ((g.rows - 1) / 2 - row) * ROW_H + jitter(idx * 3 + 2) * 0.1;
+
+        const mat = new THREE.MeshStandardMaterial({ map: card.texture, roughness: 0.85, metalness: 0 });
+        const mesh = new THREE.Mesh(geo, mat);
+        mesh.position.set(r * Math.sin(a), y, -r * Math.cos(a));
+        mesh.lookAt(0, y, 0);
+        mesh.rotateZ(jitter(idx * 3 + 3) * 0.06);
+        mesh.name = 'card_' + idx;
+        cluster.add(mesh);
+        idx++;
+      });
+
+      // Constellation label above the cluster
+      const lc = labelCanvas(g);
+      const labelW = 1.15, labelH = labelW * lc.height / lc.width;
+      const lmat = new THREE.MeshStandardMaterial({ map: makeTexture(lc), roughness: 0.9, metalness: 0 });
+      const label = new THREE.Mesh(new THREE.PlaneGeometry(labelW, labelH), lmat);
+      const ly = EYE + ((g.rows - 1) / 2) * ROW_H + 0.44;
+      label.position.set(R * Math.sin(g.centerAngle), ly, -R * Math.cos(g.centerAngle));
+      label.lookAt(0, ly, 0);
+      label.name = 'label_' + g.key;
+      cluster.add(label);
+
+      root.add(cluster);
+      cursor += g.arcLen + GROUP_GAP;
+    }
+
+    return { scene, root, R };
+  }
+
+  /* ════════════════════════════════════════════════════════════
+     4 · Shared rotation controller (chips, drift, tweens)
+     ════════════════════════════════════════════════════════════ */
+  const spin = {
+    yaw: 0,            // current, degrees
+    target: 0,
+    drifting: false,
+    apply: null        // set by the active presentation path
+  };
+
+  function tick() {
+    requestAnimationFrame(tick);
+    if (spin.drifting) spin.target += 0.06; // gentle ~3.6°/s
+    const delta = spin.target - spin.yaw;
+    if (Math.abs(delta) > 0.01) {
+      spin.yaw += delta * 0.06; // ease toward target
+      if (spin.apply) spin.apply();
+    }
+  }
+
+  function faceGroup(g) {
+    // Bring the cluster's centre angle around to the front (-Z)
+    const desired = -g.centerAngle * 180 / Math.PI;
+    // choose the shortest path from the current yaw
+    let d = (desired - spin.yaw) % 360;
+    if (d > 180) d -= 360;
+    if (d < -180) d += 360;
+    spin.target = spin.yaw + d;
+  }
+
+  /* ════════════════════════════════════════════════════════════
+     5 · Presentation paths
+     ════════════════════════════════════════════════════════════ */
+  async function presentAsModel(scene, R) {
+    setStatus('Exporting your galaxy to USDZ…', 82);
+    const { USDZExporter } = await import('three/addons/exporters/USDZExporter.js');
+    const exporter = new USDZExporter();
+    const bytes = exporter.parseAsync
+      ? await exporter.parseAsync(scene, { maxTextureSize: 1024, quickLookCompatible: true })
+      : await exporter.parse(scene);
+    const url = URL.createObjectURL(new Blob([bytes], { type: 'model/vnd.usdz+zip' }));
+
+    const model = document.createElement('model');
+    model.id = 'galaxy-model';
+    model.setAttribute('aria-label', 'Floating galaxy of immersive video posters');
+    stage.appendChild(model);
+    model.src = url;
+
+    setStatus('Waking up the model…', 92);
+    try { await model.ready; } catch (e) {
+      setStatus('The model could not load (' + e + '). Try reloading.', 0);
+      return;
+    }
+    statusBox.style.display = 'none';
+
+    const diameter = 2 * R + CARD_W + 0.6;
+
+    function applyTransform() {
+      const m = new DOMMatrix();
+      if (document.immersiveElement === model) {
+        // Real-world scale, origin at the viewer's feet: just spin.
+        m.rotateAxisAngleSelf(0, 1, 0, spin.yaw);
+      } else {
+        // Inline: a slowly turning miniature of the whole galaxy.
+        const widthMeters = (model.clientWidth || 800) / 3800; // ≈38 px per cm
+        const s = widthMeters / (diameter * 1.08);
+        m.scaleSelf(s, s, s);
+        m.rotateAxisAngleSelf(0, 1, 0, spin.yaw);
+        m.translateSelf(0, -EYE, 0);
+      }
+      model.entityTransform = m;
+    }
+    spin.apply = applyTransform;
+    applyTransform();
+    spin.drifting = true;
+    driftToggle.setAttribute('aria-pressed', 'true');
+
+    model.addEventListener('immersivechange', () => {
+      const immersed = document.immersiveElement === model;
+      document.body.classList.toggle('immersive', immersed);
+      applyTransform();
+    });
+
+    if (supportsImmersive) {
+      immerseBtn.classList.add('available');
+      immerseBtn.addEventListener('click', async () => {
+        try { await model.requestImmersive(); }
+        catch (e) { supportNote.textContent = 'Immersive request was declined: ' + e; }
+      });
+      if (typeof document.exitImmersive === 'function') {
+        exitBtn.classList.add('available');
+        exitBtn.addEventListener('click', () => document.exitImmersive());
+      }
+      supportNote.innerHTML = '<strong>Your device supports immersive websites.</strong> Tap <strong>Step Inside</strong>, and the catalog will surround you at room scale — this page stays open as your remote control.';
+    } else {
+      supportNote.innerHTML = 'You\'re seeing the stereoscopic 3D miniature via the <code>&lt;model&gt;</code> element. Full room-scale immersion needs Safari on <strong>visionOS 27</strong>.';
+    }
+  }
+
+  async function presentAsWebGL(scene, root, R) {
+    const { OrbitControls } = await import('three/addons/controls/OrbitControls.js');
+
+    scene.add(new THREE.HemisphereLight(0xffffff, 0x30304a, 2.6));
+    const dir = new THREE.DirectionalLight(0xffffff, 1.2);
+    dir.position.set(3, 6, 4);
+    scene.add(dir);
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    stage.appendChild(renderer.domElement);
+
+    const camera = new THREE.PerspectiveCamera(60, 1, 0.05, 100);
+    camera.position.set(0, EYE + 0.9, R * 2.15);
+
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.target.set(0, EYE, 0);
+    controls.enableDamping = true;
+    controls.minDistance = 0.1;   // you can fly inside the ring
+    controls.maxDistance = R * 4;
+
+    function resize() {
+      const w = stage.clientWidth, h = stage.clientHeight;
+      renderer.setSize(w, h);
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    spin.apply = () => { root.rotation.y = spin.yaw * Math.PI / 180; };
+    spin.drifting = true;
+    driftToggle.setAttribute('aria-pressed', 'true');
+
+    renderer.setAnimationLoop(() => {
+      controls.update();
+      renderer.render(scene, camera);
+    });
+
+    statusBox.style.display = 'none';
+    supportNote.innerHTML = 'You\'re viewing the flat preview — drag to orbit, scroll to fly inside the ring. For real depth, open this page in Safari on <strong>Apple Vision Pro</strong>; on visionOS 27 you can step all the way inside.';
+  }
+
+  /* ════════════════════════════════════════════════════════════
+     6 · Boot
+     ════════════════════════════════════════════════════════════ */
+  (async function main() {
+    tick();
+    try {
+      const res = await fetch('catalog.json');
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      const data = await res.json();
+      const groups = collectGroups(data);
+
+      // Category chips
+      for (const g of groups) {
+        const b = document.createElement('button');
+        b.className = 'cat-chip';
+        b.style.setProperty('--chip-color', g.color);
+        b.setAttribute('aria-pressed', 'false');
+        b.innerHTML = '<span class="dot" aria-hidden="true"></span>' + g.label +
+          ' <span style="opacity:.55;font-weight:500;">' + g.cards.length + '</span>';
+        b.addEventListener('click', () => {
+          controlsBar.querySelectorAll('.cat-chip').forEach(x => x.setAttribute('aria-pressed', 'false'));
+          b.setAttribute('aria-pressed', 'true');
+          spin.drifting = false;
+          driftToggle.setAttribute('aria-pressed', 'false');
+          faceGroup(g);
+        });
+        controlsBar.insertBefore(b, driftToggle);
+      }
+
+      driftToggle.addEventListener('click', () => {
+        spin.drifting = !spin.drifting;
+        driftToggle.setAttribute('aria-pressed', String(spin.drifting));
+      });
+
+      const { scene, root, R } = await buildGalaxy(groups);
+
+      if (supportsModel) await presentAsModel(scene, R);
+      else await presentAsWebGL(scene, root, R);
+    } catch (err) {
+      console.error(err);
+      setStatus('Something went wrong building the galaxy: ' + err.message, 0);
+    }
+  })();
+  </script>
+</body>
+</html>
