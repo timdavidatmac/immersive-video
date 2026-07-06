@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Immersive Catalog — Apple Immersive Video &amp; Spatial Computing</title>
   <meta property="og:title" content="Immersive Catalog — step inside the library">
-  <meta property="og:description" content="Every immersive film on Apple Vision Pro, floating around you in your own space. An immersive website experience for Safari on visionOS 27.">
+  <meta property="og:description" content="Every immersive film on Apple Vision Pro, hanging around you in your own space. An immersive website experience for Safari on visionOS.">
   <meta property="og:url" content="https://imaginationave.com/immersive.html">
   <meta property="og:type" content="website">
   <link rel="stylesheet" href="styles.css">
@@ -65,7 +65,7 @@
       height: 100%;
       width: 0%;
       border-radius: 2px;
-      background: linear-gradient(90deg, #0a84ff, #bf5af2);
+      background: linear-gradient(90deg, #0176ba, #64d2ff);
       transition: width 0.25s ease;
     }
 
@@ -96,19 +96,31 @@
     .cat-chip:hover { transform: translateY(-1px); border-color: #86868b; }
     .cat-chip .dot {
       width: 9px; height: 9px; border-radius: 50%;
-      background: var(--chip-color, #0a84ff);
+      background: var(--chip-color, #0176ba);
       flex-shrink: 0;
     }
+    .cat-chip .chip-count { color: #6e6e73; }
+    .cat-chip[aria-pressed="true"] .chip-count { color: #d2d2d7; }
     .cat-chip[aria-pressed="true"] {
       background: #1d1d1f;
       border-color: #1d1d1f;
       color: #ffffff;
     }
 
+    .visually-hidden {
+      position: absolute;
+      width: 1px; height: 1px;
+      margin: -1px; padding: 0;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
     .immerse-btn {
       margin-left: auto;
       border: none;
-      background: linear-gradient(135deg, #0a84ff, #bf5af2);
+      background: #0176ba; /* site primary accent */
       color: #fff;
       font-size: 14px;
       font-weight: 700;
@@ -119,10 +131,10 @@
       display: none;
       align-items: center;
       gap: 8px;
-      box-shadow: 0 4px 16px rgba(96, 90, 255, 0.35);
-      transition: transform 0.15s, box-shadow 0.15s;
+      box-shadow: 0 4px 16px rgba(1, 118, 186, 0.3);
+      transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
     }
-    .immerse-btn:hover { transform: scale(1.04); box-shadow: 0 6px 22px rgba(96, 90, 255, 0.5); }
+    .immerse-btn:hover { background: #0160a0; transform: scale(1.04); box-shadow: 0 6px 22px rgba(1, 118, 186, 0.45); }
     .immerse-btn.available { display: inline-flex; }
 
     .drift-toggle {
@@ -136,7 +148,7 @@
       border-radius: 16px;
       cursor: pointer;
     }
-    .drift-toggle[aria-pressed="true"] { background: #e8f2ff; border-color: #0a84ff; color: #0a66c2; }
+    .drift-toggle[aria-pressed="true"] { background: #e8f2ff; border-color: #0176ba; color: #0176ba; }
 
     .support-note {
       font-size: 13px;
@@ -145,6 +157,28 @@
       line-height: 1.6;
     }
     .support-note strong { color: #1d1d1f; }
+
+    /* Banner shown after leaving XR with a selected title */
+    .open-banner {
+      display: none;
+      align-items: center;
+      gap: 14px;
+      background: #e8f2ff;
+      border: 1px solid #0176ba;
+      border-radius: 12px;
+      padding: 12px 16px;
+      margin: 12px 0 0;
+      font-size: 14px;
+      color: #1d1d1f;
+    }
+    .open-banner.active { display: flex; }
+    .open-banner a { font-weight: 700; }
+    .open-banner .dismiss {
+      margin-left: auto;
+      border: none; background: none; cursor: pointer;
+      color: #6e6e73; font-size: 16px; line-height: 1;
+      padding: 4px;
+    }
 
     /* ── Explainer cards ───────────────────────────────────── */
     .how-grid {
@@ -168,9 +202,53 @@
       font-size: 12px; color: #1d1d1f;
     }
 
-    /* ── Immersive "remote control" mode ───────────────────────
-       While the galaxy surrounds the viewer, the Safari window
-       collapses into a compact dark remote. ─────────────────── */
+    /* ── "Try more immersive websites" box ─────────────────── */
+    .try-more-box {
+      background: #e8f2ff;
+      border: 1px solid #0176ba;
+      border-radius: 14px;
+      padding: 20px 22px 22px;
+      margin-top: 12px;
+    }
+    .try-more-intro {
+      font-size: 14px;
+      color: #1d1d1f;
+      margin: 0 0 14px;
+      line-height: 1.6;
+    }
+    .try-more-intro code {
+      background: #ffffff; border-radius: 5px; padding: 1px 6px;
+      font-size: 12px; color: #1d1d1f;
+    }
+    .try-more-links {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 14px;
+    }
+    .try-more-card {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 16px 18px;
+      text-decoration: none;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .try-more-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 18px rgba(0,0,0,0.12);
+      text-decoration: none;
+    }
+    .try-more-title { font-size: 15px; font-weight: 700; color: #1d1d1f; }
+    .try-more-desc { font-size: 13px; color: #6e6e73; line-height: 1.55; }
+    .try-more-domain { font-size: 12.5px; font-weight: 600; color: #0176ba; margin-top: 2px; }
+
+    body.immersive .try-more { display: none; }
+
+    /* ── Immersive "remote control" mode (model-element fallback
+       path only — during WebXR the page isn't visible at all) ── */
     body.immersive { background: #101014; }
     body.immersive .site-header,
     body.immersive .page-hero,
@@ -187,7 +265,7 @@
     }
     body.immersive .remote-banner { display: block; }
     .remote-banner h2 { font-size: 21px; margin: 0 0 4px; }
-    .remote-banner p { font-size: 13.5px; color: #98989f; margin: 0; }
+    .remote-banner p { font-size: 13.5px; color: #b8b8c2; margin: 0; }
 
     body.immersive .galaxy-controls { gap: 12px; }
     body.immersive .cat-chip {
@@ -199,12 +277,12 @@
       border-radius: 22px;
     }
     body.immersive .cat-chip[aria-pressed="true"] {
-      background: var(--chip-color, #0a84ff);
+      background: var(--chip-color, #0176ba);
       border-color: transparent;
       color: #fff;
     }
     body.immersive .drift-toggle { background: #1c1c21; border-color: #3a3a40; }
-    body.immersive .support-note { color: #98989f; }
+    body.immersive .support-note { color: #b8b8c2; }
 
     .exit-btn {
       display: none;
@@ -245,6 +323,11 @@
             <li><a href="newsletters/">Newsletter</a></li>
           </ul>
         </nav>
+        <!-- ── Site-wide search ── -->
+        <div class="site-search" role="search" aria-label="Site-wide search">
+          <input type="search" class="site-search-input" id="site-search-input" placeholder="Search…" aria-label="Search all content" autocomplete="off" spellcheck="false">
+          <div class="site-search-results" id="site-search-results" role="listbox" aria-live="polite"></div>
+        </div>
       </div>
     </div>
   </header>
@@ -252,16 +335,26 @@
   <!-- ═══════════════════════ PAGE HERO -->
   <div class="page-hero" role="presentation" style="background: linear-gradient(160deg, #12121a, #23233a); ">
     <h1 style="color:#f5f5f7;">The Immersive Catalog</h1>
-    <p style="color:#b8b8c2;">Every immersive film in the library, floating around you in your own space. Open this page in Safari on Apple Vision Pro and tap <strong style="color:#f5f5f7;">Step Inside</strong>.</p>
+    <p style="color:#b8b8c2;">Every immersive film in the library, hanging in a gallery you can walk through. Open this page in Safari on Apple Vision Pro and tap <strong style="color:#f5f5f7;">Step Inside</strong> — then pinch any poster to open its film.</p>
   </div>
 
   <!-- ═══════════════════════ MAIN CONTENT -->
   <main class="page-content" role="main" id="main-content">
 
-    <!-- Visible only while immersed -->
+    <p class="visually-hidden">
+      This page presents the same catalog of immersive films as the Immersive Video page,
+      arranged as a three-dimensional gallery of poster cards hanging at different depths
+      and heights, grouped by category. On Apple Vision Pro the gallery can surround you at
+      room scale and each poster can be opened with a pinch; on other devices it appears as
+      an interactive 3D preview where posters can be clicked. For a fully accessible text
+      listing of every title, with descriptions and links, visit the
+      <a href="./">Immersive Video page</a>.
+    </p>
+
+    <!-- Visible only while immersed via the model-element fallback -->
     <div class="remote-banner">
       <h2>You're inside the catalog ✦</h2>
-      <p>Look around — titles are grouped into constellations by category. Use the buttons below to spin a category to face you.</p>
+      <p>Look around — titles hang in constellations by category. Use the buttons below to turn a category toward you, and press the Digital Crown to leave. Tip: you can also grab this window's bar and move it out of the way.</p>
     </div>
 
     <!-- 3D stage -->
@@ -276,11 +369,16 @@
     <!-- Controls -->
     <div class="galaxy-controls" id="galaxy-controls">
       <!-- category chips injected here -->
-      <button class="drift-toggle" id="drift-toggle" aria-pressed="false" title="Slowly rotate the galaxy">✦ Drift</button>
+      <button class="drift-toggle" id="drift-toggle" aria-pressed="false" title="Gently sway the gallery">✦ Drift</button>
       <button class="immerse-btn" id="immerse-btn">⬢ Step Inside</button>
-      <button class="exit-btn" id="exit-btn">Leave the galaxy</button>
+      <button class="exit-btn" id="exit-btn">Leave the gallery</button>
     </div>
     <p class="support-note" id="support-note">Checking what your browser can do…</p>
+
+    <div class="open-banner" id="open-banner" role="status">
+      <span>You picked <a id="open-banner-link" href="#" target="_blank" rel="noopener">a title</a> — tap to open it.</span>
+      <button class="dismiss" id="open-banner-dismiss" aria-label="Dismiss">✕</button>
+    </div>
 
     <!-- Explainer -->
     <section class="how-section">
@@ -290,27 +388,49 @@
           <h3>Built from the live catalog</h3>
           Your browser reads the same <code>catalog.json</code> that powers the
           <a href="./">Immersive Video</a> page, composes a poster for every title,
-          and assembles a 3D galaxy of ~45 floating cards grouped into
+          and hangs ~45 cards at different depths and heights, clustered into
           constellations by category — travel, sports, music, indie Theater films, and more.
         </div>
         <div class="how-card">
-          <h3>A USDZ world, made on the fly</h3>
-          The galaxy is exported in your browser to <code>USDZ</code> and displayed with the
-          HTML <code>&lt;model&gt;</code> element — rendered in true stereoscopic 3D on
-          Apple Vision Pro. On a Mac, iPhone, or PC you get an interactive WebGL preview instead.
+          <h3>Walk through it with WebXR</h3>
+          On Apple Vision Pro, <strong>Step Inside</strong> starts a WebXR session: Safari's
+          window disappears, the gallery surrounds you at room scale, and you can physically
+          walk among the cards. <strong>Pinch a poster</strong> to open its film in the right
+          app; <strong>pinch empty space and drag</strong> to pull the whole gallery around you.
         </div>
         <div class="how-card">
-          <h3>Step inside on visionOS 27</h3>
-          Safari's new Immersive API (<code>requestImmersive()</code>) carries the model
-          beyond the browser window and places it around you at real-world scale —
-          while this page stays visible as your remote control. Tap a category to spin
-          that constellation in front of you.
+          <h3>A USDZ miniature, made on the fly</h3>
+          The inline preview is a real USDZ model exported in your browser and displayed with
+          the HTML <code>&lt;model&gt;</code> element — true stereoscopic 3D on Vision Pro.
+          On a Mac, iPhone, or PC you get an interactive WebGL preview instead: drag to orbit,
+          click a poster to open its film.
         </div>
       </div>
       <p class="support-note" style="margin-top:16px;">
         Poster artwork is streamed from each film's original source and belongs to its rights holders.
-        Titles link out from the <a href="./">main catalog page</a> — this page is the view from inside.
+        Films open in their own apps — Apple TV, Theater, and others — via the same links as the
+        <a href="./">main catalog page</a>.
       </p>
+    </section>
+
+    <!-- ── More immersive websites to try ── -->
+    <section class="try-more" aria-labelledby="try-more-heading">
+      <h2 class="section-heading" id="try-more-heading" style="margin-top:36px;">Try more immersive websites</h2>
+      <div class="try-more-box">
+        <p class="try-more-intro">Two demos from the WebKit team — built with the same <code>&lt;model&gt;</code> + Immersive API this page uses. Open them in Safari on Apple Vision Pro:</p>
+        <div class="try-more-links">
+          <a class="try-more-card" href="https://webkit.org/demos/model-demos/ticket-sales.html" target="_blank" rel="noopener">
+            <span class="try-more-title">🎭 Theater Ticket Sales</span>
+            <span class="try-more-desc">Pick a seat on the venue map, preview the stage from that exact seat in miniature, then step into the theater at full scale before you buy.</span>
+            <span class="try-more-domain">webkit.org ↗</span>
+          </a>
+          <a class="try-more-card" href="https://webkit.org/demos/model-demos/escape-room.html" target="_blank" rel="noopener">
+            <span class="try-more-title">🔍 Escape Room Game</span>
+            <span class="try-more-desc">Watch the trailer, then enter an immersive escape room — with a docked video screen and model animations when the puzzle unfolds.</span>
+            <span class="try-more-domain">webkit.org ↗</span>
+          </a>
+        </div>
+      </div>
     </section>
 
   </main>
@@ -323,7 +443,77 @@
     </div>
   </footer>
 
-  <!-- ═══════════════════════ GALAXY ENGINE -->
+  <!-- ── Site-wide search JS ── -->
+  <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.min.js"></script>
+  <script>
+  (function() {
+    const input  = document.getElementById('site-search-input');
+    const box    = document.getElementById('site-search-results');
+    if (!input || !box) return;
+
+    let fuse = null;
+
+    function loadIndex() {
+      fetch('search-index.json')
+        .then(r => r.json())
+        .then(data => {
+          fuse = new Fuse(data, {
+            keys: [
+              { name: 'title',   weight: 0.6 },
+              { name: 'body',    weight: 0.3 },
+              { name: 'section', weight: 0.1 },
+            ],
+            threshold: 0.35,
+            includeScore: true,
+            minMatchCharLength: 2,
+          });
+        });
+    }
+
+    input.addEventListener('focus', function onFocus() {
+      if (!fuse) loadIndex();
+      input.removeEventListener('focus', onFocus);
+    }, { once: true });
+
+    input.addEventListener('input', function() {
+      const q = this.value.trim();
+      if (!q || !fuse) { close(); return; }
+      const results = fuse.search(q, { limit: 10 });
+      if (!results.length) {
+        box.innerHTML = '<div class="search-no-results">No results found</div>';
+        box.classList.add('active');
+        return;
+      }
+      box.innerHTML = results.map(r => {
+        const item = r.item;
+        const url  = item.url;
+        return `<a class="search-result-item" href="${url}">
+          <span class="search-result-title">${item.title}</span>
+          <span class="search-result-meta">
+            <span class="search-result-page">${item.page}</span>
+            ${item.section}
+          </span>
+        </a>`;
+      }).join('');
+      box.classList.add('active');
+    });
+
+    document.addEventListener('click', function(e) {
+      if (!input.contains(e.target) && !box.contains(e.target)) close();
+    });
+
+    input.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') { close(); input.blur(); }
+    });
+
+    function close() {
+      box.classList.remove('active');
+      box.innerHTML = '';
+    }
+  })();
+  </script>
+
+  <!-- ═══════════════════════ GALLERY ENGINE -->
   <script type="importmap">
   {
     "imports": {
@@ -337,16 +527,15 @@
   import * as THREE from 'three';
 
   /* ════════════════════════════════════════════════════════════
-     Layout constants (metres — immersive mode is real-world scale,
-     origin at the viewer's feet)
+     Layout constants (metres — XR and model-immersive modes are
+     real-world scale, origin at the viewer's feet)
      ════════════════════════════════════════════════════════════ */
-  const CARD_W = 0.55;            // poster width
-  const CARD_H = CARD_W * 9 / 16; // poster height
-  const GAP_X = 0.09;             // horizontal gap between posters
-  const ROW_H = 0.46;             // vertical spacing between rows
-  const GROUP_GAP = 0.55;         // arc-length gap between constellations
-  const EYE = 1.5;                // galaxy centre height above the floor
-  const MIN_RADIUS = 2.4;
+  const CARD_W = 0.66;              // poster width (device test: 0.55 felt small)
+  const CARD_H = CARD_W * 9 / 16;   // poster height
+  const CEIL = 3.1;                 // "ceiling" height that strings hang from
+  const FAN_START = 38;             // degrees — keep the zone straight ahead clear
+  const FAN_END = 322;              //   (Safari's window sits there in fallback mode)
+  const EYE = 1.6;
 
   const stage = document.getElementById('stage');
   const statusBox = document.getElementById('stage-status');
@@ -357,11 +546,14 @@
   const exitBtn = document.getElementById('exit-btn');
   const driftToggle = document.getElementById('drift-toggle');
   const supportNote = document.getElementById('support-note');
+  const openBanner = document.getElementById('open-banner');
+  const openBannerLink = document.getElementById('open-banner-link');
 
   const supportsModel = typeof window.HTMLModelElement !== 'undefined';
   const supportsImmersive = !!document.immersiveEnabled;
 
   function setStatus(msg, pct) {
+    statusBox.style.display = '';
     statusText.textContent = msg;
     if (pct != null) progressFill.style.width = Math.round(pct) + '%';
   }
@@ -396,6 +588,7 @@
           return {
             title: e.title,
             thumb: e.thumbnail || null,
+            url: e.url || e.deep_link || e.app_store || e.website || null,
             meta: meta.join(' · '),
             pending: e.status === 'pending',
             free: e.free === true
@@ -521,7 +714,9 @@
   }
 
   /* ════════════════════════════════════════════════════════════
-     3 · Build the galaxy scene
+     3 · Build the hanging gallery
+     Cards hang from "strings" at varied heights and depths, in
+     category clusters fanned around the viewer's starting point.
      ════════════════════════════════════════════════════════════ */
   function jitter(seed) { // deterministic, so USDZ + preview match
     const x = Math.sin(seed * 127.1 + 311.7) * 43758.5453;
@@ -535,8 +730,7 @@
     return tex;
   }
 
-  async function buildGalaxy(groups) {
-    // Load artwork with progress
+  async function buildGallery(groups) {
     const allCards = groups.flatMap(g => g.cards.map(card => ({ card, group: g })));
     let done = 0;
     setStatus('Composing posters… 0 / ' + allCards.length, 5);
@@ -548,102 +742,284 @@
       setStatus('Composing posters… ' + done + ' / ' + allCards.length, 5 + 70 * done / allCards.length);
     }));
 
-    // Ring layout: arc lengths first, then radius so it closes into 360°
-    for (const g of groups) {
-      const n = g.cards.length;
-      g.rows = n > 10 ? 3 : n > 4 ? 2 : 1;
-      g.perRow = Math.ceil(n / g.rows);
-      g.arcLen = g.perRow * (CARD_W + GAP_X);
-    }
-    const totalLen = groups.reduce((a, g) => a + g.arcLen, 0) + groups.length * GROUP_GAP;
-    const R = Math.max(MIN_RADIUS, totalLen / (2 * Math.PI));
-
     const scene = new THREE.Scene();
+    scene.add(new THREE.HemisphereLight(0xffffff, 0x30304a, 2.6));
+    const dirLight = new THREE.DirectionalLight(0xffffff, 1.2);
+    dirLight.position.set(3, 6, 4);
+    scene.add(dirLight);
+
     const root = new THREE.Group();
-    root.name = 'galaxy';
+    root.name = 'gallery';
     scene.add(root);
 
-    const geo = new THREE.PlaneGeometry(CARD_W, CARD_H);
-    let cursor = 0, idx = 0;
+    const cardGeo = new THREE.PlaneGeometry(CARD_W, CARD_H);
+    const stringMat = new THREE.MeshStandardMaterial({ color: 0x3a3a40, roughness: 0.9, metalness: 0 });
+    const cardMeshes = [];
 
-    for (const g of groups) {
-      g.centerAngle = (cursor + g.arcLen / 2) / R;
-      const cluster = new THREE.Group();
-      cluster.name = g.key;
+    // Fan the clusters around the viewer, weighted by card count,
+    // at alternating distances so depth varies cluster to cluster.
+    const totalCards = allCards.length;
+    const fanSpan = FAN_END - FAN_START;
+    const clusterDist = [2.5, 3.9, 3.0, 4.4, 2.7, 4.0, 3.3];
+    let angleCursor = FAN_START;
+    let idx = 0;
+    let maxDist = 0;
+
+    groups.forEach((g, gi) => {
+      const share = fanSpan * (g.cards.length / totalCards);
+      const centerDeg = angleCursor + share / 2;
+      g.centerAngle = centerDeg * Math.PI / 180;
+      const D = clusterDist[gi % clusterDist.length];
+
+      // Local cluster frame: tangent (sideways) + radial (depth) around the centre point
+      const dirX = Math.sin(g.centerAngle), dirZ = -Math.cos(g.centerAngle);
+      const tanX = Math.cos(g.centerAngle), tanZ = Math.sin(g.centerAngle);
+
+      const cols = Math.max(2, Math.ceil(Math.sqrt(g.cards.length * 1.7)));
 
       g.cards.forEach((card, i) => {
-        const row = Math.floor(i / g.perRow);
-        const col = i % g.perRow;
-        const cardsInRow = Math.min(g.perRow, g.cards.length - row * g.perRow);
-        const rowLen = cardsInRow * (CARD_W + GAP_X);
-        const inset = (g.arcLen - rowLen) / 2; // centre short rows
-        const a = (cursor + inset + (col + 0.5) * (CARD_W + GAP_X)) / R;
-        const r = R + jitter(idx * 3 + 1) * 0.24;
-        const y = EYE + ((g.rows - 1) / 2 - row) * ROW_H + jitter(idx * 3 + 2) * 0.1;
+        const col = i % cols, row = Math.floor(i / cols);
+        const t = (col - (cols - 1) / 2) * 0.82 + jitter(idx * 5 + 1) * 0.2;   // sideways
+        const d = (row - Math.floor(g.cards.length / cols / 2)) * 0.85 + jitter(idx * 5 + 2) * 0.3; // depth
+        const y = 1.15 + ((col * 2 + row * 3) % 4) * 0.34 + jitter(idx * 5 + 3) * 0.12; // hang height
 
-        const mat = new THREE.MeshStandardMaterial({ map: card.texture, roughness: 0.85, metalness: 0 });
-        const mesh = new THREE.Mesh(geo, mat);
-        mesh.position.set(r * Math.sin(a), y, -r * Math.cos(a));
+        const x = dirX * (D + d) + tanX * t;
+        const z = dirZ * (D + d) + tanZ * t;
+        const dist = Math.hypot(x, z);
+        maxDist = Math.max(maxDist, dist);
+
+        const mat = new THREE.MeshStandardMaterial({ map: card.texture, roughness: 0.85, metalness: 0, side: THREE.DoubleSide });
+        const mesh = new THREE.Mesh(cardGeo, mat);
+        mesh.position.set(x, y, z);
         mesh.lookAt(0, y, 0);
-        mesh.rotateZ(jitter(idx * 3 + 3) * 0.06);
+        mesh.rotateZ(jitter(idx * 5 + 4) * 0.05);
         mesh.name = 'card_' + idx;
-        cluster.add(mesh);
+        mesh.userData = {
+          card,
+          baseY: y,
+          phase: jitter(idx * 5 + 5) * Math.PI * 4,
+          baseScale: 1
+        };
+        root.add(mesh);
+        cardMeshes.push(mesh);
+
+        // The string it hangs from
+        const stringLen = CEIL - (y + CARD_H / 2);
+        if (stringLen > 0.05) {
+          const string = new THREE.Mesh(
+            new THREE.CylinderGeometry(0.0045, 0.0045, stringLen, 5),
+            stringMat
+          );
+          string.position.set(x, y + CARD_H / 2 + stringLen / 2, z);
+          string.name = 'string_' + idx;
+          mesh.userData.string = string;
+          root.add(string);
+        }
         idx++;
       });
 
       // Constellation label above the cluster
       const lc = labelCanvas(g);
-      const labelW = 1.15, labelH = labelW * lc.height / lc.width;
-      const lmat = new THREE.MeshStandardMaterial({ map: makeTexture(lc), roughness: 0.9, metalness: 0 });
+      const labelW = 1.25, labelH = labelW * lc.height / lc.width;
+      const lmat = new THREE.MeshStandardMaterial({ map: makeTexture(lc), roughness: 0.9, metalness: 0, side: THREE.DoubleSide });
       const label = new THREE.Mesh(new THREE.PlaneGeometry(labelW, labelH), lmat);
-      const ly = EYE + ((g.rows - 1) / 2) * ROW_H + 0.44;
-      label.position.set(R * Math.sin(g.centerAngle), ly, -R * Math.cos(g.centerAngle));
-      label.lookAt(0, ly, 0);
+      label.position.set(dirX * D, 2.62, dirZ * D);
+      label.lookAt(0, 2.62, 0);
       label.name = 'label_' + g.key;
-      cluster.add(label);
+      root.add(label);
 
-      root.add(cluster);
-      cursor += g.arcLen + GROUP_GAP;
-    }
+      angleCursor += share;
+    });
 
-    return { scene, root, R };
+    return { scene, root, cardMeshes, maxDist };
   }
 
   /* ════════════════════════════════════════════════════════════
-     4 · Shared rotation controller (chips, drift, tweens)
+     4 · Shared motion: yaw controller + hanging-card sway
      ════════════════════════════════════════════════════════════ */
   const spin = {
-    yaw: 0,            // current, degrees
-    target: 0,
+    yaw: 0, target: 0, anchor: 0,
     drifting: false,
-    apply: null        // set by the active presentation path
+    apply: null   // set by the active presentation path
   };
 
-  function tick() {
-    requestAnimationFrame(tick);
-    if (spin.drifting) spin.target += 0.06; // gentle ~3.6°/s
+  function faceGroup(g) {
+    const desired = -g.centerAngle * 180 / Math.PI;
+    let d = (desired - spin.anchor) % 360;
+    if (d > 180) d -= 360;
+    if (d < -180) d += 360;
+    spin.anchor += d;
+  }
+
+  function stepSpin(nowMs) {
+    // Drift is a gentle ±20° sway around the anchor — it always comes back.
+    spin.target = spin.anchor + (spin.drifting ? 20 * Math.sin(nowMs * 0.00028) : 0);
     const delta = spin.target - spin.yaw;
-    if (Math.abs(delta) > 0.01) {
-      spin.yaw += delta * 0.06; // ease toward target
+    if (Math.abs(delta) > 0.008) {
+      spin.yaw += delta * 0.05;
       if (spin.apply) spin.apply();
     }
   }
 
-  function faceGroup(g) {
-    // Bring the cluster's centre angle around to the front (-Z)
-    const desired = -g.centerAngle * 180 / Math.PI;
-    // choose the shortest path from the current yaw
-    let d = (desired - spin.yaw) % 360;
-    if (d > 180) d -= 360;
-    if (d < -180) d += 360;
-    spin.target = spin.yaw + d;
+  function swayCards(cardMeshes, nowMs) {
+    const t = nowMs * 0.001;
+    for (const m of cardMeshes) {
+      const dy = Math.sin(t * 0.55 + m.userData.phase) * 0.022;
+      m.position.y = m.userData.baseY + dy;
+      if (m.userData.string) m.userData.string.position.y =
+        m.position.y + CARD_H / 2 + (m.userData.string.geometry.parameters.height / 2);
+    }
   }
 
   /* ════════════════════════════════════════════════════════════
-     5 · Presentation paths
+     5 · Opening a title
      ════════════════════════════════════════════════════════════ */
-  async function presentAsModel(scene, R) {
-    setStatus('Exporting your galaxy to USDZ…', 82);
+  function offerCard(card, fromGesture) {
+    if (!card.url) return;
+    openBannerLink.href = card.url;
+    openBannerLink.textContent = card.title;
+    openBanner.classList.add('active');
+    if (fromGesture) {
+      window.open(card.url, '_blank', 'noopener');
+    } else {
+      // Post-XR: pop-up rules may block window.open, so also try it
+      // and leave the banner up either way.
+      try { window.open(card.url, '_blank', 'noopener'); } catch (e) { /* banner covers it */ }
+    }
+  }
+  document.getElementById('open-banner-dismiss').addEventListener('click', () => openBanner.classList.remove('active'));
+
+  /* ════════════════════════════════════════════════════════════
+     6 · WebXR — the interactive, walkable presentation
+     ════════════════════════════════════════════════════════════ */
+  async function detectXRMode() {
+    if (!navigator.xr) return null;
+    for (const mode of ['immersive-ar', 'immersive-vr']) {
+      try { if (await navigator.xr.isSessionSupported(mode)) return mode; } catch (e) { /* keep looking */ }
+    }
+    return null;
+  }
+
+  function makeXRExtras() {
+    // Only shown in fully virtual (VR) sessions, where there's no passthrough
+    const extras = new THREE.Group();
+    extras.name = 'vr-extras';
+    const floor = new THREE.Mesh(
+      new THREE.CircleGeometry(8, 48),
+      new THREE.MeshStandardMaterial({ color: 0x17171d, roughness: 1 })
+    );
+    floor.rotation.x = -Math.PI / 2;
+    extras.add(floor);
+    return extras;
+  }
+
+  function setupXR(ctx) {
+    // ctx: { scene, root, cardMeshes, getRenderer }
+    const raycaster = new THREE.Raycaster();
+    const tempMatrix = new THREE.Matrix4();
+    let session = null;
+    let grab = null;
+    let picked = null;
+    let pendingCard = null;
+    let vrExtras = null;
+
+    function castFrom(controller) {
+      tempMatrix.identity().extractRotation(controller.matrixWorld);
+      raycaster.ray.origin.setFromMatrixPosition(controller.matrixWorld);
+      raycaster.ray.direction.set(0, 0, -1).applyMatrix4(tempMatrix);
+      return raycaster.intersectObjects(ctx.cardMeshes, false);
+    }
+
+    function onSelectStart(event) {
+      const controller = event.target;
+      const hits = castFrom(controller);
+      if (hits.length) {
+        picked = hits[0].object;
+        picked.scale.setScalar(1.12); // acknowledge the pinch
+      } else {
+        grab = {
+          controller,
+          startCtrl: new THREE.Vector3().setFromMatrixPosition(controller.matrixWorld),
+          startRoot: ctx.root.position.clone()
+        };
+      }
+    }
+
+    function onSelectEnd() {
+      if (picked) {
+        picked.scale.setScalar(1);
+        pendingCard = picked.userData.card;
+        picked = null;
+        if (session) session.end(); // leave XR, then open the film
+        return;
+      }
+      grab = null;
+    }
+
+    function xrFrame(nowMs) {
+      if (grab) {
+        const cur = new THREE.Vector3().setFromMatrixPosition(grab.controller.matrixWorld);
+        ctx.root.position.copy(grab.startRoot).add(cur.clone().sub(grab.startCtrl));
+      }
+      swayCards(ctx.cardMeshes, nowMs);
+    }
+
+    async function enter(mode) {
+      const renderer = ctx.getRenderer();
+      renderer.xr.enabled = true;
+      renderer.xr.setReferenceSpaceType('local-floor');
+
+      try {
+        session = await navigator.xr.requestSession(mode, { optionalFeatures: ['local-floor', 'hand-tracking'] });
+      } catch (e) {
+        supportNote.textContent = 'Could not start the immersive session: ' + e;
+        return;
+      }
+
+      if (mode === 'immersive-vr') {
+        ctx.scene.background = new THREE.Color(0x0b0b12);
+        vrExtras = makeXRExtras();
+        ctx.scene.add(vrExtras);
+      } else {
+        ctx.scene.background = null; // passthrough
+      }
+
+      const c0 = renderer.xr.getController(0);
+      const c1 = renderer.xr.getController(1);
+      for (const c of [c0, c1]) {
+        c.addEventListener('selectstart', onSelectStart);
+        c.addEventListener('selectend', onSelectEnd);
+        ctx.scene.add(c);
+      }
+
+      session.addEventListener('end', () => {
+        for (const c of [c0, c1]) {
+          c.removeEventListener('selectstart', onSelectStart);
+          c.removeEventListener('selectend', onSelectEnd);
+          ctx.scene.remove(c);
+        }
+        if (vrExtras) { ctx.scene.remove(vrExtras); vrExtras = null; }
+        ctx.scene.background = null;
+        ctx.root.position.set(0, 0, 0); // put the gallery back where it started
+        grab = null; picked = null; session = null;
+        ctx.onSessionEnd && ctx.onSessionEnd();
+        if (pendingCard) { const card = pendingCard; pendingCard = null; offerCard(card, false); }
+      });
+
+      ctx.onXRFrame = xrFrame;
+      await renderer.xr.setSession(session);
+    }
+
+    return { enter };
+  }
+
+  /* ════════════════════════════════════════════════════════════
+     7 · Presentation paths
+     ════════════════════════════════════════════════════════════ */
+
+  // 7a — visionOS inline preview: stereoscopic USDZ miniature
+  async function presentInlineModel(scene, maxDist) {
+    setStatus('Exporting your gallery to USDZ…', 82);
     const { USDZExporter } = await import('three/addons/exporters/USDZExporter.js');
     const exporter = new USDZExporter();
     const bytes = exporter.parseAsync
@@ -652,27 +1028,27 @@
     const url = URL.createObjectURL(new Blob([bytes], { type: 'model/vnd.usdz+zip' }));
 
     const model = document.createElement('model');
-    model.id = 'galaxy-model';
-    model.setAttribute('aria-label', 'Floating galaxy of immersive video posters');
+    model.id = 'gallery-model';
+    model.setAttribute('aria-label', 'Miniature 3D gallery of immersive video posters');
     stage.appendChild(model);
     model.src = url;
 
     setStatus('Waking up the model…', 92);
     try { await model.ready; } catch (e) {
       setStatus('The model could not load (' + e + '). Try reloading.', 0);
-      return;
+      return null;
     }
     statusBox.style.display = 'none';
 
-    const diameter = 2 * R + CARD_W + 0.6;
+    const diameter = 2 * maxDist + CARD_W + 0.6;
 
     function applyTransform() {
       const m = new DOMMatrix();
-      if (document.immersiveElement === model) {
-        // Real-world scale, origin at the viewer's feet: just spin.
+      if (document.immersiveElement) {
+        // Fallback immersion: real-world scale, origin at the viewer's feet.
         m.rotateAxisAngleSelf(0, 1, 0, spin.yaw);
       } else {
-        // Inline: a slowly turning miniature of the whole galaxy.
+        // Inline: a slowly swaying miniature of the whole gallery.
         const widthMeters = (model.clientWidth || 800) / 3800; // ≈38 px per cm
         const s = widthMeters / (diameter * 1.08);
         m.scaleSelf(s, s, s);
@@ -683,51 +1059,51 @@
     }
     spin.apply = applyTransform;
     applyTransform();
-    spin.drifting = true;
-    driftToggle.setAttribute('aria-pressed', 'true');
 
     model.addEventListener('immersivechange', () => {
-      const immersed = document.immersiveElement === model;
+      const immersed = !!document.immersiveElement; // per Apple's sample code
       document.body.classList.toggle('immersive', immersed);
       applyTransform();
     });
 
-    if (supportsImmersive) {
-      immerseBtn.classList.add('available');
-      immerseBtn.addEventListener('click', async () => {
-        try { await model.requestImmersive(); }
-        catch (e) { supportNote.textContent = 'Immersive request was declined: ' + e; }
-      });
-      if (typeof document.exitImmersive === 'function') {
-        exitBtn.classList.add('available');
-        exitBtn.addEventListener('click', () => document.exitImmersive());
-      }
-      supportNote.innerHTML = '<strong>Your device supports immersive websites.</strong> Tap <strong>Step Inside</strong>, and the catalog will surround you at room scale — this page stays open as your remote control.';
-    } else {
-      supportNote.innerHTML = 'You\'re seeing the stereoscopic 3D miniature via the <code>&lt;model&gt;</code> element. Full room-scale immersion needs Safari on <strong>visionOS 27</strong>.';
-    }
+    return model;
   }
 
-  async function presentAsWebGL(scene, root, R) {
+  // 7b — model-element requestImmersive fallback (no WebXR available)
+  function wireImmersiveFallback(model) {
+    immerseBtn.classList.add('available');
+    immerseBtn.addEventListener('click', async () => {
+      try { await model.requestImmersive(); }
+      catch (e) { supportNote.textContent = 'Immersive request was declined: ' + e; }
+    });
+    const exitFn = typeof document.exitImmersive === 'function'
+      ? () => document.exitImmersive()
+      : typeof model.exitImmersive === 'function'
+        ? () => model.exitImmersive()
+        : null;
+    if (exitFn) {
+      exitBtn.classList.add('available');
+      exitBtn.addEventListener('click', exitFn);
+    }
+    supportNote.innerHTML = '<strong>Tap Step Inside</strong> and the gallery surrounds you at room scale — this page stays open as a remote control. (Your Safari supports immersive websites but not WebXR, so posters aren\'t tappable in this mode; use the buttons here instead.)';
+  }
+
+  // 7c — flat WebGL preview (desktop and any non-model browser)
+  async function presentWebGL(ctx) {
     const { OrbitControls } = await import('three/addons/controls/OrbitControls.js');
+    const renderer = ctx.getRenderer();
+    renderer.domElement.style.display = '';
 
-    scene.add(new THREE.HemisphereLight(0xffffff, 0x30304a, 2.6));
-    const dir = new THREE.DirectionalLight(0xffffff, 1.2);
-    dir.position.set(3, 6, 4);
-    scene.add(dir);
-
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    stage.appendChild(renderer.domElement);
-
-    const camera = new THREE.PerspectiveCamera(60, 1, 0.05, 100);
-    camera.position.set(0, EYE + 0.9, R * 2.15);
+    const camera = new THREE.PerspectiveCamera(65, 1, 0.05, 100);
+    // Start where a visitor stands: inside the gallery's clear zone,
+    // looking into the hanging cards (their fronts all face this point).
+    camera.position.set(0, EYE + 0.1, -1.1);
 
     const controls = new OrbitControls(camera, renderer.domElement);
-    controls.target.set(0, EYE, 0);
+    controls.target.set(0, EYE, 0.9);
     controls.enableDamping = true;
-    controls.minDistance = 0.1;   // you can fly inside the ring
-    controls.maxDistance = R * 4;
+    controls.minDistance = 0.1; // you can fly right inside
+    controls.maxDistance = ctx.maxDist * 4;
 
     function resize() {
       const w = stage.clientWidth, h = stage.clientHeight;
@@ -738,24 +1114,48 @@
     resize();
     window.addEventListener('resize', resize);
 
-    spin.apply = () => { root.rotation.y = spin.yaw * Math.PI / 180; };
-    spin.drifting = true;
-    driftToggle.setAttribute('aria-pressed', 'true');
+    // Click a poster to open its film (drag = orbit, small movement = click)
+    const raycaster = new THREE.Raycaster();
+    const pointer = new THREE.Vector2();
+    let downAt = null;
+    renderer.domElement.addEventListener('pointerdown', e => { downAt = [e.clientX, e.clientY]; });
+    renderer.domElement.addEventListener('pointerup', e => {
+      if (!downAt) return;
+      const moved = Math.hypot(e.clientX - downAt[0], e.clientY - downAt[1]);
+      downAt = null;
+      if (moved > 6) return;
+      const rect = renderer.domElement.getBoundingClientRect();
+      pointer.set(((e.clientX - rect.left) / rect.width) * 2 - 1, -((e.clientY - rect.top) / rect.height) * 2 + 1);
+      raycaster.setFromCamera(pointer, camera);
+      const hits = raycaster.intersectObjects(ctx.cardMeshes, false);
+      if (hits.length) offerCard(hits[0].object.userData.card, true);
+    });
+    renderer.domElement.style.cursor = 'pointer';
 
-    renderer.setAnimationLoop(() => {
+    spin.apply = () => { ctx.root.rotation.y = spin.yaw * Math.PI / 180; };
+
+    renderer.setAnimationLoop((nowMs) => {
+      stepSpin(nowMs);
+      swayCards(ctx.cardMeshes, nowMs);
+      if (ctx.onXRFrame && renderer.xr.isPresenting) ctx.onXRFrame(nowMs);
       controls.update();
-      renderer.render(scene, camera);
+      renderer.render(ctx.scene, renderer.xr.isPresenting ? renderer.xr.getCamera() : camera);
     });
 
     statusBox.style.display = 'none';
-    supportNote.innerHTML = 'You\'re viewing the flat preview — drag to orbit, scroll to fly inside the ring. For real depth, open this page in Safari on <strong>Apple Vision Pro</strong>; on visionOS 27 you can step all the way inside.';
+    return { camera, controls };
   }
 
   /* ════════════════════════════════════════════════════════════
-     6 · Boot
+     8 · Boot
      ════════════════════════════════════════════════════════════ */
   (async function main() {
-    tick();
+    if (location.protocol === 'file:') {
+      setStatus('This page needs a web server — opening the file directly (file://) blocks loading catalog.json. Run one from the site folder, e.g.:  python3 -m http.server  — then visit http://localhost:8000/immersive.html', 0);
+      supportNote.textContent = 'Tip: any static server works; the page only needs to fetch catalog.json and the poster artwork.';
+      return;
+    }
+
     try {
       const res = await fetch('catalog.json');
       if (!res.ok) throw new Error('HTTP ' + res.status);
@@ -769,12 +1169,11 @@
         b.style.setProperty('--chip-color', g.color);
         b.setAttribute('aria-pressed', 'false');
         b.innerHTML = '<span class="dot" aria-hidden="true"></span>' + g.label +
-          ' <span style="opacity:.55;font-weight:500;">' + g.cards.length + '</span>';
+          ' <span class="chip-count" style="font-weight:500;">' + g.cards.length + '</span>';
+        b.setAttribute('aria-label', 'Turn the ' + g.label + ' constellation (' + g.cards.length + ' titles) to face you');
         b.addEventListener('click', () => {
           controlsBar.querySelectorAll('.cat-chip').forEach(x => x.setAttribute('aria-pressed', 'false'));
           b.setAttribute('aria-pressed', 'true');
-          spin.drifting = false;
-          driftToggle.setAttribute('aria-pressed', 'false');
           faceGroup(g);
         });
         controlsBar.insertBefore(b, driftToggle);
@@ -785,15 +1184,83 @@
         driftToggle.setAttribute('aria-pressed', String(spin.drifting));
       });
 
-      const { scene, root, R } = await buildGalaxy(groups);
+      const { scene, root, cardMeshes, maxDist } = await buildGallery(groups);
 
-      if (supportsModel) await presentAsModel(scene, R);
-      else await presentAsWebGL(scene, root, R);
+      // Lazily-created shared renderer (WebGL preview and/or XR)
+      let renderer = null;
+      const ctx = {
+        scene, root, cardMeshes, maxDist,
+        onXRFrame: null,
+        onSessionEnd: null,
+        getRenderer() {
+          if (!renderer) {
+            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            renderer.domElement.style.display = 'none';
+            stage.appendChild(renderer.domElement);
+          }
+          return renderer;
+        }
+      };
+
+      const xrMode = await detectXRMode();
+
+      if (supportsModel) {
+        // visionOS: stereoscopic miniature inline. Sway/spin loop for the model path.
+        const model = await presentInlineModel(scene, maxDist);
+        if (model) {
+          spin.drifting = true;
+          driftToggle.setAttribute('aria-pressed', 'true');
+          (function modelLoop(nowMs) {
+            requestAnimationFrame(modelLoop);
+            if (!renderer || !renderer.xr.isPresenting) stepSpin(nowMs || performance.now());
+          })();
+        }
+
+        if (xrMode) {
+          const xr = setupXR(ctx);
+          ctx.onSessionEnd = () => { supportNote.innerHTML = xrNote(xrMode); };
+          immerseBtn.classList.add('available');
+          immerseBtn.addEventListener('click', () => {
+            // XR needs its own render loop on the shared renderer
+            ctx.getRenderer().setAnimationLoop((nowMs) => {
+              const r = ctx.getRenderer();
+              if (r.xr.isPresenting) {
+                ctx.onXRFrame && ctx.onXRFrame(nowMs);
+                r.render(scene, r.xr.getCamera());
+              }
+            });
+            xr.enter(xrMode);
+          });
+          supportNote.innerHTML = xrNote(xrMode);
+        } else if (supportsImmersive && model) {
+          wireImmersiveFallback(model);
+        } else {
+          supportNote.innerHTML = 'You\'re seeing the stereoscopic 3D miniature via the <code>&lt;model&gt;</code> element. Walk-through immersion needs WebXR or the Immersive API (Safari on visionOS 27).';
+        }
+      } else {
+        // Everyone else: interactive WebGL preview (+ XR on headsets like Quest)
+        await presentWebGL(ctx);
+        if (xrMode) {
+          const xr = setupXR(ctx);
+          immerseBtn.classList.add('available');
+          immerseBtn.addEventListener('click', () => xr.enter(xrMode));
+          supportNote.innerHTML = xrNote(xrMode);
+        } else {
+          supportNote.innerHTML = 'You\'re viewing the flat preview — drag to orbit, scroll to fly inside, <strong>click any poster to open its film</strong>. For the walk-through version, open this page in Safari on <strong>Apple Vision Pro</strong>.';
+        }
+      }
     } catch (err) {
       console.error(err);
-      setStatus('Something went wrong building the galaxy: ' + err.message, 0);
+      setStatus('Something went wrong building the gallery: ' + err.message, 0);
     }
   })();
+
+  function xrNote(mode) {
+    const pass = mode === 'immersive-ar' ? 'in your real room (passthrough)' : 'in a virtual space';
+    return '<strong>Tap Step Inside</strong> to walk through the gallery ' + pass + '. ' +
+      '<strong>Pinch a poster</strong> to open its film · <strong>pinch empty space and drag</strong> to move the gallery · look at your palm for the system exit control.';
+  }
   </script>
 </body>
 </html>
