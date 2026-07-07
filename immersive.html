@@ -1084,14 +1084,18 @@
   const motion = {
     drifting: !reduceMotion, // on by default; Reduce Motion starts it paused (HIG)
     holdDrift: false,        // true while a card is pulled forward for preview
+    xrActive: false,         // while true, only the XR loop may drive motion
     lastT: 0,
     modelYaw: 0,  // degrees — the inline miniature's slow turntable
     rings: []     // {group, speed, angle}
   };
 
   function updateMotion(nowMs) {
-    const dt = Math.min(0.1, (nowMs - (motion.lastT || nowMs)) / 1000);
+    const dt = (nowMs - (motion.lastT || nowMs)) / 1000;
     motion.lastT = nowMs;
+    // Clock jumps (timebase switches between rAF and the XR loop, or a
+    // hidden tab) must never turn into giant rotation steps
+    if (dt < 0 || dt > 0.5) return;
     if (!motion.drifting || motion.holdDrift) return;
     for (const r of motion.rings) {
       r.angle += r.speed * dt;
@@ -1314,7 +1318,9 @@
     function startTween(obj, to, dur, onDone) {
       tweens.push({
         obj, dur, onDone,
-        t0: performance.now(),
+        t0: null, // stamped by the render loop itself — the XR loop's clock
+                  // has a different origin than performance.now() on visionOS,
+                  // and mixing them flung cards into the distance (device test #6)
         fromPos: obj.position.clone(), toPos: to.pos,
         fromQ: obj.quaternion.clone(), toQ: to.quat,
         fromS: obj.scale.clone(), toS: to.scale
@@ -1324,8 +1330,9 @@
     function stepTweens(nowMs) {
       for (let i = tweens.length - 1; i >= 0; i--) {
         const tw = tweens[i];
-        const k = Math.min(1, (nowMs - tw.t0) / tw.dur);
-        const e = k * k * (3 - 2 * k); // smoothstep
+        if (tw.t0 == null) tw.t0 = nowMs;
+        const k = Math.max(0, Math.min(1, (nowMs - tw.t0) / tw.dur));
+        const e = k * k * (3 - 2 * k); // smoothstep (clamped — never extrapolate)
         tw.obj.position.lerpVectors(tw.fromPos, tw.toPos, e);
         tw.obj.quaternion.slerpQuaternions(tw.fromQ, tw.toQ, e);
         tw.obj.scale.lerpVectors(tw.fromS, tw.toS, e);
@@ -1452,19 +1459,23 @@
         picked = hits[0].object;
       } else {
         disarm(); // pinching empty space cancels a pending selection
-        // Drag = spin only (device test #4: free 3D drag felt wrong; the
-        // visual says "turntable"). The anchor azimuth is captured on the
-        // first frame with a real pose — at selectstart a transient
-        // pointer may still report (0,0,0).
-        grab = {
-          controller,
-          startAz: null,
-          startYaw: ctx.root.rotation.y
-        };
+        // Drag = spin only. Anchors (hand position + facing direction) are
+        // captured on the first frame with a real pose — at selectstart a
+        // transient pointer may still report (0,0,0). If a second input
+        // source pinches mid-drag, it must NOT steal the grab (device
+        // test #6: that reversed the rotation mid-gesture).
+        if (!grab) {
+          grab = {
+            controller,
+            right: null,        // viewer's rightward axis, locked at grab start
+            startLateral: null, // hand's sideways offset along that axis
+            startYaw: ctx.root.rotation.y
+          };
+        }
       }
     }
 
-    function onSelectEnd() {
+    function onSelectEnd(event) {
       if (exitPicked) {
         exitPicked = false;
         if (exitStand) exitStand.userData.sign.scale.setScalar(1);
@@ -1483,7 +1494,8 @@
         picked = null;
         return;
       }
-      grab = null;
+      // Only the input source that started the drag may release it
+      if (grab && grab.controller === event.target) grab = null;
     }
 
     function xrFrame(nowMs) {
@@ -1495,17 +1507,22 @@
       if (grab) {
         const cur = new THREE.Vector3().setFromMatrixPosition(grab.controller.matrixWorld);
         if (cur.lengthSq() > 1e-4) {
-          // Rotate the gallery like a wheel you're standing inside.
-          const az = Math.atan2(cur.x, cur.z);
-          if (grab.startAz == null) {
-            grab.startAz = az;
+          // Natural scrolling: sideways hand movement, measured along the
+          // direction you were facing when the drag began, steers the yaw
+          // so the gallery follows your hand. (Bearing-around-the-origin
+          // math was unstable when the pointer ray originates at the head —
+          // device test #6: it reversed direction after a moment.)
+          if (!grab.right) {
+            const right = new THREE.Vector3().setFromMatrixColumn(cam.matrixWorld, 0);
+            right.y = 0;
+            if (right.lengthSq() < 1e-4) right.set(1, 0, 0);
+            grab.right = right.normalize();
+            grab.startLateral = cur.dot(grab.right);
           } else {
-            let d = az - grab.startAz;
-            if (d > Math.PI) d -= 2 * Math.PI;
-            if (d < -Math.PI) d += 2 * Math.PI;
-            // Natural scrolling (device test #5): the gallery follows
-            // the drag direction, so subtract the azimuth delta.
-            ctx.root.rotation.y = grab.startYaw - d;
+            const lateral = cur.dot(grab.right);
+            // rotation.y decreasing moves front-of-you content rightward,
+            // so subtract: content tracks the hand. ~1.6 rad per metre.
+            ctx.root.rotation.y = grab.startYaw - (lateral - grab.startLateral) * 1.6;
           }
         }
       }
@@ -1554,12 +1571,16 @@
         if (exitStand) ctx.scene.remove(exitStand);
         ctx.scene.background = null;
         ctx.root.rotation.y = 0; // put the gallery back where it started
+        motion.xrActive = false;
+        motion.lastT = 0; // and a fresh timebase for the page's rAF clock
         grab = null; picked = null; exitPicked = false; session = null;
         ctx.onSessionEnd && ctx.onSessionEnd();
         if (pendingCard) { const card = pendingCard; pendingCard = null; offerCard(card, false); }
       });
 
       ctx.onXRFrame = xrFrame;
+      motion.xrActive = true;
+      motion.lastT = 0; // fresh timebase for the XR loop's clock
       await renderer.xr.setSession(session);
     }
 
@@ -1612,10 +1633,12 @@
     }
     applyTransform();
 
-    // Turntable loop (updateMotion is shared; calling it twice a frame is safe)
+    // Turntable loop — stands down while an XR session runs, so the XR
+    // loop is the only clock driving motion (their timestamps differ)
     let lastYaw = motion.modelYaw;
     (function turntable(nowMs) {
       requestAnimationFrame(turntable);
+      if (motion.xrActive) return;
       updateMotion(nowMs || performance.now());
       if (Math.abs(motion.modelYaw - lastYaw) > 0.05) {
         lastYaw = motion.modelYaw;
