@@ -853,6 +853,12 @@
         mesh.rotateZ(jitter(idx * 7 + 4) * 0.05);
         mesh.name = 'card_' + idx;
         mesh.userData.card = card;
+        // Mirrored back face — USDZ renders single-sided, so without this
+        // the miniature's cards vanish whenever they rotate away
+        const back = new THREE.Mesh(cardGeo, mat);
+        back.rotation.y = Math.PI;
+        back.position.z = -0.001;
+        mesh.add(back);
         root.add(mesh);
         cardMeshes.push(mesh);
         swayItems.push({ obj: mesh, baseY: y, phase });
@@ -890,6 +896,10 @@
             em.lookAt(0, ey, 0);
             em.name = 'ep_' + idx + '_' + ei;
             em.userData.card = ep;
+            const eback = new THREE.Mesh(epGeo, em.material);
+            eback.rotation.y = Math.PI;
+            eback.position.z = -0.001;
+            em.add(eback);
             root.add(em);
             cardMeshes.push(em);
             swayItems.push({ obj: em, baseY: ey, phase });
@@ -950,6 +960,12 @@
       label.position.set(dirX * D, 2.72, dirZ * D);
       label.lookAt(0, 2.72, 0);
       label.name = 'label_' + g.key;
+      // Plain dark back for labels (mirrored text would look wrong)
+      const labelBack = new THREE.Mesh(label.geometry,
+        new THREE.MeshStandardMaterial({ color: 0x141419, roughness: 0.9, metalness: 0 }));
+      labelBack.rotation.y = Math.PI;
+      labelBack.position.z = -0.001;
+      label.add(labelBack);
       root.add(label);
 
       angleCursor += share;
@@ -1022,6 +1038,11 @@
       mesh.lookAt(0, y, 0);
       mesh.rotateZ(jitter(idx * 7 + 4) * 0.05);
       mesh.userData.card = card;
+      // Mirrored back face, so the card reads from behind too
+      const back = new THREE.Mesh(cardGeo, mesh.material);
+      back.rotation.y = Math.PI;
+      back.position.z = -0.001;
+      mesh.add(back);
       parent.add(mesh);
       cardMeshes.push(mesh);
       swayItems.push({ obj: mesh, baseY: y, phase });
@@ -1051,6 +1072,10 @@
           em.position.set(ex, ey, ez);
           em.lookAt(0, ey, 0);
           em.userData.card = ep;
+          const eback = new THREE.Mesh(epGeo, em.material);
+          eback.rotation.y = Math.PI;
+          eback.position.z = -0.001;
+          em.add(eback);
           parent.add(em);
           cardMeshes.push(em);
           swayItems.push({ obj: em, baseY: ey, phase });
