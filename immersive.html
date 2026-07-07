@@ -388,8 +388,9 @@
           <h3>Built from the live catalog</h3>
           Your browser reads the same <code>catalog.json</code> that powers the
           <a href="./">Immersive Video</a> page, composes a poster for every title,
-          and hangs ~45 cards at different depths and heights, clustered into
-          constellations by category — travel, sports, music, indie Theater films, and more.
+          and hangs every title at different depths and heights, clustered into
+          constellations by category. New titles hang larger, and series carry their
+          episodes as mini-cards dangling beneath them — each one openable.
         </div>
         <div class="how-card">
           <h3>Walk through it with WebXR</h3>
@@ -532,10 +533,11 @@
      ════════════════════════════════════════════════════════════ */
   const CARD_W = 0.66;              // poster width (device test: 0.55 felt small)
   const CARD_H = CARD_W * 9 / 16;   // poster height
+  const EP_W = 0.34;                // episode mini-card width
+  const EP_H = EP_W * 9 / 16;
   const CEIL = 3.1;                 // "ceiling" height that strings hang from
-  const FAN_START = 38;             // degrees — keep the zone straight ahead clear
-  const FAN_END = 322;              //   (Safari's window sits there in fallback mode)
   const EYE = 1.6;
+  const NEW_DAYS = 30;              // matches the site's "New" badge window
 
   const stage = document.getElementById('stage');
   const statusBox = document.getElementById('stage-status');
@@ -585,13 +587,25 @@
           else if (e.episodes && e.episodes.length) meta.push(e.episodes.length + (e.episodes.length > 1 ? ' episodes' : ' episode'));
           if (e.genre) meta.push(e.genre);
           else if (e.year) meta.push(String(e.year));
+          const addedAge = e.added ? (Date.now() - new Date(e.added)) / 86400000 : null;
           return {
             title: e.title,
             thumb: e.thumbnail || null,
             url: e.url || e.deep_link || e.app_store || e.website || null,
             meta: meta.join(' · '),
             pending: e.status === 'pending',
-            free: e.free === true
+            free: e.free === true,
+            isNew: addedAge != null && addedAge >= 0 && addedAge <= NEW_DAYS,
+            episodes: (e.episodes || [])
+              .filter(ep => ep.thumbnail && ep.status !== 'pending')
+              .map(ep => ({
+                title: ep.title,
+                thumb: ep.thumbnail,
+                url: ep.url || null,
+                meta: ep.date || '',
+                pending: false,
+                free: false
+              }))
           };
         });
     }
@@ -730,16 +744,29 @@
     return tex;
   }
 
+  function stringBetween(p1, p2, mat) {
+    const len = p1.distanceTo(p2);
+    const m = new THREE.Mesh(new THREE.CylinderGeometry(0.0045, 0.0045, len, 5), mat);
+    m.position.copy(p1).add(p2).multiplyScalar(0.5);
+    m.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), p2.clone().sub(p1).normalize());
+    return m;
+  }
+
   async function buildGallery(groups) {
-    const allCards = groups.flatMap(g => g.cards.map(card => ({ card, group: g })));
+    // Load artwork — main posters and episode thumbnails — with progress
+    const jobs = [];
+    groups.forEach(g => g.cards.forEach(card => {
+      jobs.push({ card, group: g });
+      card.episodes.forEach(ep => jobs.push({ card: ep, group: g }));
+    }));
     let done = 0;
-    setStatus('Composing posters… 0 / ' + allCards.length, 5);
-    await Promise.all(allCards.map(async ({ card, group }) => {
+    setStatus('Composing posters… 0 / ' + jobs.length, 5);
+    await Promise.all(jobs.map(async ({ card, group }) => {
       let img = null;
       try { img = await loadImage(card.thumb); } catch (e) { /* generated poster fallback */ }
       card.texture = makeTexture(posterCanvas(card, group, img));
       done++;
-      setStatus('Composing posters… ' + done + ' / ' + allCards.length, 5 + 70 * done / allCards.length);
+      setStatus('Composing posters… ' + done + ' / ' + jobs.length, 5 + 70 * done / jobs.length);
     }));
 
     const scene = new THREE.Scene();
@@ -753,20 +780,20 @@
     scene.add(root);
 
     const cardGeo = new THREE.PlaneGeometry(CARD_W, CARD_H);
+    const epGeo = new THREE.PlaneGeometry(EP_W, EP_H);
     const stringMat = new THREE.MeshStandardMaterial({ color: 0x3a3a40, roughness: 0.9, metalness: 0 });
-    const cardMeshes = [];
+    const cardMeshes = [];   // everything pinch/click-openable
+    const swayItems = [];    // {obj, baseY, phase} — an assembly shares one phase, so it moves as a unit
 
-    // Fan the clusters around the viewer, weighted by card count,
-    // at alternating distances so depth varies cluster to cluster.
-    const totalCards = allCards.length;
-    const fanSpan = FAN_END - FAN_START;
-    const clusterDist = [2.5, 3.9, 3.0, 4.4, 2.7, 4.0, 3.3];
-    let angleCursor = FAN_START;
+    // Full circle around the viewer — the first cluster lands dead ahead.
+    const totalCards = groups.reduce((a, g) => a + g.cards.length, 0);
+    const clusterDist = [2.4, 3.9, 3.0, 4.4, 2.7, 4.0, 3.3];
+    let angleCursor = -(360 * groups[0].cards.length / totalCards) / 2;
     let idx = 0;
     let maxDist = 0;
 
     groups.forEach((g, gi) => {
-      const share = fanSpan * (g.cards.length / totalCards);
+      const share = 360 * (g.cards.length / totalCards);
       const centerDeg = angleCursor + share / 2;
       g.centerAngle = centerDeg * Math.PI / 180;
       const D = clusterDist[gi % clusterDist.length];
@@ -779,41 +806,77 @@
 
       g.cards.forEach((card, i) => {
         const col = i % cols, row = Math.floor(i / cols);
-        const t = (col - (cols - 1) / 2) * 0.82 + jitter(idx * 5 + 1) * 0.2;   // sideways
-        const d = (row - Math.floor(g.cards.length / cols / 2)) * 0.85 + jitter(idx * 5 + 2) * 0.3; // depth
-        const y = 1.15 + ((col * 2 + row * 3) % 4) * 0.34 + jitter(idx * 5 + 3) * 0.12; // hang height
+        const hasEps = card.episodes.length > 0;
+        const phase = jitter(idx * 7 + 6) * Math.PI * 4;
+
+        // Size: new titles hang noticeably bigger, and every card varies a little
+        const scale = (card.isNew ? 1.3 : 1.0) * (0.94 + (jitter(idx * 7 + 5) + 0.5) * 0.16);
+
+        const t = (col - (cols - 1) / 2) * 0.86 + jitter(idx * 7 + 1) * 0.2;   // sideways
+        const d = (row - Math.floor(g.cards.length / cols / 2)) * 0.9 + jitter(idx * 7 + 2) * 0.3; // depth
+        // Series with hanging episodes live in the upper band to make room below
+        const y = hasEps
+          ? 2.02 + jitter(idx * 7 + 3) * 0.14
+          : 1.15 + ((col * 2 + row * 3) % 4) * 0.34 + jitter(idx * 7 + 3) * 0.12;
 
         const x = dirX * (D + d) + tanX * t;
         const z = dirZ * (D + d) + tanZ * t;
-        const dist = Math.hypot(x, z);
-        maxDist = Math.max(maxDist, dist);
+        maxDist = Math.max(maxDist, Math.hypot(x, z));
 
         const mat = new THREE.MeshStandardMaterial({ map: card.texture, roughness: 0.85, metalness: 0, side: THREE.DoubleSide });
         const mesh = new THREE.Mesh(cardGeo, mat);
         mesh.position.set(x, y, z);
+        mesh.scale.set(scale, scale, 1);
         mesh.lookAt(0, y, 0);
-        mesh.rotateZ(jitter(idx * 5 + 4) * 0.05);
+        mesh.rotateZ(jitter(idx * 7 + 4) * 0.05);
         mesh.name = 'card_' + idx;
-        mesh.userData = {
-          card,
-          baseY: y,
-          phase: jitter(idx * 5 + 5) * Math.PI * 4,
-          baseScale: 1
-        };
+        mesh.userData.card = card;
         root.add(mesh);
         cardMeshes.push(mesh);
+        swayItems.push({ obj: mesh, baseY: y, phase });
 
-        // The string it hangs from
-        const stringLen = CEIL - (y + CARD_H / 2);
-        if (stringLen > 0.05) {
-          const string = new THREE.Mesh(
-            new THREE.CylinderGeometry(0.0045, 0.0045, stringLen, 5),
+        // Ceiling string
+        const topY = y + (CARD_H * scale) / 2;
+        if (CEIL - topY > 0.05) {
+          const s = stringBetween(
+            new THREE.Vector3(x, topY, z),
+            new THREE.Vector3(x, CEIL, z),
             stringMat
           );
-          string.position.set(x, y + CARD_H / 2 + stringLen / 2, z);
-          string.name = 'string_' + idx;
-          mesh.userData.string = string;
-          root.add(string);
+          root.add(s);
+          swayItems.push({ obj: s, baseY: s.position.y, phase });
+        }
+
+        // Episode mini-cards hanging from their series card
+        if (hasEps) {
+          const pa = Math.atan2(x, -z); // parent's own bearing from the viewer
+          const ptx = Math.cos(pa), ptz = Math.sin(pa);
+          const bottomY = y - (CARD_H * scale) / 2;
+          card.episodes.forEach((ep, ei) => {
+            const off = (ei - (card.episodes.length - 1) / 2) * (EP_W + 0.06);
+            const ex = x + ptx * off + jitter(idx * 11 + ei * 3) * 0.04;
+            const ez = z + ptz * off + jitter(idx * 11 + ei * 3 + 1) * 0.04;
+            const ey = bottomY - 0.24 - EP_H / 2 + jitter(idx * 11 + ei * 3 + 2) * 0.05;
+
+            const em = new THREE.Mesh(epGeo,
+              new THREE.MeshStandardMaterial({ map: ep.texture, roughness: 0.85, metalness: 0, side: THREE.DoubleSide }));
+            em.position.set(ex, ey, ez);
+            em.lookAt(0, ey, 0);
+            em.name = 'ep_' + idx + '_' + ei;
+            em.userData.card = ep;
+            root.add(em);
+            cardMeshes.push(em);
+            swayItems.push({ obj: em, baseY: ey, phase });
+
+            // Angled string from the parent card's bottom edge to the episode
+            const es = stringBetween(
+              new THREE.Vector3(ex, ey + EP_H / 2, ez),
+              new THREE.Vector3(x, bottomY, z),
+              stringMat
+            );
+            root.add(es);
+            swayItems.push({ obj: es, baseY: es.position.y, phase });
+          });
         }
         idx++;
       });
@@ -823,15 +886,15 @@
       const labelW = 1.25, labelH = labelW * lc.height / lc.width;
       const lmat = new THREE.MeshStandardMaterial({ map: makeTexture(lc), roughness: 0.9, metalness: 0, side: THREE.DoubleSide });
       const label = new THREE.Mesh(new THREE.PlaneGeometry(labelW, labelH), lmat);
-      label.position.set(dirX * D, 2.62, dirZ * D);
-      label.lookAt(0, 2.62, 0);
+      label.position.set(dirX * D, 2.72, dirZ * D);
+      label.lookAt(0, 2.72, 0);
       label.name = 'label_' + g.key;
       root.add(label);
 
       angleCursor += share;
     });
 
-    return { scene, root, cardMeshes, maxDist };
+    return { scene, root, cardMeshes, swayItems, maxDist };
   }
 
   /* ════════════════════════════════════════════════════════════
@@ -861,13 +924,10 @@
     }
   }
 
-  function swayCards(cardMeshes, nowMs) {
+  function swayCards(swayItems, nowMs) {
     const t = nowMs * 0.001;
-    for (const m of cardMeshes) {
-      const dy = Math.sin(t * 0.55 + m.userData.phase) * 0.022;
-      m.position.y = m.userData.baseY + dy;
-      if (m.userData.string) m.userData.string.position.y =
-        m.position.y + CARD_H / 2 + (m.userData.string.geometry.parameters.height / 2);
+    for (const it of swayItems) {
+      it.obj.position.y = it.baseY + Math.sin(t * 0.55 + it.phase) * 0.022;
     }
   }
 
@@ -904,12 +964,60 @@
     // Only shown in fully virtual (VR) sessions, where there's no passthrough
     const extras = new THREE.Group();
     extras.name = 'vr-extras';
+
+    // Starlit gradient sky dome (matches the page's stage aesthetic)
+    const skyCanvas = document.createElement('canvas');
+    skyCanvas.width = 16; skyCanvas.height = 512;
+    const sctx = skyCanvas.getContext('2d');
+    const grad = sctx.createLinearGradient(0, 0, 0, 512);
+    grad.addColorStop(0, '#04040a');
+    grad.addColorStop(0.55, '#171728');
+    grad.addColorStop(0.72, '#232338');
+    grad.addColorStop(1, '#0b0b12');
+    sctx.fillStyle = grad;
+    sctx.fillRect(0, 0, 16, 512);
+    const sky = new THREE.Mesh(
+      new THREE.SphereGeometry(30, 32, 24),
+      new THREE.MeshBasicMaterial({ map: makeTexture(skyCanvas), side: THREE.BackSide })
+    );
+    extras.add(sky);
+
+    // A scatter of stars on the dome
+    const starPos = [];
+    for (let i = 0; i < 400; i++) {
+      const a = jitter(i * 3) * Math.PI * 2;
+      const e = (jitter(i * 3 + 1) + 0.5) * Math.PI * 0.45 + 0.06;
+      starPos.push(28 * Math.cos(e) * Math.sin(a), 28 * Math.sin(e) + 1, -28 * Math.cos(e) * Math.cos(a));
+    }
+    const starGeo = new THREE.BufferGeometry();
+    starGeo.setAttribute('position', new THREE.Float32BufferAttribute(starPos, 3));
+    extras.add(new THREE.Points(starGeo,
+      new THREE.PointsMaterial({ color: 0xffffff, size: 0.09, transparent: true, opacity: 0.75 })));
+
+    // Deep-toned floor with a soft cool glow where you stand
     const floor = new THREE.Mesh(
-      new THREE.CircleGeometry(8, 48),
-      new THREE.MeshStandardMaterial({ color: 0x17171d, roughness: 1 })
+      new THREE.CircleGeometry(12, 48),
+      new THREE.MeshStandardMaterial({ color: 0x101016, roughness: 1 })
     );
     floor.rotation.x = -Math.PI / 2;
     extras.add(floor);
+
+    const glowCanvas = document.createElement('canvas');
+    glowCanvas.width = glowCanvas.height = 256;
+    const gctx = glowCanvas.getContext('2d');
+    const rg = gctx.createRadialGradient(128, 128, 10, 128, 128, 128);
+    rg.addColorStop(0, 'rgba(120,150,255,0.35)');
+    rg.addColorStop(1, 'rgba(120,150,255,0)');
+    gctx.fillStyle = rg;
+    gctx.fillRect(0, 0, 256, 256);
+    const glow = new THREE.Mesh(
+      new THREE.CircleGeometry(3.2, 40),
+      new THREE.MeshBasicMaterial({ map: makeTexture(glowCanvas), transparent: true, depthWrite: false })
+    );
+    glow.rotation.x = -Math.PI / 2;
+    glow.position.y = 0.01;
+    extras.add(glow);
+
     return extras;
   }
 
@@ -922,6 +1030,99 @@
     let picked = null;
     let pendingCard = null;
     let vrExtras = null;
+    let exitStand = null;
+    let exitPicked = false;
+
+    // A small freestanding "Exit" sign — the obvious way back to the page.
+    // Added to the scene (not the gallery root), so grabbing or spinning
+    // the gallery never moves it.
+    function getExitStand() {
+      if (exitStand) return exitStand;
+      exitStand = new THREE.Group();
+      exitStand.name = 'exit-stand';
+
+      // Classic backlit exit sign: metal frame, black face, glowing red letters
+      const c = document.createElement('canvas');
+      c.width = 512; c.height = 256;
+      const cx = c.getContext('2d');
+
+      // Brushed-metal frame
+      const metal = cx.createLinearGradient(0, 0, 0, 256);
+      metal.addColorStop(0, '#9a9aa2');
+      metal.addColorStop(0.18, '#d8d8de');
+      metal.addColorStop(0.5, '#6f6f78');
+      metal.addColorStop(0.82, '#c4c4cc');
+      metal.addColorStop(1, '#83838c');
+      cx.fillStyle = metal;
+      cx.beginPath(); cx.roundRect(0, 0, 512, 256, 26); cx.fill();
+
+      // Black face inset
+      cx.fillStyle = '#0a0a0c';
+      cx.beginPath(); cx.roundRect(14, 14, 484, 228, 16); cx.fill();
+
+      // Soft red backlight wash behind the letters
+      const wash = cx.createRadialGradient(256, 110, 20, 256, 110, 230);
+      wash.addColorStop(0, 'rgba(255,45,40,0.28)');
+      wash.addColorStop(0.6, 'rgba(255,45,40,0.10)');
+      wash.addColorStop(1, 'rgba(255,45,40,0)');
+      cx.fillStyle = wash;
+      cx.fillRect(14, 14, 484, 228);
+
+      // Glowing letters — layered passes build up the backlit halo
+      cx.textAlign = 'center';
+      cx.shadowColor = 'rgba(255,59,48,0.95)';
+      cx.font = '900 104px Helvetica, Arial, sans-serif';
+      cx.fillStyle = '#ff3b30';
+      for (const blur of [34, 18, 6]) {
+        cx.shadowBlur = blur;
+        cx.fillText('E X I T', 256, 122);
+      }
+      cx.font = '800 44px Helvetica, Arial, sans-serif';
+      for (const blur of [22, 10, 4]) {
+        cx.shadowBlur = blur;
+        cx.fillText('IMMERSIVE', 256, 180);
+      }
+      cx.shadowBlur = 0;
+      cx.fillStyle = '#8e8e93';
+      cx.font = '500 26px -apple-system, Helvetica, sans-serif';
+      cx.fillText('back to the web page', 256, 226);
+
+      // Unlit face so the letters stay "backlit" even in the dark VR room
+      const sign = new THREE.Mesh(
+        new THREE.PlaneGeometry(0.36, 0.18),
+        new THREE.MeshBasicMaterial({ map: makeTexture(c), side: THREE.DoubleSide, toneMapped: false })
+      );
+      sign.position.y = 1.02;
+      exitStand.add(sign);
+      exitStand.userData.sign = sign;
+
+      // Shallow metal housing behind the face
+      const housing = new THREE.Mesh(
+        new THREE.BoxGeometry(0.365, 0.185, 0.03),
+        new THREE.MeshStandardMaterial({ color: 0x55555c, roughness: 0.45, metalness: 0.8 })
+      );
+      housing.position.set(0, 1.02, -0.017);
+      exitStand.add(housing);
+
+      const pole = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.011, 0.011, 0.95, 8),
+        new THREE.MeshStandardMaterial({ color: 0x3a3a40, roughness: 0.9 })
+      );
+      pole.position.y = 0.475;
+      exitStand.add(pole);
+
+      const base = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.1, 0.12, 0.02, 24),
+        new THREE.MeshStandardMaterial({ color: 0x2a2a30, roughness: 0.9 })
+      );
+      base.position.y = 0.01;
+      exitStand.add(base);
+
+      // Just ahead and to the right of where the visitor enters
+      exitStand.position.set(0.55, 0, -1.15);
+      sign.lookAt(new THREE.Vector3(-0.55, 1.5, 1.15)); // face the entry point
+      return exitStand;
+    }
 
     function castFrom(controller) {
       tempMatrix.identity().extractRotation(controller.matrixWorld);
@@ -930,13 +1131,78 @@
       return raycaster.intersectObjects(ctx.cardMeshes, false);
     }
 
+    // ── Two-step open: the first pinch arms a card and floats a
+    //    confirm tag; a second pinch on the same card opens it.
+    //    Pinching anywhere else (or 8s of hesitation) cancels. ──
+    let armed = null; // { mesh, panel, t }
+    const ARM_TIMEOUT = 8000;
+
+    function confirmPanelFor(mesh) {
+      const card = mesh.userData.card;
+      const c = document.createElement('canvas');
+      c.width = 768; c.height = 176;
+      const cx = c.getContext('2d');
+      cx.fillStyle = '#1c1c21';
+      cx.beginPath(); cx.roundRect(0, 0, 768, 176, 32); cx.fill();
+      cx.strokeStyle = '#0a84ff'; cx.lineWidth = 5;
+      cx.beginPath(); cx.roundRect(3, 3, 762, 170, 30); cx.stroke();
+      cx.textAlign = 'center';
+      cx.fillStyle = '#f5f5f7';
+      cx.font = '700 52px -apple-system, Helvetica, sans-serif';
+      let title = '▶  ' + card.title;
+      while (cx.measureText(title).width > 700 && title.length > 6) title = title.slice(0, -2) + '…';
+      cx.fillText(title, 384, 72);
+      cx.fillStyle = '#b8b8c2';
+      cx.font = '500 34px -apple-system, Helvetica, sans-serif';
+      cx.fillText('Pinch again to open · pinch elsewhere to cancel', 384, 134);
+
+      const panel = new THREE.Mesh(
+        new THREE.PlaneGeometry(0.52, 0.52 * 176 / 768),
+        new THREE.MeshStandardMaterial({ map: makeTexture(c), roughness: 0.85, metalness: 0, side: THREE.DoubleSide })
+      );
+      // Float between the card and the viewer, just below the card
+      const p = new THREE.Vector3();
+      mesh.getWorldPosition(p);
+      const head = new THREE.Vector3();
+      ctx.getRenderer().xr.getCamera().getWorldPosition(head);
+      const toHead = head.clone().sub(p).setY(0).normalize();
+      panel.position.copy(p).addScaledVector(toHead, 0.35);
+      panel.position.y = p.y - 0.18;
+      panel.lookAt(head.x, panel.position.y, head.z);
+      return panel;
+    }
+
+    function arm(mesh) {
+      disarm();
+      mesh.scale.multiplyScalar(1.16);
+      const panel = confirmPanelFor(mesh);
+      ctx.scene.add(panel);
+      armed = { mesh, panel, t: performance.now() };
+    }
+
+    function disarm() {
+      if (!armed) return;
+      armed.mesh.scale.multiplyScalar(1 / 1.16);
+      ctx.scene.remove(armed.panel);
+      armed = null;
+    }
+
     function onSelectStart(event) {
       const controller = event.target;
+      // The exit sign wins over everything behind it
+      tempMatrix.identity().extractRotation(controller.matrixWorld);
+      raycaster.ray.origin.setFromMatrixPosition(controller.matrixWorld);
+      raycaster.ray.direction.set(0, 0, -1).applyMatrix4(tempMatrix);
+      if (exitStand && raycaster.intersectObject(exitStand.userData.sign, false).length) {
+        exitPicked = true;
+        exitStand.userData.sign.scale.setScalar(1.12);
+        return;
+      }
       const hits = castFrom(controller);
       if (hits.length) {
         picked = hits[0].object;
-        picked.scale.setScalar(1.12); // acknowledge the pinch
       } else {
+        disarm(); // pinching empty space cancels a pending selection
         grab = {
           controller,
           startCtrl: new THREE.Vector3().setFromMatrixPosition(controller.matrixWorld),
@@ -946,11 +1212,22 @@
     }
 
     function onSelectEnd() {
+      if (exitPicked) {
+        exitPicked = false;
+        if (exitStand) exitStand.userData.sign.scale.setScalar(1);
+        if (session) session.end(); // straight back to the page, nothing opens
+        return;
+      }
       if (picked) {
-        picked.scale.setScalar(1);
-        pendingCard = picked.userData.card;
+        if (armed && armed.mesh === picked) {
+          // Second pinch on the same card — that's a real choice
+          pendingCard = picked.userData.card;
+          disarm();
+          if (session) session.end(); // leave XR, then open the film
+        } else {
+          arm(picked); // first pinch — preview and ask for confirmation
+        }
         picked = null;
-        if (session) session.end(); // leave XR, then open the film
         return;
       }
       grab = null;
@@ -961,7 +1238,8 @@
         const cur = new THREE.Vector3().setFromMatrixPosition(grab.controller.matrixWorld);
         ctx.root.position.copy(grab.startRoot).add(cur.clone().sub(grab.startCtrl));
       }
-      swayCards(ctx.cardMeshes, nowMs);
+      if (armed && performance.now() - armed.t > ARM_TIMEOUT) disarm();
+      swayCards(ctx.swayItems, nowMs);
     }
 
     async function enter(mode) {
@@ -983,6 +1261,7 @@
       } else {
         ctx.scene.background = null; // passthrough
       }
+      ctx.scene.add(getExitStand());
 
       const c0 = renderer.xr.getController(0);
       const c1 = renderer.xr.getController(1);
@@ -998,10 +1277,12 @@
           c.removeEventListener('selectend', onSelectEnd);
           ctx.scene.remove(c);
         }
+        disarm();
         if (vrExtras) { ctx.scene.remove(vrExtras); vrExtras = null; }
+        if (exitStand) ctx.scene.remove(exitStand);
         ctx.scene.background = null;
         ctx.root.position.set(0, 0, 0); // put the gallery back where it started
-        grab = null; picked = null; session = null;
+        grab = null; picked = null; exitPicked = false; session = null;
         ctx.onSessionEnd && ctx.onSessionEnd();
         if (pendingCard) { const card = pendingCard; pendingCard = null; offerCard(card, false); }
       });
@@ -1136,7 +1417,7 @@
 
     renderer.setAnimationLoop((nowMs) => {
       stepSpin(nowMs);
-      swayCards(ctx.cardMeshes, nowMs);
+      swayCards(ctx.swayItems, nowMs);
       if (ctx.onXRFrame && renderer.xr.isPresenting) ctx.onXRFrame(nowMs);
       controls.update();
       renderer.render(ctx.scene, renderer.xr.isPresenting ? renderer.xr.getCamera() : camera);
@@ -1184,12 +1465,12 @@
         driftToggle.setAttribute('aria-pressed', String(spin.drifting));
       });
 
-      const { scene, root, cardMeshes, maxDist } = await buildGallery(groups);
+      const { scene, root, cardMeshes, swayItems, maxDist } = await buildGallery(groups);
 
       // Lazily-created shared renderer (WebGL preview and/or XR)
       let renderer = null;
       const ctx = {
-        scene, root, cardMeshes, maxDist,
+        scene, root, cardMeshes, swayItems, maxDist,
         onXRFrame: null,
         onSessionEnd: null,
         getRenderer() {
@@ -1259,7 +1540,7 @@
   function xrNote(mode) {
     const pass = mode === 'immersive-ar' ? 'in your real room (passthrough)' : 'in a virtual space';
     return '<strong>Tap Step Inside</strong> to walk through the gallery ' + pass + '. ' +
-      '<strong>Pinch a poster</strong> to open its film · <strong>pinch empty space and drag</strong> to move the gallery · look at your palm for the system exit control.';
+      '<strong>Pinch a poster once</strong> to preview it, <strong>pinch it again</strong> to open its film · <strong>pinch empty space and drag</strong> to move the gallery · <strong>pinch the ✕ Exit Immersive sign</strong> on the stand in front of you (or press the Digital Crown) to come back.';
   }
   </script>
 </body>

@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Watch (shelf layout test) — Apple Immersive Video &amp; Spatial Computing</title>
+  <meta name="robots" content="noindex">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* ═══ Shelf-layout prototype (index2) ═══════════════════════
+       Same data and cards as index.html, reorganized into
+       horizontally scrolling category shelves with a sticky
+       jump bar — the Apple TV / streaming-catalog pattern. */
+
+    .free-badge {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      background: #dcfce7;
+      color: #166534;
+      padding: 1px 6px;
+      border-radius: 8px;
+      margin-left: 6px;
+      vertical-align: middle;
+    }
+    .platform-note { font-size: 12px; color: #6e6e73; margin-bottom: 3px; display: block; }
+    .entry-links { margin: 6px 0 0; font-size: 13px; }
+    .entry-links a { margin-right: 12px; }
+
+    /* ── Sticky category jump bar ── */
+    .jump-bar {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: rgba(245, 245, 247, 0.92);
+      backdrop-filter: saturate(1.4) blur(12px);
+      -webkit-backdrop-filter: saturate(1.4) blur(12px);
+      border-bottom: 1px solid #e5e5ea;
+      margin: 0 -24px;
+      padding: 10px 24px;
+    }
+    .jump-bar-inner {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .jump-bar-inner::-webkit-scrollbar { display: none; }
+    .jump-chip {
+      flex-shrink: 0;
+      font-size: 13px;
+      font-weight: 600;
+      color: #1d1d1f;
+      background: #ffffff;
+      border: 1px solid #d2d2d7;
+      border-radius: 16px;
+      padding: 6px 14px;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .jump-chip:hover { border-color: #0176ba; color: #0176ba; text-decoration: none; }
+
+    /* ── Shelf ── */
+    .shelf-section { margin-top: 34px; }
+    .shelf-head {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+    .shelf-title {
+      font-size: 21px;
+      font-weight: 700;
+      color: #1d1d1f;
+      margin: 0;
+    }
+    .shelf-sub {
+      font-size: 12.5px;
+      color: #6e6e73;
+    }
+
+    .shelf-wrap { position: relative; }
+    .shelf {
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: 256px;
+      gap: 14px;
+      overflow-x: auto;
+      scroll-snap-type: x proximity;
+      scroll-padding-left: 4px;
+      padding: 4px 4px 16px;
+      scrollbar-width: thin;
+      scrollbar-color: #c7c7cc transparent;
+    }
+    .shelf::-webkit-scrollbar { height: 6px; }
+    .shelf::-webkit-scrollbar-track { background: transparent; }
+    .shelf::-webkit-scrollbar-thumb { background: #c7c7cc; border-radius: 3px; }
+    .shelf > * { scroll-snap-align: start; }
+
+    @media (max-width: 620px) {
+      .shelf { grid-auto-columns: min(74vw, 240px); }
+    }
+
+    /* Desktop nudge buttons */
+    .shelf-nudge {
+      position: absolute;
+      top: 60px;
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      border: 1px solid #d2d2d7;
+      background: rgba(255,255,255,0.95);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+      color: #1d1d1f;
+      font-size: 18px;
+      line-height: 1;
+      cursor: pointer;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 5;
+    }
+    .shelf-nudge.prev { left: -14px; }
+    .shelf-nudge.next { right: -14px; }
+    @media (hover: hover) and (min-width: 700px) {
+      .shelf-wrap:hover .shelf-nudge { display: flex; }
+    }
+
+    /* ── Shelf card ── */
+    .shelf-card {
+      background: #ffffff;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+    .shelf-card:hover { transform: translateY(-4px); box-shadow: 0 10px 24px rgba(0,0,0,0.12); }
+
+    .shelf-thumb {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      flex-shrink: 0;
+      background: #e8e8ed;
+    }
+    .shelf-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .shelf-thumb-overlay {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 18px 12px 8px;
+      background: linear-gradient(transparent, rgba(0,0,0,0.75));
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.3;
+    }
+    .shelf-card-body {
+      padding: 11px 14px 13px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      flex: 1;
+    }
+    .shelf-card-title {
+      font-size: 14.5px;
+      font-weight: 600;
+      color: #1d1d1f;
+      line-height: 1.3;
+      text-decoration: none;
+      margin: 0;
+    }
+    a.shelf-card-title:hover { text-decoration: underline; }
+    .shelf-card-note {
+      font-size: 12.5px;
+      color: #6e6e73;
+      line-height: 1.5;
+      margin: 0;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      flex: 1;
+    }
+    .shelf-card-links { font-size: 12px; margin-top: 4px; }
+    .shelf-card-links a { margin-right: 10px; }
+
+    /* Episodes fold-out inside a series card */
+    .ep-details { margin-top: 6px; font-size: 12.5px; }
+    .ep-details summary {
+      cursor: pointer;
+      font-weight: 600;
+      color: #0176ba;
+      list-style: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .ep-details summary::-webkit-details-marker { display: none; }
+    .ep-details summary::after { content: '▾'; font-size: 10px; transition: transform 0.15s; }
+    .ep-details[open] summary::after { transform: rotate(180deg); }
+    .ep-details ul { list-style: none; margin: 8px 0 0; padding: 0; }
+    .ep-details li { padding: 3px 0; color: #6e6e73; }
+    .ep-details li a { font-size: 12.5px; }
+
+    /* ── Compact list sections (apps / tools / web) ── */
+    .icon-list { list-style: none; padding: 0; margin: 8px 0 0; }
+    .icon-entry {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 12px 0;
+      border-bottom: 1px solid #e5e5ea;
+    }
+    .icon-entry img { width: 46px; height: 46px; border-radius: 10px; object-fit: cover; flex-shrink: 0; }
+    .icon-entry-body { min-width: 0; flex: 1; }
+
+    .to-current {
+      background: #fff8e6;
+      border: 1px solid #f0c420;
+      border-radius: 12px;
+      padding: 12px 16px;
+      font-size: 13.5px;
+      color: #1d1d1f;
+      margin: 18px 0 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════ SITE HEADER -->
+  <header class="site-header" role="banner">
+    <div class="site-header-inner">
+      <div class="site-header-row1">
+        <a href="./" class="site-header-logo" aria-label="Apple Immersive Video &amp; Spatial Computing — home">
+          <img src="./logo.svg" alt="" aria-hidden="true" width="28" height="28" style="display:inline-block; vertical-align:middle; margin-right:10px;">Apple Immersive Video &amp; Spatial Computing
+        </a>
+      </div>
+      <div class="site-header-row2">
+        <nav aria-label="Site navigation">
+          <ul class="site-nav">
+            <li><a href="./" class="active" aria-current="page">Immersive Video</a></li>
+            <li><a href="spatial-apps.html">Spatial Apps</a></li>
+            <li><a href="creators.html">For Creators</a></li>
+            <li><a href="usecases.html">Use Cases</a></li>
+            <li><a href="models.html">3D Models</a></li>
+            <li><a href="newsletters/">Newsletter</a></li>
+          </ul>
+        </nav>
+        <!-- ── Site-wide search ── -->
+        <div class="site-search" role="search" aria-label="Site-wide search">
+          <input type="search" class="site-search-input" id="site-search-input" placeholder="Search…" aria-label="Search all content" autocomplete="off" spellcheck="false">
+          <div class="site-search-results" id="site-search-results" role="listbox" aria-live="polite"></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════ PAGE HERO -->
+  <div class="page-hero page-hero-image" role="presentation" style="background-image: url('catalog-images/AIV-hero.jpg'); min-height: 200px;">
+    <h1>Immersive Video</h1>
+    <p>A curated guide to immersive content on Apple Vision Pro — Apple Immersive Video films and series, VR180 creator content, immersive apps, and web experiences.</p>
+  </div>
+
+  <!-- ═══════════════════════ MAIN CONTENT -->
+  <main class="page-content" role="main" id="main-content">
+
+    <div class="to-current">
+      🧪 <strong>Layout test:</strong> this is an experimental shelf-style version of the
+      <a href="./">current catalog page</a>. Same content, reorganized — swipe or scroll
+      each row sideways.
+    </div>
+
+    <!-- Sticky category jump bar (populated by JS) -->
+    <nav class="jump-bar" aria-label="Catalog sections">
+      <div class="jump-bar-inner" id="jump-bar-inner"></div>
+    </nav>
+
+    <div id="catalog-root"></div>
+
+  </main>
+
+  <!-- ═══════════════════════ SITE FOOTER -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="site-footer-inner">
+      <p>The Apple Immersive Video &amp; Spatial Computing catalog and newsletter are independent publications. They are not affiliated with, endorsed by, or sponsored by Apple, Blackmagic Design, or any other company mentioned. Apple, Apple Vision Pro, and Apple Immersive Video are trademarks of Apple Inc.</p>
+      <p>A publication of <a href="mailto:imaginationave@mac.com">Imagination Ave</a> &nbsp;·&nbsp; <a href="newsletters/">Newsletter Archive</a></p>
+    </div>
+  </footer>
+
+  <!-- ═══════════════════════ JAVASCRIPT -->
+  <script>
+  (function () {
+    'use strict';
+
+    const NEW_DAYS = 30;
+    const today = new Date();
+
+    function isNew(dateStr) {
+      if (!dateStr) return false;
+      const d = new Date(dateStr);
+      const diffDays = (today - d) / (1000 * 60 * 60 * 24);
+      return diffDays >= 0 && diffDays <= NEW_DAYS;
+    }
+
+    const newBadge = () => '<span class="pill pill-new" aria-label="New">New</span>';
+    const pendingBadge = () => '<span class="pill pill-pending" aria-label="Coming soon">⏳ Coming Soon</span>';
+    const freeBadge = () => '<span class="free-badge" aria-label="Free">Free</span>';
+
+    function renderLinks(links, cls) {
+      if (!links || !links.length) return '';
+      const items = links.map(l =>
+        `<a href="${l.url}" target="_blank" rel="noopener">${l.label}</a>`
+      ).join('');
+      return `<div class="${cls || 'entry-links'}">${items}</div>`;
+    }
+
+    function episodesFold(entry) {
+      const eps = entry.episodes || [];
+      if (!eps.length) return '';
+      const items = eps.map(ep => {
+        if (ep.status === 'pending') {
+          return `<li>⏳ ${ep.title}${ep.location ? ' — ' + ep.location : ''}</li>`;
+        }
+        const link = ep.url
+          ? `<a href="${ep.url}" target="_blank" rel="noopener">${ep.title}</a>`
+          : ep.title;
+        const meta = [ep.date, ep.duration, ep.guest, ep.location].filter(Boolean).join(' · ');
+        return `<li>${link}${meta ? ' <span>— ' + meta + '</span>' : ''}</li>`;
+      }).join('');
+      const n = eps.length;
+      return `
+        <details class="ep-details">
+          <summary>${n} episode${n > 1 ? 's' : ''}</summary>
+          <ul>${items}</ul>
+        </details>`;
+    }
+
+    // ── One shelf card (film or series) ──────────────────────
+    function shelfCard(entry) {
+      const fresh = isNew(entry.added);
+      const pending = entry.status === 'pending';
+      const gone = entry.status === 'gone';
+      const isFree = entry.free === true;
+      const url = entry.url || entry.deep_link || entry.app_store || entry.website;
+
+      const badges = [
+        fresh ? newBadge() : '',
+        pending ? pendingBadge() : '',
+        isFree ? freeBadge() : ''
+      ].filter(Boolean).join(' ');
+
+      const titleEl = gone
+        ? `<span class="shelf-card-title" style="color:#6e6e73;text-decoration:line-through;">${entry.title}</span>`
+        : (url && !pending)
+          ? `<a class="shelf-card-title" href="${url}" target="_blank" rel="noopener">${entry.title}</a>`
+          : `<span class="shelf-card-title">${entry.title}</span>`;
+
+      const note = entry.description || entry.note || '';
+      const thumb = entry.thumbnail
+        ? `<div class="shelf-thumb">
+             ${(url && !gone) ? `<a href="${url}" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">` : ''}
+             <img src="${entry.thumbnail}" alt="${entry.title}" loading="lazy" ${gone ? 'style="filter:grayscale(1);opacity:0.55;"' : ''}>
+             ${(url && !gone) ? '</a>' : ''}
+             <div class="shelf-thumb-overlay" aria-hidden="true">${gone ? 'No Longer Available' : entry.title}</div>
+           </div>`
+        : '';
+
+      return `
+        <article class="shelf-card" id="entry-${entry.id || ''}">
+          ${thumb}
+          <div class="shelf-card-body">
+            ${badges ? `<div>${badges}</div>` : ''}
+            ${titleEl}
+            ${entry.platform ? `<span class="platform-note">${entry.platform}</span>` : ''}
+            ${note ? `<p class="shelf-card-note">${note}</p>` : ''}
+            ${episodesFold(entry)}
+            ${renderLinks(entry.links, 'shelf-card-links')}
+          </div>
+        </article>`;
+    }
+
+    // ── A shelf section ──────────────────────────────────────
+    function shelf(id, title, entries, subtitle) {
+      if (!entries || !entries.length) return '';
+      return `
+        <section class="shelf-section" id="${id}">
+          <div class="shelf-head">
+            <h2 class="shelf-title">${title}</h2>
+            <span class="shelf-sub">${subtitle || entries.length + ' title' + (entries.length > 1 ? 's' : '')}</span>
+          </div>
+          <div class="shelf-wrap">
+            <button class="shelf-nudge prev" aria-label="Scroll ${title} back">‹</button>
+            <div class="shelf" role="list">${entries.map(e => `<div role="listitem">${shelfCard(e)}</div>`).join('')}</div>
+            <button class="shelf-nudge next" aria-label="Scroll ${title} forward">›</button>
+          </div>
+        </section>`;
+    }
+
+    // ── Icon rows for apps/tools/web (unchanged, compact) ────
+    function iconEntryHTML(e) {
+      const icon = e.app_icon || e.favicon_url;
+      const url = e.url || e.app_store || e.website;
+      const website = e.website ? e.website.replace(/^https?:\/\//, '').replace(/\/$/, '') : '';
+      const fresh = isNew(e.added);
+      return `
+        <li class="icon-entry" id="entry-${e.id || ''}">
+          ${icon ? `<img src="${icon}" alt="${e.title} icon" loading="lazy">` : '<div style="width:46px;flex-shrink:0;"></div>'}
+          <div class="icon-entry-body">
+            ${fresh ? newBadge() + ' ' : ''}
+            ${url ? `<a class="entry-name" href="${url}" target="_blank" rel="noopener">${e.title}</a>` : `<span class="entry-name">${e.title}</span>`}
+            ${website ? `<span class="platform-note">${website}</span>` : ''}
+            ${e.note ? `<span class="entry-note">${e.note}</span>` : ''}
+            ${renderLinks(e.links)}
+          </div>
+        </li>`;
+    }
+
+    function iconSection(id, title, block) {
+      if (!block || !block.entries || !block.entries.length) return '';
+      return `
+        <section class="shelf-section" id="${id}">
+          <div class="shelf-head"><h2 class="shelf-title">${title}</h2></div>
+          ${block.note ? `<p class="text-muted text-small" style="margin:0;">${block.note}</p>` : ''}
+          <ul class="icon-list">${block.entries.map(iconEntryHTML).join('')}</ul>
+        </section>`;
+    }
+
+    // ── Build the page ────────────────────────────────────────
+    function buildCatalog(data) {
+      const atv = data.viewer.apple_tv.sections;
+      const theater = data.viewer.theater_app;
+      const allAtv = Object.values(atv).flatMap(s => s.entries || []);
+      const allTheater = Object.values(theater.sections || {}).flatMap(s => s.entries || []);
+
+      // "New & notable" — anything recently added, across the catalog
+      const newest = [...allAtv, ...allTheater]
+        .filter(e => isNew(e.added) && e.status !== 'gone')
+        .sort((a, b) => (b.added || '').localeCompare(a.added || ''));
+
+      const sections = [
+        { id: 'new', html: shelf('new', '✨ New & Notable', newest, 'added in the last 30 days') },
+        { id: 'travel', html: shelf('travel', 'Travel & Adventure', atv.travel_adventure?.entries) },
+        { id: 'nature', html: shelf('nature', 'Nature & Documentary', atv.nature_documentary?.entries) },
+        { id: 'sports', html: shelf('sports', 'Sports', atv.sports?.entries) },
+        { id: 'music', html: shelf('music', 'Music & Performance', atv.music_performance?.entries) },
+        { id: 'narrative', html: shelf('narrative', 'Narrative & Sampler', [...(atv.narrative?.entries || []), ...(atv.sampler?.entries || [])]) },
+        { id: 'announced', html: shelf('announced', '⏳ Announced', atv.announced?.entries, 'not yet available') },
+        { id: 'theater', html: shelf('theater', '🎬 Theater — Indie Films', allTheater, 'open in the Theater app') },
+        { id: 'gone', html: shelf('gone', 'No Longer Available', atv.unavailable?.entries, '') },
+        { id: 'apps', html: iconSection('apps', '📺 More Immersive Video Apps', data.viewer.immersive_apps) },
+        { id: 'brand', html: iconSection('brand', '📦 Brand & Standalone', data.viewer.brand_apps) },
+        { id: 'tools', html: iconSection('tools', '🛠️ Player Apps & Tools', data.viewer.player_apps) },
+        { id: 'web', html: iconSection('web', '🌐 Web Content', data.viewer.web_platforms) }
+      ];
+
+      document.getElementById('catalog-root').innerHTML = sections.map(s => s.html).join('');
+
+      // Jump bar
+      const labels = {
+        new: '✨ New', travel: 'Travel', nature: 'Nature', sports: 'Sports',
+        music: 'Music', narrative: 'Narrative', announced: '⏳ Soon',
+        theater: '🎬 Theater', gone: 'Gone', apps: 'Apps', brand: 'Brands',
+        tools: 'Tools', web: 'Web'
+      };
+      document.getElementById('jump-bar-inner').innerHTML = sections
+        .filter(s => s.html)
+        .map(s => `<a class="jump-chip" href="#${s.id}">${labels[s.id] || s.id}</a>`)
+        .join('');
+
+      // Shelf nudge buttons
+      document.querySelectorAll('.shelf-wrap').forEach(wrap => {
+        const track = wrap.querySelector('.shelf');
+        wrap.querySelector('.prev').addEventListener('click', () =>
+          track.scrollBy({ left: -track.clientWidth * 0.85, behavior: 'smooth' }));
+        wrap.querySelector('.next').addEventListener('click', () =>
+          track.scrollBy({ left: track.clientWidth * 0.85, behavior: 'smooth' }));
+      });
+    }
+
+    fetch('catalog.json')
+      .then(r => r.json())
+      .then(buildCatalog)
+      .catch(err => {
+        document.getElementById('catalog-root').innerHTML =
+          '<p class="text-muted">Unable to load catalog. Please try again.</p>';
+        console.error('catalog.json load error:', err);
+      });
+  })();
+  </script>
+
+  <!-- ── Site-wide search JS ── -->
+  <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.min.js"></script>
+  <script>
+  (function() {
+    const input  = document.getElementById('site-search-input');
+    const box    = document.getElementById('site-search-results');
+    if (!input || !box) return;
+
+    let fuse = null;
+
+    function loadIndex() {
+      fetch('search-index.json')
+        .then(r => r.json())
+        .then(data => {
+          fuse = new Fuse(data, {
+            keys: [
+              { name: 'title',   weight: 0.6 },
+              { name: 'body',    weight: 0.3 },
+              { name: 'section', weight: 0.1 },
+            ],
+            threshold: 0.35,
+            includeScore: true,
+            minMatchCharLength: 2,
+          });
+        });
+    }
+
+    input.addEventListener('focus', function onFocus() {
+      if (!fuse) loadIndex();
+      input.removeEventListener('focus', onFocus);
+    }, { once: true });
+
+    input.addEventListener('input', function() {
+      const q = this.value.trim();
+      if (!q || !fuse) { close(); return; }
+      const results = fuse.search(q, { limit: 10 });
+      if (!results.length) {
+        box.innerHTML = '<div class="search-no-results">No results found</div>';
+        box.classList.add('active');
+        return;
+      }
+      box.innerHTML = results.map(r => {
+        const item = r.item;
+        return `<a class="search-result-item" href="${item.url}">
+          <span class="search-result-title">${item.title}</span>
+          <span class="search-result-meta">
+            <span class="search-result-page">${item.page}</span>
+            ${item.section}
+          </span>
+        </a>`;
+      }).join('');
+      box.classList.add('active');
+    });
+
+    document.addEventListener('click', function(e) {
+      if (!input.contains(e.target) && !box.contains(e.target)) close();
+    });
+
+    input.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') { close(); input.blur(); }
+    });
+
+    function close() {
+      box.classList.remove('active');
+      box.innerHTML = '';
+    }
+  })();
+  </script>
+</body>
+</html>
