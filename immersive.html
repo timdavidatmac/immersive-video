@@ -1166,7 +1166,7 @@
     const loader = new THREE.TextureLoader();
     loader.setCrossOrigin('anonymous');
     // Local copy first; fall back to the WebXR Samples' hosted texture
-    loader.load('catalog-images/textures/milky-way-6k.png', applySky, undefined, () => {
+    loader.load('catalog-images/textures/milky-way-4k.png', applySky, undefined, () => {
       loader.load('https://immersive-web.github.io/webxr-samples/media/textures/milky-way-4k.png',
         applySky, undefined, () => { /* keep the plain dark sphere */ });
     });
