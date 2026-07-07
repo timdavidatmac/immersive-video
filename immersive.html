@@ -608,6 +608,7 @@
           else if (e.year) meta.push(String(e.year));
           const addedAge = e.added ? (Date.now() - new Date(e.added)) / 86400000 : null;
           return {
+            id: e.id || null,
             title: e.title,
             thumb: e.thumbnail || null,
             url: e.url || e.deep_link || e.app_store || e.website || null,
@@ -782,7 +783,17 @@
     setStatus('Composing posters… 0 / ' + jobs.length, 5);
     await Promise.all(jobs.map(async ({ card, group }) => {
       let img = null;
-      try { img = await loadImage(card.thumb); } catch (e) { /* generated poster fallback */ }
+      try { img = await loadImage(card.thumb); }
+      catch (e) {
+        // CORS-blocked or missing artwork: try a local copy saved by hand
+        // into catalog-images/xr-thumbs/<id>.jpg (hyphens optional)
+        if (card.id) {
+          for (const name of [card.id, card.id.replace(/-/g, '')]) {
+            try { img = await loadImage('catalog-images/xr-thumbs/' + name + '.jpg'); break; }
+            catch (e2) { /* try the next spelling, else generated poster */ }
+          }
+        }
+      }
       card.texture = makeTexture(posterCanvas(card, group, img));
       done++;
       setStatus('Composing posters… ' + done + ' / ' + jobs.length, 5 + 70 * done / jobs.length);
@@ -942,6 +953,16 @@
       angleCursor += share;
     });
 
+    // Tiny base disc at the origin so AR Quick Look anchors the gallery's
+    // true floor — without it, Quick Look drops the lowest *card* onto
+    // your floor and everything hangs a metre too low (device test #5)
+    const groundAnchor = new THREE.Mesh(
+      new THREE.CylinderGeometry(0.18, 0.2, 0.012, 24),
+      new THREE.MeshStandardMaterial({ color: 0x2a2a30, roughness: 0.9 })
+    );
+    groundAnchor.position.y = 0.006;
+    root.add(groundAnchor);
+
     return { scene, root, cardMeshes, swayItems, maxDist };
   }
 
@@ -980,11 +1001,12 @@
     const half = Math.ceil(singles.length / 2);
     const sHalf = Math.ceil(series.length / 2);
     // radius, base height, drift speed (rad/s) — neighbours counter-rotate
+    // (speeds halved after device test #5: easier to pinch as they pass)
     const ringDefs = [
-      { cards: singles.slice(0, half), r: 2.5, y0: 1.12, ySteps: 4, speed: 0.030 },
-      { cards: series.slice(0, sHalf), r: 3.1, y0: 2.05, ySteps: 1, speed: -0.024 },
-      { cards: singles.slice(half), r: 3.8, y0: 1.55, ySteps: 4, speed: -0.019 },
-      { cards: series.slice(sHalf), r: 4.5, y0: 2.6, ySteps: 1, speed: 0.015 }
+      { cards: singles.slice(0, half), r: 2.5, y0: 1.12, ySteps: 4, speed: 0.015 },
+      { cards: series.slice(0, sHalf), r: 3.1, y0: 2.05, ySteps: 1, speed: -0.012 },
+      { cards: singles.slice(half), r: 3.8, y0: 1.55, ySteps: 4, speed: -0.010 },
+      { cards: series.slice(sHalf), r: 4.5, y0: 2.6, ySteps: 1, speed: 0.008 }
     ];
 
     const buildCard = (parent, card, x, y, z) => {
@@ -1061,6 +1083,7 @@
 
   const motion = {
     drifting: !reduceMotion, // on by default; Reduce Motion starts it paused (HIG)
+    holdDrift: false,        // true while a card is pulled forward for preview
     lastT: 0,
     modelYaw: 0,  // degrees — the inline miniature's slow turntable
     rings: []     // {group, speed, angle}
@@ -1069,7 +1092,7 @@
   function updateMotion(nowMs) {
     const dt = Math.min(0.1, (nowMs - (motion.lastT || nowMs)) / 1000);
     motion.lastT = nowMs;
-    if (!motion.drifting) return;
+    if (!motion.drifting || motion.holdDrift) return;
     for (const r of motion.rings) {
       r.angle += r.speed * dt;
       r.group.rotation.y = r.angle;
@@ -1284,6 +1307,9 @@
     const ARM_TIMEOUT = 8000;
     const tweens = [];
     const dummy = new THREE.Object3D();
+    // Head position cached every rendered frame — select events can fire
+    // when the XR camera transform isn't fresh, so never read it there
+    const lastHead = new THREE.Vector3(0, EYE, 0);
 
     function startTween(obj, to, dur, onDone) {
       tweens.push({
@@ -1339,24 +1365,31 @@
 
     function arm(mesh) {
       disarm();
-      const head = new THREE.Vector3();
-      ctx.getRenderer().xr.getCamera().getWorldPosition(head);
-      if (head.lengthSq() < 1e-4) head.set(0, EYE, 0);
+      const head = lastHead.clone();
 
-      // Fly the card toward you along its own bearing, to arm's length
-      const world = new THREE.Vector3();
-      mesh.getWorldPosition(world);
+      // Fly the card toward you along its own bearing, to arm's length.
+      // Everything stays in the card's own ring space — no reparenting
+      // (device test #5: scene.attach mid-session made cards vanish) —
+      // and drift holds still while a card is out, so "home" doesn't move.
+      motion.holdDrift = true;
+
+      const world = mesh.getWorldPosition(new THREE.Vector3());
       const dir = world.clone().sub(head);
       dir.y = 0;
       if (dir.lengthSq() < 1e-4) dir.set(0, 0, -1);
       dir.normalize();
-      const target = head.clone().addScaledVector(dir, 1.15);
-      target.y = Math.min(Math.max(head.y - 0.05, 1.1), 1.9);
+      const targetWorld = head.clone().addScaledVector(dir, 1.15);
+      targetWorld.y = Math.min(Math.max(head.y - 0.05, 1.1), 1.9);
 
-      // Remember the card's home — a local transform inside its ring, so
-      // the ring can keep drifting and the card still returns correctly
+      const parent = mesh.parent;
+      parent.updateWorldMatrix(true, false);
+      const targetLocal = parent.worldToLocal(targetWorld.clone());
+      dummy.position.copy(targetWorld);
+      dummy.lookAt(head.x, targetWorld.y, head.z);
+      const qLocal = parent.getWorldQuaternion(new THREE.Quaternion())
+        .invert().multiply(dummy.quaternion);
+
       const home = {
-        parent: mesh.parent,
         pos: mesh.position.clone(),
         quat: mesh.quaternion.clone(),
         scale: mesh.scale.clone()
@@ -1364,17 +1397,14 @@
       const sway = ctx.swayItems.find(it => it.obj === mesh);
       if (sway) sway.frozen = true;
 
-      ctx.scene.attach(mesh); // reparent, keeping the world transform
-      dummy.position.copy(target);
-      dummy.lookAt(head.x, target.y, head.z);
       const isEpisode = mesh.geometry.parameters.width < CARD_W;
       startTween(mesh, {
-        pos: target,
-        quat: dummy.quaternion.clone(),
+        pos: targetLocal,
+        quat: qLocal,
         scale: home.scale.clone().multiplyScalar(isEpisode ? 1.9 : 1.15)
       }, 340);
 
-      const panel = confirmPanelFor(mesh.userData.card, target, head, isEpisode);
+      const panel = confirmPanelFor(mesh.userData.card, targetWorld, head, isEpisode);
       ctx.scene.add(panel);
       armed = { mesh, panel, home, sway, t: performance.now() };
     }
@@ -1387,15 +1417,17 @@
       for (let i = tweens.length - 1; i >= 0; i--) {
         if (tweens[i].obj === mesh) tweens.splice(i, 1);
       }
-      home.parent.attach(mesh); // back into its (possibly rotated) ring
       if (instant) {
         mesh.position.copy(home.pos);
         mesh.quaternion.copy(home.quat);
         mesh.scale.copy(home.scale);
         if (sway) sway.frozen = false;
+        if (!armed) motion.holdDrift = false;
       } else {
-        startTween(mesh, { pos: home.pos, quat: home.quat, scale: home.scale }, 300,
-          () => { if (sway) sway.frozen = false; });
+        startTween(mesh, { pos: home.pos, quat: home.quat, scale: home.scale }, 300, () => {
+          if (sway) sway.frozen = false;
+          if (!armed) motion.holdDrift = false; // resume only once it's home
+        });
       }
     }
 
@@ -1455,11 +1487,15 @@
     }
 
     function xrFrame(nowMs) {
+      const cam = ctx.getRenderer().xr.getCamera();
+      const h = new THREE.Vector3();
+      cam.getWorldPosition(h);
+      if (h.lengthSq() > 1e-4) lastHead.copy(h);
+
       if (grab) {
         const cur = new THREE.Vector3().setFromMatrixPosition(grab.controller.matrixWorld);
         if (cur.lengthSq() > 1e-4) {
-          // Rotate the gallery like a wheel you're standing inside:
-          // the hand's bearing around you steers the yaw directly.
+          // Rotate the gallery like a wheel you're standing inside.
           const az = Math.atan2(cur.x, cur.z);
           if (grab.startAz == null) {
             grab.startAz = az;
@@ -1467,7 +1503,9 @@
             let d = az - grab.startAz;
             if (d > Math.PI) d -= 2 * Math.PI;
             if (d < -Math.PI) d += 2 * Math.PI;
-            ctx.root.rotation.y = grab.startYaw + d;
+            // Natural scrolling (device test #5): the gallery follows
+            // the drag direction, so subtract the azimuth delta.
+            ctx.root.rotation.y = grab.startYaw - d;
           }
         }
       }
@@ -1674,6 +1712,7 @@
     });
 
     statusBox.style.display = 'none';
+    window.__galleryDebug = { ctx, camera, THREE }; // console introspection
     return { camera, controls };
   }
 
@@ -1764,9 +1803,13 @@
           model.style.cursor = 'pointer';
           model.addEventListener('click', enterAction);
         }
+
+        // Warm the GPU in the background while the visitor reads the page
+        if (xrMode) setTimeout(() => warmUp(ctx).catch(() => {}), 1200);
       } else {
         // Everyone else: interactive WebGL preview (+ XR on headsets like Quest)
         await presentWebGL(ctx);
+        warmUp(ctx).catch(() => {});
         if (xrMode) {
           const xr = setupXR(ctx);
           immerseBtn.classList.add('available');
@@ -1781,6 +1824,20 @@
       setStatus('Something went wrong building the gallery: ' + err.message, 0);
     }
   })();
+
+  // Pre-compile shaders and push every poster texture to the GPU ahead of
+  // time. Without this, textures upload lazily as the rotating rings bring
+  // cards into view — a trickle of frame hitches that made the first
+  // minutes of the XR session feel unresponsive (device test #5).
+  async function warmUp(ctx) {
+    const r = ctx.getRenderer();
+    const cam = new THREE.PerspectiveCamera(60, 1, 0.05, 100);
+    if (r.compileAsync) await r.compileAsync(ctx.scene, cam);
+    else r.compile(ctx.scene, cam);
+    ctx.scene.traverse(o => {
+      if (o.material && o.material.map) r.initTexture(o.material.map);
+    });
+  }
 
   function xrNote(mode) {
     const pass = mode === 'immersive-ar' ? 'in your real room (passthrough)' : 'in a virtual space';
