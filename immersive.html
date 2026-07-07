@@ -802,22 +802,12 @@
       const dirX = Math.sin(g.centerAngle), dirZ = -Math.cos(g.centerAngle);
       const tanX = Math.cos(g.centerAngle), tanZ = Math.sin(g.centerAngle);
 
-      const cols = Math.max(2, Math.ceil(Math.sqrt(g.cards.length * 1.7)));
-
-      g.cards.forEach((card, i) => {
-        const col = i % cols, row = Math.floor(i / cols);
-        const hasEps = card.episodes.length > 0;
+      // Places one card (plus its strings and any episode fan) at cluster-local
+      // coordinates: t = sideways, d = depth (+ = away from viewer), y = height
+      const place = (card, t, d, y) => {
         const phase = jitter(idx * 7 + 6) * Math.PI * 4;
-
         // Size: new titles hang noticeably bigger, and every card varies a little
         const scale = (card.isNew ? 1.3 : 1.0) * (0.94 + (jitter(idx * 7 + 5) + 0.5) * 0.16);
-
-        const t = (col - (cols - 1) / 2) * 0.86 + jitter(idx * 7 + 1) * 0.2;   // sideways
-        const d = (row - Math.floor(g.cards.length / cols / 2)) * 0.9 + jitter(idx * 7 + 2) * 0.3; // depth
-        // Series with hanging episodes live in the upper band to make room below
-        const y = hasEps
-          ? 2.02 + jitter(idx * 7 + 3) * 0.14
-          : 1.15 + ((col * 2 + row * 3) % 4) * 0.34 + jitter(idx * 7 + 3) * 0.12;
 
         const x = dirX * (D + d) + tanX * t;
         const z = dirZ * (D + d) + tanZ * t;
@@ -847,16 +837,20 @@
           swayItems.push({ obj: s, baseY: s.position.y, phase });
         }
 
-        // Episode mini-cards hanging from their series card
-        if (hasEps) {
+        // Episode mini-cards hang from the series card in rows of up to 4,
+        // so a long season wraps downward instead of sprawling sideways
+        if (card.episodes.length) {
+          const perRow = 4;
           const pa = Math.atan2(x, -z); // parent's own bearing from the viewer
           const ptx = Math.cos(pa), ptz = Math.sin(pa);
           const bottomY = y - (CARD_H * scale) / 2;
           card.episodes.forEach((ep, ei) => {
-            const off = (ei - (card.episodes.length - 1) / 2) * (EP_W + 0.06);
-            const ex = x + ptx * off + jitter(idx * 11 + ei * 3) * 0.04;
-            const ez = z + ptz * off + jitter(idx * 11 + ei * 3 + 1) * 0.04;
-            const ey = bottomY - 0.24 - EP_H / 2 + jitter(idx * 11 + ei * 3 + 2) * 0.05;
+            const er = Math.floor(ei / perRow), ec = ei % perRow;
+            const inRow = Math.min(perRow, card.episodes.length - er * perRow);
+            const off = (ec - (inRow - 1) / 2) * (EP_W + 0.07);
+            const ex = x + ptx * off + jitter(idx * 11 + ei * 3) * 0.03;
+            const ez = z + ptz * off + jitter(idx * 11 + ei * 3 + 1) * 0.03;
+            const ey = bottomY - 0.22 - er * (EP_H + 0.13) - EP_H / 2 + jitter(idx * 11 + ei * 3 + 2) * 0.04;
 
             const em = new THREE.Mesh(epGeo,
               new THREE.MeshStandardMaterial({ map: ep.texture, roughness: 0.85, metalness: 0, side: THREE.DoubleSide }));
@@ -879,6 +873,41 @@
           });
         }
         idx++;
+      };
+
+      const singles = g.cards.filter(c => !c.episodes.length);
+      const series = g.cards.filter(c => c.episodes.length);
+
+      // Singles: amphitheater grid — back rows hang higher AND deeper,
+      // so they peek over the front row instead of hiding behind it
+      const sCols = Math.max(2, Math.ceil(Math.sqrt(singles.length * 1.6)));
+      const sRows = Math.ceil(singles.length / sCols);
+      singles.forEach((card, i) => {
+        const col = i % sCols, row = Math.floor(i / sCols);
+        const t = (col - (sCols - 1) / 2) * 0.9 + jitter(idx * 7 + 1) * 0.15;
+        const d = (row - (sRows - 1) / 2) * 1.25 + jitter(idx * 7 + 2) * 0.2;
+        const y = 1.08 + ((col * 2 + row) % 3) * 0.26 + row * 0.36 + jitter(idx * 7 + 3) * 0.08;
+        place(card, t, d, y);
+      });
+
+      // Series: their own band above the singles, in up to two staggered
+      // depth rows. Each gets a slot wide enough for its episode fan, so
+      // neighboring series can never overlap (device test #3: Elevated
+      // and Wild Life collided on the shared grid).
+      const slotFor = card =>
+        Math.max(CARD_W * 1.45, Math.min(card.episodes.length, 4) * (EP_W + 0.07)) + 0.3;
+      const seriesRows = [[], []];
+      series.forEach((c, i) => seriesRows[i % 2].push(c));
+      seriesRows.forEach((rowCards, ri) => {
+        const widths = rowCards.map(slotFor);
+        let cursor = -widths.reduce((a, b) => a + b, 0) / 2;
+        rowCards.forEach((card, i) => {
+          const t = cursor + widths[i] / 2;
+          cursor += widths[i];
+          const d = ri === 0 ? -0.15 : 1.1;          // far row sits deeper…
+          const y = (ri === 0 ? 2.0 : 2.55) + jitter(idx * 7 + 3) * 0.08; // …and higher
+          place(card, t, d, y);
+        });
       });
 
       // Constellation label above the cluster
@@ -1087,13 +1116,19 @@
       cx.font = '500 26px -apple-system, Helvetica, sans-serif';
       cx.fillText('back to the web page', 256, 226);
 
+      // Sign head: face + housing share one parent so they can never
+      // rotate apart (device test: they drifted when oriented separately)
+      const head = new THREE.Group();
+      head.position.y = 1.02;
+      exitStand.add(head);
+
       // Unlit face so the letters stay "backlit" even in the dark VR room
       const sign = new THREE.Mesh(
         new THREE.PlaneGeometry(0.36, 0.18),
         new THREE.MeshBasicMaterial({ map: makeTexture(c), side: THREE.DoubleSide, toneMapped: false })
       );
-      sign.position.y = 1.02;
-      exitStand.add(sign);
+      sign.position.z = 0.017; // just in front of the housing
+      head.add(sign);
       exitStand.userData.sign = sign;
 
       // Shallow metal housing behind the face
@@ -1101,8 +1136,7 @@
         new THREE.BoxGeometry(0.365, 0.185, 0.03),
         new THREE.MeshStandardMaterial({ color: 0x55555c, roughness: 0.45, metalness: 0.8 })
       );
-      housing.position.set(0, 1.02, -0.017);
-      exitStand.add(housing);
+      head.add(housing);
 
       const pole = new THREE.Mesh(
         new THREE.CylinderGeometry(0.011, 0.011, 0.95, 8),
@@ -1118,9 +1152,10 @@
       base.position.y = 0.01;
       exitStand.add(base);
 
-      // Just ahead and to the right of where the visitor enters
+      // Just ahead and to the right of where the visitor enters,
+      // the whole stand turned to face the entry point as one rigid object
       exitStand.position.set(0.55, 0, -1.15);
-      sign.lookAt(new THREE.Vector3(-0.55, 1.5, 1.15)); // face the entry point
+      exitStand.rotation.y = Math.atan2(-0.55, 1.15);
       return exitStand;
     }
 
@@ -1198,14 +1233,22 @@
         exitStand.userData.sign.scale.setScalar(1.12);
         return;
       }
+      // Pinching the floating confirm tag counts as the second pinch
+      if (armed && raycaster.intersectObject(armed.panel, false).length) {
+        picked = armed.mesh;
+        return;
+      }
       const hits = castFrom(controller);
       if (hits.length) {
         picked = hits[0].object;
       } else {
         disarm(); // pinching empty space cancels a pending selection
+        // startCtrl is captured on the first frame with a real pose —
+        // at selectstart a transient pointer may still report (0,0,0),
+        // which made the gallery leap by an arm's length (device test #3)
         grab = {
           controller,
-          startCtrl: new THREE.Vector3().setFromMatrixPosition(controller.matrixWorld),
+          startCtrl: null,
           startRoot: ctx.root.position.clone()
         };
       }
@@ -1236,7 +1279,12 @@
     function xrFrame(nowMs) {
       if (grab) {
         const cur = new THREE.Vector3().setFromMatrixPosition(grab.controller.matrixWorld);
-        ctx.root.position.copy(grab.startRoot).add(cur.clone().sub(grab.startCtrl));
+        if (!grab.startCtrl) {
+          // wait for the hand to report a real pose before anchoring the drag
+          if (cur.lengthSq() > 1e-4) grab.startCtrl = cur.clone();
+        } else {
+          ctx.root.position.copy(grab.startRoot).add(cur.clone().sub(grab.startCtrl));
+        }
       }
       if (armed && performance.now() - armed.t > ARM_TIMEOUT) disarm();
       swayCards(ctx.swayItems, nowMs);
@@ -1376,12 +1424,12 @@
     renderer.domElement.style.display = '';
 
     const camera = new THREE.PerspectiveCamera(65, 1, 0.05, 100);
-    // Start where a visitor stands: inside the gallery's clear zone,
-    // looking into the hanging cards (their fronts all face this point).
-    camera.position.set(0, EYE + 0.1, -1.1);
+    // Start where a visitor stands, facing the same way an XR visitor
+    // enters (-Z), so the first cluster is front and centre here too.
+    camera.position.set(0, EYE + 0.1, 1.1);
 
     const controls = new OrbitControls(camera, renderer.domElement);
-    controls.target.set(0, EYE, 0.9);
+    controls.target.set(0, EYE, -0.9);
     controls.enableDamping = true;
     controls.minDistance = 0.1; // you can fly right inside
     controls.maxDistance = ctx.maxDist * 4;
