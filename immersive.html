@@ -150,6 +150,21 @@
     }
     .drift-toggle[aria-pressed="true"] { background: #e8f2ff; border-color: #0176ba; color: #0176ba; }
 
+    .ar-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: #1d1d1f;
+      color: #ffffff;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 8px 15px;
+      border-radius: 17px;
+      text-decoration: none;
+    }
+    .ar-link:hover { background: #000; color: #fff; text-decoration: none; }
+    .ar-link[hidden] { display: none; }
+
     .support-note {
       font-size: 13px;
       color: #6e6e73;
@@ -354,7 +369,7 @@
     <!-- Visible only while immersed via the model-element fallback -->
     <div class="remote-banner">
       <h2>You're inside the catalog ✦</h2>
-      <p>Look around — titles hang in constellations by category. Use the buttons below to turn a category toward you, and press the Digital Crown to leave. Tip: you can also grab this window's bar and move it out of the way.</p>
+      <p>Look around — titles hang all around you. Press the Digital Crown to leave. Tip: you can also grab this window's bar and move it out of the way.</p>
     </div>
 
     <!-- 3D stage -->
@@ -369,7 +384,11 @@
     <!-- Controls -->
     <div class="galaxy-controls" id="galaxy-controls">
       <!-- category chips injected here -->
-      <button class="drift-toggle" id="drift-toggle" aria-pressed="false" title="Gently sway the gallery">✦ Drift</button>
+      <button class="drift-toggle" id="drift-toggle" aria-pressed="false" title="Pause or resume the gallery's motion">✦ Drift</button>
+      <a class="ar-link" id="ar-link" rel="ar" hidden>
+        <img src="catalog-images/USD/arkit-glyph-white.svg" alt="" aria-hidden="true" width="17" height="17">
+        View in AR
+      </a>
       <button class="immerse-btn" id="immerse-btn">⬢ Step Inside</button>
       <button class="exit-btn" id="exit-btn">Leave the gallery</button>
     </div>
@@ -388,8 +407,8 @@
           <h3>Built from the live catalog</h3>
           Your browser reads the same <code>catalog.json</code> that powers the
           <a href="./">Immersive Video</a> page, composes a poster for every title,
-          and hangs every title at different depths and heights, clustered into
-          constellations by category. New titles hang larger, and series carry their
+          and hangs every title at different depths and heights on slowly
+          counter-rotating rings. New titles hang larger, and series carry their
           episodes as mini-cards dangling beneath them — each one openable.
         </div>
         <div class="how-card">
@@ -927,35 +946,142 @@
   }
 
   /* ════════════════════════════════════════════════════════════
-     4 · Shared motion: yaw controller + hanging-card sway
+     3b · Ring scene — the walk-in presentation. No categories:
+     titles from the whole catalog mix onto four counter-rotating
+     carousel rings at different radii and heights.
      ════════════════════════════════════════════════════════════ */
-  const spin = {
-    yaw: 0, target: 0, anchor: 0,
-    drifting: false,
-    apply: null   // set by the active presentation path
-  };
+  function buildRingScene(groups) {
+    const scene = new THREE.Scene();
+    scene.add(new THREE.HemisphereLight(0xffffff, 0x30304a, 2.6));
+    const dirLight = new THREE.DirectionalLight(0xffffff, 1.2);
+    dirLight.position.set(3, 6, 4);
+    scene.add(dirLight);
 
-  function faceGroup(g) {
-    const desired = -g.centerAngle * 180 / Math.PI;
-    let d = (desired - spin.anchor) % 360;
-    if (d > 180) d -= 360;
-    if (d < -180) d += 360;
-    spin.anchor += d;
+    const ringRoot = new THREE.Group();
+    ringRoot.name = 'gallery-rings';
+    scene.add(ringRoot);
+
+    const cardGeo = new THREE.PlaneGeometry(CARD_W, CARD_H);
+    const epGeo = new THREE.PlaneGeometry(EP_W, EP_H);
+    const stringMat = new THREE.MeshStandardMaterial({ color: 0x3a3a40, roughness: 0.9, metalness: 0 });
+    const cardMeshes = [];
+    const swayItems = [];
+    let idx = 1000; // separate jitter stream from the cluster scene
+
+    // Deterministic shuffle so categories interleave
+    const mix = arr => arr
+      .map((c, i) => ({ c, k: jitter(i * 17 + 3) }))
+      .sort((a, b) => a.k - b.k)
+      .map(o => o.c);
+    const all = groups.flatMap(g => g.cards);
+    const singles = mix(all.filter(c => !c.episodes.length));
+    const series = mix(all.filter(c => c.episodes.length));
+
+    const half = Math.ceil(singles.length / 2);
+    const sHalf = Math.ceil(series.length / 2);
+    // radius, base height, drift speed (rad/s) — neighbours counter-rotate
+    const ringDefs = [
+      { cards: singles.slice(0, half), r: 2.5, y0: 1.12, ySteps: 4, speed: 0.030 },
+      { cards: series.slice(0, sHalf), r: 3.1, y0: 2.05, ySteps: 1, speed: -0.024 },
+      { cards: singles.slice(half), r: 3.8, y0: 1.55, ySteps: 4, speed: -0.019 },
+      { cards: series.slice(sHalf), r: 4.5, y0: 2.6, ySteps: 1, speed: 0.015 }
+    ];
+
+    const buildCard = (parent, card, x, y, z) => {
+      const phase = jitter(idx * 7 + 6) * Math.PI * 4;
+      const scale = (card.isNew ? 1.3 : 1.0) * (0.94 + (jitter(idx * 7 + 5) + 0.5) * 0.16);
+
+      const mesh = new THREE.Mesh(cardGeo,
+        new THREE.MeshStandardMaterial({ map: card.texture, roughness: 0.85, metalness: 0, side: THREE.DoubleSide }));
+      mesh.position.set(x, y, z);
+      mesh.scale.set(scale, scale, 1);
+      mesh.lookAt(0, y, 0);
+      mesh.rotateZ(jitter(idx * 7 + 4) * 0.05);
+      mesh.userData.card = card;
+      parent.add(mesh);
+      cardMeshes.push(mesh);
+      swayItems.push({ obj: mesh, baseY: y, phase });
+
+      const topY = y + (CARD_H * scale) / 2;
+      if (CEIL - topY > 0.05) {
+        const s = stringBetween(new THREE.Vector3(x, topY, z), new THREE.Vector3(x, CEIL, z), stringMat);
+        parent.add(s);
+        swayItems.push({ obj: s, baseY: s.position.y, phase });
+      }
+
+      if (card.episodes.length) {
+        const perRow = 4;
+        const pa = Math.atan2(x, -z);
+        const ptx = Math.cos(pa), ptz = Math.sin(pa);
+        const bottomY = y - (CARD_H * scale) / 2;
+        card.episodes.forEach((ep, ei) => {
+          const er = Math.floor(ei / perRow), ec = ei % perRow;
+          const inRow = Math.min(perRow, card.episodes.length - er * perRow);
+          const off = (ec - (inRow - 1) / 2) * (EP_W + 0.07);
+          const ex = x + ptx * off + jitter(idx * 11 + ei * 3) * 0.03;
+          const ez = z + ptz * off + jitter(idx * 11 + ei * 3 + 1) * 0.03;
+          const ey = bottomY - 0.22 - er * (EP_H + 0.13) - EP_H / 2 + jitter(idx * 11 + ei * 3 + 2) * 0.04;
+
+          const em = new THREE.Mesh(epGeo,
+            new THREE.MeshStandardMaterial({ map: ep.texture, roughness: 0.85, metalness: 0, side: THREE.DoubleSide }));
+          em.position.set(ex, ey, ez);
+          em.lookAt(0, ey, 0);
+          em.userData.card = ep;
+          parent.add(em);
+          cardMeshes.push(em);
+          swayItems.push({ obj: em, baseY: ey, phase });
+
+          const es = stringBetween(new THREE.Vector3(ex, ey + EP_H / 2, ez), new THREE.Vector3(x, bottomY, z), stringMat);
+          parent.add(es);
+          swayItems.push({ obj: es, baseY: es.position.y, phase });
+        });
+      }
+      idx++;
+    };
+
+    const rings = ringDefs.filter(def => def.cards.length).map((def, ri) => {
+      const group = new THREE.Group();
+      group.name = 'ring_' + ri;
+      ringRoot.add(group);
+      def.cards.forEach((card, i) => {
+        const a = (i / def.cards.length) * Math.PI * 2 + jitter(idx * 7 + 2) * 0.12 + ri * 0.5;
+        const y = def.y0 + ((i * 3) % def.ySteps) * 0.3 + jitter(idx * 7 + 3) * 0.08;
+        buildCard(group, card, def.r * Math.sin(a), y, -def.r * Math.cos(a));
+      });
+      return { group, speed: def.speed };
+    });
+
+    return { scene, ringRoot, rings, cardMeshes, swayItems, maxDist: 4.5 + CARD_W };
   }
 
-  function stepSpin(nowMs) {
-    // Drift is a gentle ±20° sway around the anchor — it always comes back.
-    spin.target = spin.anchor + (spin.drifting ? 20 * Math.sin(nowMs * 0.00028) : 0);
-    const delta = spin.target - spin.yaw;
-    if (Math.abs(delta) > 0.008) {
-      spin.yaw += delta * 0.05;
-      if (spin.apply) spin.apply();
+  /* ════════════════════════════════════════════════════════════
+     4 · Shared motion: ring drift, miniature turntable, card sway
+     ════════════════════════════════════════════════════════════ */
+  const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const motion = {
+    drifting: !reduceMotion, // on by default; Reduce Motion starts it paused (HIG)
+    lastT: 0,
+    modelYaw: 0,  // degrees — the inline miniature's slow turntable
+    rings: []     // {group, speed, angle}
+  };
+
+  function updateMotion(nowMs) {
+    const dt = Math.min(0.1, (nowMs - (motion.lastT || nowMs)) / 1000);
+    motion.lastT = nowMs;
+    if (!motion.drifting) return;
+    for (const r of motion.rings) {
+      r.angle += r.speed * dt;
+      r.group.rotation.y = r.angle;
     }
+    motion.modelYaw += 2.4 * dt;
   }
 
   function swayCards(swayItems, nowMs) {
+    if (reduceMotion) return;
     const t = nowMs * 0.001;
     for (const it of swayItems) {
+      if (it.frozen) continue; // a pulled-forward card is tween-driven
       it.obj.position.y = it.baseY + Math.sin(t * 0.55 + it.phase) * 0.022;
     }
   }
@@ -1023,29 +1149,13 @@
     extras.add(new THREE.Points(starGeo,
       new THREE.PointsMaterial({ color: 0xffffff, size: 0.09, transparent: true, opacity: 0.75 })));
 
-    // Deep-toned floor with a soft cool glow where you stand
+    // Plain, deep-grey floor (device test: the glow didn't add much)
     const floor = new THREE.Mesh(
       new THREE.CircleGeometry(12, 48),
-      new THREE.MeshStandardMaterial({ color: 0x101016, roughness: 1 })
+      new THREE.MeshStandardMaterial({ color: 0x0d0d11, roughness: 1 })
     );
     floor.rotation.x = -Math.PI / 2;
     extras.add(floor);
-
-    const glowCanvas = document.createElement('canvas');
-    glowCanvas.width = glowCanvas.height = 256;
-    const gctx = glowCanvas.getContext('2d');
-    const rg = gctx.createRadialGradient(128, 128, 10, 128, 128, 128);
-    rg.addColorStop(0, 'rgba(120,150,255,0.35)');
-    rg.addColorStop(1, 'rgba(120,150,255,0)');
-    gctx.fillStyle = rg;
-    gctx.fillRect(0, 0, 256, 256);
-    const glow = new THREE.Mesh(
-      new THREE.CircleGeometry(3.2, 40),
-      new THREE.MeshBasicMaterial({ map: makeTexture(glowCanvas), transparent: true, depthWrite: false })
-    );
-    glow.rotation.x = -Math.PI / 2;
-    glow.position.y = 0.01;
-    extras.add(glow);
 
     return extras;
   }
@@ -1166,14 +1276,38 @@
       return raycaster.intersectObjects(ctx.cardMeshes, false);
     }
 
-    // ── Two-step open: the first pinch arms a card and floats a
-    //    confirm tag; a second pinch on the same card opens it.
-    //    Pinching anywhere else (or 8s of hesitation) cancels. ──
-    let armed = null; // { mesh, panel, t }
+    // ── Two-step open with a pull-forward preview: the first pinch
+    //    flies the card to arm's length in front of you; a second pinch
+    //    opens it; pinching elsewhere (or 8s) flies it home — even if
+    //    its ring has rotated on in the meantime. ──
+    let armed = null; // { mesh, panel, home, sway, t }
     const ARM_TIMEOUT = 8000;
+    const tweens = [];
+    const dummy = new THREE.Object3D();
 
-    function confirmPanelFor(mesh) {
-      const card = mesh.userData.card;
+    function startTween(obj, to, dur, onDone) {
+      tweens.push({
+        obj, dur, onDone,
+        t0: performance.now(),
+        fromPos: obj.position.clone(), toPos: to.pos,
+        fromQ: obj.quaternion.clone(), toQ: to.quat,
+        fromS: obj.scale.clone(), toS: to.scale
+      });
+    }
+
+    function stepTweens(nowMs) {
+      for (let i = tweens.length - 1; i >= 0; i--) {
+        const tw = tweens[i];
+        const k = Math.min(1, (nowMs - tw.t0) / tw.dur);
+        const e = k * k * (3 - 2 * k); // smoothstep
+        tw.obj.position.lerpVectors(tw.fromPos, tw.toPos, e);
+        tw.obj.quaternion.slerpQuaternions(tw.fromQ, tw.toQ, e);
+        tw.obj.scale.lerpVectors(tw.fromS, tw.toS, e);
+        if (k >= 1) { tweens.splice(i, 1); tw.onDone && tw.onDone(); }
+      }
+    }
+
+    function confirmPanelFor(card, anchor, head, isEpisode) {
       const c = document.createElement('canvas');
       c.width = 768; c.height = 176;
       const cx = c.getContext('2d');
@@ -1195,31 +1329,74 @@
         new THREE.PlaneGeometry(0.52, 0.52 * 176 / 768),
         new THREE.MeshStandardMaterial({ map: makeTexture(c), roughness: 0.85, metalness: 0, side: THREE.DoubleSide })
       );
-      // Float between the card and the viewer, just below the card
-      const p = new THREE.Vector3();
-      mesh.getWorldPosition(p);
-      const head = new THREE.Vector3();
-      ctx.getRenderer().xr.getCamera().getWorldPosition(head);
-      const toHead = head.clone().sub(p).setY(0).normalize();
-      panel.position.copy(p).addScaledVector(toHead, 0.35);
-      panel.position.y = p.y - 0.18;
+      // Just below the pulled-forward card, angled at the viewer
+      const toHead = head.clone().sub(anchor).setY(0).normalize();
+      panel.position.copy(anchor).addScaledVector(toHead, 0.12);
+      panel.position.y = anchor.y - (isEpisode ? 0.28 : 0.36);
       panel.lookAt(head.x, panel.position.y, head.z);
       return panel;
     }
 
     function arm(mesh) {
       disarm();
-      mesh.scale.multiplyScalar(1.16);
-      const panel = confirmPanelFor(mesh);
+      const head = new THREE.Vector3();
+      ctx.getRenderer().xr.getCamera().getWorldPosition(head);
+      if (head.lengthSq() < 1e-4) head.set(0, EYE, 0);
+
+      // Fly the card toward you along its own bearing, to arm's length
+      const world = new THREE.Vector3();
+      mesh.getWorldPosition(world);
+      const dir = world.clone().sub(head);
+      dir.y = 0;
+      if (dir.lengthSq() < 1e-4) dir.set(0, 0, -1);
+      dir.normalize();
+      const target = head.clone().addScaledVector(dir, 1.15);
+      target.y = Math.min(Math.max(head.y - 0.05, 1.1), 1.9);
+
+      // Remember the card's home — a local transform inside its ring, so
+      // the ring can keep drifting and the card still returns correctly
+      const home = {
+        parent: mesh.parent,
+        pos: mesh.position.clone(),
+        quat: mesh.quaternion.clone(),
+        scale: mesh.scale.clone()
+      };
+      const sway = ctx.swayItems.find(it => it.obj === mesh);
+      if (sway) sway.frozen = true;
+
+      ctx.scene.attach(mesh); // reparent, keeping the world transform
+      dummy.position.copy(target);
+      dummy.lookAt(head.x, target.y, head.z);
+      const isEpisode = mesh.geometry.parameters.width < CARD_W;
+      startTween(mesh, {
+        pos: target,
+        quat: dummy.quaternion.clone(),
+        scale: home.scale.clone().multiplyScalar(isEpisode ? 1.9 : 1.15)
+      }, 340);
+
+      const panel = confirmPanelFor(mesh.userData.card, target, head, isEpisode);
       ctx.scene.add(panel);
-      armed = { mesh, panel, t: performance.now() };
+      armed = { mesh, panel, home, sway, t: performance.now() };
     }
 
-    function disarm() {
+    function disarm(instant) {
       if (!armed) return;
-      armed.mesh.scale.multiplyScalar(1 / 1.16);
-      ctx.scene.remove(armed.panel);
+      const { mesh, panel, home, sway } = armed;
       armed = null;
+      ctx.scene.remove(panel);
+      for (let i = tweens.length - 1; i >= 0; i--) {
+        if (tweens[i].obj === mesh) tweens.splice(i, 1);
+      }
+      home.parent.attach(mesh); // back into its (possibly rotated) ring
+      if (instant) {
+        mesh.position.copy(home.pos);
+        mesh.quaternion.copy(home.quat);
+        mesh.scale.copy(home.scale);
+        if (sway) sway.frozen = false;
+      } else {
+        startTween(mesh, { pos: home.pos, quat: home.quat, scale: home.scale }, 300,
+          () => { if (sway) sway.frozen = false; });
+      }
     }
 
     function onSelectStart(event) {
@@ -1243,13 +1420,14 @@
         picked = hits[0].object;
       } else {
         disarm(); // pinching empty space cancels a pending selection
-        // startCtrl is captured on the first frame with a real pose —
-        // at selectstart a transient pointer may still report (0,0,0),
-        // which made the gallery leap by an arm's length (device test #3)
+        // Drag = spin only (device test #4: free 3D drag felt wrong; the
+        // visual says "turntable"). The anchor azimuth is captured on the
+        // first frame with a real pose — at selectstart a transient
+        // pointer may still report (0,0,0).
         grab = {
           controller,
-          startCtrl: null,
-          startRoot: ctx.root.position.clone()
+          startAz: null,
+          startYaw: ctx.root.rotation.y
         };
       }
     }
@@ -1265,7 +1443,7 @@
         if (armed && armed.mesh === picked) {
           // Second pinch on the same card — that's a real choice
           pendingCard = picked.userData.card;
-          disarm();
+          disarm(true); // snap home; we're leaving anyway
           if (session) session.end(); // leave XR, then open the film
         } else {
           arm(picked); // first pinch — preview and ask for confirmation
@@ -1279,14 +1457,22 @@
     function xrFrame(nowMs) {
       if (grab) {
         const cur = new THREE.Vector3().setFromMatrixPosition(grab.controller.matrixWorld);
-        if (!grab.startCtrl) {
-          // wait for the hand to report a real pose before anchoring the drag
-          if (cur.lengthSq() > 1e-4) grab.startCtrl = cur.clone();
-        } else {
-          ctx.root.position.copy(grab.startRoot).add(cur.clone().sub(grab.startCtrl));
+        if (cur.lengthSq() > 1e-4) {
+          // Rotate the gallery like a wheel you're standing inside:
+          // the hand's bearing around you steers the yaw directly.
+          const az = Math.atan2(cur.x, cur.z);
+          if (grab.startAz == null) {
+            grab.startAz = az;
+          } else {
+            let d = az - grab.startAz;
+            if (d > Math.PI) d -= 2 * Math.PI;
+            if (d < -Math.PI) d += 2 * Math.PI;
+            ctx.root.rotation.y = grab.startYaw + d;
+          }
         }
       }
       if (armed && performance.now() - armed.t > ARM_TIMEOUT) disarm();
+      stepTweens(nowMs);
       swayCards(ctx.swayItems, nowMs);
     }
 
@@ -1325,11 +1511,11 @@
           c.removeEventListener('selectend', onSelectEnd);
           ctx.scene.remove(c);
         }
-        disarm();
+        disarm(true); // no render loop after this — restore instantly
         if (vrExtras) { ctx.scene.remove(vrExtras); vrExtras = null; }
         if (exitStand) ctx.scene.remove(exitStand);
         ctx.scene.background = null;
-        ctx.root.position.set(0, 0, 0); // put the gallery back where it started
+        ctx.root.rotation.y = 0; // put the gallery back where it started
         grab = null; picked = null; exitPicked = false; session = null;
         ctx.onSessionEnd && ctx.onSessionEnd();
         if (pendingCard) { const card = pendingCard; pendingCard = null; offerCard(card, false); }
@@ -1375,19 +1561,29 @@
       const m = new DOMMatrix();
       if (document.immersiveElement) {
         // Fallback immersion: real-world scale, origin at the viewer's feet.
-        m.rotateAxisAngleSelf(0, 1, 0, spin.yaw);
+        m.rotateAxisAngleSelf(0, 1, 0, motion.modelYaw);
       } else {
-        // Inline: a slowly swaying miniature of the whole gallery.
+        // Inline: a slowly turning miniature of the whole gallery.
         const widthMeters = (model.clientWidth || 800) / 3800; // ≈38 px per cm
         const s = widthMeters / (diameter * 1.08);
         m.scaleSelf(s, s, s);
-        m.rotateAxisAngleSelf(0, 1, 0, spin.yaw);
+        m.rotateAxisAngleSelf(0, 1, 0, motion.modelYaw);
         m.translateSelf(0, -EYE, 0);
       }
       model.entityTransform = m;
     }
-    spin.apply = applyTransform;
     applyTransform();
+
+    // Turntable loop (updateMotion is shared; calling it twice a frame is safe)
+    let lastYaw = motion.modelYaw;
+    (function turntable(nowMs) {
+      requestAnimationFrame(turntable);
+      updateMotion(nowMs || performance.now());
+      if (Math.abs(motion.modelYaw - lastYaw) > 0.05) {
+        lastYaw = motion.modelYaw;
+        applyTransform();
+      }
+    })();
 
     model.addEventListener('immersivechange', () => {
       const immersed = !!document.immersiveElement; // per Apple's sample code
@@ -1395,16 +1591,23 @@
       applyTransform();
     });
 
+    // The same USDZ, one tap away from AR Quick Look (also reachable by
+    // pinch-holding the miniature and dragging it out of the page)
+    const arLink = document.getElementById('ar-link');
+    arLink.href = url;
+    arLink.hidden = false;
+
     return model;
   }
 
   // 7b — model-element requestImmersive fallback (no WebXR available)
   function wireImmersiveFallback(model) {
-    immerseBtn.classList.add('available');
-    immerseBtn.addEventListener('click', async () => {
+    const enter = async () => {
       try { await model.requestImmersive(); }
       catch (e) { supportNote.textContent = 'Immersive request was declined: ' + e; }
-    });
+    };
+    immerseBtn.classList.add('available');
+    immerseBtn.addEventListener('click', enter);
     const exitFn = typeof document.exitImmersive === 'function'
       ? () => document.exitImmersive()
       : typeof model.exitImmersive === 'function'
@@ -1414,7 +1617,8 @@
       exitBtn.classList.add('available');
       exitBtn.addEventListener('click', exitFn);
     }
-    supportNote.innerHTML = '<strong>Tap Step Inside</strong> and the gallery surrounds you at room scale — this page stays open as a remote control. (Your Safari supports immersive websites but not WebXR, so posters aren\'t tappable in this mode; use the buttons here instead.)';
+    supportNote.innerHTML = '<strong>Tap Step Inside</strong> and the gallery surrounds you at room scale — this page stays open as a remote control. (Your Safari supports immersive websites but not WebXR, so posters aren\'t tappable in this mode.)';
+    return enter;
   }
 
   // 7c — flat WebGL preview (desktop and any non-model browser)
@@ -1461,10 +1665,8 @@
     });
     renderer.domElement.style.cursor = 'pointer';
 
-    spin.apply = () => { ctx.root.rotation.y = spin.yaw * Math.PI / 180; };
-
     renderer.setAnimationLoop((nowMs) => {
-      stepSpin(nowMs);
+      updateMotion(nowMs);
       swayCards(ctx.swayItems, nowMs);
       if (ctx.onXRFrame && renderer.xr.isPresenting) ctx.onXRFrame(nowMs);
       controls.update();
@@ -1491,34 +1693,28 @@
       const data = await res.json();
       const groups = collectGroups(data);
 
-      // Category chips
-      for (const g of groups) {
-        const b = document.createElement('button');
-        b.className = 'cat-chip';
-        b.style.setProperty('--chip-color', g.color);
-        b.setAttribute('aria-pressed', 'false');
-        b.innerHTML = '<span class="dot" aria-hidden="true"></span>' + g.label +
-          ' <span class="chip-count" style="font-weight:500;">' + g.cards.length + '</span>';
-        b.setAttribute('aria-label', 'Turn the ' + g.label + ' constellation (' + g.cards.length + ' titles) to face you');
-        b.addEventListener('click', () => {
-          controlsBar.querySelectorAll('.cat-chip').forEach(x => x.setAttribute('aria-pressed', 'false'));
-          b.setAttribute('aria-pressed', 'true');
-          faceGroup(g);
-        });
-        controlsBar.insertBefore(b, driftToggle);
-      }
-
+      // Drift: on by default; visitors with Reduce Motion start paused (HIG)
+      driftToggle.setAttribute('aria-pressed', String(motion.drifting));
       driftToggle.addEventListener('click', () => {
-        spin.drifting = !spin.drifting;
-        driftToggle.setAttribute('aria-pressed', String(spin.drifting));
+        motion.drifting = !motion.drifting;
+        driftToggle.setAttribute('aria-pressed', String(motion.drifting));
       });
 
-      const { scene, root, cardMeshes, swayItems, maxDist } = await buildGallery(groups);
+      // Two scenes from one set of textures: the clustered, labelled layout
+      // becomes the USDZ miniature; the category-free counter-rotating rings
+      // are what you walk through. (buildGallery also loads all artwork.)
+      const cluster = await buildGallery(groups);
+      const live = buildRingScene(groups);
+      motion.rings = live.rings.map(r => ({ group: r.group, speed: r.speed, angle: 0 }));
 
       // Lazily-created shared renderer (WebGL preview and/or XR)
       let renderer = null;
       const ctx = {
-        scene, root, cardMeshes, swayItems, maxDist,
+        scene: live.scene,
+        root: live.ringRoot,
+        cardMeshes: live.cardMeshes,
+        swayItems: live.swayItems,
+        maxDist: live.maxDist,
         onXRFrame: null,
         onSessionEnd: null,
         getRenderer() {
@@ -1535,37 +1731,38 @@
       const xrMode = await detectXRMode();
 
       if (supportsModel) {
-        // visionOS: stereoscopic miniature inline. Sway/spin loop for the model path.
-        const model = await presentInlineModel(scene, maxDist);
-        if (model) {
-          spin.drifting = true;
-          driftToggle.setAttribute('aria-pressed', 'true');
-          (function modelLoop(nowMs) {
-            requestAnimationFrame(modelLoop);
-            if (!renderer || !renderer.xr.isPresenting) stepSpin(nowMs || performance.now());
-          })();
-        }
+        // visionOS: stereoscopic miniature inline (clustered layout, with labels)
+        const model = await presentInlineModel(cluster.scene, cluster.maxDist);
 
+        let enterAction = null;
         if (xrMode) {
           const xr = setupXR(ctx);
           ctx.onSessionEnd = () => { supportNote.innerHTML = xrNote(xrMode); };
-          immerseBtn.classList.add('available');
-          immerseBtn.addEventListener('click', () => {
+          enterAction = () => {
             // XR needs its own render loop on the shared renderer
             ctx.getRenderer().setAnimationLoop((nowMs) => {
               const r = ctx.getRenderer();
               if (r.xr.isPresenting) {
+                updateMotion(nowMs);
                 ctx.onXRFrame && ctx.onXRFrame(nowMs);
-                r.render(scene, r.xr.getCamera());
+                r.render(ctx.scene, r.xr.getCamera());
               }
             });
             xr.enter(xrMode);
-          });
-          supportNote.innerHTML = xrNote(xrMode);
+          };
+          immerseBtn.classList.add('available');
+          immerseBtn.addEventListener('click', enterAction);
+          supportNote.innerHTML = xrNote(xrMode) + ' You can also just <strong>tap the miniature</strong> to step inside.';
         } else if (supportsImmersive && model) {
-          wireImmersiveFallback(model);
+          enterAction = wireImmersiveFallback(model);
         } else {
           supportNote.innerHTML = 'You\'re seeing the stereoscopic 3D miniature via the <code>&lt;model&gt;</code> element. Walk-through immersion needs WebXR or the Immersive API (Safari on visionOS 27).';
+        }
+
+        // Tapping the miniature is the natural way in (a tap is a user gesture)
+        if (model && enterAction) {
+          model.style.cursor = 'pointer';
+          model.addEventListener('click', enterAction);
         }
       } else {
         // Everyone else: interactive WebGL preview (+ XR on headsets like Quest)
@@ -1588,7 +1785,7 @@
   function xrNote(mode) {
     const pass = mode === 'immersive-ar' ? 'in your real room (passthrough)' : 'in a virtual space';
     return '<strong>Tap Step Inside</strong> to walk through the gallery ' + pass + '. ' +
-      '<strong>Pinch a poster once</strong> to preview it, <strong>pinch it again</strong> to open its film · <strong>pinch empty space and drag</strong> to move the gallery · <strong>pinch the ✕ Exit Immersive sign</strong> on the stand in front of you (or press the Digital Crown) to come back.';
+      '<strong>Pinch a poster once</strong> to preview it, <strong>pinch it again</strong> to open its film · <strong>pinch empty space and drag sideways</strong> to spin the gallery around you · <strong>pinch the ✕ Exit Immersive sign</strong> on the stand in front of you (or press the Digital Crown) to come back.';
   }
   </script>
 </body>
