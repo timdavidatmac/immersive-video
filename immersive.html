@@ -429,7 +429,9 @@
       <p class="support-note" style="margin-top:16px;">
         Poster artwork is streamed from each film's original source and belongs to its rights holders.
         Films open in their own apps — Apple TV, Theater, and others — via the same links as the
-        <a href="./">main catalog page</a>.
+        <a href="./">main catalog page</a>. The starfield surrounding the virtual gallery is the
+        Milky Way panorama by ESO/S.&nbsp;Brunier (CC&nbsp;BY&nbsp;4.0), via the
+        <a href="https://github.com/immersive-web/webxr-samples" target="_blank" rel="noopener">WebXR Samples</a> project.
       </p>
     </section>
 
@@ -1143,46 +1145,31 @@
   }
 
   function makeXRExtras() {
-    // Only shown in fully virtual (VR) sessions, where there's no passthrough
+    // Only shown in fully virtual (VR) sessions, where there's no passthrough.
+    // A full-wrap Milky Way skybox — above, below, all around — in place of
+    // the old dome/floor (Tim's pick, from the WebXR Samples project; the
+    // panorama is ESO/S. Brunier, CC BY 4.0).
     const extras = new THREE.Group();
     extras.name = 'vr-extras';
 
-    // Starlit gradient sky dome (matches the page's stage aesthetic)
-    const skyCanvas = document.createElement('canvas');
-    skyCanvas.width = 16; skyCanvas.height = 512;
-    const sctx = skyCanvas.getContext('2d');
-    const grad = sctx.createLinearGradient(0, 0, 0, 512);
-    grad.addColorStop(0, '#04040a');
-    grad.addColorStop(0.55, '#171728');
-    grad.addColorStop(0.72, '#232338');
-    grad.addColorStop(1, '#0b0b12');
-    sctx.fillStyle = grad;
-    sctx.fillRect(0, 0, 16, 512);
-    const sky = new THREE.Mesh(
-      new THREE.SphereGeometry(30, 32, 24),
-      new THREE.MeshBasicMaterial({ map: makeTexture(skyCanvas), side: THREE.BackSide })
-    );
-    extras.add(sky);
+    const geo = new THREE.SphereGeometry(45, 48, 32);
+    geo.scale(-1, 1, 1); // view it from the inside, un-mirrored
+    const mat = new THREE.MeshBasicMaterial({ color: 0x0b0b12, toneMapped: false });
+    extras.add(new THREE.Mesh(geo, mat));
 
-    // A scatter of stars on the dome
-    const starPos = [];
-    for (let i = 0; i < 400; i++) {
-      const a = jitter(i * 3) * Math.PI * 2;
-      const e = (jitter(i * 3 + 1) + 0.5) * Math.PI * 0.45 + 0.06;
-      starPos.push(28 * Math.cos(e) * Math.sin(a), 28 * Math.sin(e) + 1, -28 * Math.cos(e) * Math.cos(a));
-    }
-    const starGeo = new THREE.BufferGeometry();
-    starGeo.setAttribute('position', new THREE.Float32BufferAttribute(starPos, 3));
-    extras.add(new THREE.Points(starGeo,
-      new THREE.PointsMaterial({ color: 0xffffff, size: 0.09, transparent: true, opacity: 0.75 })));
-
-    // Plain, deep-grey floor (device test: the glow didn't add much)
-    const floor = new THREE.Mesh(
-      new THREE.CircleGeometry(12, 48),
-      new THREE.MeshStandardMaterial({ color: 0x0d0d11, roughness: 1 })
-    );
-    floor.rotation.x = -Math.PI / 2;
-    extras.add(floor);
+    const applySky = tex => {
+      tex.colorSpace = THREE.SRGBColorSpace;
+      mat.map = tex;
+      mat.color.set(0xffffff);
+      mat.needsUpdate = true;
+    };
+    const loader = new THREE.TextureLoader();
+    loader.setCrossOrigin('anonymous');
+    // Local copy first; fall back to the WebXR Samples' hosted texture
+    loader.load('catalog-images/textures/milky-way-4k.png', applySky, undefined, () => {
+      loader.load('https://immersive-web.github.io/webxr-samples/media/textures/milky-way-4k.png',
+        applySky, undefined, () => { /* keep the plain dark sphere */ });
+    });
 
     return extras;
   }
@@ -1196,6 +1183,7 @@
     let picked = null;
     let pendingCard = null;
     let vrExtras = null;
+    let vrExtrasCached = null;
     let exitStand = null;
     let exitPicked = false;
 
@@ -1288,6 +1276,23 @@
       );
       base.position.y = 0.01;
       exitStand.add(base);
+
+      // A small hover-pad for the stand — something to "stand on" now
+      // that the VR room is open space: dark metallic disc, glowing rim
+      const pad = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.34, 0.4, 0.05, 36),
+        new THREE.MeshStandardMaterial({ color: 0x1c1c21, metalness: 0.65, roughness: 0.35 })
+      );
+      pad.position.y = -0.025; // top face flush with the stand's base
+      exitStand.add(pad);
+
+      const rim = new THREE.Mesh(
+        new THREE.TorusGeometry(0.37, 0.009, 10, 56),
+        new THREE.MeshBasicMaterial({ color: 0x6fb8ff, toneMapped: false })
+      );
+      rim.rotation.x = Math.PI / 2;
+      rim.position.y = -0.012;
+      exitStand.add(rim);
 
       // Just ahead and to the right of where the visitor enters,
       // the whole stand turned to face the entry point as one rigid object
@@ -1545,7 +1550,8 @@
 
       if (mode === 'immersive-vr') {
         ctx.scene.background = new THREE.Color(0x0b0b12);
-        vrExtras = makeXRExtras();
+        // Built once and reused, so the skybox texture only downloads once
+        vrExtras = vrExtrasCached || (vrExtrasCached = makeXRExtras());
         ctx.scene.add(vrExtras);
       } else {
         ctx.scene.background = null; // passthrough
