@@ -1150,6 +1150,15 @@
           "website": "https://immersa.app",
           "added": "2026-05-19",
           "note": "Professional delivery platform for immersive filmmakers and studios."
+        },
+        {
+          "id": "fovii",
+          "title": "Fovii",
+          "website": "https://fovii.com",
+          "app_icon": "https://fovii.com/assets/fovii-icon-Cdw364PG.png",
+          "added": "2026-07-09",
+          "status": "pending",
+          "note": "Coming Soon — a curated discovery platform built specifically for Apple Immersive Video. Founded by John Racine (Creative & Technical Director, Rogue Labs), built around human curation, cinematic presentation, and emotional presence. Film submissions are open now ahead of the visionOS app launch."
         }
       ]
     },
