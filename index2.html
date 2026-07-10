@@ -284,7 +284,7 @@
   <footer class="site-footer" role="contentinfo">
     <div class="site-footer-inner">
       <p>The Apple Immersive Video &amp; Spatial Computing catalog and newsletter are independent publications. They are not affiliated with, endorsed by, or sponsored by Apple, Blackmagic Design, or any other company mentioned. Apple, Apple Vision Pro, and Apple Immersive Video are trademarks of Apple Inc.</p>
-      <p>A publication of <a href="mailto:imaginationave@mac.com">Imagination Ave</a> &nbsp;·&nbsp; <a href="newsletters/">Newsletter Archive</a></p>
+      <p>A publication of <a href="#" class="js-mailto" data-user="=Umdh52bpRXYul2Zh1Wa" data-domain="==QbvNmLjFWb" aria-label="Email Imagination Ave">Imagination Ave</a> &nbsp;·&nbsp; <a href="newsletters/">Newsletter Archive</a></p>
     </div>
   </footer>
 
@@ -554,6 +554,25 @@
     function close() {
       box.classList.remove('active');
       box.innerHTML = '';
+    }
+  })();
+  </script>
+
+  <!-- Email obfuscation: reconstructs mailto: links at runtime from base64-encoded, reversed parts. -->
+  <script>
+  (function () {
+    function decode(str) {
+      return atob(str.split('').reverse().join(''));
+    }
+    var links = document.querySelectorAll('.js-mailto');
+    for (var i = 0; i < links.length; i++) {
+      var el = links[i];
+      var user = decode(el.getAttribute('data-user'));
+      var domain = decode(el.getAttribute('data-domain'));
+      var params = el.getAttribute('data-params');
+      var href = 'mailto:' + user + '@' + domain;
+      if (params) { href += '?' + params; }
+      el.setAttribute('href', href);
     }
   })();
   </script>
