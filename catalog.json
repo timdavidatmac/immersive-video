@@ -1554,6 +1554,14 @@
     "note": "visionOS apps for spatial experiences, design, games, and volumetric content — not immersive video catalogs.",
     "entries": [
       {
+        "id": "lamborghini",
+        "title": "Lamborghini",
+        "app_store": "https://apps.apple.com/us/app/lamborghini/id6753299273",
+        "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/e9/c1/c5/e9c1c535-19b5-85bc-0a85-107acfd1a84f/AppIcon.lsr/512x512bb.jpg",
+        "added": "2026-07-06",
+        "note": "Official Lamborghini app for Apple Vision Pro. Explore four current models — Temerario, Revuelto, Urus SE, and Urus SE Performante — down to their powertrain, spaceframe, aerodynamics, and Centro Stile design language. Place a high-fidelity Lamborghini at true 1:1 scale in your room via Mixed Reality, or step into curated Virtual Reality environments. Includes Spatial Audio engine sound design. Free, Vision Pro exclusive. Announced by Riccardo Bigi (Automobili Lamborghini) on LinkedIn."
+      },
+      {
         "id": "caradise",
         "title": "Caradise",
         "app_store": "https://apps.apple.com/us/app/caradise/id6751403753",
