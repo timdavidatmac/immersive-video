@@ -661,7 +661,7 @@
       "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/dd/b3/a9/ddb3a9b7-e37f-c89d-45c6-32cb1d27edb8/AppIcon.lsr/512x512bb.jpg",
       "website": "https://theater.sandwich.vision",
       "marquee": "https://sandwich.vision/sandwich-vision/render/theater/theater-marquee#aiv",
-      "note": "Tap any title to open directly in the Theater app — deep links require Theater to be installed. ⏳ Watch: Tennessee Aquarium immersive film (alligators, lemurs) coming soon — shot June 2026 by SpatialGen and Sandwich Vision at the Tennessee Aquarium in Chattanooga, TN.",
+      "note": "Tap any title to open directly in the Theater app — deep links require Theater to be installed.",
       "sections": {
         "main_course_films": {
           "label": "Ben Allan & Clara Chong",
@@ -748,6 +748,25 @@
               "description": "They came, they Tutted, you loved it. A Sandwich Vision collaboration with the Italian dance crew Urban Theory.",
               "note": "Updated from teaser to full film June 2026.",
               "thumbnail": "https://nmzfdjblmhrthistlmnc.supabase.co/storage/v1/object/public/theater-artwork/movies/urban-theory-splash.jpg",
+              "title_overlay": true
+            },
+            {
+              "id": "the-river-you-see-teaser",
+              "title": "The River You See Teaser",
+              "deep_link": "theater://view/the-river-you-see-teaser",
+              "status": "available",
+              "genre": "Documentary / Nature",
+              "duration": "27s",
+              "added": "2026-07-10",
+              "description": "What if you could see what's under the surface? Produced by Sandwich Vision and SpatialGen, a visit to the once polluted river that now flows clear by the thriving Tennessee Aquarium and its Conservation Institute facility.",
+              "note": "Teaser for the Tennessee Aquarium immersive film shot June 2026 by SpatialGen and Sandwich Vision at the Tennessee Aquarium in Chattanooga, TN.",
+              "links": [
+                {
+                  "label": "Tennessee Aquarium",
+                  "url": "https://tnaqua.org"
+                }
+              ],
+              "thumbnail": "https://nmzfdjblmhrthistlmnc.supabase.co/storage/v1/object/public/theater-artwork/thumbnails/the-river-you-see-teaser.jpg",
               "title_overlay": true
             },
             {
