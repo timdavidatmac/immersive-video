@@ -149,6 +149,7 @@ nl_files = [
     ('immersive_newsletter_may15_2026.html',  'May 2026'),
     ('immersive_newsletter_june2026.html',    'June 2026'),
     ('immersive_newsletter_wwdc26.html',      'WWDC26 Special'),
+    ('immersive_newsletter_july2026.html',    'July 2026'),
 ]
 nl_count = 0
 for fname, label in nl_files:
