@@ -784,6 +784,17 @@
     shape.absarc(-hw + r, -hh + r, r, Math.PI, Math.PI * 1.5, false);
     const geo = new THREE.ShapeGeometry(shape, segments);
     geo.computeVertexNormals();
+    // ShapeGeometry's UVs are raw shape-space coordinates (here, roughly
+    // -w/2..w/2 and -h/2..h/2 — centered on the origin), NOT normalized to
+    // 0..1 like PlaneGeometry's. Every card texture was composed assuming
+    // the PlaneGeometry convention, so left as-is every card samples only
+    // the sliver of its texture near the origin (mostly clamped to a
+    // single edge pixel) — the "blank card" bug. Remap into 0..1 here.
+    const uv = geo.attributes.uv;
+    for (let i = 0; i < uv.count; i++) {
+      uv.setXY(i, uv.getX(i) / w + 0.5, uv.getY(i) / h + 0.5);
+    }
+    uv.needsUpdate = true;
     return geo;
   }
 
@@ -1869,20 +1880,34 @@
   // 7a — visionOS inline preview: stereoscopic USDZ miniature
   async function presentInlineModel(scene, maxDist) {
     setStatus('Exporting your gallery to USDZ…', 82);
+    // This scene is never rendered through WebGL before export (USDZ bypasses
+    // that entirely), so Object3D.matrixWorld is still every node's untouched
+    // default (identity) unless forced — three.js only recomputes it as a
+    // side effect of a render call. USDZExporter reads matrixWorld directly,
+    // so without this, every nested child (card backs, episode backs, label
+    // backs) exports at the scene origin with no rotation instead of its real
+    // position — the "stray thumbnails + black bar" artifact hanging in the
+    // middle of the model on every RealityKit surface (confirmed by exporting
+    // this exact scene with and without this line and diffing the resulting
+    // model.usda transforms).
+    scene.updateMatrixWorld(true);
     const { USDZExporter } = await import('three/addons/exporters/USDZExporter.js');
     const exporter = new USDZExporter();
     const bytes = exporter.parseAsync
       ? await exporter.parseAsync(scene, { maxTextureSize: 1024, quickLookCompatible: true })
       : await exporter.parse(scene);
-    // A File (not a bare Blob) carries a name through the blob: URL — Safari
-    // reads it for both the pinch-drag-out gesture and the system AR
-    // viewer's title, which otherwise falls back to a garbled name
-    // synthesized from the blob UUID (device test: "SystemPreviewekAGC4").
-    // Named distinctly from "Step Inside" so the two entry points read as
-    // clearly different things.
+    // Named File so a save/share sheet offers a real name instead of the
+    // blob UUID — but device test #2 confirmed the AR system preview's own
+    // title bar ignores File.name entirely for blob: URLs (still showed
+    // "SystemPreviewvPCwRV" after this alone) and appears to read a filename
+    // literally off the end of the URL string instead. Appending it as a
+    // fragment is a known workaround: it doesn't change what resource the
+    // blob: URL resolves to, but gives the system viewer's title parser
+    // something that looks like a filename to find.
+    const fileName = 'Immersive-Catalog-AR.usdz';
     const url = URL.createObjectURL(
-      new File([bytes], 'Immersive-Catalog-AR.usdz', { type: 'model/vnd.usdz+zip' })
-    );
+      new File([bytes], fileName, { type: 'model/vnd.usdz+zip' })
+    ) + '#' + fileName;
 
     const model = document.createElement('model');
     model.id = 'gallery-model';
@@ -1939,7 +1964,7 @@
     // pinch-holding the miniature and dragging it out of the page)
     const arLink = document.getElementById('ar-link');
     arLink.href = url;
-    arLink.download = 'Immersive-Catalog-AR.usdz'; // same naming fix, for this entry point too
+    arLink.download = fileName; // same naming fix, for this entry point too
     arLink.hidden = false;
 
     return model;
