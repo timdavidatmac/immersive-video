@@ -766,6 +766,27 @@
     return tex;
   }
 
+  // A flat rounded-rectangle plane — same width/height/UV convention as
+  // PlaneGeometry, so it drops in anywhere a card texture already expects
+  // 0..1 UVs across the full quad.
+  function roundedPlaneGeometry(w, h, r, segments = 6) {
+    const hw = w / 2, hh = h / 2;
+    r = Math.min(r, hw, hh);
+    const shape = new THREE.Shape();
+    shape.moveTo(-hw + r, -hh);
+    shape.lineTo(hw - r, -hh);
+    shape.absarc(hw - r, -hh + r, r, -Math.PI / 2, 0, false);
+    shape.lineTo(hw, hh - r);
+    shape.absarc(hw - r, hh - r, r, 0, Math.PI / 2, false);
+    shape.lineTo(-hw + r, hh);
+    shape.absarc(-hw + r, hh - r, r, Math.PI / 2, Math.PI, false);
+    shape.lineTo(-hw, -hh + r);
+    shape.absarc(-hw + r, -hh + r, r, Math.PI, Math.PI * 1.5, false);
+    const geo = new THREE.ShapeGeometry(shape, segments);
+    geo.computeVertexNormals();
+    return geo;
+  }
+
   function stringBetween(p1, p2, mat) {
     const len = p1.distanceTo(p2);
     const m = new THREE.Mesh(new THREE.CylinderGeometry(0.0045, 0.0045, len, 5), mat);
@@ -845,8 +866,26 @@
         const z = dirZ * (D + d) + tanZ * t;
         maxDist = Math.max(maxDist, Math.hypot(x, z));
 
-        const mat = new THREE.MeshStandardMaterial({ map: card.texture, roughness: 0.85, metalness: 0, side: THREE.DoubleSide });
-        const mesh = new THREE.Mesh(cardGeo, mat);
+        // Every instance gets its own geometry/material clone — sharing a
+        // single geometry object across ~150 mesh instances (all cards +
+        // their mirrored backs) is exactly the kind of heavy
+        // instancing-by-reference that trips up three.js's USDZExporter /
+        // RealityKit's USD interpreter (device test: a stray card + label
+        // hung far below the gallery on every RealityKit surface — iPhone
+        // Quick Look, Vision Pro AR, Vision Pro miniature — but never on
+        // Mac Safari, which renders this same scene live instead of via
+        // the export). Cloning is cheap for geometry this small.
+        const mat = new THREE.MeshStandardMaterial({
+          map: card.texture,
+          emissive: 0xffffff,
+          emissiveMap: card.texture,
+          emissiveIntensity: 0.4, // self-illuminate a bit — AR/Object mode
+                                  // lights this scene far dimmer than the
+                                  // inline <model> preview's fixed studio
+                                  // lighting; tune after a device test
+          roughness: 0.85, metalness: 0, side: THREE.DoubleSide
+        });
+        const mesh = new THREE.Mesh(cardGeo.clone(), mat);
         mesh.position.set(x, y, z);
         mesh.scale.set(scale, scale, 1);
         mesh.lookAt(0, y, 0);
@@ -855,7 +894,7 @@
         mesh.userData.card = card;
         // Mirrored back face — USDZ renders single-sided, so without this
         // the miniature's cards vanish whenever they rotate away
-        const back = new THREE.Mesh(cardGeo, mat);
+        const back = new THREE.Mesh(cardGeo.clone(), mat.clone());
         back.rotation.y = Math.PI;
         back.position.z = -0.001;
         mesh.add(back);
@@ -869,7 +908,7 @@
           const s = stringBetween(
             new THREE.Vector3(x, topY, z),
             new THREE.Vector3(x, CEIL, z),
-            stringMat
+            stringMat.clone()
           );
           root.add(s);
           swayItems.push({ obj: s, baseY: s.position.y, phase });
@@ -890,13 +929,16 @@
             const ez = z + ptz * off + jitter(idx * 11 + ei * 3 + 1) * 0.03;
             const ey = bottomY - 0.22 - er * (EP_H + 0.13) - EP_H / 2 + jitter(idx * 11 + ei * 3 + 2) * 0.04;
 
-            const em = new THREE.Mesh(epGeo,
-              new THREE.MeshStandardMaterial({ map: ep.texture, roughness: 0.85, metalness: 0, side: THREE.DoubleSide }));
+            const em = new THREE.Mesh(epGeo.clone(),
+              new THREE.MeshStandardMaterial({
+                map: ep.texture, emissive: 0xffffff, emissiveMap: ep.texture,
+                emissiveIntensity: 0.4, roughness: 0.85, metalness: 0, side: THREE.DoubleSide
+              }));
             em.position.set(ex, ey, ez);
             em.lookAt(0, ey, 0);
             em.name = 'ep_' + idx + '_' + ei;
             em.userData.card = ep;
-            const eback = new THREE.Mesh(epGeo, em.material);
+            const eback = new THREE.Mesh(epGeo.clone(), em.material.clone());
             eback.rotation.y = Math.PI;
             eback.position.z = -0.001;
             em.add(eback);
@@ -908,7 +950,7 @@
             const es = stringBetween(
               new THREE.Vector3(ex, ey + EP_H / 2, ez),
               new THREE.Vector3(x, bottomY, z),
-              stringMat
+              stringMat.clone()
             );
             root.add(es);
             swayItems.push({ obj: es, baseY: es.position.y, phase });
@@ -960,8 +1002,9 @@
       label.position.set(dirX * D, 2.72, dirZ * D);
       label.lookAt(0, 2.72, 0);
       label.name = 'label_' + g.key;
-      // Plain dark back for labels (mirrored text would look wrong)
-      const labelBack = new THREE.Mesh(label.geometry,
+      // Plain dark back for labels (mirrored text would look wrong) — its
+      // own geometry clone, not shared with the front (see cloning note above)
+      const labelBack = new THREE.Mesh(label.geometry.clone(),
         new THREE.MeshStandardMaterial({ color: 0x141419, roughness: 0.9, metalness: 0 }));
       labelBack.rotation.y = Math.PI;
       labelBack.position.z = -0.001;
@@ -1000,8 +1043,12 @@
     ringRoot.name = 'gallery-rings';
     scene.add(ringRoot);
 
-    const cardGeo = new THREE.PlaneGeometry(CARD_W, CARD_H);
-    const epGeo = new THREE.PlaneGeometry(EP_W, EP_H);
+    // Rounded corners here only — the walkthrough Tim asked about. Radius
+    // echoes the 2D site's own card language (border-radius: 14px on
+    // ~260px cards in styles.css), scaled to our ~0.66 m 3D cards. The
+    // USDZ miniature (buildGallery, above) keeps plain rectangles.
+    const cardGeo = roundedPlaneGeometry(CARD_W, CARD_H, CARD_W * 0.054);
+    const epGeo = roundedPlaneGeometry(EP_W, EP_H, EP_W * 0.054);
     const stringMat = new THREE.MeshStandardMaterial({ color: 0x3a3a40, roughness: 0.9, metalness: 0 });
     const cardMeshes = [];
     const swayItems = [];
@@ -1211,16 +1258,25 @@
     let vrExtrasCached = null;
     let exitStand = null;
     let exitPicked = false;
+    // Exit now needs a confirming second pinch (device test: too easy to
+    // trigger by accident) — the sign lights up and asks for it, but the
+    // Digital Crown always exits instantly regardless of this state, so
+    // the one HIG-mandated quick-exit path is never slowed down.
+    let exitArmed = false;
+    let exitArmTimer = null;
+    // Opt-in help: collapsed by default (HIG favors minimal persistent
+    // chrome in immersive experiences) — a small tab above the sign rolls
+    // a brief instructions panel up out of itself when tapped.
+    let helpOpen = false;
+    let helpTabPicked = false;
+    let helpClosePicked = false;
 
     // A small freestanding "Exit" sign — the obvious way back to the page.
     // Added to the scene (not the gallery root), so grabbing or spinning
     // the gallery never moves it.
-    function getExitStand() {
-      if (exitStand) return exitStand;
-      exitStand = new THREE.Group();
-      exitStand.name = 'exit-stand';
-
-      // Classic backlit exit sign: metal frame, black face, glowing red letters
+    // Classic backlit exit sign face, drawn for either its resting state
+    // or its "confirm" state once armed by a first pinch.
+    function drawSignFace(armed) {
       const c = document.createElement('canvas');
       c.width = 512; c.height = 256;
       const cx = c.getContext('2d');
@@ -1239,32 +1295,43 @@
       cx.fillStyle = '#0a0a0c';
       cx.beginPath(); cx.roundRect(14, 14, 484, 228, 16); cx.fill();
 
-      // Soft red backlight wash behind the letters
-      const wash = cx.createRadialGradient(256, 110, 20, 256, 110, 230);
-      wash.addColorStop(0, 'rgba(255,45,40,0.28)');
-      wash.addColorStop(0.6, 'rgba(255,45,40,0.10)');
+      // Soft red backlight wash behind the letters — brighter once armed,
+      // so the sign visibly "lights up" rather than just swapping text
+      const wash = cx.createRadialGradient(256, 128, 20, 256, 128, 230);
+      wash.addColorStop(0, armed ? 'rgba(255,45,40,0.44)' : 'rgba(255,45,40,0.28)');
+      wash.addColorStop(0.6, armed ? 'rgba(255,45,40,0.18)' : 'rgba(255,45,40,0.10)');
       wash.addColorStop(1, 'rgba(255,45,40,0)');
       cx.fillStyle = wash;
       cx.fillRect(14, 14, 484, 228);
 
-      // Glowing letters — layered passes build up the backlit halo
       cx.textAlign = 'center';
       cx.shadowColor = 'rgba(255,59,48,0.95)';
-      cx.font = '900 104px Helvetica, Arial, sans-serif';
-      cx.fillStyle = '#ff3b30';
-      for (const blur of [34, 18, 6]) {
-        cx.shadowBlur = blur;
-        cx.fillText('E X I T', 256, 122);
+      if (!armed) {
+        // Glowing letters — layered passes build up the backlit halo
+        cx.font = '900 104px Helvetica, Arial, sans-serif';
+        cx.fillStyle = '#ff3b30';
+        for (const blur of [34, 18, 6]) { cx.shadowBlur = blur; cx.fillText('E X I T', 256, 122); }
+        cx.font = '800 44px Helvetica, Arial, sans-serif';
+        for (const blur of [22, 10, 4]) { cx.shadowBlur = blur; cx.fillText('IMMERSIVE', 256, 180); }
+        cx.shadowBlur = 0;
+        cx.fillStyle = '#8e8e93';
+        cx.font = '500 26px -apple-system, Helvetica, sans-serif';
+        cx.fillText('back to the web page', 256, 226);
+      } else {
+        // Confirm state — one unambiguous instruction, nothing else
+        cx.font = '900 78px Helvetica, Arial, sans-serif';
+        cx.fillStyle = '#ff3b30';
+        for (const blur of [40, 22, 8]) { cx.shadowBlur = blur; cx.fillText('TAP AGAIN', 256, 112); }
+        for (const blur of [40, 22, 8]) { cx.shadowBlur = blur; cx.fillText('TO EXIT', 256, 196); }
+        cx.shadowBlur = 0;
       }
-      cx.font = '800 44px Helvetica, Arial, sans-serif';
-      for (const blur of [22, 10, 4]) {
-        cx.shadowBlur = blur;
-        cx.fillText('IMMERSIVE', 256, 180);
-      }
-      cx.shadowBlur = 0;
-      cx.fillStyle = '#8e8e93';
-      cx.font = '500 26px -apple-system, Helvetica, sans-serif';
-      cx.fillText('back to the web page', 256, 226);
+      return c;
+    }
+
+    function getExitStand() {
+      if (exitStand) return exitStand;
+      exitStand = new THREE.Group();
+      exitStand.name = 'exit-stand';
 
       // Sign head: face + housing share one parent so they can never
       // rotate apart (device test: they drifted when oriented separately)
@@ -1272,18 +1339,29 @@
       head.position.y = 1.02;
       exitStand.add(head);
 
-      // Unlit face so the letters stay "backlit" even in the dark VR room
+      // Unlit face so the letters stay "backlit" even in the dark VR room.
+      // transparent: true is required — the texture's corners outside the
+      // rounded metal frame are meant to be empty, but without this flag
+      // WebGL ignores alpha and paints them solid black, so the mesh's
+      // literal rectangular corners showed through as squares around the
+      // otherwise-rounded frame.
+      const normalTex = makeTexture(drawSignFace(false));
+      const armedTex = makeTexture(drawSignFace(true));
       const sign = new THREE.Mesh(
         new THREE.PlaneGeometry(0.36, 0.18),
-        new THREE.MeshBasicMaterial({ map: makeTexture(c), side: THREE.DoubleSide, toneMapped: false })
+        new THREE.MeshBasicMaterial({ map: normalTex, side: THREE.DoubleSide, toneMapped: false, transparent: true })
       );
       sign.position.z = 0.017; // just in front of the housing
       head.add(sign);
       exitStand.userData.sign = sign;
+      exitStand.userData.normalTex = normalTex;
+      exitStand.userData.armedTex = armedTex;
 
-      // Shallow metal housing behind the face
+      // Shallow metal housing behind the face — sized a touch smaller than
+      // the face (was larger) so its own hard BoxGeometry corners never
+      // peek out past the face's now-transparent rounded corners
       const housing = new THREE.Mesh(
-        new THREE.BoxGeometry(0.365, 0.185, 0.03),
+        new THREE.BoxGeometry(0.34, 0.16, 0.03),
         new THREE.MeshStandardMaterial({ color: 0x55555c, roughness: 0.45, metalness: 0.8 })
       );
       head.add(housing);
@@ -1318,6 +1396,89 @@
       rim.rotation.x = Math.PI / 2;
       rim.position.y = -0.012;
       exitStand.add(rim);
+
+      // ── Help tab + rollup panel — collapsed by default so it never
+      // competes with the sign; tapping it grows brief instructions up
+      // out of itself, tapping again (or the panel's own close button)
+      // rolls it back away. ──
+      const tabCanvas = document.createElement('canvas');
+      tabCanvas.width = 320; tabCanvas.height = 110;
+      const tcx = tabCanvas.getContext('2d');
+      tcx.fillStyle = '#1c1c21';
+      tcx.beginPath(); tcx.roundRect(0, 0, 320, 110, 30); tcx.fill();
+      tcx.strokeStyle = '#3a3a40'; tcx.lineWidth = 4;
+      tcx.beginPath(); tcx.roundRect(2, 2, 316, 106, 29); tcx.stroke();
+      tcx.fillStyle = '#8fc4ff';
+      tcx.textAlign = 'center';
+      tcx.font = '700 62px -apple-system, Helvetica, sans-serif';
+      tcx.fillText('?', 160, 78);
+
+      const helpTab = new THREE.Mesh(
+        new THREE.PlaneGeometry(0.1, 0.0344),
+        new THREE.MeshBasicMaterial({ map: makeTexture(tabCanvas), side: THREE.DoubleSide, toneMapped: false, transparent: true })
+      );
+      helpTab.position.set(0, 0.125, 0.017);
+      head.add(helpTab);
+      exitStand.userData.helpTab = helpTab;
+
+      // Panel content + a dedicated close button live inside a wrapper
+      // whose scale.y is tweened 0→1 with the content offset to the
+      // wrapper's top — so it visually grows upward "out of" the tab, and
+      // shrinks back the same way on close (reuses the same clamped
+      // smoothstep tween already used for pull-forward — see startTween).
+      const panelW = 0.5, panelH = panelW * 340 / 900;
+      const pCanvas = document.createElement('canvas');
+      pCanvas.width = 900; pCanvas.height = 340;
+      const pcx = pCanvas.getContext('2d');
+      pcx.fillStyle = '#1c1c21';
+      pcx.beginPath(); pcx.roundRect(0, 0, 900, 340, 34); pcx.fill();
+      pcx.strokeStyle = '#0a84ff'; pcx.lineWidth = 5;
+      pcx.beginPath(); pcx.roundRect(3, 3, 894, 334, 32); pcx.stroke();
+      pcx.textAlign = 'center';
+      pcx.fillStyle = '#f5f5f7';
+      // Font sizes below are the largest that measured to fit the 900px
+      // canvas width with margin (checked with ctx.measureText — the
+      // first attempt at 40px overflowed to ~1100px and got silently
+      // clipped by the canvas edge)
+      pcx.font = '600 30px -apple-system, Helvetica, sans-serif';
+      pcx.fillText('Pinch a poster to preview it — pinch again to open its film', 450, 116);
+      pcx.fillText('Pinch empty space and drag sideways to spin the gallery', 450, 182);
+      pcx.fillStyle = '#ff8a80';
+      pcx.font = '700 36px -apple-system, Helvetica, sans-serif';
+      pcx.fillText('Pinch this sign twice to exit', 450, 254);
+
+      const panelContent = new THREE.Mesh(
+        new THREE.PlaneGeometry(panelW, panelH),
+        new THREE.MeshBasicMaterial({ map: makeTexture(pCanvas), side: THREE.DoubleSide, toneMapped: false, transparent: true })
+      );
+      panelContent.position.y = panelH / 2; // bottom edge sits at the wrapper's own origin
+
+      const closeCanvas = document.createElement('canvas');
+      closeCanvas.width = 160; closeCanvas.height = 160;
+      const ccx = closeCanvas.getContext('2d');
+      ccx.fillStyle = '#2a2a30';
+      ccx.beginPath(); ccx.arc(80, 80, 74, 0, Math.PI * 2); ccx.fill();
+      ccx.strokeStyle = '#4a4a52'; ccx.lineWidth = 4;
+      ccx.beginPath(); ccx.arc(80, 80, 72, 0, Math.PI * 2); ccx.stroke();
+      ccx.strokeStyle = '#f5f5f7'; ccx.lineWidth = 10; ccx.lineCap = 'round';
+      ccx.beginPath(); ccx.moveTo(55, 55); ccx.lineTo(105, 105);
+      ccx.moveTo(105, 55); ccx.lineTo(55, 105); ccx.stroke();
+
+      const closeBtn = new THREE.Mesh(
+        new THREE.PlaneGeometry(0.04, 0.04),
+        new THREE.MeshBasicMaterial({ map: makeTexture(closeCanvas), side: THREE.DoubleSide, toneMapped: false, transparent: true })
+      );
+      closeBtn.position.set(panelW / 2 - 0.035, panelH - 0.035, 0.002);
+
+      const helpPanelWrapper = new THREE.Group();
+      helpPanelWrapper.add(panelContent);
+      helpPanelWrapper.add(closeBtn);
+      helpPanelWrapper.position.set(0, 0.15, 0.017); // just above the tab
+      helpPanelWrapper.scale.set(1, 0.001, 1);
+      helpPanelWrapper.visible = false;
+      head.add(helpPanelWrapper);
+      exitStand.userData.helpPanelWrapper = helpPanelWrapper;
+      exitStand.userData.helpCloseBtn = closeBtn;
 
       // Just ahead and to the right of where the visitor enters,
       // the whole stand turned to face the entry point as one rigid object
@@ -1468,9 +1629,54 @@
       }
     }
 
+    // ── Exit confirm: first pinch arms the sign (it lights up brighter
+    //    and asks for a second pinch); second pinch actually exits.
+    //    Auto-reverts after a few seconds so an armed sign doesn't sit
+    //    "primed" indefinitely. The Digital Crown always exits regardless
+    //    of this state — the one HIG-required quick-exit path never gets
+    //    slower because of it. ──
+    const EXIT_ARM_TIMEOUT = 4500;
+
+    function armExit() {
+      exitArmed = true;
+      exitStand.userData.sign.material.map = exitStand.userData.armedTex;
+      exitStand.userData.sign.material.needsUpdate = true;
+      if (exitArmTimer) clearTimeout(exitArmTimer);
+      exitArmTimer = setTimeout(disarmExit, EXIT_ARM_TIMEOUT);
+    }
+
+    function disarmExit() {
+      if (!exitArmed) return;
+      exitArmed = false;
+      if (exitArmTimer) { clearTimeout(exitArmTimer); exitArmTimer = null; }
+      if (exitStand) {
+        exitStand.userData.sign.material.map = exitStand.userData.normalTex;
+        exitStand.userData.sign.material.needsUpdate = true;
+      }
+    }
+
+    // ── Help panel: rolls up out of its tab, rolls back the same way.
+    //    Reuses the generic tween array — only scale.y actually moves. ──
+    function openHelp() {
+      if (helpOpen || !exitStand) return;
+      helpOpen = true;
+      const w = exitStand.userData.helpPanelWrapper;
+      w.visible = true;
+      startTween(w, { pos: w.position.clone(), quat: w.quaternion.clone(), scale: new THREE.Vector3(1, 1, 1) }, 360);
+    }
+
+    function closeHelp() {
+      if (!helpOpen || !exitStand) return;
+      helpOpen = false;
+      const w = exitStand.userData.helpPanelWrapper;
+      startTween(w, { pos: w.position.clone(), quat: w.quaternion.clone(), scale: new THREE.Vector3(1, 0.001, 1) }, 300, () => {
+        w.visible = false;
+      });
+    }
+
     function onSelectStart(event) {
       const controller = event.target;
-      // The exit sign wins over everything behind it
+      // The exit sign (and its help tab / close button) win over everything behind them
       tempMatrix.identity().extractRotation(controller.matrixWorld);
       raycaster.ray.origin.setFromMatrixPosition(controller.matrixWorld);
       raycaster.ray.direction.set(0, 0, -1).applyMatrix4(tempMatrix);
@@ -1479,6 +1685,17 @@
         exitStand.userData.sign.scale.setScalar(1.12);
         return;
       }
+      if (exitStand && raycaster.intersectObject(exitStand.userData.helpTab, false).length) {
+        helpTabPicked = true;
+        exitStand.userData.helpTab.scale.setScalar(1.15);
+        return;
+      }
+      if (exitStand && helpOpen && raycaster.intersectObject(exitStand.userData.helpCloseBtn, false).length) {
+        helpClosePicked = true;
+        exitStand.userData.helpCloseBtn.scale.setScalar(1.2);
+        return;
+      }
+      disarmExit(); // any other action cancels a pending exit confirmation
       // Pinching the floating confirm tag counts as the second pinch
       if (armed && raycaster.intersectObject(armed.panel, false).length) {
         picked = armed.mesh;
@@ -1509,7 +1726,25 @@
       if (exitPicked) {
         exitPicked = false;
         if (exitStand) exitStand.userData.sign.scale.setScalar(1);
-        if (session) session.end(); // straight back to the page, nothing opens
+        if (!exitArmed) {
+          armExit(); // first pinch — light up, ask for a confirming second pinch
+        } else {
+          if (exitArmTimer) { clearTimeout(exitArmTimer); exitArmTimer = null; }
+          exitArmed = false;
+          if (session) session.end(); // confirmed — straight back to the page
+        }
+        return;
+      }
+      if (helpTabPicked) {
+        helpTabPicked = false;
+        if (exitStand) exitStand.userData.helpTab.scale.setScalar(1);
+        if (helpOpen) closeHelp(); else openHelp();
+        return;
+      }
+      if (helpClosePicked) {
+        helpClosePicked = false;
+        if (exitStand) exitStand.userData.helpCloseBtn.scale.setScalar(1);
+        closeHelp();
         return;
       }
       if (picked) {
@@ -1598,6 +1833,15 @@
           ctx.scene.remove(c);
         }
         disarm(true); // no render loop after this — restore instantly
+        // exitStand is cached across sessions (getExitStand's guard clause
+        // returns the same group next time), so any per-session visual
+        // state must be reset here or it'd carry over into the next entry
+        disarmExit();
+        if (exitStand) {
+          const w = exitStand.userData.helpPanelWrapper;
+          if (w) { w.scale.set(1, 0.001, 1); w.visible = false; }
+        }
+        helpOpen = false; helpTabPicked = false; helpClosePicked = false;
         if (vrExtras) { ctx.scene.remove(vrExtras); vrExtras = null; }
         if (exitStand) ctx.scene.remove(exitStand);
         ctx.scene.background = null;
@@ -1630,7 +1874,15 @@
     const bytes = exporter.parseAsync
       ? await exporter.parseAsync(scene, { maxTextureSize: 1024, quickLookCompatible: true })
       : await exporter.parse(scene);
-    const url = URL.createObjectURL(new Blob([bytes], { type: 'model/vnd.usdz+zip' }));
+    // A File (not a bare Blob) carries a name through the blob: URL — Safari
+    // reads it for both the pinch-drag-out gesture and the system AR
+    // viewer's title, which otherwise falls back to a garbled name
+    // synthesized from the blob UUID (device test: "SystemPreviewekAGC4").
+    // Named distinctly from "Step Inside" so the two entry points read as
+    // clearly different things.
+    const url = URL.createObjectURL(
+      new File([bytes], 'Immersive-Catalog-AR.usdz', { type: 'model/vnd.usdz+zip' })
+    );
 
     const model = document.createElement('model');
     model.id = 'gallery-model';
@@ -1687,6 +1939,7 @@
     // pinch-holding the miniature and dragging it out of the page)
     const arLink = document.getElementById('ar-link');
     arLink.href = url;
+    arLink.download = 'Immersive-Catalog-AR.usdz'; // same naming fix, for this entry point too
     arLink.hidden = false;
 
     return model;
@@ -1896,11 +2149,13 @@
   function xrNote(mode) {
     const pass = mode === 'immersive-ar' ? 'in your real room (passthrough)' : 'in a virtual space';
     return '<strong>Tap Step Inside</strong> to walk through the gallery ' + pass + '. ' +
-      '<strong>Pinch a poster once</strong> to preview it, <strong>pinch it again</strong> to open its film · <strong>pinch empty space and drag sideways</strong> to spin the gallery around you · <strong>pinch the ✕ Exit Immersive sign</strong> on the stand in front of you (or press the Digital Crown) to come back.';
+      '<strong>Pinch a poster once</strong> to preview it, <strong>pinch it again</strong> to open its film · <strong>pinch empty space and drag sideways</strong> to spin the gallery around you · <strong>pinch the ✕ Exit Immersive sign</strong> twice on the stand in front of you (or press the Digital Crown) to come back — there\'s also a small <strong>?</strong> tab above the sign for a quick reminder any time.';
   }
   </script>
 
-  <!-- Email obfuscation: reconstructs mailto: links at runtime from base64-encoded, reversed parts. -->
+  <!-- Site-wide email obfuscation — same pattern as every other page,
+       restored 2026-07-18 after an earlier edit here accidentally dropped
+       it. See immersive-handoff.md if this ever needs restoring again. -->
   <script>
   (function () {
     function decode(str) {
