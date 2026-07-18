@@ -1013,10 +1013,9 @@
       label.position.set(dirX * D, 2.72, dirZ * D);
       label.lookAt(0, 2.72, 0);
       label.name = 'label_' + g.key;
-      // Plain dark back for labels (mirrored text would look wrong) — its
-      // own geometry clone, not shared with the front (see cloning note above)
-      const labelBack = new THREE.Mesh(label.geometry.clone(),
-        new THREE.MeshStandardMaterial({ color: 0x141419, roughness: 0.9, metalness: 0 }));
+      // Mirrored back, same treatment as every card — its own geometry
+      // clone, not shared with the front (see cloning note above)
+      const labelBack = new THREE.Mesh(label.geometry.clone(), lmat.clone());
       labelBack.rotation.y = Math.PI;
       labelBack.position.z = -0.001;
       label.add(labelBack);
@@ -1025,15 +1024,86 @@
       angleCursor += share;
     });
 
-    // Tiny base disc at the origin so AR Quick Look anchors the gallery's
-    // true floor — without it, Quick Look drops the lowest *card* onto
-    // your floor and everything hangs a metre too low (device test #5)
-    const groundAnchor = new THREE.Mesh(
-      new THREE.CylinderGeometry(0.18, 0.2, 0.012, 24),
-      new THREE.MeshStandardMaterial({ color: 0x2a2a30, roughness: 0.9 })
+    // Pedestal: doubles as the AR floor anchor (its bottom face must stay
+    // at world y=0, or Quick Look anchors off the lowest *card* instead and
+    // everything hangs a metre too low — device test #5) but is now a real
+    // designed object instead of a shrunk-to-invisible disc: a straight-
+    // sided drum with "IMMERSIVE GALLERY" wrapped around its rim in glowing
+    // type, so it reads as intentional rather than a floating accident.
+    // Same backlit-letters technique as the exit sign (layered shadowBlur
+    // passes on an unlit material), off-white instead of red so it doesn't
+    // visually compete with it.
+    const PEDESTAL_H = 0.06; // ~2.4" — the middle of Tim's "2 or 3 inch" ask
+    const PEDESTAL_LABEL = 'IMMERSIVE GALLERY';
+    const pedCanvasH = 320; // wrap-texture resolution, not a physical size
+    const pedDensity = pedCanvasH / PEDESTAL_H; // px per metre, ties the texture to real-world scale
+    const pedFontPx = Math.round(pedCanvasH * 0.52);
+
+    // Measure the label at that font size first, so the disc's *radius* is
+    // derived from the text itself ("just enough space for it to fit")
+    // instead of guessing a diameter and hoping the text matches it.
+    const pedMeasureCx = document.createElement('canvas').getContext('2d');
+    pedMeasureCx.font = `700 ${pedFontPx}px -apple-system, Helvetica, sans-serif`;
+    const pedTextW = pedMeasureCx.measureText(PEDESTAL_LABEL).width;
+    const pedCanvasW = Math.ceil(pedTextW * 1.16); // ~14% left as a blank seam gap, not text edge-to-edge
+    const pedRadius = pedCanvasW / pedDensity / (2 * Math.PI);
+
+    const pedCanvas = document.createElement('canvas');
+    pedCanvas.width = pedCanvasW; pedCanvas.height = pedCanvasH;
+    const pedCx = pedCanvas.getContext('2d');
+    pedCx.fillStyle = '#0a0a0c';
+    pedCx.fillRect(0, 0, pedCanvasW, pedCanvasH);
+    pedCx.textAlign = 'center';
+    pedCx.textBaseline = 'middle';
+    pedCx.font = `700 ${pedFontPx}px -apple-system, Helvetica, sans-serif`;
+    pedCx.fillStyle = '#f5efe4'; // off-white — legible without being too bright
+    pedCx.shadowColor = 'rgba(255, 248, 235, 0.9)';
+    for (const blur of [pedFontPx * 0.28, pedFontPx * 0.14, pedFontPx * 0.05]) {
+      pedCx.shadowBlur = blur;
+      pedCx.fillText(PEDESTAL_LABEL, pedCanvasW / 2, pedCanvasH / 2);
+    }
+    pedCx.shadowBlur = 0;
+
+    // Side gets the glowing wrap texture; flat top/bottom caps stay a plain
+    // dark material. Three separate meshes, not one mesh with a materials
+    // array on a single CylinderGeometry — confirmed by actually
+    // re-exporting and diffing the result that three.js's USDZExporter
+    // silently drops a multi-material mesh entirely (no console warning, no
+    // thrown error, the object just isn't in the output).
+    // The glow itself can't use MeshBasicMaterial (the natural choice for
+    // "unlit backlit text," and what the exit sign's own face uses) —
+    // isolated export tests confirmed USDZExporter drops *any*
+    // MeshBasicMaterial mesh silently too (670-byte near-empty export vs.
+    // ~15.8KB for the identical mesh with MeshStandardMaterial). Only ever
+    // exercised MeshBasicMaterial in the live XR scene before (sign, help
+    // panel) — this is the first time one needed to survive an export.
+    // Same emissive-map trick already used for card brightness gets the
+    // glow look on a material the exporter actually keeps: `map` keeps the
+    // canvas's black background black under any lighting, `emissiveMap`
+    // (same texture) makes just the bright letters self-illuminate.
+    const pedTex = makeTexture(pedCanvas);
+    const pedSideMat = new THREE.MeshStandardMaterial({
+      map: pedTex, emissive: 0xffffff, emissiveMap: pedTex, emissiveIntensity: 1.3,
+      roughness: 0.9, metalness: 0
+    });
+    const pedCapMat = new THREE.MeshStandardMaterial({ color: 0x0a0a0c, roughness: 0.9 });
+
+    const pedSide = new THREE.Mesh(
+      new THREE.CylinderGeometry(pedRadius, pedRadius, PEDESTAL_H, 64, 1, true), // openEnded — caps built separately
+      pedSideMat
     );
-    groundAnchor.position.y = 0.006;
-    root.add(groundAnchor);
+    pedSide.position.y = PEDESTAL_H / 2; // bottom edge still at world y=0
+    root.add(pedSide);
+
+    const pedTopCap = new THREE.Mesh(new THREE.CircleGeometry(pedRadius, 64), pedCapMat);
+    pedTopCap.rotation.x = -Math.PI / 2; // face up
+    pedTopCap.position.y = PEDESTAL_H;
+    root.add(pedTopCap);
+
+    const pedBottomCap = new THREE.Mesh(new THREE.CircleGeometry(pedRadius, 64), pedCapMat.clone());
+    pedBottomCap.rotation.x = Math.PI / 2; // face down
+    pedBottomCap.position.y = 0;
+    root.add(pedBottomCap);
 
     return { scene, root, cardMeshes, swayItems, maxDist };
   }
@@ -1456,7 +1526,7 @@
       pcx.fillText('Pinch empty space and drag sideways to spin the gallery', 450, 182);
       pcx.fillStyle = '#ff8a80';
       pcx.font = '700 36px -apple-system, Helvetica, sans-serif';
-      pcx.fillText('Pinch this sign twice to exit', 450, 254);
+      pcx.fillText('Pinch the Exit sign twice to exit', 450, 254);
 
       const panelContent = new THREE.Mesh(
         new THREE.PlaneGeometry(panelW, panelH),
