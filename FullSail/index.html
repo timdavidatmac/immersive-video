@@ -127,15 +127,14 @@
     // always points at Full Sail's real CDN URLs (never re-hosted).
     manifest: 'photos.json',
 
-    // Set this to a local folder (e.g. 'test-images/') once you have a
-    // handful of hand-saved test copies to develop the engine against —
-    // fullsail.edu does not currently send Access-Control-Allow-Origin,
-    // so cross-origin textures fail until they add it (see KICKOFF.md §2).
-    // Leave '' until then; the manifest itself should still point at the
-    // real fullsail.edu URLs so it's ready to go live the moment CORS is
-    // fixed. Filenames are matched by the last path segment of each
-    // photo's `src`.
-    corsFallbackDir: '',
+    // Local copies of all 95 photos (download-images.py), used until
+    // fullsail.edu sends Access-Control-Allow-Origin and cross-origin
+    // textures stop failing (see KICKOFF.md §2). The manifest itself
+    // still points at the real fullsail.edu URLs so this stops being
+    // needed the moment CORS is fixed — nothing else has to change.
+    // Filenames are matched by the last path segment of each photo's
+    // `src`.
+    corsFallbackDir: 'images/',
 
     // 'fs-lab' (Tim's real Vision Pro Lab panorama, FS-spatial-lab.jpg —
     // covers ~270° horizontal x ~150° vertical, not a full wraparound;
@@ -830,7 +829,7 @@
         applySky(tex);
       };
       img.onerror = () => { /* keep the plain dark sphere */ };
-      img.src = 'FS-spatial-lab.jpg';
+      img.src = 'images/FS-spatial-lab.jpg';
 
       // Size the caps so their outer rim lands exactly where the photo's
       // own vertical FOV cuts off — inside that radius the photo has no
