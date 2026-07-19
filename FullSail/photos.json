@@ -1,0 +1,762 @@
+[
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/Production4_lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/Production4_sm.jpg",
+    "width": 2000,
+    "height": 1314,
+    "caption": "Student Production",
+    "description": "A student operates a camera and wears a headset in a room with pink and orange lights."
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/Archway_lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/Archway_md.jpg",
+    "width": 2000,
+    "height": 1314,
+    "caption": "9th Annual Hall of Fame Induction Ceremony",
+    "description": "Attendees are treated to a stunning firework display in front of the Full Sail Studios archway."
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/Fortress1_lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/Fortress1_sm.jpg",
+    "width": 2000,
+    "height": 1314,
+    "caption": "Fortress",
+    "description": "Four students jump in the air with their hands raised under an archway displaying “Full Sail University Orlando Health Fortress.”"
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/AudioTemple-2-lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/AudioTemple_sm.jpg",
+    "width": 3312,
+    "height": 1314,
+    "caption": "Audio Temple",
+    "description": "A student sits at a large sound board facing a performer sitting on the other side of a window in a studio."
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/Campus-Life.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/Campus-Life-sm.jpg",
+    "width": 2000,
+    "height": 1314,
+    "caption": "Library",
+    "description": "Two students sit in white, round chairs, wear headphones, and look at one student’s phone. Behind them, a few other students look at a wall of books on shelves and sit in more chairs."
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/ArtStudio_lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/ArtStudio_md.jpg",
+    "width": 2000,
+    "height": 1314,
+    "caption": "Art Studio",
+    "description": "Four students sit at a large table and paint skateboards with colorful designs."
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/ComputerAnimation3_lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/ComputerAnimation3_sm.jpg",
+    "width": 2000,
+    "height": 1314,
+    "caption": "Students in 3D Arts Lab",
+    "description": "A student sits at a desk and creates art on a large screen with a stylus. Pictures of various animation projects line the wall behind them."
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/WelcomeCenter_lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/WelcomeCenter_md.jpg",
+    "width": 2000,
+    "height": 1314,
+    "caption": "Welcome Center",
+    "description": "Students relaxing in the Welcome Center in front of a lit wall with the “Dream” logo."
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/GraphicDesign1_lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/GraphicDesign1_lg.jpg",
+    "width": 512,
+    "height": 680,
+    "caption": "Graphic Design",
+    "description": "A student sits in a chair with a laptop on their lap and holds papers and a pen in their hands."
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/Healthcare_lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/Healthcare_sm.jpg",
+    "width": 2000,
+    "height": 1314,
+    "caption": "Healthcare Lab",
+    "description": "A student wears a VR headset and holds controllers in their hands."
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/CyberRange1_lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/CyberRange1_sm.jpg",
+    "width": 2000,
+    "height": 1314,
+    "caption": "IBM Cyber Defense Range",
+    "description": "A student sits at a computer desk and wears a hoodie."
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/SmartLab2_lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/SmartLab2_sm.jpg",
+    "width": 2000,
+    "height": 1314,
+    "caption": "SmartLab",
+    "description": "Two students stand at a screen displaying a smartphone interface."
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/StudioV1-3-lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/StudioV1-2-sm.jpg",
+    "width": 3312,
+    "height": 1314,
+    "caption": "Students Film in the Virtual Studio",
+    "description": "A student sits at a computer with two screens displaying a four-wheeler and a desert landscape. A larger screen behind them displays desert rocks and sky."
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/ArtCampus1_lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/ArtCampus1_sm.jpg",
+    "width": 2000,
+    "height": 1314,
+    "caption": "Browsing a Student Art Display",
+    "description": "Art & Design students admiring student art on display."
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/Recording1_lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/Recording1_sm.jpg",
+    "width": 2000,
+    "height": 1314,
+    "caption": "Recording Studio",
+    "description": "Two students play guitars and one sings into a microphone. Another student stands nearby holding a tablet."
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/SimulationLab1_lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/SimulationLab1_sm.jpg",
+    "width": 512,
+    "height": 680,
+    "caption": "Simulation Lab",
+    "description": "A student sits in a race car simulator with another student and an instructor standing nearby."
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/Film2_lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/Film2_sm.jpg",
+    "width": 2000,
+    "height": 1314,
+    "caption": "Studio V1",
+    "description": "A student operates a camera on a set with a background displaying mountains and sky."
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/FabLab2_lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/FabLab2_sm.jpg",
+    "width": 2000,
+    "height": 1314,
+    "caption": "FabLab",
+    "description": "Several students sit at desks with their laptops open and speak to each other. One student stands and works on 3D-printed project."
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/SpatialComputingLab_lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/SpatialComputingLab_sm.jpg",
+    "width": 3312,
+    "height": 1314,
+    "caption": "Spatial Computing Lab",
+    "description": "In a large room, several students sit at rows of computer desks, two students wear VR headsets, and a student operates a camera on a tripod."
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/Film2_lg_2026-06-24-173036_lqxb.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/Film2-2-sm.jpg",
+    "width": 512,
+    "height": 680,
+    "caption": "Students Meet at Casting Desk",
+    "description": "Full Sail students checking in to audition for a film at the casting desk."
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/ArtCampus_lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/ArtCampus_md.jpg",
+    "width": 2000,
+    "height": 1314,
+    "caption": "Students Working",
+    "description": "Several students sit around a large room with chairs and tables and a colorful art piece on the back wall."
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/CyberRange_lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/CyberRange_md.jpg",
+    "width": 2000,
+    "height": 1314,
+    "caption": "IBM Cyber Defense Range",
+    "description": "There are rows of computers with the monitors all displaying “Full Sail University IBM Cyber Defense Range.”"
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/StudioV1-2-lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/StudioV1_sm.jpg",
+    "width": 512,
+    "height": 680,
+    "caption": "Students on Set",
+    "description": "Several students and faculty are on a set with cameras, lighting, a vintage red car, and a large digital screen displaying old buildings and neon lights."
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/EBCenter-2-lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/EBCenter_sm.jpg",
+    "width": 3312,
+    "height": 1314,
+    "caption": "EB Center Lobby",
+    "description": "Several students sit in a lobby doing various activities like chatting with each other, reading, and putting together a puzzle."
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/ComputerAnimation_lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/ComputerAnimation_md.jpg",
+    "width": 2000,
+    "height": 1314,
+    "caption": "Computer Animation",
+    "description": "Two students perform a scene in front of a green screen as another student operates a camera and another student sits at a desk with three monitors."
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/Film1_lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/Film1_sm.jpg",
+    "width": 2000,
+    "height": 1314,
+    "caption": "Students Filming on Set",
+    "description": "student operates a camera on a film set with a few other students."
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/CampusLife1_lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/CampusLife1_sm.jpg",
+    "width": 2000,
+    "height": 1314,
+    "caption": "Students Working Together",
+    "description": "Two students sit at a table with a laptop, textbook, and pens."
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/ArtStudio-2-lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/ArtStudio_sm.jpg",
+    "width": 512,
+    "height": 680,
+    "caption": "Students in a Traditional Art Studio",
+    "description": "Art & Design students sketching a live model during a figure-drawing session."
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/UXLab1_lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/UXLab1_md.jpg",
+    "width": 2000,
+    "height": 1314,
+    "caption": "UX Lab",
+    "description": "Several students sit at rows of computer desks facing an instructor at the front of the room."
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/DroneInnovationCenter_lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/DroneInnovationCenter_sm.jpg",
+    "width": 3312,
+    "height": 1314,
+    "caption": "Drone Innovation Center",
+    "description": "The Drone Innovation Center has standing hoops with curtains around them and blue and orange lights."
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/Cosplay_lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/Cosplay_sm.jpg",
+    "width": 2000,
+    "height": 1314,
+    "caption": "Students Take the Stage During Hall of Fame Week",
+    "description": "Students dressed as famous characters taking a group photo for the Hall of Fame cosplay contest."
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/FabLab1_lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/FabLab1_sm.jpg",
+    "width": 2000,
+    "height": 1314,
+    "caption": "FabLab",
+    "description": "Several students sit at a wooden table on laptops as an instructor speaks to one student and points at their laptop screen."
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/AudioTemple1_lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/AudioTemple1_sm.jpg",
+    "width": 2000,
+    "height": 1314,
+    "caption": "Studio A",
+    "description": "A Music & Recording student fist-bumping a guitarist after a successful session."
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/SmartLab_lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/SmartLab_sm.jpg",
+    "width": 3312,
+    "height": 1314,
+    "caption": "Smart Lab",
+    "description": "Four students sit at a table with a laptop, tablet, and notebooks. Another student stands next to a screen with rows of text on it."
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/Production2_lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/Production2_sm.jpg",
+    "width": 2000,
+    "height": 1314,
+    "caption": "Production",
+    "description": "A student operates a camera and wears a Full Sail hoodie and baseball cap."
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/AudioTemple_lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/AudioTemple_md.jpg",
+    "width": 2000,
+    "height": 1314,
+    "caption": "Audio Temple",
+    "description": "Music & Recording students monitoring and mixing a band during a recording session."
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/DanPatrick1_lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/DanPatrick1_sm.jpg",
+    "width": 2000,
+    "height": 1314,
+    "caption": "Dan Patrick Talking to Students",
+    "description": "Dan Patrick speaks to a student wearing a headset and sitting at a sound board with computer monitors and screens."
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/CyberRange-2-lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/CyberRange_sm.jpg",
+    "width": 3312,
+    "height": 1314,
+    "caption": null,
+    "description": "Several students sit at rows of computer desks facing an instructor at the front of the room."
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/GameArt_lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/GameArt_sm.jpg",
+    "width": 2000,
+    "height": 1314,
+    "caption": "Students in the Game Center",
+    "description": "A student sits at a computer with a 3D animated figure on the screen. Two students stand nearby and watch. Another student sits at a computer behind them."
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/EBCenter_lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/EBCenter_md.jpg",
+    "width": 2000,
+    "height": 1314,
+    "caption": "Entertainment Business Center",
+    "description": "A circular wall of glass panels forms the exterior of the Entertainment Business lobby."
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/Production1_lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/Production1_sm.jpg",
+    "width": 2000,
+    "height": 1314,
+    "caption": "Live Venue Control Room",
+    "description": "Students and instructors operating audio and lighting in the Live Venue control room."
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/Fortress-2-lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/Fortress_sm.jpg",
+    "width": 3312,
+    "height": 1314,
+    "caption": "Orlando Health Fortress",
+    "description": "There is a large stage area with red and white lights and a large screen displaying “Full Sail University Orlando Health Fortress.”"
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/Film1-2-lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/Film1-2-sm.jpg",
+    "width": 512,
+    "height": 680,
+    "caption": "Student Filming",
+    "description": "A student smiles as they look through the viewfinder of a camera. They are wearing a black Full Sail shirt."
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/ArtCampus2_lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/ArtCampus2_md.jpg",
+    "width": 2000,
+    "height": 1314,
+    "caption": "Art & Design",
+    "description": "Three students talk to each other, one holding a notebook and one holding a blank skateboard. Several colorful skateboards line the wall behind them."
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/Production_lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/Production_md.jpg",
+    "width": 2000,
+    "height": 1314,
+    "caption": "Marc Broussard Performs at Full Sail Live",
+    "description": "American singer-songwriter Marc Broussard performing at Full Sail Live."
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/Library-3-lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/Library_sm.jpg",
+    "width": 512,
+    "height": 680,
+    "caption": "Student Library",
+    "description": "An Art & Design student sketching with her pen tablet in a private study booth."
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/MotionCapture_lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/MotionCapture_sm.jpg",
+    "width": 3312,
+    "height": 1314,
+    "caption": "Motion Capture Lab",
+    "description": "Two students pretend sword fight while wearing special suits so the two students sitting at computers behind them can create a digital rendering of their movements."
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/CampusLife1-2-lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/CampusLife1-2-sm.jpg",
+    "width": 512,
+    "height": 680,
+    "caption": "Student Working",
+    "description": "A student sits at a desk with a laptop. They are wearing a gold necklace, a pink shirt, and glasses."
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/UXLab_lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/UXLab_md.jpg",
+    "width": 2000,
+    "height": 1314,
+    "caption": "UX Lab",
+    "description": "Several students talk to each other in a room with white furniture and blue lighting. They each have a laptop in front of them."
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/SimulationLab_lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/SimulationLab_sm.jpg",
+    "width": 2000,
+    "height": 1314,
+    "caption": "Simulation Lab",
+    "description": "Two students work on an F1 race car simulator while an instructor stands nearby and helps them."
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/student-8-lg-min-3.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/student-8-lg-min-2.jpg",
+    "width": 2000,
+    "height": 1314,
+    "caption": "Audio Temple",
+    "description": "A student plays the drums in a dark room. An electric guitar and other music equipment is behind them."
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/CampusLife4-2-lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/CampusLife4-2-sm.jpg",
+    "width": 512,
+    "height": 680,
+    "caption": "Students on the Backlot",
+    "description": "A student captures a picture of five other students posing in the Backlot."
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/Treehouse1_lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/Treehouse1_sm.jpg",
+    "width": 2000,
+    "height": 1314,
+    "caption": "The Treehouse",
+    "description": "Dozens of students lounging and enjoying live performances in a small, warmly lit venue."
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/Recording2_lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/Recording2_sm.jpg",
+    "width": 2000,
+    "height": 1314,
+    "caption": "Raven Lab",
+    "description": "An Audio & Recording student mixing on a touch-screen console."
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/SimulationLab-2-lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/SimulationLab-2-sm.jpg",
+    "width": 3312,
+    "height": 1314,
+    "caption": "Simulation Lab",
+    "description": "A student sits in an aircraft simulator wearing a VR headset."
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/Film_lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/Film_md.jpg",
+    "width": 2000,
+    "height": 1314,
+    "caption": "Student on Film Set",
+    "description": "A student smiles at the camera as they operate a camera on a film set with several other students."
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/ArtCampus3_lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/ArtCampus3_sm.jpg",
+    "width": 2000,
+    "height": 1314,
+    "caption": "Student Art on Display",
+    "description": "A student holds a backpack and walks past a display of 3D figurines. They are wearing a white sweater and jeans."
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/Production3_lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/Production3_sm.jpg",
+    "width": 2000,
+    "height": 1314,
+    "caption": "Student Event in Full Sail Live",
+    "description": "Full Sail Students displaying their musical talent on stage to a packed audience."
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/CampusLife_lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/CampusLife_sm.jpg",
+    "width": 2000,
+    "height": 1314,
+    "caption": "Campus Life",
+    "description": "Two students sit next to each other on a bench and look at their phones with a blue wall behind them."
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/FabLab3_lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/FabLab3_sm.jpg",
+    "width": 2000,
+    "height": 1314,
+    "caption": "Fab Lab",
+    "description": "A student wears a headset and stands in the middle of a room with a sign displaying “FabLab Showcase.”"
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/SimulationLab2_lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/SimulationLab2_sm.jpg",
+    "width": 512,
+    "height": 680,
+    "caption": "Simulation Lab",
+    "description": "A student sits at a computer desk in the Simulation Lab as an instructor points at their computer screen."
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/GraphicDesign_lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/GraphicDesign_sm.jpg",
+    "width": 2000,
+    "height": 1314,
+    "caption": "Working on an Art Project",
+    "description": "Two students sit at a table with a laptop and prints of digital art. The same art is projected on a screen above them."
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/Film3_lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/Film3_sm.jpg",
+    "width": 2000,
+    "height": 1314,
+    "caption": "Students Film in the Virtual Studio",
+    "description": "A student stands in front of two computer screens as another student operates a camera nearby and films two people with a digital background of a house behind them."
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/CampusLife4_lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/CampusLife4_sm.jpg",
+    "width": 2000,
+    "height": 1314,
+    "caption": "Student Takes A Break",
+    "description": "A student sits cross-legged with a laptop by large windows. They are wearing headphones with their backpack next to them."
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/Film4_lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/Film4_sm.jpg",
+    "width": 2000,
+    "height": 1314,
+    "caption": "Lighting a Shoot on the Backlot",
+    "description": "A Film student checking the light quality through his camera during a backlot shoot."
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/CampusLife3_lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/CampusLife3_sm.jpg",
+    "width": 2000,
+    "height": 1314,
+    "caption": "Full Sail Live Lobby",
+    "description": "Students mingling inside the tall, spacious glass lobby of Full Sail’s live venue."
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/Backlot_lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/Backlot_sm.jpg",
+    "width": 3312,
+    "height": 1314,
+    "caption": "Students on a Film Shoot",
+    "description": "A student film production crew staging an evening dinner scene on Full Sail’s “Amsterdam” set."
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/DanPatrick2_lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/DanPatrick2_sm.jpg",
+    "width": 2000,
+    "height": 1314,
+    "caption": "Dan Patrick Hosts a Sportscasting Workshop",
+    "description": "Sportscasting students practice broadcasting on set during a live workshop hosted by Dan Patrick."
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/Library2_lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/Library2_sm.jpg",
+    "width": 2000,
+    "height": 1314,
+    "caption": "Student Library",
+    "description": "A circular desk is in the middle of a room with the sign “Library” above it. Several students sit at tables and desks around the room."
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/ComputerAnimation-2-lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/ComputerAnimation_sm.jpg",
+    "width": 512,
+    "height": 680,
+    "caption": "Animation Students Hard at Work",
+    "description": "A student sits at a desk with a large screen and a laptop. Both screens display a 3D animated figure."
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/CampusLife5_lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/CampusLife5_sm.jpg",
+    "width": 2000,
+    "height": 1314,
+    "caption": "Students Take the Stage During Hall of Fame Week",
+    "description": "A student stands onstage, holds a microphone, and points at the audience. Students behind them play guitar, drums, and the keyboard."
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/CampusLife6_lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/CampusLife6_sm.jpg",
+    "width": 2000,
+    "height": 1314,
+    "caption": "Campus Life",
+    "description": "A few students sit on benches in a lobby area as a student walks down a staircase nearby."
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/DubStage_lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/DubStage_lg.jpg",
+    "width": 3312,
+    "height": 1314,
+    "caption": "Dub Stage",
+    "description": "Several students sit in rows of chairs facing a projector screen displaying “The Shape of Paris.” An instructor sits at a sound board behind the audience."
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/StudioV1_lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/StudioV1_md.jpg",
+    "width": 2000,
+    "height": 1314,
+    "caption": "Studio V1",
+    "description": "Several students are on a film set with a city displayed on a large screen around them."
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/ArmadaHQ_lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/ArmadaHQ_sm.jpg",
+    "width": 2000,
+    "height": 1314,
+    "caption": "Students Play Video Games in Armada HQ",
+    "description": "A few students sit at gaming consoles and play games while other students watch. A sign on the wall displays “Full Sail University Armada HQ.”"
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/ArtCampus4_lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/ArtCampus4_sm.jpg",
+    "width": 2000,
+    "height": 1314,
+    "caption": "Viewing Artwork",
+    "description": "Two students look at a wall of colorful art work. One holds a notebook and pencil."
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/LiveVenue_lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/LiveVenue_sm.jpg",
+    "width": 512,
+    "height": 680,
+    "caption": "Behind the Board in Full Sail Live",
+    "description": "A music student operating a mixing board during a recorded performance in Full Sail’s live venue."
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/CampusLife7_lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/CampusLife7_sm.jpg",
+    "width": 2000,
+    "height": 1314,
+    "caption": "Campus Life",
+    "description": "A student sits on a bench holding their laptop and two students behind them look at art pieces on display."
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/CampusLife8_lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/CampusLife8_sm.jpg",
+    "width": 2000,
+    "height": 1314,
+    "caption": "Students in a Classroom",
+    "description": "Many students sit in an auditorium classroom with laptops and notebooks. Two large screens and a podium are at the front of the room."
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/DroneInnovationCenter1_lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/DroneInnovationCenter1_sm.jpg",
+    "width": 2000,
+    "height": 1314,
+    "caption": "Drone Innovation Center",
+    "description": "A room contains rows of computer desks facing a screen at the front of the room. A sign displays “Drone Innovation Center Simulation/Programming.”"
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/SmartLab1_lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/SmartLab1_sm.jpg",
+    "width": 2000,
+    "height": 1314,
+    "caption": "Smart Lab",
+    "description": "Two students stand at a reception desk and speak to a person sitting at the desk with a laptop."
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/CampusLife9_lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/CampusLife9_sm.jpg",
+    "width": 2000,
+    "height": 1314,
+    "caption": "Campus Life",
+    "description": "A student uses their laptop at a standing desk. Their backpack is sitting nearby."
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/Treehouse_lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/Treehouse_md.jpg",
+    "width": 2000,
+    "height": 1314,
+    "caption": "Treehouse",
+    "description": "Several students walk around a lobby area in front of doors with a sign above them displaying “Treehouse.”"
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/CampusLife10_lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/CampusLife10_sm.jpg",
+    "width": 2000,
+    "height": 1314,
+    "caption": "Campus Life",
+    "description": "Several students sit on benches in a lobby area with a staircase in the middle of the room."
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/Library_lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/Library_md.jpg",
+    "width": 2000,
+    "height": 1314,
+    "caption": "Library",
+    "description": "Three students sit in chairs and have laptops on their laps as they talk to each other."
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/CampusLife2_lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/CampusLife2_sm.jpg",
+    "width": 512,
+    "height": 680,
+    "caption": "Campus Life",
+    "description": "Two students sit on a bench and another student stands next to them and they all look at a laptop one student is holding."
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/Armada_lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/Armada_sm.jpg",
+    "width": 3312,
+    "height": 1314,
+    "caption": "Students Gaming in the Armada HQ",
+    "description": "A group of students sit in gaming chairs with the Armada logo and play games on desktop computers. The word Armada is in large letters on the wall."
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/Recording3_lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/Recording3_sm.jpg",
+    "width": 2000,
+    "height": 1314,
+    "caption": "Audio Temple",
+    "description": "A female student adjusting a dial on a mixing console during a recording session."
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/SpatialComputingLab1_lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/SpatialComputingLab1_sm.jpg",
+    "width": 2000,
+    "height": 1314,
+    "caption": "Spatial Computing Lab",
+    "description": "A student sits in a chair wearing a VR headset as another student stands next to them and adjusts the headset."
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/CampusLife11_lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/CampusLife11_sm.jpg",
+    "width": 2000,
+    "height": 1314,
+    "caption": "Students Decorate the Art Wall During Hall of Fame",
+    "description": "Several students paint a paint-by-number mural on a giant canvas. The mural says “Follow the Dream” with brown, green, blue, and orange colors."
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/Fortress_lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/Fortress_md.jpg",
+    "width": 2000,
+    "height": 1314,
+    "caption": "Orlando Health Fortress",
+    "description": "A crowd gathers in a large room with purple lights and a large screen displaying “Hall of Game Paragon.”"
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/ArtCampus5_lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/ArtCampus5_sm.jpg",
+    "width": 2000,
+    "height": 1314,
+    "caption": "Digital Arts & Design Students",
+    "description": "Two students share a presentation of a digital room layout in front of other students."
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/CampusLife12_lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/CampusLife12_sm.jpg",
+    "width": 2000,
+    "height": 1314,
+    "caption": "Students in the Library",
+    "description": "Three students wear headphones as one student plays a small keyboard. A wall of bookshelves is behind them."
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/CampusLife3-2-lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/CampusLife3-2-sm.jpg",
+    "width": 512,
+    "height": 680,
+    "caption": "Campus Life",
+    "description": "Three students sit on a bench in a lobby area and talk to each other."
+  },
+  {
+    "src": "https://www.fullsail.edu/assets/ext/campus-explorer/image/CyberRange2_lg.jpg",
+    "thumbnail": "https://www.fullsail.edu/assets/ext/campus-explorer/image/CyberRange2_md.jpg",
+    "width": 2000,
+    "height": 1314,
+    "caption": "IBM Cyber Defense Range",
+    "description": "Several students sit at computer desks in rows facing a large screen at the front of the room displaying a world map."
+  }
+]
