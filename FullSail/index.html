@@ -176,7 +176,14 @@
     cardHeight: 0.5,     // metres — width follows each photo's shape
     captions: true,      // show captions (from the manifest, or filenames)
     shuffle: true,       // mix the order (deterministic, not random per load)
-    driftSpeed: 1.0      // 0 = still · 1 = gentle · 2 = lively
+    driftSpeed: 1.0,     // 0 = still · 1 = gentle · 2 = lively
+
+    // Experiment: AR Quick Look's custom-banner URL params (see
+    // presentInlineModel() for the full explanation and caveats). Leave
+    // '' to use the default (immersive.html-style) filename fragment.
+    // Try e.g.:
+    // 'callToAction=View%20Gallery&checkoutTitle=Full%20Sail%20Campus%20Gallery&checkoutSubtitle=95%20photos%20across%20campus'
+    arBannerFragment: '',
   };
 
   const MAX_PHOTOS = 150; // beyond this, Safari's memory becomes the limit
@@ -1367,10 +1374,28 @@
     // Named File (not a bare Blob) gives the save/share-sheet a real
     // filename — doesn't fix the AR viewer's garbled title bar (accepted
     // platform limitation, PORT-FIXES Fix 2), but is a real improvement.
+    // The '#fragment' matches immersive.html's own approach: appending
+    // the filename as a URL fragment was tested there as a title-bar fix
+    // and confirmed NOT to work (PORT-FIXES Fix 2) — kept anyway, purely
+    // for parity with immersive.html, since it's harmless either way.
+    // CONFIG.arBannerFragment swaps it for AR Quick Look's custom-banner
+    // query params instead (developer.apple.com/augmented-reality/
+    // quick-look/ "Custom Action" example) to test that feature — this is
+    // genuinely untested on our blob: URLs (Apple's own demo didn't show
+    // a visible difference on device either, per Tim's own test), so
+    // treat it as an experiment, not a known-working feature.
     const fileName = 'Full-Sail-Campus-Gallery-AR.usdz';
-    const url = URL.createObjectURL(new File([bytes], fileName, { type: 'model/vnd.usdz+zip' }));
+    const blob = new File([bytes], fileName, { type: 'model/vnd.usdz+zip' });
+    const fragment = CONFIG.arBannerFragment || fileName;
+    const url = URL.createObjectURL(blob) + '#' + fragment;
 
     const model = document.createElement('model');
+    // Native drag-to-orbit, and native pinch-hold-drag-out to AR Quick
+    // Look (same gesture Apple's own inline <model> examples use) —
+    // both built into the element itself, no scripting needed. Replaces
+    // the old click-to-enter-WebXR handler on the model (removed below)
+    // so a plain tap doesn't compete with these drag gestures.
+    model.setAttribute('stagemode', 'orbit');
     model.setAttribute('aria-label', 'Miniature 3D gallery of the Full Sail campus');
     stage.appendChild(model);
     model.src = url;
@@ -1536,7 +1561,7 @@
 
       if (supportsModel) {
         // visionOS: stereoscopic USDZ miniature inline (exported while still)
-        const model = await presentInlineModel(live.scene, live.maxDist);
+        await presentInlineModel(live.scene, live.maxDist);
         if (xrMode) {
           const xr = setupXR(ctx, puller);
           ctx.onSessionEnd = () => { supportNote.innerHTML = xrNote(xrMode, live.count); };
@@ -1553,11 +1578,14 @@
           };
           immerseBtn.classList.add('available');
           immerseBtn.addEventListener('click', enterAction);
-          if (model) {
-            model.style.cursor = 'pointer';
-            model.addEventListener('click', enterAction);
-          }
-          supportNote.innerHTML = xrNote(xrMode, live.count) + ' You can also just <strong>tap the miniature</strong> to step inside.';
+          // The model itself is no longer a tap target for entering WebXR
+          // (tapping it used to trigger the walkthrough directly, which is
+          // what made a plain "I just want to see it in AR" tap detour
+          // through a WebXR permission prompt first) — it now only does
+          // its native drag-to-orbit / drag-out-to-AR thing (stagemode
+          // above). Step Inside is the one explicit way into the
+          // walkthrough now.
+          supportNote.innerHTML = xrNote(xrMode, live.count) + ' Drag the miniature to orbit it, or drag it off the page to view it in AR.';
           setTimeout(() => warmUp(ctx).catch(() => {}), 1200);
         } else {
           supportNote.innerHTML = 'You\'re seeing the miniature. The walk-through needs WebXR (Safari on visionOS).';
