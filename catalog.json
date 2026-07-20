@@ -1582,6 +1582,15 @@
     "note": "visionOS apps for spatial experiences, design, games, and volumetric content — not immersive video catalogs.",
     "entries": [
       {
+        "id": "stereopticon",
+        "title": "Stereopticon",
+        "app_store": "https://apps.apple.com/us/app/stereopticon/id6790976075",
+        "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/a5/ad/1f/a5ad1f77-ed32-2f45-0fc0-f899bd5e36cb/AppIcon.lsr/512x512bb.jpg",
+        "website": "https://partsoven.github.io/Stereopticon/",
+        "added": "2026-07-19",
+        "note": "Browse over 1,500 historical stereographs from the Library of Congress in true stereoscopic 3D on Apple Vision Pro — one image to each eye, exactly as originally viewed through a Victorian-era parlor stereoscope. Curated Vault plus 15+ themed 'Grand Tours' (Ancient Egypt, Belle Époque Paris, the American West, world's fairs, the age of flight, and more). On-device image analysis auto-corrects vertical misalignment and mount cropping from the original cards; a Curation Studio offers manual depth/alignment tuning. Also supports live search across the Library of Congress, Internet Archive, and Wikimedia Commons, and can export any card as a native spatial photo. Free, Vision Pro exclusive, no accounts/ads/tracking. Developer: Chris Kopack. Content is public-domain/openly-licensed archival material, credited to each source institution."
+      },
+      {
         "id": "lamborghini",
         "title": "Lamborghini",
         "app_store": "https://apps.apple.com/us/app/lamborghini/id6753299273",
