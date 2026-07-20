@@ -70,6 +70,24 @@
     .note { font-size: 13px; color: #b8b8c2; margin: 10px 0 0; }
     .note strong { color: #f5f5f7; }
 
+    .how-section { margin: 10px auto 0; }
+    .how-section h2 {
+      font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
+      color: #8a8a94; margin: 0 0 16px; padding-bottom: 16px;
+      border-bottom: 1px solid #26263a;
+    }
+    .how-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    @media (max-width: 720px) { .how-grid { grid-template-columns: 1fr; } }
+    .how-card { background: #14141d; border: 1px solid #26263a; border-radius: 14px; padding: 20px 22px; }
+    .how-card h3 { font-size: 16px; margin: 0 0 10px; }
+    .how-card p { font-size: 14px; color: #b8b8c2; margin: 0; }
+    .how-card p strong { color: #f5f5f7; }
+    .how-card code {
+      background: #0b0b12; border: 1px solid #26263a; border-radius: 5px;
+      padding: 1px 6px; font-size: 12.5px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace; color: #d6d6de;
+    }
+
     footer { text-align: center; font-size: 12px; color: #6e6e78; padding: 30px 20px 10px; }
   </style>
 </head>
@@ -92,7 +110,7 @@
     </div>
 
     <div class="controls">
-      <button class="btn" id="drift-toggle" aria-pressed="false" title="Pause or resume the gallery's motion">✦ Drift</button>
+      <button class="btn" id="drift-toggle" aria-pressed="false" title="Pause or resume the gallery's motion"><span id="drift-icon" aria-hidden="true">⏸</span> Drift</button>
       <a class="btn" id="ar-link" rel="ar" hidden>
         <span aria-hidden="true">⬡</span> View in AR
       </a>
@@ -100,6 +118,37 @@
     </div>
     <p class="note" id="support-note">Checking what your browser can do…</p>
   </main>
+
+  <section class="wrap how-section">
+    <h2>How this page works</h2>
+    <div class="how-grid">
+      <div class="how-card">
+        <h3>Built from Full Sail's own catalog</h3>
+        <p>Your browser reads <code>photos.json</code>, generated from Full
+        Sail's own <a href="https://www.fullsail.edu/campus-explorer" target="_blank" rel="noopener">Campus Explorer</a>
+        page, and hangs every photo at different depths and heights on
+        slowly counter-rotating rings around you.</p>
+      </div>
+      <div class="how-card">
+        <h3>The USDZ miniature, above</h3>
+        <p><strong>Drag</strong> it to orbit and view it from any angle.
+        <strong>Press and hold, then drag it off the page</strong> to pull
+        it straight into AR space — or tap <strong>View in AR</strong> to
+        open the same model in Quick Look the standard way. This model is
+        built fresh in your browser, not a pre-made file.</p>
+      </div>
+      <div class="how-card">
+        <h3>Step Inside — walk the campus</h3>
+        <p>Tap <strong>Step Inside</strong> to leave the miniature and
+        enter the full-size gallery. On Apple Vision Pro this opens a WebXR
+        session — walk among the photos, <strong>pinch one</strong> to
+        bring it close and read its description (pinch it again to send it
+        back), and <strong>pinch empty space and drag</strong> to spin the
+        gallery. On a Mac, iPhone, or PC you get an interactive WebGL
+        preview instead: drag to orbit, click a photo the same way.</p>
+      </div>
+    </div>
+  </section>
 
   <footer id="page-footer">
     Full Sail Immersive Campus Explorer — photos from <a href="https://www.fullsail.edu/campus-explorer" target="_blank" rel="noopener">Full Sail University Campus Explorer</a>.
@@ -209,6 +258,7 @@
   const progressFill = document.getElementById('progress-fill');
   const immerseBtn = document.getElementById('immerse-btn');
   const driftToggle = document.getElementById('drift-toggle');
+  const driftIcon = document.getElementById('drift-icon');
   const supportNote = document.getElementById('support-note');
 
   document.title = CONFIG.title;
@@ -328,14 +378,6 @@
     return (x - Math.floor(x)) - 0.5;
   }
 
-  function stringBetween(p1, p2, mat) {
-    const len = p1.distanceTo(p2);
-    const m = new THREE.Mesh(new THREE.CylinderGeometry(0.0045, 0.0045, len, 5), mat);
-    m.position.copy(p1).add(p2).multiplyScalar(0.5);
-    m.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), p2.clone().sub(p1).normalize());
-    return m;
-  }
-
   // A flat rounded-rectangle plane — same width/height/UV convention as
   // PlaneGeometry, so it drops in anywhere a card texture already expects
   // 0..1 UVs across the full quad. (PORT-FIXES Fix 3 — ShapeGeometry does
@@ -394,7 +436,6 @@
     ringRoot.name = 'gallery-rings';
     scene.add(ringRoot);
 
-    const stringMat = new THREE.MeshStandardMaterial({ color: 0x3a3a40, roughness: 0.9, metalness: 0 });
     const cardMeshes = [];
     const swayItems = [];
 
@@ -465,13 +506,6 @@
         group.add(mesh);
         cardMeshes.push(mesh);
         swayItems.push({ obj: mesh, baseY: y, phase });
-
-        const topY = y + (h * scale) / 2;
-        if (CEIL - topY > 0.05) {
-          const s = stringBetween(new THREE.Vector3(x, topY, z), new THREE.Vector3(x, CEIL, z), stringMat.clone());
-          group.add(s);
-          swayItems.push({ obj: s, baseY: s.position.y, phase });
-        }
         idx++;
       });
 
@@ -557,7 +591,6 @@
     holdDrift: false,
     xrActive: false,
     lastT: 0,
-    modelYaw: 0,
     rings: []
   };
 
@@ -570,7 +603,6 @@
       r.angle += r.speed * dt;
       r.group.rotation.y = r.angle;
     }
-    motion.modelYaw += 2.4 * dt;
   }
 
   function swayCards(swayItems, nowMs) {
@@ -1375,7 +1407,7 @@
   /* ══════════════════════════════════════════════════════════════
      8 · Presentation paths
      ══════════════════════════════════════════════════════════════ */
-  async function presentInlineModel(scene, maxDist) {
+  async function presentInlineModel(scene) {
     setStatus('Exporting your gallery to USDZ…', 82);
     // USDZExporter runs on a scene that's never been rendered through
     // WebGL — its matrixWorld values are still constructor-default
@@ -1424,29 +1456,13 @@
     }
     statusBox.style.display = 'none';
 
-    const diameter = 2 * maxDist + 1;
-    function applyTransform() {
-      const m = new DOMMatrix();
-      const widthMeters = (model.clientWidth || 800) / 3800;
-      const s = widthMeters / (diameter * 1.08);
-      m.scaleSelf(s, s, s);
-      m.rotateAxisAngleSelf(0, 1, 0, motion.modelYaw);
-      m.translateSelf(0, -EYE, 0);
-      model.entityTransform = m;
-    }
-    applyTransform();
-
-    let lastYaw = motion.modelYaw;
-    (function turntable(nowMs) {
-      requestAnimationFrame(turntable);
-      if (motion.xrActive) return; // the XR loop drives motion then
-      updateMotion(nowMs || performance.now());
-      if (Math.abs(motion.modelYaw - lastYaw) > 0.05) {
-        lastYaw = motion.modelYaw;
-        applyTransform();
-      }
-    })();
-
+    // No manual scale/position/rotation here — entityTransform is
+    // read-only whenever stagemode isn't 'none' (confirmed on-device:
+    // writing to it throws "Transform is read-only unless StageMode is
+    // set to 'none'", which aborted this whole function before the AR
+    // link/Step Inside button ever got wired up). stagemode="orbit"
+    // already auto-frames the model to fit the stage on its own, so a
+    // manual transform was never actually needed once it was added.
     const arLink = document.getElementById('ar-link');
     arLink.href = url;
     arLink.download = fileName;
@@ -1538,10 +1554,13 @@
     }
 
     try {
+      const updateDriftIcon = () => { driftIcon.textContent = motion.drifting ? '⏸' : '▶'; };
       driftToggle.setAttribute('aria-pressed', String(motion.drifting));
+      updateDriftIcon();
       driftToggle.addEventListener('click', () => {
         motion.drifting = !motion.drifting;
         driftToggle.setAttribute('aria-pressed', String(motion.drifting));
+        updateDriftIcon();
       });
 
       let photos = await collectPhotos();
@@ -1578,7 +1597,7 @@
 
       if (supportsModel) {
         // visionOS: stereoscopic USDZ miniature inline (exported while still)
-        await presentInlineModel(live.scene, live.maxDist);
+        await presentInlineModel(live.scene);
         if (xrMode) {
           const xr = setupXR(ctx, puller);
           ctx.onSessionEnd = () => { supportNote.innerHTML = xrNote(xrMode, live.count); };
