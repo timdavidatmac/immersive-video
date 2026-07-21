@@ -1,14 +1,1693 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="refresh" content="0; url=../FullSail/">
-<link rel="canonical" href="../FullSail/">
-<title>Redirecting…</title>
-<script>location.replace('../FullSail/');</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Full Sail Campus Gallery</title>
+  <meta property="og:title" content="Full Sail Campus Gallery — an immersive walkthrough">
+  <meta property="og:description" content="Full Sail University's campus, hanging in space around you. Step inside on Apple Vision Pro.">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      background: #0b0b12;
+      color: #f5f5f7;
+      line-height: 1.6;
+    }
+    a { color: #6fb8ff; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .wrap { max-width: 960px; margin: 0 auto; padding: 0 20px 40px; }
+
+    header { text-align: center; padding: 44px 20px 10px; }
+    header h1 { font-size: 34px; margin: 0 0 6px; letter-spacing: -0.02em; }
+    header p { color: #b8b8c2; margin: 0; font-size: 15px; }
+
+    .stage-wrap {
+      background:
+        radial-gradient(1px 1px at 12% 22%, rgba(255,255,255,0.55) 50%, transparent 51%),
+        radial-gradient(1px 1px at 34% 68%, rgba(255,255,255,0.4) 50%, transparent 51%),
+        radial-gradient(1.5px 1.5px at 58% 18%, rgba(255,255,255,0.5) 50%, transparent 51%),
+        radial-gradient(1px 1px at 73% 51%, rgba(255,255,255,0.35) 50%, transparent 51%),
+        radial-gradient(1.5px 1.5px at 88% 79%, rgba(255,255,255,0.45) 50%, transparent 51%),
+        radial-gradient(ellipse at 50% 120%, #1c1c30 0%, #05050a 65%);
+      border: 1px solid #26263a;
+      border-radius: 18px;
+      overflow: hidden;
+      position: relative;
+      margin: 22px 0 14px;
+    }
+    #stage { width: 100%; height: min(62vh, 540px); position: relative; }
+    #stage model, #stage canvas { width: 100%; height: 100%; display: block; }
+
+    #stage-status {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 14px; color: #d6d6de; font-size: 14px; text-align: center; padding: 24px;
+      pointer-events: none;
+    }
+    .progress-track { width: min(320px, 70%); height: 4px; border-radius: 2px; background: rgba(255,255,255,0.14); overflow: hidden; }
+    .progress-fill { height: 100%; width: 0%; border-radius: 2px; background: linear-gradient(90deg, #6fb8ff, #bf5af2); transition: width 0.25s ease; }
+
+    .controls { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+    .btn {
+      border: 1px solid #3a3a4a; background: #16161f; color: #f5f5f7;
+      font-size: 13.5px; font-weight: 600; font-family: inherit;
+      padding: 9px 16px; border-radius: 18px; cursor: pointer;
+      display: inline-flex; align-items: center; gap: 7px;
+    }
+    .btn[aria-pressed="true"] { border-color: #6fb8ff; color: #6fb8ff; background: #101823; }
+    .btn.primary {
+      margin-left: auto; border: none; background: #6fb8ff; color: #0b0b12;
+      font-weight: 700; padding: 11px 22px; border-radius: 22px; display: none;
+    }
+    .btn.primary.available { display: inline-flex; }
+    .btn.primary:hover { background: #8ec8ff; }
+    a.btn { text-decoration: none; }
+    .btn[hidden] { display: none; }
+
+    /* Drawn with CSS, not a Unicode glyph (⏸/▶ render as a missing-glyph
+       box on visionOS Safari, even though other symbols on this page
+       don't — a font-fallback gap, not worth chasing further) */
+    .drift-icon { display: inline-block; width: 10px; height: 12px; position: relative; flex: none; }
+    .drift-icon.is-playing::before, .drift-icon.is-playing::after {
+      content: ''; position: absolute; top: 0; width: 3px; height: 12px; background: currentColor;
+    }
+    .drift-icon.is-playing::before { left: 0; }
+    .drift-icon.is-playing::after { left: 7px; }
+    .drift-icon.is-paused {
+      width: 0; height: 0; top: 0;
+      border-top: 6px solid transparent; border-bottom: 6px solid transparent;
+      border-left: 10px solid currentColor;
+    }
+
+    .note { font-size: 13px; color: #b8b8c2; margin: 10px 0 0; }
+    .note strong { color: #f5f5f7; }
+
+    .how-section { margin: 10px auto 0; }
+    .how-section h2 {
+      font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
+      color: #8a8a94; margin: 0 0 16px; padding-bottom: 16px;
+      border-bottom: 1px solid #26263a;
+    }
+    .how-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    @media (max-width: 720px) { .how-grid { grid-template-columns: 1fr; } }
+    .how-card { background: #14141d; border: 1px solid #26263a; border-radius: 14px; padding: 20px 22px; }
+    .how-card h3 { font-size: 16px; margin: 0 0 10px; }
+    .how-card p { font-size: 14px; color: #b8b8c2; margin: 0; }
+    .how-card p strong { color: #f5f5f7; }
+    .how-card code {
+      background: #0b0b12; border: 1px solid #26263a; border-radius: 5px;
+      padding: 1px 6px; font-size: 12.5px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace; color: #d6d6de;
+    }
+
+    footer { text-align: center; font-size: 12px; color: #6e6e78; padding: 30px 20px 10px; }
+  </style>
 </head>
 <body>
-<p>Redirecting to <a href="../FullSail/">the Full Sail gallery</a>…</p>
+
+  <header>
+    <a href="https://imaginationave.com/" style="display:block; text-decoration:none; color:inherit;">
+      <h1 id="page-title">Full Sail Campus Gallery</h1>
+      <p id="page-subtitle">Full Sail University's campus, hanging in space around you.</p>
+    </a>
+  </header>
+
+  <main class="wrap">
+    <div class="stage-wrap">
+      <div id="stage"></div>
+      <div id="stage-status" role="status">
+        <span id="status-text">Gathering the campus…</span>
+        <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <button class="btn" id="drift-toggle" aria-pressed="false" title="Pause or resume the gallery's motion"><span class="drift-icon" id="drift-icon" aria-hidden="true"></span> Drift</button>
+      <a class="btn" id="ar-link" rel="ar" hidden>
+        <img src="images/arkit-glyph-white.svg" alt="" aria-hidden="true" width="17" height="17"> View in AR
+      </a>
+      <button class="btn primary" id="immerse-btn">⬢ Step Inside</button>
+    </div>
+    <p class="note" id="support-note">Checking what your browser can do…</p>
+  </main>
+
+  <section class="wrap how-section">
+    <h2>How this page works</h2>
+    <div class="how-grid">
+      <div class="how-card">
+        <h3>Built from Full Sail's own catalog</h3>
+        <p>Your browser reads <code>photos.json</code>, generated from Full
+        Sail's own <a href="https://www.fullsail.edu/campus-explorer" target="_blank" rel="noopener">Campus Explorer</a>
+        page, and hangs every photo at different depths and heights on
+        slowly counter-rotating rings around you.</p>
+      </div>
+      <div class="how-card">
+        <h3>The USDZ miniature, above</h3>
+        <p>It slowly turns on its own so you can see it from every angle.
+        <strong>Press and hold, then drag it off the page</strong> to pull
+        it straight into AR space — or tap <strong>View in AR</strong> to
+        open the same model in Quick Look the standard way. This model is
+        built fresh in your browser, not a pre-made file.</p>
+      </div>
+      <div class="how-card">
+        <h3>Step Inside — walk the campus</h3>
+        <p>Tap <strong>Step Inside</strong> to leave the miniature and
+        enter the full-size gallery. On Apple Vision Pro this opens a WebXR
+        session — walk among the photos, <strong>pinch one</strong> to
+        bring it close and read its description (pinch it again to send it
+        back), and <strong>pinch empty space and drag</strong> to spin the
+        gallery. On a Mac, iPhone, or PC you get an interactive WebGL
+        preview instead: drag to orbit, click a photo the same way.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer id="page-footer">
+    Full Sail Immersive Campus Explorer — photos from <a href="https://www.fullsail.edu/campus-explorer" target="_blank" rel="noopener">Full Sail University Campus Explorer</a>.
+    <span id="skybox-credit"></span>
+  </footer>
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"
+    }
+  }
+  </script>
+
+  <script type="module">
+  import * as THREE from 'three';
+
+  /* ══════════════════════════════════════════════════════════════
+     CONFIG — everything most people will ever want to change.
+     ══════════════════════════════════════════════════════════════ */
+  const CONFIG = {
+    title: 'Full Sail Campus Gallery',
+    subtitle: "Full Sail University's campus, hanging in space around you.",
+
+    // Wraps around the floor-anchor pedestal's rim in glowing type (see
+    // buildGallery()'s pedestal, below, and PEDESTAL_H there). Self-sizing
+    // — the pedestal's own radius is derived from measuring this text
+    // (no padding, no blank space — the drum is exactly as wide as the
+    // label needs), so any label fits by construction. Height and radius
+    // are deliberately coupled (one shared px/metre density keeps the
+    // glowing letters from stretching), so PEDESTAL_H affects both, not
+    // just height. Measured at the current PEDESTAL_H (0.254m / 10"):
+    // 'Full Sail Immersive Campus Explorer' comes out to a 41" diameter
+    // (~3.4 ft) — a genuinely large object, confirmed by measurement, not
+    // a guess. Reduce PEDESTAL_H and/or shorten the label to bring that
+    // down.
+    pedestalLabel: 'Full Sail Immersive Campus Explorer',
+
+    // Generated by make-manifest.py from fullsail.edu/campus-explorer —
+    // always points at Full Sail's real CDN URLs (never re-hosted).
+    manifest: 'photos.json',
+
+    // Local copies of all photos (download-images.py), used until
+    // fullsail.edu sends Access-Control-Allow-Origin and cross-origin
+    // textures stop failing (see KICKOFF.md §2). The manifest itself
+    // still points at the real fullsail.edu URLs so this stops being
+    // needed the moment CORS is fixed — nothing else has to change.
+    // Filenames are matched by the last path segment of each photo's
+    // `src`.
+    corsFallbackDir: 'images/',
+
+    // 'fs-lab' (Tim's real Vision Pro Lab panorama, images/FS-spatial-lab.jpg
+    // — covers CONFIG.skyboxHFov x CONFIG.skyboxVFov degrees below, not a
+    // full wraparound; the missing horizontal wedge behind the viewer is
+    // filled with the room's own wall tone, and the floor/ceiling gaps get
+    // real flat discs textured to match the photo's wood flooring and
+    // drop-ceiling tiles — see makeSkybox() and KICKOFF.md §5) ·
+    // 'milky-way' · 'none' · or the path/URL of any other 360°
+    // equirectangular (2:1) panorama.
+    skybox: 'fs-lab',
+
+    // Degrees to rotate the fs-lab panorama so its own forward direction
+    // lines up with the viewer's start-facing direction in XR — the photo
+    // only covers 270° of the horizon, so getting this wrong puts the
+    // missing wedge in front of you instead of behind. Nudge this on
+    // device if the seam isn't where you'd expect (KICKOFF.md §5 — this
+    // can only really be verified in-headset).
+    skyboxYaw: 0,
+
+    // The fs-lab photo's own field of view, in degrees — drives both
+    // where it's placed on the equirect canvas AND how big the synthetic
+    // floor/ceiling caps need to be (see makeSkybox()). Horizontal is
+    // fairly confident (measured against the live room); vertical was
+    // revised down from an initial 150° guess to ~110° — tune this
+    // further if the horizon line still looks off in-headset.
+    skyboxHFov: 270,
+    skyboxVFov: 110,
+
+    cardHeight: 0.5,     // metres — width follows each photo's shape
+    captions: true,      // show captions (from the manifest, or filenames)
+    shuffle: true,       // mix the order (deterministic, not random per load)
+    driftSpeed: 1.0,     // 0 = still · 1 = gentle · 2 = lively
+
+    // Experiment: AR Quick Look's custom-banner URL params (see
+    // presentInlineModel() for the full explanation and caveats). Leave
+    // '' to use the default (immersive.html-style) filename fragment.
+    // Try e.g.:
+    // 'callToAction=View%20Gallery&checkoutTitle=Full%20Sail%20Campus%20Gallery&checkoutSubtitle=95%20photos%20across%20campus'
+    arBannerFragment: '',
+  };
+
+  const MAX_PHOTOS = 150; // beyond this, Safari's memory becomes the limit
+
+  /* ══════════════════════════════════════════════════════════════
+     Constants & page plumbing
+     ══════════════════════════════════════════════════════════════ */
+  const CEIL = 3.2;   // height the strings hang from
+  const EYE = 1.6;
+  // Height of the fs-lab skybox's synthetic floor cap (makeSkybox()) —
+  // the exit stand's hover-pad rises to match this, see getExitStand().
+  const SKYBOX_FLOOR_Y = 0.002;
+
+  const stage = document.getElementById('stage');
+  const statusBox = document.getElementById('stage-status');
+  const statusText = document.getElementById('status-text');
+  const progressFill = document.getElementById('progress-fill');
+  const immerseBtn = document.getElementById('immerse-btn');
+  const driftToggle = document.getElementById('drift-toggle');
+  const driftIcon = document.getElementById('drift-icon');
+  const supportNote = document.getElementById('support-note');
+
+  document.title = CONFIG.title;
+  document.getElementById('page-title').textContent = CONFIG.title;
+  document.getElementById('page-subtitle').textContent = CONFIG.subtitle;
+  if (CONFIG.skybox === 'milky-way') {
+    document.getElementById('skybox-credit').innerHTML =
+      ' Starfield: Milky Way panorama, ESO/S. Brunier (CC BY 4.0), via the <a href="https://github.com/immersive-web/webxr-samples" target="_blank" rel="noopener">WebXR Samples</a>.';
+  }
+
+  const supportsModel = typeof window.HTMLModelElement !== 'undefined';
+  const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function setStatus(msg, pct) {
+    statusBox.style.display = '';
+    statusText.textContent = msg;
+    if (pct != null) progressFill.style.width = Math.round(pct) + '%';
+  }
+
+  /* ══════════════════════════════════════════════════════════════
+     1 · Find the photos
+     ══════════════════════════════════════════════════════════════ */
+  function captionFromFilename(src) {
+    const base = src.split('/').pop().replace(/\.[a-z0-9]+$/i, '');
+    return base.replace(/[-_]+/g, ' ').trim();
+  }
+
+  async function collectPhotos() {
+    const res = await fetch(CONFIG.manifest, { cache: 'no-cache' });
+    if (!res.ok) {
+      throw new Error('No photos found. Run make-manifest.py to generate ' + CONFIG.manifest + ' from fullsail.edu/campus-explorer.');
+    }
+    const list = await res.json();
+    return list.map(item => ({
+      src: item.src,
+      caption: CONFIG.captions ? (item.caption ?? captionFromFilename(item.src)) : '',
+      description: item.description || '',
+      width: item.width || null,
+      height: item.height || null
+    }));
+  }
+
+  /* ══════════════════════════════════════════════════════════════
+     2 · Photo textures (keeps each photo's own shape)
+     ══════════════════════════════════════════════════════════════ */
+  function loadImage(url) {
+    return new Promise((resolve, reject) => {
+      if (!url) { reject(new Error('no url')); return; }
+      const img = new Image();
+      img.crossOrigin = 'anonymous';
+      const timer = setTimeout(() => { img.src = ''; reject(new Error('timeout')); }, 15000);
+      img.onload = () => { clearTimeout(timer); resolve(img); };
+      img.onerror = () => { clearTimeout(timer); reject(new Error('load failed')); };
+      img.src = url;
+    });
+  }
+
+  // Try the real fullsail.edu URL first; if it fails (CORS or network),
+  // and a local fallback folder is configured, try a hand-saved copy
+  // there instead — same pattern as apple.com/newsroom's local-copy
+  // fallback in immersive.html. The manifest itself never changes.
+  async function loadPhotoImage(p) {
+    try {
+      return await loadImage(p.src);
+    } catch (e) {
+      if (CONFIG.corsFallbackDir) {
+        const name = p.src.split('/').pop();
+        return await loadImage(CONFIG.corsFallbackDir.replace(/\/?$/, '/') + name);
+      }
+      throw e;
+    }
+  }
+
+  function makeTexture(canvas) {
+    const tex = new THREE.CanvasTexture(canvas);
+    tex.colorSpace = THREE.SRGBColorSpace;
+    tex.anisotropy = 4;
+    return tex;
+  }
+
+  function photoCanvas(img, caption, maxDim, forceAspect) {
+    const aspect = forceAspect || Math.min(2.4, Math.max(0.42, img.naturalWidth / img.naturalHeight));
+    const H = aspect >= 1 ? Math.round(maxDim / aspect) : maxDim;
+    const W = Math.round(H * aspect);
+    const c = document.createElement('canvas');
+    c.width = W; c.height = H;
+    const ctx = c.getContext('2d');
+    // cover-fit into the clamped aspect (only crops extreme panoramas)
+    const s = Math.max(W / img.naturalWidth, H / img.naturalHeight);
+    const dw = img.naturalWidth * s, dh = img.naturalHeight * s;
+    ctx.drawImage(img, (W - dw) / 2, (H - dh) / 2, dw, dh);
+
+    if (caption) {
+      const barH = Math.max(34, Math.round(H * 0.1));
+      const grad = ctx.createLinearGradient(0, H - barH * 2, 0, H);
+      grad.addColorStop(0, 'rgba(0,0,0,0)');
+      grad.addColorStop(1, 'rgba(0,0,0,0.7)');
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, H - barH * 2, W, barH * 2);
+      ctx.fillStyle = '#ffffff';
+      ctx.font = '600 ' + Math.round(barH * 0.5) + 'px -apple-system, Helvetica, sans-serif';
+      ctx.shadowColor = 'rgba(0,0,0,0.6)';
+      ctx.shadowBlur = 4;
+      let text = caption;
+      while (ctx.measureText(text).width > W - 24 && text.length > 4) text = text.slice(0, -2) + '…';
+      ctx.fillText(text, 14, H - barH * 0.42);
+      ctx.shadowBlur = 0;
+    }
+    return { canvas: c, aspect };
+  }
+
+  /* ══════════════════════════════════════════════════════════════
+     3 · Build the ring gallery
+     ══════════════════════════════════════════════════════════════ */
+  function jitter(seed) {
+    const x = Math.sin(seed * 127.1 + 311.7) * 43758.5453;
+    return (x - Math.floor(x)) - 0.5;
+  }
+
+  // A flat rounded-rectangle plane — same width/height/UV convention as
+  // PlaneGeometry, so it drops in anywhere a card texture already expects
+  // 0..1 UVs across the full quad. (PORT-FIXES Fix 3 — ShapeGeometry does
+  // NOT normalize UVs like PlaneGeometry does; skip the remap below and
+  // every card renders blank, pinned to a single edge pixel.)
+  function roundedPlaneGeometry(w, h, r, segments = 6) {
+    const hw = w / 2, hh = h / 2;
+    r = Math.min(r, hw, hh);
+    const shape = new THREE.Shape();
+    shape.moveTo(-hw + r, -hh);
+    shape.lineTo(hw - r, -hh);
+    shape.absarc(hw - r, -hh + r, r, -Math.PI / 2, 0, false);
+    shape.lineTo(hw, hh - r);
+    shape.absarc(hw - r, hh - r, r, 0, Math.PI / 2, false);
+    shape.lineTo(-hw + r, hh);
+    shape.absarc(-hw + r, hh - r, r, Math.PI / 2, Math.PI, false);
+    shape.lineTo(-hw, -hh + r);
+    shape.absarc(-hw + r, -hh + r, r, Math.PI, Math.PI * 1.5, false);
+    const geo = new THREE.ShapeGeometry(shape, segments);
+    geo.computeVertexNormals();
+    const uv = geo.attributes.uv;
+    for (let i = 0; i < uv.count; i++) {
+      uv.setXY(i, uv.getX(i) / w + 0.5, uv.getY(i) / h + 0.5);
+    }
+    uv.needsUpdate = true;
+    return geo;
+  }
+
+  async function buildGallery(photos) {
+    const maxDim = photos.length > 80 ? 512 : 768;
+    let done = 0;
+    setStatus('Hanging photos… 0 / ' + photos.length, 5);
+    await Promise.all(photos.map(async p => {
+      try {
+        const img = await loadPhotoImage(p);
+        const forceAspect = (p.width && p.height) ? (p.width / p.height) : undefined;
+        const { canvas, aspect } = photoCanvas(img, p.caption, maxDim, forceAspect);
+        p.texture = makeTexture(canvas);
+        p.aspect = aspect;
+      } catch (e) {
+        p.failed = true; // skip photos that don't load
+      }
+      done++;
+      setStatus('Hanging photos… ' + done + ' / ' + photos.length, 5 + 70 * done / photos.length);
+    }));
+    const usable = photos.filter(p => !p.failed);
+    if (!usable.length) throw new Error('None of the photos could be loaded.');
+
+    const scene = new THREE.Scene();
+    scene.add(new THREE.HemisphereLight(0xffffff, 0x30304a, 2.6));
+    const dirLight = new THREE.DirectionalLight(0xffffff, 1.2);
+    dirLight.position.set(3, 6, 4);
+    scene.add(dirLight);
+
+    const ringRoot = new THREE.Group();
+    ringRoot.name = 'gallery-rings';
+    scene.add(ringRoot);
+
+    const cardMeshes = [];
+    const swayItems = [];
+
+    // Deterministic shuffle, so the layout is stable between visits
+    const ordered = CONFIG.shuffle
+      ? usable.map((p, i) => ({ p, k: jitter(i * 17 + 3) })).sort((a, b) => a.k - b.k).map(o => o.p)
+      : usable;
+
+    const n = ordered.length;
+    const ringCount = n <= 24 ? 2 : n <= 60 ? 3 : 4;
+    const radii = [2.4, 3.3, 4.2, 5.1];
+    const y0s = [1.3, 1.55, 1.45, 1.7];
+    const speeds = [0.012, -0.009, 0.007, -0.005];
+
+    // Weight photos toward the bigger rings (more room out there)
+    const weights = radii.slice(0, ringCount);
+    const totalW = weights.reduce((a, b) => a + b, 0);
+    const slices = [];
+    let cursor = 0;
+    weights.forEach((w, i) => {
+      const count = i === ringCount - 1 ? n - cursor : Math.round(n * w / totalW);
+      slices.push(ordered.slice(cursor, cursor + count));
+      cursor += count;
+    });
+
+    let idx = 0;
+    const rings = slices.filter(s => s.length).map((slice, ri) => {
+      const group = new THREE.Group();
+      group.name = 'ring_' + ri;
+      ringRoot.add(group);
+      const r = radii[ri], y0 = y0s[ri];
+
+      slice.forEach((p, i) => {
+        const phase = jitter(idx * 7 + 6) * Math.PI * 4;
+        const scale = 0.92 + (jitter(idx * 7 + 5) + 0.5) * 0.2;
+        const a = (i / slice.length) * Math.PI * 2 + ri * 0.7 + jitter(idx * 7 + 2) * 0.1;
+        const y = y0 + ((i * 3) % 4) * 0.3 + jitter(idx * 7 + 3) * 0.1;
+        const x = r * Math.sin(a), z = -r * Math.cos(a);
+
+        const h = CONFIG.cardHeight, w = h * p.aspect;
+        // Rounded corners (PORT-FIXES Fix 3); radius off h since cards
+        // vary in both width and height per photo, h stays fixed
+        const geo = roundedPlaneGeometry(w, h, h * 0.09);
+        // Modest emissive glow (PORT-FIXES Fix 5) — the USDZ/AR viewer's
+        // real-world-estimated lighting is dimmer than the inline
+        // <model> preview's fixed studio lighting, same file either way
+        const mesh = new THREE.Mesh(
+          geo,
+          new THREE.MeshStandardMaterial({
+            map: p.texture, emissive: 0xffffff, emissiveMap: p.texture, emissiveIntensity: 0.4,
+            roughness: 0.85, metalness: 0, side: THREE.DoubleSide
+          })
+        );
+        mesh.position.set(x, y, z);
+        mesh.scale.setScalar(scale);
+        mesh.lookAt(0, y, 0);
+        mesh.rotateZ(jitter(idx * 7 + 4) * 0.05);
+        mesh.userData.photo = p;
+        mesh.userData.h = h * scale; // world height, for pull-forward sizing
+        // Mirrored back face — USDZ renders single-sided, so without this
+        // the miniature's photos vanish whenever they rotate away.
+        // Own geometry/material clone (defensive — see PORT-FIXES Fix 1).
+        const back = new THREE.Mesh(geo.clone(), mesh.material.clone());
+        back.rotation.y = Math.PI;
+        back.position.z = -0.001;
+        mesh.add(back);
+
+        group.add(mesh);
+        cardMeshes.push(mesh);
+        swayItems.push({ obj: mesh, baseY: y, phase });
+        idx++;
+      });
+
+      return { group, speed: speeds[ri] * CONFIG.driftSpeed };
+    });
+
+    // Floor-anchor pedestal — doubles as the AR floor anchor (bottom face
+    // must stay at world y=0, or Quick Look anchors off the lowest *card*
+    // instead and everything hangs too low) and a real designed object: a
+    // straight-sided drum with CONFIG.pedestalLabel wrapped around the rim
+    // in glowing type. Radius is derived by measuring the label at the
+    // render font size, not guessed, so it always fits (see CONFIG.pedestalLabel
+    // above for measured examples) — ported from the main site's
+    // immersive.html per PORT-FIXES-FROM-IMMERSIVE.md's "floor-anchor
+    // pedestal" section.
+    const PEDESTAL_H = 0.254; // an even 10" — see CONFIG.pedestalLabel for why this also widens the drum
+    const pedCanvasH = 320; // wrap-texture resolution, not a physical size
+    const pedDensity = pedCanvasH / PEDESTAL_H; // px per metre
+    const pedFontPx = Math.round(pedCanvasH * 0.52);
+    const pedLabel = CONFIG.pedestalLabel.toUpperCase();
+
+    const pedMeasureCx = document.createElement('canvas').getContext('2d');
+    pedMeasureCx.font = '700 ' + pedFontPx + 'px -apple-system, Helvetica, sans-serif';
+    const pedTextW = pedMeasureCx.measureText(pedLabel).width;
+    const pedCanvasW = Math.ceil(pedTextW * 1.16); // ~14% left as a blank seam gap
+    const pedRadius = pedCanvasW / pedDensity / (2 * Math.PI);
+
+    const pedCanvas = document.createElement('canvas');
+    pedCanvas.width = pedCanvasW; pedCanvas.height = pedCanvasH;
+    const pedCx = pedCanvas.getContext('2d');
+    pedCx.fillStyle = '#0a0a0c';
+    pedCx.fillRect(0, 0, pedCanvasW, pedCanvasH);
+    pedCx.textAlign = 'center';
+    pedCx.textBaseline = 'middle';
+    pedCx.font = '700 ' + pedFontPx + 'px -apple-system, Helvetica, sans-serif';
+    pedCx.fillStyle = '#f5efe4';
+    pedCx.shadowColor = 'rgba(255, 248, 235, 0.9)';
+    for (const blur of [pedFontPx * 0.28, pedFontPx * 0.14, pedFontPx * 0.05]) {
+      pedCx.shadowBlur = blur;
+      pedCx.fillText(pedLabel, pedCanvasW / 2, pedCanvasH / 2);
+    }
+    pedCx.shadowBlur = 0;
+
+    // Side gets the glowing wrap texture; flat top/bottom caps stay plain
+    // dark. Three separate meshes, not one mesh with a materials array —
+    // USDZExporter silently drops multi-material meshes (KICKOFF.md
+    // lesson #15), same reason the side uses MeshStandardMaterial instead
+    // of MeshBasicMaterial (also silently dropped on export).
+    const pedTex = makeTexture(pedCanvas);
+    const pedSideMat = new THREE.MeshStandardMaterial({
+      map: pedTex, emissive: 0xffffff, emissiveMap: pedTex, emissiveIntensity: 1.3,
+      roughness: 0.9, metalness: 0
+    });
+    const pedCapMat = new THREE.MeshStandardMaterial({ color: 0x0a0a0c, roughness: 0.9 });
+
+    const pedSide = new THREE.Mesh(
+      new THREE.CylinderGeometry(pedRadius, pedRadius, PEDESTAL_H, 64, 1, true), // openEnded — caps built separately
+      pedSideMat
+    );
+    pedSide.position.y = PEDESTAL_H / 2; // bottom edge stays at world y=0
+    ringRoot.add(pedSide);
+
+    const pedTopCap = new THREE.Mesh(new THREE.CircleGeometry(pedRadius, 64), pedCapMat);
+    pedTopCap.rotation.x = -Math.PI / 2; // face up
+    pedTopCap.position.y = PEDESTAL_H;
+    ringRoot.add(pedTopCap);
+
+    const pedBottomCap = new THREE.Mesh(new THREE.CircleGeometry(pedRadius, 64), pedCapMat.clone());
+    pedBottomCap.rotation.x = Math.PI / 2; // face down
+    pedBottomCap.position.y = 0;
+    ringRoot.add(pedBottomCap);
+
+    return { scene, ringRoot, rings, cardMeshes, swayItems, maxDist: radii[ringCount - 1] + 1, count: n };
+  }
+
+  /* ══════════════════════════════════════════════════════════════
+     4 · Motion: ring drift, miniature turntable, sway
+     (Timebase rule: never mix performance.now() with the XR loop's
+     clock — every dt/tween is stamped by the loop that steps it.)
+     ══════════════════════════════════════════════════════════════ */
+  const motion = {
+    drifting: !reduceMotion && CONFIG.driftSpeed > 0,
+    holdDrift: false,
+    xrActive: false,
+    lastT: 0,
+    modelYaw: 0, // degrees — the inline miniature's slow turntable
+    rings: []
+  };
+
+  function updateMotion(nowMs) {
+    const dt = (nowMs - (motion.lastT || nowMs)) / 1000;
+    motion.lastT = nowMs;
+    if (dt < 0 || dt > 0.5) return; // clock jump — never a giant step
+    if (!motion.drifting || motion.holdDrift) return;
+    for (const r of motion.rings) {
+      r.angle += r.speed * dt;
+      r.group.rotation.y = r.angle;
+    }
+    motion.modelYaw += 2.4 * dt;
+  }
+
+  function swayCards(swayItems, nowMs) {
+    if (reduceMotion) return;
+    const t = nowMs * 0.001;
+    for (const it of swayItems) {
+      if (it.frozen) continue;
+      it.obj.position.y = it.baseY + Math.sin(t * 0.55 + it.phase) * 0.022;
+    }
+  }
+
+  /* ══════════════════════════════════════════════════════════════
+     5 · Word-wrapping (shared by the description panel below)
+     ══════════════════════════════════════════════════════════════ */
+  function wrapText(ctx, text, maxWidth) {
+    const words = text.split(/\s+/).filter(Boolean);
+    const lines = [];
+    let line = '';
+    for (const w of words) {
+      const probe = line ? line + ' ' + w : w;
+      if (ctx.measureText(probe).width > maxWidth && line) { lines.push(line); line = w; }
+      else line = probe;
+    }
+    if (line) lines.push(line);
+    return lines;
+  }
+
+  /* ══════════════════════════════════════════════════════════════
+     6 · Pull-forward viewer (shared by desktop clicks and XR pinches)
+     Sticky: a pulled photo stays out until the SAME photo is pinched/
+     clicked again — no auto-return timeout, no release on empty space.
+     ══════════════════════════════════════════════════════════════ */
+  function makePuller(ctx) {
+    const tweens = [];
+    const dummy = new THREE.Object3D();
+    let armed = null; // { mesh, panel, home, sway }
+
+    function startTween(obj, to, dur, onDone) {
+      tweens.push({
+        obj, dur, onDone, t0: null, // stamped by the loop that steps it
+        fromPos: obj.position.clone(), toPos: to.pos,
+        fromQ: obj.quaternion.clone(), toQ: to.quat,
+        fromS: obj.scale.clone(), toS: to.scale
+      });
+    }
+
+    // Long-description panel — sized to however many lines the text
+    // actually wraps to (measured with ctx.measureText, not assumed).
+    // Two-tier text: the short caption is already baked onto the poster
+    // (photoCanvas) — this panel is only the long description, shown
+    // once a photo is pulled forward.
+    function descriptionPanel(text, anchor, head) {
+      const W = 640;
+      const fontPx = 28;
+      const lineHeight = Math.round(fontPx * 1.4);
+      const padX = 30, padTop = 26, padBottom = 26;
+
+      const measure = document.createElement('canvas').getContext('2d');
+      measure.font = '500 ' + fontPx + 'px -apple-system, Helvetica, sans-serif';
+      const lines = wrapText(measure, text, W - padX * 2);
+      const H = padTop + padBottom + lines.length * lineHeight;
+
+      const c = document.createElement('canvas');
+      c.width = W; c.height = H;
+      const cx = c.getContext('2d');
+      cx.fillStyle = 'rgba(20,20,26,0.92)';
+      cx.beginPath(); cx.roundRect(0, 0, W, H, 22); cx.fill();
+      cx.fillStyle = '#f5f5f7';
+      cx.font = '500 ' + fontPx + 'px -apple-system, Helvetica, sans-serif';
+      lines.forEach((line, i) => {
+        cx.fillText(line, padX, padTop + fontPx * 0.82 + i * lineHeight);
+      });
+
+      const panelW = 0.5, panelH = panelW * H / W;
+      const panel = new THREE.Mesh(
+        new THREE.PlaneGeometry(panelW, panelH),
+        new THREE.MeshBasicMaterial({ map: makeTexture(c), transparent: false, toneMapped: false, side: THREE.DoubleSide })
+      );
+      const toHead = head.clone().sub(anchor).setY(0).normalize();
+      panel.position.copy(anchor).addScaledVector(toHead, 0.1);
+      panel.position.y = anchor.y - 0.3 - panelH / 2;
+      panel.lookAt(head.x, panel.position.y, head.z);
+      return panel;
+    }
+
+    function pull(mesh, head) {
+      release();
+      motion.holdDrift = true; // the world waits while you look
+
+      const world = mesh.getWorldPosition(new THREE.Vector3());
+      const dir = world.clone().sub(head);
+      dir.y = 0;
+      if (dir.lengthSq() < 1e-4) dir.set(0, 0, -1);
+      dir.normalize();
+      const targetWorld = head.clone().addScaledVector(dir, 1.1);
+      targetWorld.y = Math.min(Math.max(head.y - 0.05, 1.05), 1.9);
+
+      const parent = mesh.parent;
+      parent.updateWorldMatrix(true, false);
+      const targetLocal = parent.worldToLocal(targetWorld.clone());
+      dummy.position.copy(targetWorld);
+      dummy.lookAt(head.x, targetWorld.y, head.z);
+      const qLocal = parent.getWorldQuaternion(new THREE.Quaternion()).invert().multiply(dummy.quaternion);
+
+      const home = { pos: mesh.position.clone(), quat: mesh.quaternion.clone(), scale: mesh.scale.clone() };
+      const sway = ctx.swayItems.find(it => it.obj === mesh);
+      if (sway) sway.frozen = true;
+
+      const k = Math.min(3, Math.max(1, 0.62 / mesh.userData.h)); // arrive ~0.6 m tall
+      startTween(mesh, { pos: targetLocal, quat: qLocal, scale: home.scale.clone().multiplyScalar(k) }, 340);
+
+      let panel = null;
+      if (mesh.userData.photo.description) {
+        panel = descriptionPanel(mesh.userData.photo.description, targetWorld, head);
+        ctx.scene.add(panel);
+      }
+      armed = { mesh, panel, home, sway };
+    }
+
+    function release(instant) {
+      if (!armed) return;
+      const { mesh, panel, home, sway } = armed;
+      armed = null;
+      if (panel) ctx.scene.remove(panel);
+      for (let i = tweens.length - 1; i >= 0; i--) if (tweens[i].obj === mesh) tweens.splice(i, 1);
+      if (instant) {
+        mesh.position.copy(home.pos);
+        mesh.quaternion.copy(home.quat);
+        mesh.scale.copy(home.scale);
+        if (sway) sway.frozen = false;
+        if (!armed) motion.holdDrift = false;
+      } else {
+        startTween(mesh, { pos: home.pos, quat: home.quat, scale: home.scale }, 300, () => {
+          if (sway) sway.frozen = false;
+          if (!armed) motion.holdDrift = false;
+        });
+      }
+    }
+
+    function step(nowMs) {
+      // No auto-return timeout — a pulled photo stays out until the same
+      // photo is pinched/clicked again (the pull IS the destination here,
+      // not a preview step before something else).
+      for (let i = tweens.length - 1; i >= 0; i--) {
+        const tw = tweens[i];
+        if (tw.t0 == null) tw.t0 = nowMs;
+        const k = Math.max(0, Math.min(1, (nowMs - tw.t0) / tw.dur));
+        const e = k * k * (3 - 2 * k);
+        tw.obj.position.lerpVectors(tw.fromPos, tw.toPos, e);
+        tw.obj.quaternion.slerpQuaternions(tw.fromQ, tw.toQ, e);
+        tw.obj.scale.lerpVectors(tw.fromS, tw.toS, e);
+        if (k >= 1) { tweens.splice(i, 1); tw.onDone && tw.onDone(); }
+      }
+    }
+
+    return { pull, release, step, isArmed: m => !!armed && armed.mesh === m };
+  }
+
+  /* ══════════════════════════════════════════════════════════════
+     7 · WebXR: walkable session, pinch to pull photos close,
+     drag sideways to spin, exit sign on its hover-pad
+     ══════════════════════════════════════════════════════════════ */
+  async function detectXRMode() {
+    if (!navigator.xr) return null;
+    for (const mode of ['immersive-ar', 'immersive-vr']) {
+      try { if (await navigator.xr.isSessionSupported(mode)) return mode; } catch (e) { /* keep looking */ }
+    }
+    return null;
+  }
+
+  // Composites FS-spatial-lab.jpg onto a full 4096x2048 equirect canvas.
+  // The photo covers CONFIG.skyboxHFov x CONFIG.skyboxVFov degrees (its
+  // own pixel aspect ratio, ~2.64:1, is a much closer match to a true
+  // equirect crop at 270x110 -- ~2.45:1 -- than the original 270x150
+  // guess was at ~1.8:1, which is a good sign the revised vertical
+  // estimate is closer to correct; still a direct proportional placement
+  // rather than a true reprojection, "somewhat mimic," not pixel-
+  // accurate). The missing ~90° horizontal wedge (which wraps to a single
+  // contiguous gap directly behind the photo's own center once wrapped on
+  // the sphere) and the vertical gap above/below the photo's own coverage
+  // are filled with the room's own wall tone, sampled from the photo, and
+  // feathered at the seams so it isn't a hard cut. The small zenith/nadir
+  // caps the photo can't reach at all are handled separately by real flat
+  // discs in makeSkybox(), sized to meet the photo's own edge exactly —
+  // see the trig there.
+  function buildFsLabSkyboxCanvas(img) {
+    const W = 4096, H = 2048;
+    const WALL = '112, 108, 100'; // sampled from the photo's own wall tone
+    const c = document.createElement('canvas');
+    c.width = W; c.height = H;
+    const ctx = c.getContext('2d');
+    ctx.fillStyle = 'rgb(' + WALL + ')';
+    ctx.fillRect(0, 0, W, H);
+
+    const photoW = W * (CONFIG.skyboxHFov / 360);
+    const photoH = H * (CONFIG.skyboxVFov / 180);
+    const dx = (W - photoW) / 2;
+    const dy = (H - photoH) / 2;
+    ctx.drawImage(img, dx, dy, photoW, photoH);
+
+    const featherX = photoW * 0.035;
+    const gL = ctx.createLinearGradient(dx, 0, dx + featherX, 0);
+    gL.addColorStop(0, 'rgba(' + WALL + ',1)');
+    gL.addColorStop(1, 'rgba(' + WALL + ',0)');
+    ctx.fillStyle = gL;
+    ctx.fillRect(dx, dy, featherX, photoH);
+    const gR = ctx.createLinearGradient(dx + photoW - featherX, 0, dx + photoW, 0);
+    gR.addColorStop(0, 'rgba(' + WALL + ',0)');
+    gR.addColorStop(1, 'rgba(' + WALL + ',1)');
+    ctx.fillStyle = gR;
+    ctx.fillRect(dx + photoW - featherX, dy, featherX, photoH);
+
+    const featherY = photoH * 0.06;
+    const gT = ctx.createLinearGradient(0, dy, 0, dy + featherY);
+    gT.addColorStop(0, 'rgba(' + WALL + ',1)');
+    gT.addColorStop(1, 'rgba(' + WALL + ',0)');
+    ctx.fillStyle = gT;
+    ctx.fillRect(dx, dy, photoW, featherY);
+    const gB = ctx.createLinearGradient(0, dy + photoH - featherY, 0, dy + photoH);
+    gB.addColorStop(0, 'rgba(' + WALL + ',0)');
+    gB.addColorStop(1, 'rgba(' + WALL + ',1)');
+    ctx.fillStyle = gB;
+    ctx.fillRect(dx, dy + photoH - featherY, photoW, featherY);
+
+    return c;
+  }
+
+  // Wide honey-oak plank flooring, tones sampled from the photo's own
+  // floor (#9c805b..#ab8d63). Tileable — applied with RepeatWrapping so
+  // one modest canvas covers a large floor disc.
+  function woodFloorTexture() {
+    const W = 1024, H = 1024, plankH = 64;
+    const tones = ['#9c7f57', '#a9865c', '#b3925f', '#997c53'];
+    const c = document.createElement('canvas');
+    c.width = W; c.height = H;
+    const ctx = c.getContext('2d');
+    for (let y = 0; y < H; y += plankH) {
+      let x = -jitter(y * 0.13) * 120 - 60;
+      let i = 0;
+      while (x < W) {
+        const plankW = 170 + jitter(y * 0.13 + i) * 70;
+        ctx.fillStyle = tones[Math.abs(Math.round(x / 90) + Math.round(y / plankH)) % tones.length];
+        ctx.fillRect(x, y, plankW, plankH);
+        ctx.strokeStyle = 'rgba(0,0,0,0.05)';
+        for (let g = 0; g < 3; g++) {
+          ctx.beginPath();
+          ctx.moveTo(x + 4, y + 8 + g * 20);
+          ctx.lineTo(x + plankW - 4, y + 10 + g * 20);
+          ctx.stroke();
+        }
+        ctx.strokeStyle = 'rgba(60,40,20,0.35)';
+        ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x, y + plankH); ctx.stroke();
+        x += plankW;
+        i++;
+      }
+      ctx.strokeStyle = 'rgba(60,40,20,0.25)';
+      ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
+    }
+    return c;
+  }
+
+  // Large light-grey square drop-ceiling tiles, tones sampled from the
+  // photo's own ceiling (~#c9cbcb in the lit areas). Tileable, same as
+  // the floor texture.
+  function ceilingTileTexture() {
+    const W = 1024, H = 1024, tile = 128;
+    const c = document.createElement('canvas');
+    c.width = W; c.height = H;
+    const ctx = c.getContext('2d');
+    ctx.fillStyle = '#c9cbcb';
+    ctx.fillRect(0, 0, W, H);
+    for (let ty = 0; ty < H; ty += tile) {
+      for (let tx = 0; tx < W; tx += tile) {
+        const v = jitter((tx / tile) * 13 + (ty / tile) * 7);
+        ctx.fillStyle = 'rgba(255,255,255,' + Math.max(0, v * 0.07) + ')';
+        ctx.fillRect(tx, ty, tile, tile);
+      }
+    }
+    ctx.strokeStyle = '#a6a8a8';
+    ctx.lineWidth = 3;
+    for (let x = 0; x <= W; x += tile) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke(); }
+    for (let y = 0; y <= H; y += tile) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke(); }
+    return c;
+  }
+
+  function woodFloorMaterial() {
+    const tex = makeTexture(woodFloorTexture());
+    tex.wrapS = tex.wrapT = THREE.RepeatWrapping;
+    // The cap disc is now sized to just the small blind-spot radius (see
+    // makeSkybox()), not a sprawling floor — repeat=1 puts the full 16-row
+    // plank texture across that ~2.5m span, which comes out to a
+    // realistic ~0.15m plank width rather than a tiny, over-tiled pattern.
+    tex.repeat.set(1, 1);
+    return new THREE.MeshStandardMaterial({ map: tex, roughness: 0.85, metalness: 0 });
+  }
+  function ceilingTileMaterial() {
+    const tex = makeTexture(ceilingTileTexture());
+    tex.wrapS = tex.wrapT = THREE.RepeatWrapping;
+    // Same small-cap sizing as the floor — repeat=0.5 shows tiles at
+    // roughly real 2ft-square scale across the ~2.5m cap instead of the
+    // texture's full 8x8 grid coming out tiny.
+    tex.repeat.set(0.5, 0.5);
+    // The scene's one DirectionalLight travels downward (lighting the
+    // floor, which faces up) and contributes nothing to a downward-facing
+    // surface — confirmed by rendering it plain: it came out reading as
+    // the HemisphereLight's dark "ground" tint (#30304a) instead of light
+    // grey. Same emissive-map trick as the card glow (photoCanvas callers)
+    // makes it self-illuminated instead of depending on light geometry.
+    return new THREE.MeshStandardMaterial({
+      map: tex, emissive: 0xffffff, emissiveMap: tex, emissiveIntensity: 0.55,
+      roughness: 0.95, metalness: 0
+    });
+  }
+
+  function makeSkybox() {
+    const extras = new THREE.Group();
+    extras.name = 'vr-extras';
+    if (CONFIG.skybox === 'none') return extras;
+
+    const geo = new THREE.SphereGeometry(45, 48, 32);
+    geo.scale(-1, 1, 1);
+    const mat = new THREE.MeshBasicMaterial({ color: 0x0b0b12, toneMapped: false });
+    extras.add(new THREE.Mesh(geo, mat));
+
+    const applySky = tex => {
+      tex.colorSpace = THREE.SRGBColorSpace;
+      mat.map = tex;
+      mat.color.set(0xffffff);
+      mat.needsUpdate = true;
+    };
+
+    if (CONFIG.skybox === 'fs-lab') {
+      const img = new Image();
+      img.onload = () => {
+        const tex = makeTexture(buildFsLabSkyboxCanvas(img));
+        if (CONFIG.skyboxYaw) {
+          tex.wrapS = THREE.RepeatWrapping;
+          tex.offset.x = CONFIG.skyboxYaw / 360;
+        }
+        applySky(tex);
+      };
+      img.onerror = () => { /* keep the plain dark sphere */ };
+      img.src = 'images/FS-spatial-lab.jpg';
+
+      // Size the caps so their outer rim lands exactly where the photo's
+      // own vertical FOV cuts off — inside that radius the photo has no
+      // coverage at all (too steep an angle, near-straight down/up from
+      // the eye), outside it the real photo (on the sphere) already shows
+      // real floor/ceiling and should be left alone rather than papered
+      // over by an oversized disc. Elevation angle at radius r from a
+      // viewer at height h above the floor: atan(h / r); solving for r at
+      // the photo's own half-VFOV gives the radius where photo coverage
+      // begins. A ~12% margin avoids a sliver seam from any imprecision
+      // in the FOV estimate.
+      const halfVFov = (CONFIG.skyboxVFov / 2) * Math.PI / 180;
+      const capMargin = 1.12;
+      const floorCapR = (EYE / Math.tan(halfVFov)) * capMargin;
+      const ceilingCapR = ((CEIL - EYE) / Math.tan(halfVFov)) * capMargin;
+
+      const floor = new THREE.Mesh(new THREE.CircleGeometry(floorCapR, 48), woodFloorMaterial());
+      floor.rotation.x = -Math.PI / 2;
+      floor.position.y = SKYBOX_FLOOR_Y; // just above the pedestal's bottom cap — avoids z-fighting
+      extras.add(floor);
+
+      // Ceiling height reuses CEIL — the same height the gallery's own
+      // strings hang from — so the fake cap and the rest of the scene
+      // imply the same room proportions instead of an unrelated number.
+      const ceiling = new THREE.Mesh(new THREE.CircleGeometry(ceilingCapR, 48), ceilingTileMaterial());
+      ceiling.rotation.x = Math.PI / 2;
+      ceiling.position.y = CEIL;
+      extras.add(ceiling);
+    } else if (CONFIG.skybox === 'milky-way') {
+      const loader = new THREE.TextureLoader();
+      loader.setCrossOrigin('anonymous');
+      loader.load('textures/milky-way-4k.png', applySky, undefined, () => {
+        loader.load('https://immersive-web.github.io/webxr-samples/media/textures/milky-way-4k.png',
+          applySky, undefined, () => { /* keep the plain dark sphere */ });
+      });
+    } else {
+      const loader = new THREE.TextureLoader();
+      loader.setCrossOrigin('anonymous');
+      loader.load(CONFIG.skybox, applySky, undefined, () => { /* keep the plain dark sphere */ });
+    }
+    return extras;
+  }
+
+  function setupXR(ctx, puller) {
+    const raycaster = new THREE.Raycaster();
+    const tempMatrix = new THREE.Matrix4();
+    const lastHead = new THREE.Vector3(0, EYE, 0);
+    let session = null;
+    let grab = null;
+    let picked = null;
+    let vrExtras = null;
+    let vrExtrasCached = null;
+    let exitStand = null;
+    let exitPicked = false;
+    // Exit needs a confirming second pinch (PORT-FIXES Fix 6 — too easy
+    // to trigger by accident). The Digital Crown always exits instantly
+    // regardless of this state — that's the HIG-mandated fast-exit path.
+    let exitArmed = false;
+    let exitArmTimer = null;
+    // Opt-in help panel (PORT-FIXES Fix 7) — collapsed by default.
+    let helpOpen = false;
+    let helpTabPicked = false;
+    let helpClosePicked = false;
+    const helpTweens = [];
+
+    function drawSignFace(armed) {
+      const c = document.createElement('canvas');
+      c.width = 512; c.height = 256;
+      const cx = c.getContext('2d');
+      const metal = cx.createLinearGradient(0, 0, 0, 256);
+      metal.addColorStop(0, '#9a9aa2'); metal.addColorStop(0.18, '#d8d8de'); metal.addColorStop(0.5, '#6f6f78');
+      metal.addColorStop(0.82, '#c4c4cc'); metal.addColorStop(1, '#83838c');
+      cx.fillStyle = metal;
+      cx.beginPath(); cx.roundRect(0, 0, 512, 256, 26); cx.fill();
+      cx.fillStyle = '#0a0a0c';
+      cx.beginPath(); cx.roundRect(14, 14, 484, 228, 16); cx.fill();
+      const wash = cx.createRadialGradient(256, armed ? 128 : 110, 20, 256, armed ? 128 : 110, 230);
+      wash.addColorStop(0, armed ? 'rgba(255,45,40,0.44)' : 'rgba(255,45,40,0.28)');
+      wash.addColorStop(0.6, armed ? 'rgba(255,45,40,0.18)' : 'rgba(255,45,40,0.10)');
+      wash.addColorStop(1, 'rgba(255,45,40,0)');
+      cx.fillStyle = wash;
+      cx.fillRect(14, 14, 484, 228);
+      cx.textAlign = 'center';
+      cx.shadowColor = 'rgba(255,59,48,0.95)';
+      if (!armed) {
+        cx.font = '900 104px Helvetica, Arial, sans-serif';
+        cx.fillStyle = '#ff3b30';
+        for (const blur of [34, 18, 6]) { cx.shadowBlur = blur; cx.fillText('E X I T', 256, 122); }
+        cx.font = '800 44px Helvetica, Arial, sans-serif';
+        for (const blur of [22, 10, 4]) { cx.shadowBlur = blur; cx.fillText('IMMERSIVE', 256, 180); }
+        cx.shadowBlur = 0;
+        cx.fillStyle = '#8e8e93';
+        cx.font = '500 26px -apple-system, Helvetica, sans-serif';
+        cx.fillText('back to the web page', 256, 226);
+      } else {
+        cx.font = '900 78px Helvetica, Arial, sans-serif';
+        cx.fillStyle = '#ff3b30';
+        for (const blur of [40, 22, 8]) { cx.shadowBlur = blur; cx.fillText('TAP AGAIN', 256, 112); }
+        for (const blur of [40, 22, 8]) { cx.shadowBlur = blur; cx.fillText('TO EXIT', 256, 196); }
+        cx.shadowBlur = 0;
+      }
+      return c;
+    }
+
+    function getExitStand(hasFloorCap) {
+      if (exitStand) return exitStand;
+      exitStand = new THREE.Group();
+      exitStand.name = 'exit-stand';
+
+      const head = new THREE.Group();
+      head.position.y = 1.02;
+      exitStand.add(head);
+
+      // transparent: true is required (PORT-FIXES Fix 4) — the texture's
+      // corners outside the rounded metal frame are meant to be empty;
+      // without this flag WebGL paints them solid black.
+      const normalTex = makeTexture(drawSignFace(false));
+      const armedTex = makeTexture(drawSignFace(true));
+      const sign = new THREE.Mesh(
+        new THREE.PlaneGeometry(0.36, 0.18),
+        new THREE.MeshBasicMaterial({ map: normalTex, side: THREE.DoubleSide, toneMapped: false, transparent: true })
+      );
+      sign.position.z = 0.017;
+      head.add(sign);
+      exitStand.userData.sign = sign;
+      exitStand.userData.normalTex = normalTex;
+      exitStand.userData.armedTex = armedTex;
+
+      // Housing sized smaller than the face in both dimensions (Fix 4) —
+      // otherwise its hard BoxGeometry edges peek out past the face's
+      // now-transparent rounded corners.
+      const housing = new THREE.Mesh(
+        new THREE.BoxGeometry(0.34, 0.16, 0.03),
+        new THREE.MeshStandardMaterial({ color: 0x55555c, roughness: 0.45, metalness: 0.8 })
+      );
+      head.add(housing);
+
+      const pole = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.011, 0.011, 0.95, 8),
+        new THREE.MeshStandardMaterial({ color: 0x3a3a40, roughness: 0.9 })
+      );
+      pole.position.y = 0.475;
+      exitStand.add(pole);
+
+      const base = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.1, 0.12, 0.02, 24),
+        new THREE.MeshStandardMaterial({ color: 0x2a2a30, roughness: 0.9 })
+      );
+      base.position.y = 0.01;
+      exitStand.add(base);
+
+      const pad = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.34, 0.4, 0.05, 36),
+        new THREE.MeshStandardMaterial({ color: 0x1c1c21, metalness: 0.65, roughness: 0.35 })
+      );
+      pad.position.y = -0.025;
+      exitStand.add(pad);
+      const rim = new THREE.Mesh(
+        new THREE.TorusGeometry(0.37, 0.009, 10, 56),
+        new THREE.MeshBasicMaterial({ color: 0x6fb8ff, toneMapped: false })
+      );
+      rim.rotation.x = Math.PI / 2;
+      rim.position.y = -0.012;
+      exitStand.add(rim);
+
+      // Opt-in help: a small "?" tab above the sign, muted blue so it
+      // doesn't compete with the sign's red glow. Tapping it grows a
+      // brief instructions panel upward out of itself.
+      const tabCanvas = document.createElement('canvas');
+      tabCanvas.width = 320; tabCanvas.height = 110;
+      const tcx = tabCanvas.getContext('2d');
+      tcx.fillStyle = '#1c1c21';
+      tcx.beginPath(); tcx.roundRect(0, 0, 320, 110, 30); tcx.fill();
+      tcx.strokeStyle = '#3a3a40'; tcx.lineWidth = 4;
+      tcx.beginPath(); tcx.roundRect(2, 2, 316, 106, 29); tcx.stroke();
+      tcx.fillStyle = '#8fc4ff';
+      tcx.textAlign = 'center';
+      tcx.font = '700 62px -apple-system, Helvetica, sans-serif';
+      tcx.fillText('?', 160, 78);
+
+      const helpTab = new THREE.Mesh(
+        new THREE.PlaneGeometry(0.1, 0.0344),
+        new THREE.MeshBasicMaterial({ map: makeTexture(tabCanvas), side: THREE.DoubleSide, toneMapped: false, transparent: true })
+      );
+      helpTab.position.set(0, 0.125, 0.017);
+      head.add(helpTab);
+      exitStand.userData.helpTab = helpTab;
+
+      // Content is gallery-specific: describes pinching a photo close,
+      // pinching it again to send it back (sticky — no timeout here),
+      // and the two-step exit. Font sizes measured with ctx.measureText
+      // against the 900px canvas width, not eyeballed (PORT-FIXES Fix 7
+      // warning: an unmeasured first draft overflowed its own canvas).
+      const panelW = 0.5, panelH = panelW * 340 / 900;
+      const pCanvas = document.createElement('canvas');
+      pCanvas.width = 900; pCanvas.height = 340;
+      const pcx = pCanvas.getContext('2d');
+      pcx.fillStyle = '#1c1c21';
+      pcx.beginPath(); pcx.roundRect(0, 0, 900, 340, 34); pcx.fill();
+      pcx.strokeStyle = '#0a84ff'; pcx.lineWidth = 5;
+      pcx.beginPath(); pcx.roundRect(3, 3, 894, 334, 32); pcx.stroke();
+      pcx.textAlign = 'center';
+      pcx.fillStyle = '#f5f5f7';
+      pcx.font = '600 30px -apple-system, Helvetica, sans-serif';
+      pcx.fillText('Pinch a photo to bring it close and read its description', 450, 116);
+      pcx.fillText('Pinch it again to send it back · empty space just spins', 450, 182);
+      pcx.fillStyle = '#ff8a80';
+      pcx.font = '700 36px -apple-system, Helvetica, sans-serif';
+      pcx.fillText('Pinch the Exit sign twice to leave', 450, 254);
+
+      const panelContent = new THREE.Mesh(
+        new THREE.PlaneGeometry(panelW, panelH),
+        new THREE.MeshBasicMaterial({ map: makeTexture(pCanvas), side: THREE.DoubleSide, toneMapped: false, transparent: true })
+      );
+      panelContent.position.y = panelH / 2;
+
+      const closeCanvas = document.createElement('canvas');
+      closeCanvas.width = 160; closeCanvas.height = 160;
+      const ccx = closeCanvas.getContext('2d');
+      ccx.fillStyle = '#2a2a30';
+      ccx.beginPath(); ccx.arc(80, 80, 74, 0, Math.PI * 2); ccx.fill();
+      ccx.strokeStyle = '#4a4a52'; ccx.lineWidth = 4;
+      ccx.beginPath(); ccx.arc(80, 80, 72, 0, Math.PI * 2); ccx.stroke();
+      ccx.strokeStyle = '#f5f5f7'; ccx.lineWidth = 10; ccx.lineCap = 'round';
+      ccx.beginPath(); ccx.moveTo(55, 55); ccx.lineTo(105, 105);
+      ccx.moveTo(105, 55); ccx.lineTo(55, 105); ccx.stroke();
+
+      const closeBtn = new THREE.Mesh(
+        new THREE.PlaneGeometry(0.04, 0.04),
+        new THREE.MeshBasicMaterial({ map: makeTexture(closeCanvas), side: THREE.DoubleSide, toneMapped: false, transparent: true })
+      );
+      closeBtn.position.set(panelW / 2 - 0.035, panelH - 0.035, 0.002);
+
+      const helpPanelWrapper = new THREE.Group();
+      helpPanelWrapper.add(panelContent);
+      helpPanelWrapper.add(closeBtn);
+      helpPanelWrapper.position.set(0, 0.15, 0.017);
+      helpPanelWrapper.scale.set(1, 0.001, 1);
+      helpPanelWrapper.visible = false;
+      head.add(helpPanelWrapper);
+      exitStand.userData.helpPanelWrapper = helpPanelWrapper;
+      exitStand.userData.helpCloseBtn = closeBtn;
+
+      // The hover-pad (below) is the stand's lowest point, 0.05m below the
+      // stand's own origin (CylinderGeometry(...,0.05,...) centered at
+      // y=-0.025). True floor level is y=0, which is what this assumed —
+      // but the fs-lab skybox's synthetic floor cap (makeSkybox()) sits a
+      // touch higher, at SKYBOX_FLOOR_Y, so without this the pad now
+      // sinks slightly into that floor. Only applies when that cap is
+      // actually present (immersive-vr + CONFIG.skybox === 'fs-lab' —
+      // AR passthrough has no synthetic floor at all).
+      exitStand.position.set(0.55, hasFloorCap ? SKYBOX_FLOOR_Y + 0.05 : 0, -1.15);
+      exitStand.rotation.y = Math.atan2(-0.55, 1.15);
+      return exitStand;
+    }
+
+    function armExit() {
+      exitArmed = true;
+      exitStand.userData.sign.material.map = exitStand.userData.armedTex;
+      exitStand.userData.sign.material.needsUpdate = true;
+      clearTimeout(exitArmTimer);
+      exitArmTimer = setTimeout(disarmExit, 4500);
+    }
+    function disarmExit() {
+      if (!exitArmed) return;
+      exitArmed = false;
+      clearTimeout(exitArmTimer);
+      if (exitStand) {
+        exitStand.userData.sign.material.map = exitStand.userData.normalTex;
+        exitStand.userData.sign.material.needsUpdate = true;
+      }
+    }
+
+    function startHelpTween(wrapper, toY, dur) {
+      for (let i = helpTweens.length - 1; i >= 0; i--) if (helpTweens[i].obj === wrapper) helpTweens.splice(i, 1);
+      helpTweens.push({ obj: wrapper, dur, t0: null, from: wrapper.scale.y, to: toY });
+    }
+    function toggleHelp() {
+      const wrapper = exitStand.userData.helpPanelWrapper;
+      helpOpen = !helpOpen;
+      if (helpOpen) wrapper.visible = true;
+      startHelpTween(wrapper, helpOpen ? 1 : 0.001, 260);
+    }
+
+    function castFrom(controller) {
+      tempMatrix.identity().extractRotation(controller.matrixWorld);
+      raycaster.ray.origin.setFromMatrixPosition(controller.matrixWorld);
+      raycaster.ray.direction.set(0, 0, -1).applyMatrix4(tempMatrix);
+      return raycaster.intersectObjects(ctx.cardMeshes, false);
+    }
+
+    function onSelectStart(event) {
+      const controller = event.target;
+      tempMatrix.identity().extractRotation(controller.matrixWorld);
+      raycaster.ray.origin.setFromMatrixPosition(controller.matrixWorld);
+      raycaster.ray.direction.set(0, 0, -1).applyMatrix4(tempMatrix);
+
+      if (exitStand) {
+        if (helpOpen && raycaster.intersectObject(exitStand.userData.helpCloseBtn, false).length) {
+          helpClosePicked = true;
+          return;
+        }
+        if (raycaster.intersectObject(exitStand.userData.helpTab, false).length) {
+          helpTabPicked = true;
+          return;
+        }
+        if (raycaster.intersectObject(exitStand.userData.sign, false).length) {
+          exitPicked = true;
+          exitStand.userData.sign.scale.setScalar(1.12);
+          return;
+        }
+      }
+
+      const hits = castFrom(controller);
+      if (hits.length) {
+        picked = hits[0].object;
+      } else {
+        // Pinching empty space does NOT release a pulled photo — sticky
+        // pull-forward: only pinching/clicking the SAME photo again does
+        // (that toggle happens below in onSelectEnd, unchanged).
+        disarmExit(); // any other action cancels a pending exit confirm
+        if (!grab) {
+          grab = {
+            controller,
+            right: null,
+            startLateral: null,
+            startYaw: ctx.ringRoot.rotation.y
+          };
+        }
+      }
+    }
+
+    function onSelectEnd(event) {
+      if (helpClosePicked) {
+        helpClosePicked = false;
+        if (helpOpen) toggleHelp();
+        return;
+      }
+      if (helpTabPicked) {
+        helpTabPicked = false;
+        toggleHelp();
+        return;
+      }
+      if (exitPicked) {
+        exitPicked = false;
+        if (exitStand) exitStand.userData.sign.scale.setScalar(1);
+        if (!exitArmed) { armExit(); return; }
+        disarmExit();
+        if (session) session.end();
+        return;
+      }
+      if (picked) {
+        if (puller.isArmed(picked)) puller.release();
+        else puller.pull(picked, lastHead.clone());
+        picked = null;
+        return;
+      }
+      if (grab && grab.controller === event.target) grab = null;
+    }
+
+    function xrFrame(nowMs) {
+      const cam = ctx.getRenderer().xr.getCamera();
+      const h = new THREE.Vector3();
+      cam.getWorldPosition(h);
+      if (h.lengthSq() > 1e-4) lastHead.copy(h);
+
+      if (grab) {
+        const cur = new THREE.Vector3().setFromMatrixPosition(grab.controller.matrixWorld);
+        if (cur.lengthSq() > 1e-4) {
+          if (!grab.right) {
+            const right = new THREE.Vector3().setFromMatrixColumn(cam.matrixWorld, 0);
+            right.y = 0;
+            if (right.lengthSq() < 1e-4) right.set(1, 0, 0);
+            grab.right = right.normalize();
+            grab.startLateral = cur.dot(grab.right);
+          } else {
+            const lateral = cur.dot(grab.right);
+            ctx.ringRoot.rotation.y = grab.startYaw - (lateral - grab.startLateral) * 1.6;
+          }
+        }
+      }
+      puller.step(nowMs);
+      swayCards(ctx.swayItems, nowMs);
+
+      for (let i = helpTweens.length - 1; i >= 0; i--) {
+        const tw = helpTweens[i];
+        if (tw.t0 == null) tw.t0 = nowMs;
+        const k = Math.max(0, Math.min(1, (nowMs - tw.t0) / tw.dur));
+        const e = k * k * (3 - 2 * k);
+        tw.obj.scale.y = tw.from + (tw.to - tw.from) * e;
+        if (k >= 1) {
+          helpTweens.splice(i, 1);
+          if (!helpOpen && tw.obj.scale.y <= 0.002) tw.obj.visible = false;
+        }
+      }
+    }
+
+    async function enter(mode) {
+      const renderer = ctx.getRenderer();
+      renderer.xr.enabled = true;
+      renderer.xr.setReferenceSpaceType('local-floor');
+      try {
+        session = await navigator.xr.requestSession(mode, { optionalFeatures: ['local-floor', 'hand-tracking'] });
+      } catch (e) {
+        supportNote.textContent = 'Could not start the immersive session: ' + e;
+        return;
+      }
+
+      if (mode === 'immersive-vr') {
+        ctx.scene.background = new THREE.Color(0x0b0b12);
+        vrExtras = vrExtrasCached || (vrExtrasCached = makeSkybox());
+        ctx.scene.add(vrExtras);
+      } else {
+        ctx.scene.background = null; // passthrough
+      }
+      ctx.scene.add(getExitStand(mode === 'immersive-vr' && CONFIG.skybox === 'fs-lab'));
+
+      const c0 = renderer.xr.getController(0);
+      const c1 = renderer.xr.getController(1);
+      for (const c of [c0, c1]) {
+        c.addEventListener('selectstart', onSelectStart);
+        c.addEventListener('selectend', onSelectEnd);
+        ctx.scene.add(c);
+      }
+
+      session.addEventListener('end', () => {
+        for (const c of [c0, c1]) {
+          c.removeEventListener('selectstart', onSelectStart);
+          c.removeEventListener('selectend', onSelectEnd);
+          ctx.scene.remove(c);
+        }
+        puller.release(true); // no render loop after this — restore instantly
+        if (vrExtras) { ctx.scene.remove(vrExtras); vrExtras = null; }
+        if (exitStand) ctx.scene.remove(exitStand);
+        disarmExit();
+        if (exitStand && exitStand.userData.helpPanelWrapper) {
+          helpOpen = false;
+          exitStand.userData.helpPanelWrapper.visible = false;
+          exitStand.userData.helpPanelWrapper.scale.set(1, 0.001, 1);
+        }
+        helpTweens.length = 0;
+        ctx.scene.background = null;
+        ctx.ringRoot.rotation.y = 0;
+        motion.xrActive = false;
+        motion.lastT = 0; // fresh timebase for the page's rAF clock
+        grab = null; picked = null; exitPicked = false; session = null;
+        ctx.onSessionEnd && ctx.onSessionEnd();
+      });
+
+      ctx.onXRFrame = xrFrame;
+      motion.xrActive = true;
+      motion.lastT = 0; // fresh timebase for the XR loop's clock
+      await renderer.xr.setSession(session);
+    }
+
+    return { enter };
+  }
+
+  /* ══════════════════════════════════════════════════════════════
+     8 · Presentation paths
+     ══════════════════════════════════════════════════════════════ */
+  async function presentInlineModel(scene, maxDist) {
+    setStatus('Exporting your gallery to USDZ…', 82);
+    // USDZExporter runs on a scene that's never been rendered through
+    // WebGL — its matrixWorld values are still constructor-default
+    // identity unless forced. Without this, any mesh added as a child of
+    // another mesh (the mirrored back faces here) exports collapsed to
+    // the scene origin instead of its real position (PORT-FIXES Fix 1).
+    scene.updateMatrixWorld(true);
+    const { USDZExporter } = await import('three/addons/exporters/USDZExporter.js');
+    const exporter = new USDZExporter();
+    const bytes = exporter.parseAsync
+      ? await exporter.parseAsync(scene, { maxTextureSize: 1024, quickLookCompatible: true })
+      : await exporter.parse(scene);
+    // Named File (not a bare Blob) gives the save/share-sheet a real
+    // filename — doesn't fix the AR viewer's garbled title bar (accepted
+    // platform limitation, PORT-FIXES Fix 2), but is a real improvement.
+    // The '#fragment' matches immersive.html's own approach: appending
+    // the filename as a URL fragment was tested there as a title-bar fix
+    // and confirmed NOT to work (PORT-FIXES Fix 2) — kept anyway, purely
+    // for parity with immersive.html, since it's harmless either way.
+    // CONFIG.arBannerFragment swaps it for AR Quick Look's custom-banner
+    // query params instead (developer.apple.com/augmented-reality/
+    // quick-look/ "Custom Action" example) to test that feature — this is
+    // genuinely untested on our blob: URLs (Apple's own demo didn't show
+    // a visible difference on device either, per Tim's own test), so
+    // treat it as an experiment, not a known-working feature.
+    const fileName = 'Full-Sail-Campus-Gallery-AR.usdz';
+    const blob = new File([bytes], fileName, { type: 'model/vnd.usdz+zip' });
+    const fragment = CONFIG.arBannerFragment || fileName;
+    const url = URL.createObjectURL(blob) + '#' + fragment;
+
+    const model = document.createElement('model');
+    // No stagemode attribute, deliberately — matches immersive.html.
+    // stagemode="orbit" (tried earlier) makes entityTransform read-only,
+    // which breaks the turntable drift below; without it, the miniature
+    // can still be pinch-held and dragged straight into AR (confirmed in
+    // immersive.html — that gesture doesn't require stagemode="orbit" at
+    // all), it just can't also be manually dragged-to-spin in place.
+    model.setAttribute('aria-label', 'Miniature 3D gallery of the Full Sail campus');
+    stage.appendChild(model);
+    model.src = url;
+
+    setStatus('Waking up the model…', 92);
+    try { await model.ready; } catch (e) {
+      setStatus('The model could not load (' + e + '). Try reloading.', 0);
+      return null;
+    }
+    statusBox.style.display = 'none';
+
+    const diameter = 2 * maxDist + 1;
+    function applyTransform() {
+      const m = new DOMMatrix();
+      const widthMeters = (model.clientWidth || 800) / 3800;
+      const s = widthMeters / (diameter * 1.08);
+      m.scaleSelf(s, s, s);
+      m.rotateAxisAngleSelf(0, 1, 0, motion.modelYaw);
+      m.translateSelf(0, -EYE, 0);
+      model.entityTransform = m;
+    }
+    applyTransform();
+
+    let lastYaw = motion.modelYaw;
+    (function turntable(nowMs) {
+      requestAnimationFrame(turntable);
+      if (motion.xrActive) return; // the XR loop drives motion then
+      updateMotion(nowMs || performance.now());
+      if (Math.abs(motion.modelYaw - lastYaw) > 0.05) {
+        lastYaw = motion.modelYaw;
+        applyTransform();
+      }
+    })();
+
+    const arLink = document.getElementById('ar-link');
+    arLink.href = url;
+    arLink.download = fileName;
+    arLink.hidden = false;
+
+    return model;
+  }
+
+  async function presentWebGL(ctx, puller) {
+    const { OrbitControls } = await import('three/addons/controls/OrbitControls.js');
+    const renderer = ctx.getRenderer();
+    renderer.domElement.style.display = '';
+
+    const camera = new THREE.PerspectiveCamera(65, 1, 0.05, 100);
+    camera.position.set(0, EYE + 0.1, 1.1);
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.target.set(0, EYE, -0.9);
+    controls.enableDamping = true;
+    controls.minDistance = 0.1;
+    controls.maxDistance = ctx.maxDist * 4;
+
+    function resize() {
+      const w = stage.clientWidth, h = stage.clientHeight;
+      renderer.setSize(w, h);
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    // Click a photo: pull it close · click the SAME photo again: send it
+    // home. Clicking empty space does nothing to an already-pulled photo
+    // (sticky pull-forward, mirrors the XR pinch behavior above).
+    const raycaster = new THREE.Raycaster();
+    const pointer = new THREE.Vector2();
+    let downAt = null;
+    renderer.domElement.addEventListener('pointerdown', e => { downAt = [e.clientX, e.clientY]; });
+    renderer.domElement.addEventListener('pointerup', e => {
+      if (!downAt) return;
+      const moved = Math.hypot(e.clientX - downAt[0], e.clientY - downAt[1]);
+      downAt = null;
+      if (moved > 6) return;
+      const rect = renderer.domElement.getBoundingClientRect();
+      pointer.set(((e.clientX - rect.left) / rect.width) * 2 - 1, -((e.clientY - rect.top) / rect.height) * 2 + 1);
+      raycaster.setFromCamera(pointer, camera);
+      const hits = raycaster.intersectObjects(ctx.cardMeshes, false);
+      if (!hits.length) return; // empty space: no-op, sticky pull-forward
+      const mesh = hits[0].object;
+      if (puller.isArmed(mesh)) puller.release();
+      else puller.pull(mesh, camera.position.clone());
+    });
+    renderer.domElement.style.cursor = 'pointer';
+
+    function frame(nowMs) {
+      updateMotion(nowMs);
+      puller.step(nowMs);
+      swayCards(ctx.swayItems, nowMs);
+      if (ctx.onXRFrame && renderer.xr.isPresenting) ctx.onXRFrame(nowMs);
+      controls.update();
+      renderer.render(ctx.scene, renderer.xr.isPresenting ? renderer.xr.getCamera() : camera);
+    }
+    renderer.setAnimationLoop(frame);
+
+    statusBox.style.display = 'none';
+    window.__fullSailDebug = { ctx, camera, THREE, frame, makeSkybox }; // console introspection
+    return { camera, controls };
+  }
+
+  async function warmUp(ctx) {
+    // Push every texture to the GPU and compile shaders before XR starts —
+    // otherwise the rotating rings trickle uploads for minutes of hitching
+    const r = ctx.getRenderer();
+    const cam = new THREE.PerspectiveCamera(60, 1, 0.05, 100);
+    if (r.compileAsync) await r.compileAsync(ctx.scene, cam);
+    else r.compile(ctx.scene, cam);
+    ctx.scene.traverse(o => {
+      if (o.material && o.material.map) r.initTexture(o.material.map);
+    });
+  }
+
+  /* ══════════════════════════════════════════════════════════════
+     9 · Boot
+     ══════════════════════════════════════════════════════════════ */
+  (async function main() {
+    if (location.protocol === 'file:') {
+      setStatus('This page needs a web server — opening the file directly (file://) blocks loading the photos. From this folder run:  python3 -m http.server  — then visit http://localhost:8000/', 0);
+      supportNote.textContent = 'Any static host works too: GitHub Pages, Netlify, your own site.';
+      return;
+    }
+
+    try {
+      const updateDriftIcon = () => {
+        driftIcon.classList.toggle('is-playing', motion.drifting);
+        driftIcon.classList.toggle('is-paused', !motion.drifting);
+      };
+      driftToggle.setAttribute('aria-pressed', String(motion.drifting));
+      updateDriftIcon();
+      driftToggle.addEventListener('click', () => {
+        motion.drifting = !motion.drifting;
+        driftToggle.setAttribute('aria-pressed', String(motion.drifting));
+        updateDriftIcon();
+      });
+
+      let photos = await collectPhotos();
+      if (photos.length > MAX_PHOTOS) {
+        console.warn('Full Sail Campus Gallery: showing the first ' + MAX_PHOTOS + ' of ' + photos.length + ' photos.');
+        photos = photos.slice(0, MAX_PHOTOS);
+      }
+
+      const live = await buildGallery(photos);
+      motion.rings = live.rings.map(r => ({ group: r.group, speed: r.speed, angle: 0 }));
+
+      let renderer = null;
+      const ctx = {
+        scene: live.scene,
+        ringRoot: live.ringRoot,
+        cardMeshes: live.cardMeshes,
+        swayItems: live.swayItems,
+        maxDist: live.maxDist,
+        onXRFrame: null,
+        onSessionEnd: null,
+        getRenderer() {
+          if (!renderer) {
+            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            renderer.domElement.style.display = 'none';
+            stage.appendChild(renderer.domElement);
+          }
+          return renderer;
+        }
+      };
+
+      const puller = makePuller(ctx);
+      const xrMode = await detectXRMode();
+
+      if (supportsModel) {
+        // visionOS: stereoscopic USDZ miniature inline (exported while still)
+        await presentInlineModel(live.scene, live.maxDist);
+        if (xrMode) {
+          const xr = setupXR(ctx, puller);
+          ctx.onSessionEnd = () => { supportNote.innerHTML = xrNote(xrMode, live.count); };
+          const enterAction = () => {
+            ctx.getRenderer().setAnimationLoop((nowMs) => {
+              const r = ctx.getRenderer();
+              if (r.xr.isPresenting) {
+                updateMotion(nowMs);
+                ctx.onXRFrame && ctx.onXRFrame(nowMs);
+                r.render(ctx.scene, r.xr.getCamera());
+              }
+            });
+            xr.enter(xrMode);
+          };
+          immerseBtn.classList.add('available');
+          immerseBtn.addEventListener('click', enterAction);
+          // The model itself is no longer a tap target for entering WebXR
+          // (tapping it used to trigger the walkthrough directly, which is
+          // what made a plain "I just want to see it in AR" tap detour
+          // through a WebXR permission prompt first) — it now just drifts
+          // (no stagemode attribute, matching immersive.html — see
+          // presentInlineModel()) and can still be pinch-held and dragged
+          // straight into AR. Step Inside is the one explicit way into the
+          // walkthrough now.
+          supportNote.innerHTML = xrNote(xrMode, live.count) + ' Drag the miniature off the page to view it in AR.';
+          setTimeout(() => warmUp(ctx).catch(() => {}), 1200);
+        } else {
+          supportNote.innerHTML = 'You\'re seeing the miniature. The walk-through needs WebXR (Safari on visionOS).';
+        }
+      } else {
+        await presentWebGL(ctx, puller);
+        warmUp(ctx).catch(() => {});
+        if (xrMode) {
+          const xr = setupXR(ctx, puller);
+          immerseBtn.classList.add('available');
+          immerseBtn.addEventListener('click', () => xr.enter(xrMode));
+          supportNote.innerHTML = xrNote(xrMode, live.count);
+        } else {
+          supportNote.innerHTML = live.count + ' photos — drag to orbit, scroll to fly inside, <strong>click a photo to bring it close</strong> (click it again to send it back). For the walk-through version, open this page in a WebXR browser (Safari on Apple Vision Pro).';
+        }
+      }
+    } catch (err) {
+      console.error(err);
+      setStatus('Something went wrong: ' + err.message, 0);
+    }
+  })();
+
+  function xrNote(mode, count) {
+    const pass = mode === 'immersive-ar' ? 'in your real room (passthrough)' : 'floating in space';
+    return count + ' photos. <strong>Tap Step Inside</strong> to walk the campus ' + pass + '. ' +
+      '<strong>Pinch a photo</strong> to bring it close and read its description, pinch it again to send it back · ' +
+      '<strong>pinch empty space and drag sideways</strong> to spin the gallery · ' +
+      '<strong>pinch the ✕ Exit Immersive sign twice</strong> (or press the Digital Crown) to come back.';
+  }
+  </script>
 </body>
 </html>
