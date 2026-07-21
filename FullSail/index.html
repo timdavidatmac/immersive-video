@@ -129,7 +129,7 @@
       <a class="btn" id="ar-link" rel="ar" hidden>
         <img src="images/arkit-glyph-white.svg" alt="" aria-hidden="true" width="17" height="17"> View in AR
       </a>
-      <button class="btn primary" id="immerse-btn">⬢ Step Inside</button>
+      <button class="btn primary" id="immerse-btn"><img src="images/arkit-glyph.svg" alt="" aria-hidden="true" width="17" height="17"> Step Inside</button>
     </div>
     <p class="note" id="support-note">Checking what your browser can do…</p>
   </main>
@@ -229,10 +229,12 @@
     // Degrees to rotate the fs-lab panorama so its own forward direction
     // lines up with the viewer's start-facing direction in XR — the photo
     // only covers 270° of the horizon, so getting this wrong puts the
-    // missing wedge in front of you instead of behind. Nudge this on
-    // device if the seam isn't where you'd expect (KICKOFF.md §5 — this
-    // can only really be verified in-headset).
-    skyboxYaw: 0,
+    // missing wedge in front of you instead of behind. Was 0; on-device
+    // testing found the room's front sitting ~90-95° to the left at
+    // session start, so this is Tim's best guess at the correction —
+    // nudge further if the seam isn't quite where you'd expect
+    // (KICKOFF.md §5 — this can only really be verified in-headset).
+    skyboxYaw: 95,
 
     // The fs-lab photo's own field of view, in degrees — drives both
     // where it's placed on the equirect canvas AND how big the synthetic
@@ -603,7 +605,10 @@
      ══════════════════════════════════════════════════════════════ */
   const motion = {
     drifting: !reduceMotion && CONFIG.driftSpeed > 0,
-    holdDrift: false,
+    // Count of active reasons drift should be paused (a pulled-forward
+    // photo, a grab-to-spin drag — either or both at once), not a single
+    // boolean, so one ending early can't clobber the other's hold.
+    holdCount: 0,
     xrActive: false,
     lastT: 0,
     modelYaw: 0, // degrees — the inline miniature's slow turntable
@@ -614,7 +619,7 @@
     const dt = (nowMs - (motion.lastT || nowMs)) / 1000;
     motion.lastT = nowMs;
     if (dt < 0 || dt > 0.5) return; // clock jump — never a giant step
-    if (!motion.drifting || motion.holdDrift) return;
+    if (!motion.drifting || motion.holdCount > 0) return;
     for (const r of motion.rings) {
       r.angle += r.speed * dt;
       r.group.rotation.y = r.angle;
@@ -707,7 +712,7 @@
 
     function pull(mesh, head) {
       release();
-      motion.holdDrift = true; // the world waits while you look
+      motion.holdCount++; // the world waits while you look
 
       const world = mesh.getWorldPosition(new THREE.Vector3());
       const dir = world.clone().sub(head);
@@ -750,11 +755,11 @@
         mesh.quaternion.copy(home.quat);
         mesh.scale.copy(home.scale);
         if (sway) sway.frozen = false;
-        if (!armed) motion.holdDrift = false;
+        motion.holdCount--;
       } else {
         startTween(mesh, { pos: home.pos, quat: home.quat, scale: home.scale }, 300, () => {
           if (sway) sway.frozen = false;
-          if (!armed) motion.holdDrift = false;
+          motion.holdCount--;
         });
       }
     }
@@ -976,7 +981,13 @@
       // in the FOV estimate.
       const halfVFov = (CONFIG.skyboxVFov / 2) * Math.PI / 180;
       const capMargin = 1.12;
-      const floorCapR = (EYE / Math.tan(halfVFov)) * capMargin;
+      // Floor gets an extra flat allowance beyond the trig edge — the exit
+      // stand sits well outside where the photo's own coverage begins, so
+      // matching the photo exactly would leave it hanging off the edge.
+      // ~3ft, not ~1ft: the stand is ~6ft from center after being moved
+      // right (see standX below), and the trig radius alone is only ~4ft.
+      const floorExtraR = 0.9144; // ~3ft
+      const floorCapR = (EYE / Math.tan(halfVFov)) * capMargin + floorExtraR;
       const ceilingCapR = ((CEIL - EYE) / Math.tan(halfVFov)) * capMargin;
 
       const floor = new THREE.Mesh(new THREE.CircleGeometry(floorCapR, 48), woodFloorMaterial());
@@ -1107,26 +1118,17 @@
       pole.position.y = 0.475;
       exitStand.add(pole);
 
+      // Bottom edge sits at exitStand-local y=0 — the real wood floor,
+      // now that one exists (see exitStand.position.set() below). Used to
+      // rest on its own floating pad + glowing ring instead; removed once
+      // the actual synthetic floor made that pad redundant and it started
+      // reading as visually out of place sitting on top of real flooring.
       const base = new THREE.Mesh(
         new THREE.CylinderGeometry(0.1, 0.12, 0.02, 24),
         new THREE.MeshStandardMaterial({ color: 0x2a2a30, roughness: 0.9 })
       );
       base.position.y = 0.01;
       exitStand.add(base);
-
-      const pad = new THREE.Mesh(
-        new THREE.CylinderGeometry(0.34, 0.4, 0.05, 36),
-        new THREE.MeshStandardMaterial({ color: 0x1c1c21, metalness: 0.65, roughness: 0.35 })
-      );
-      pad.position.y = -0.025;
-      exitStand.add(pad);
-      const rim = new THREE.Mesh(
-        new THREE.TorusGeometry(0.37, 0.009, 10, 56),
-        new THREE.MeshBasicMaterial({ color: 0x6fb8ff, toneMapped: false })
-      );
-      rim.rotation.x = Math.PI / 2;
-      rim.position.y = -0.012;
-      exitStand.add(rim);
 
       // Opt-in help: a small "?" tab above the sign, muted blue so it
       // doesn't compete with the sign's red glow. Tapping it grows a
@@ -1206,16 +1208,19 @@
       exitStand.userData.helpPanelWrapper = helpPanelWrapper;
       exitStand.userData.helpCloseBtn = closeBtn;
 
-      // The hover-pad (below) is the stand's lowest point, 0.05m below the
-      // stand's own origin (CylinderGeometry(...,0.05,...) centered at
-      // y=-0.025). True floor level is y=0, which is what this assumed —
-      // but the fs-lab skybox's synthetic floor cap (makeSkybox()) sits a
-      // touch higher, at SKYBOX_FLOOR_Y, so without this the pad now
-      // sinks slightly into that floor. Only applies when that cap is
-      // actually present (immersive-vr + CONFIG.skybox === 'fs-lab' —
-      // AR passthrough has no synthetic floor at all).
-      exitStand.position.set(0.55, hasFloorCap ? SKYBOX_FLOOR_Y + 0.05 : 0, -1.15);
-      exitStand.rotation.y = Math.atan2(-0.55, 1.15);
+      // base (above) is the stand's lowest point, sitting flush with
+      // exitStand's own y=0 origin — which the fs-lab skybox's synthetic
+      // floor cap (makeSkybox()) sits a touch above, at SKYBOX_FLOOR_Y, so
+      // this aligns the two rather than sinking the base into the floor.
+      // Only applies when that cap is actually present (immersive-vr +
+      // CONFIG.skybox === 'fs-lab' — AR passthrough has no synthetic
+      // floor at all, real floor is y=0 there).
+      // Position — 3ft further right (+X) than the original spot, per
+      // Tim's request; rotation is derived from x/z (not hardcoded) so it
+      // keeps facing back toward the room's center however this moves.
+      const standX = 0.55 + 0.9144, standZ = -1.15;
+      exitStand.position.set(standX, hasFloorCap ? SKYBOX_FLOOR_Y : 0, standZ);
+      exitStand.rotation.y = Math.atan2(-standX, -standZ);
       return exitStand;
     }
 
@@ -1289,8 +1294,10 @@
             controller,
             right: null,
             startLateral: null,
-            startYaw: ctx.ringRoot.rotation.y
+            startYaw: ctx.ringRoot.rotation.y,
+            smoothedYaw: ctx.ringRoot.rotation.y
           };
+          motion.holdCount++; // don't fight the ambient drift while you're aiming it yourself
         }
       }
     }
@@ -1320,7 +1327,7 @@
         picked = null;
         return;
       }
-      if (grab && grab.controller === event.target) grab = null;
+      if (grab && grab.controller === event.target) { grab = null; motion.holdCount--; }
     }
 
     function xrFrame(nowMs) {
@@ -1340,7 +1347,13 @@
             grab.startLateral = cur.dot(grab.right);
           } else {
             const lateral = cur.dot(grab.right);
-            ctx.ringRoot.rotation.y = grab.startYaw - (lateral - grab.startLateral) * 1.6;
+            const targetYaw = grab.startYaw - (lateral - grab.startLateral) * 1.6;
+            // Smoothed rather than applied 1:1 — the tracked pinch point
+            // has enough frame-to-frame jitter on its own that a direct
+            // mapping made spinning the gallery feel like it was jumping
+            // around rather than turning smoothly.
+            grab.smoothedYaw += (targetYaw - grab.smoothedYaw) * 0.2;
+            ctx.ringRoot.rotation.y = grab.smoothedYaw;
           }
         }
       }
@@ -1408,6 +1421,11 @@
         ctx.ringRoot.rotation.y = 0;
         motion.xrActive = false;
         motion.lastT = 0; // fresh timebase for the page's rAF clock
+        // Hard reset, not a decrement — if the session ended mid-grab
+        // (headset removed, Digital Crown, etc.) there's no matching
+        // onSelectEnd to pair with grab's earlier holdCount++, so a plain
+        // decrement here could leave drift stuck paused forever.
+        motion.holdCount = 0;
         grab = null; picked = null; exitPicked = false; session = null;
         ctx.onSessionEnd && ctx.onSessionEnd();
       });
