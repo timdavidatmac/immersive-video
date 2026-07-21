@@ -229,12 +229,12 @@
     // Degrees to rotate the fs-lab panorama so its own forward direction
     // lines up with the viewer's start-facing direction in XR — the photo
     // only covers 270° of the horizon, so getting this wrong puts the
-    // missing wedge in front of you instead of behind. Was 0; on-device
-    // testing found the room's front sitting ~90-95° to the left at
-    // session start, so this is Tim's best guess at the correction —
-    // nudge further if the seam isn't quite where you'd expect
-    // (KICKOFF.md §5 — this can only really be verified in-headset).
-    skyboxYaw: 95,
+    // missing wedge in front of you instead of behind. First on-device
+    // guess (95°) had the right magnitude but the wrong direction — it
+    // faced the back of the room instead of the front, so this is that
+    // guess plus 180° (KICKOFF.md §5 — this can only really be verified
+    // in-headset; nudge further if it's still not quite right).
+    skyboxYaw: 275,
 
     // The fs-lab photo's own field of view, in degrees — drives both
     // where it's placed on the equirect canvas AND how big the synthetic
@@ -266,8 +266,12 @@
   const CEIL = 3.2;   // height the strings hang from
   const EYE = 1.6;
   // Height of the fs-lab skybox's synthetic floor cap (makeSkybox()) —
-  // the exit stand's hover-pad rises to match this, see getExitStand().
-  const SKYBOX_FLOOR_Y = 0.002;
+  // the exit stand's base sits at this same height, see getExitStand().
+  // Sits well below true (real-floor) y=0 on purpose — in-headset, the
+  // photo's own visible floor line reads several feet lower than the
+  // original near-zero placement did, so this was dropped ~2ft to match
+  // what the photo itself shows, per Tim's on-device correction.
+  const SKYBOX_FLOOR_Y = 0.002 - 0.6096;
 
   const stage = document.getElementById('stage');
   const statusBox = document.getElementById('stage-status');
@@ -853,11 +857,13 @@
   }
 
   // Wide honey-oak plank flooring, tones sampled from the photo's own
-  // floor (#9c805b..#ab8d63). Tileable — applied with RepeatWrapping so
-  // one modest canvas covers a large floor disc.
+  // floor (#9c805b..#ab8d63), then darkened ~20% per Tim's on-device
+  // feedback that the original read too light next to the real photo.
+  // Tileable — applied with RepeatWrapping so one modest canvas covers a
+  // large floor disc.
   function woodFloorTexture() {
     const W = 1024, H = 1024, plankH = 64;
-    const tones = ['#9c7f57', '#a9865c', '#b3925f', '#997c53'];
+    const tones = ['#7d6646', '#876b4a', '#8f754c', '#7a6342']; // ~20% darker than #9c7f57/#a9865c/#b3925f/#997c53
     const c = document.createElement('canvas');
     c.width = W; c.height = H;
     const ctx = c.getContext('2d');
@@ -886,15 +892,18 @@
     return c;
   }
 
-  // Large light-grey square drop-ceiling tiles, tones sampled from the
-  // photo's own ceiling (~#c9cbcb in the lit areas). Tileable, same as
-  // the floor texture.
+  // Large drop-ceiling tiles. Was sampled from the photo's own lit
+  // ceiling (~#c9cbcb), but per Tim's feedback that read too light next
+  // to the room — now matches the WALL fill color instead (rgb(112,108,100)
+  // / #706c64, see buildFsLabSkyboxCanvas() above), so the synthetic cap
+  // blends into the filled-in wall area around it rather than standing
+  // out. Tileable, same as the floor texture.
   function ceilingTileTexture() {
     const W = 1024, H = 1024, tile = 128;
     const c = document.createElement('canvas');
     c.width = W; c.height = H;
     const ctx = c.getContext('2d');
-    ctx.fillStyle = '#c9cbcb';
+    ctx.fillStyle = '#706c64';
     ctx.fillRect(0, 0, W, H);
     for (let ty = 0; ty < H; ty += tile) {
       for (let tx = 0; tx < W; tx += tile) {
@@ -903,7 +912,7 @@
         ctx.fillRect(tx, ty, tile, tile);
       }
     }
-    ctx.strokeStyle = '#a6a8a8';
+    ctx.strokeStyle = '#4d4941';
     ctx.lineWidth = 3;
     for (let x = 0; x <= W; x += tile) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke(); }
     for (let y = 0; y <= H; y += tile) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke(); }
@@ -1130,23 +1139,26 @@
       base.position.y = 0.01;
       exitStand.add(base);
 
-      // Opt-in help: a small "?" tab above the sign, muted blue so it
-      // doesn't compete with the sign's red glow. Tapping it grows a
-      // brief instructions panel upward out of itself.
+      // Opt-in help: a "?" tab above the sign, muted blue so it doesn't
+      // compete with the sign's red glow. Tapping it grows a brief
+      // instructions panel upward out of itself. Sized 2.2x wider and
+      // 1.3x taller than the original — Tim's device testing found the
+      // original too small a target to reliably pinch — canvas grown to
+      // match so the "?" glyph itself isn't stretched by the wider plane.
       const tabCanvas = document.createElement('canvas');
-      tabCanvas.width = 320; tabCanvas.height = 110;
+      tabCanvas.width = 704; tabCanvas.height = 144;
       const tcx = tabCanvas.getContext('2d');
       tcx.fillStyle = '#1c1c21';
-      tcx.beginPath(); tcx.roundRect(0, 0, 320, 110, 30); tcx.fill();
+      tcx.beginPath(); tcx.roundRect(0, 0, 704, 144, 36); tcx.fill();
       tcx.strokeStyle = '#3a3a40'; tcx.lineWidth = 4;
-      tcx.beginPath(); tcx.roundRect(2, 2, 316, 106, 29); tcx.stroke();
+      tcx.beginPath(); tcx.roundRect(2, 2, 700, 140, 35); tcx.stroke();
       tcx.fillStyle = '#8fc4ff';
       tcx.textAlign = 'center';
-      tcx.font = '700 62px -apple-system, Helvetica, sans-serif';
-      tcx.fillText('?', 160, 78);
+      tcx.font = '700 81px -apple-system, Helvetica, sans-serif';
+      tcx.fillText('?', 352, 103);
 
       const helpTab = new THREE.Mesh(
-        new THREE.PlaneGeometry(0.1, 0.0344),
+        new THREE.PlaneGeometry(0.22, 0.045),
         new THREE.MeshBasicMaterial({ map: makeTexture(tabCanvas), side: THREE.DoubleSide, toneMapped: false, transparent: true })
       );
       helpTab.position.set(0, 0.125, 0.017);
@@ -1174,6 +1186,8 @@
       pcx.fillStyle = '#ff8a80';
       pcx.font = '700 36px -apple-system, Helvetica, sans-serif';
       pcx.fillText('Pinch the Exit sign twice to leave', 450, 254);
+      pcx.font = '600 26px -apple-system, Helvetica, sans-serif';
+      pcx.fillText('(or press the Digital Crown)', 450, 296);
 
       const panelContent = new THREE.Mesh(
         new THREE.PlaneGeometry(panelW, panelH),
