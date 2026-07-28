@@ -1114,6 +1114,15 @@
       "note": "Open-format players, creator tools, and utilities. Not content catalogs.",
       "entries": [
         {
+          "id": "mvplayer",
+          "title": "MVPlayer.app",
+          "app_store": "https://apps.apple.com/app/id6480077193",
+          "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/5d/a8/a6/5da8a605-3617-9cf7-6e43-26f8e2cbcb33/AppIcon-0-0-1x_U007epad-0-1-sRGB-85-220.png/512x512bb.jpg",
+          "website": "https://mvplayer.app",
+          "added": "2026-07-19",
+          "note": "You can play your simple and spatial regulars, 180° and 360° videos taken with action camera directly from Files, Library or streaming URL (HLS). Supports HEVC (2D videos) and MV-HEVC (3D videos) formats. Playback is 100% free and unlimited; a one-time in-app purchase unlocks Premium features (Lock mode, head tracking). Universal app — runs on iPhone, iPad, Mac, and Apple Vision Pro. By Morin Innovation, makers of MV Converter."
+        },
+        {
           "id": "deovr",
           "title": "DeoVR — Hyper VR Videos",
           "app_store": "https://apps.apple.com/us/app/deovr-hyper-vr-videos/id6746857675",
