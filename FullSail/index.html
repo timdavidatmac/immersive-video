@@ -245,6 +245,17 @@
     skyboxHFov: 270,
     skyboxVFov: 110,
 
+    // Degrees to shift the photo itself upward on the equirect canvas,
+    // independent of skyboxVFov (the photo's own size) and skyboxYaw
+    // (horizontal rotation) — raises what the photo shows as "floor"
+    // toward the viewer's real eye level without moving the synthetic
+    // floor/ceiling/exit-stand (those stayed put on purpose, per Tim's
+    // request — this is a photo-placement fix, not a floor-height one).
+    // Starting guess (2026-07-21): the photo's floor read several feet
+    // too low/far-below even after the floor itself was lowered to meet
+    // it — nudge further in-headset, same as skyboxYaw.
+    skyboxLiftDeg: 8,
+
     cardHeight: 0.5,     // metres — width follows each photo's shape
     captions: true,      // show captions (from the manifest, or filenames)
     shuffle: true,       // mix the order (deterministic, not random per load)
@@ -826,7 +837,12 @@
     const photoW = W * (CONFIG.skyboxHFov / 360);
     const photoH = H * (CONFIG.skyboxVFov / 180);
     const dx = (W - photoW) / 2;
-    const dy = (H - photoH) / 2;
+    // Vertically centered, then lifted by skyboxLiftDeg — smaller dy moves
+    // the drawn photo toward the top of the canvas (the sphere's zenith),
+    // which raises everything the photo shows, floor included, toward the
+    // viewer's actual eye level.
+    const liftPx = (CONFIG.skyboxLiftDeg / 180) * H;
+    const dy = (H - photoH) / 2 - liftPx;
     ctx.drawImage(img, dx, dy, photoW, photoH);
 
     const featherX = photoW * 0.035;
