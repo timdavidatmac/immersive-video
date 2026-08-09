@@ -1065,6 +1065,28 @@
           "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/a6/a0/fe/a6a0fed6-d291-477e-db93-73cf5a555d83/AppIcon.lsr/512x512bb.jpg",
           "website": "https://www.justvr.cn/",
           "note": "Cross-platform immersive video app (Vision Pro, Meta Quest, Pico). Creator-built library."
+        },
+        {
+          "id": "arr-immersive",
+          "title": "ARR Immersive",
+          "app_store": "https://apps.apple.com/us/app/arr-immersive/id6760642207",
+          "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/eb/18/19/eb1819c5-e7a6-4918-6dd2-fb765b72a51b/AppIcon.lsr/512x512bb.jpg",
+          "website": "https://variety.com/2026/music/news/ar-rahman-arr-immersive-app-apple-vision-pro-1236816469/",
+          "note": "A.R. Rahman (two-time Oscar-winning composer, 'Slumdog Millionaire,' '127 Hours') brings a decade of immersive storytelling work to Apple Vision Pro. Includes reworked footage from 'Le Musk,' his 360° VR film that debuted at the Cannes XR Festival — marking its first appearance on Vision Pro — plus original content made exclusively for the platform: three Kathak dance performances blending Western orchestral scores with Indian classical dance (performers Pranith AP, Palak Chauhan, Mudra IV; choreography by Shrita Baskar), and 'ARR Live,' a dedicated section for Rahman's concert performances. Free. Launched July 22, 2026.",
+          "links": [
+            {
+              "label": "Variety exclusive",
+              "url": "https://variety.com/2026/music/news/ar-rahman-arr-immersive-app-apple-vision-pro-1236816469/"
+            },
+            {
+              "label": "Demo video (Rafael Torres, X)",
+              "url": "https://x.com/mundoxrbrasil/status/2079650904605635060"
+            },
+            {
+              "label": "App Store",
+              "url": "https://apps.apple.com/us/app/arr-immersive/id6760642207"
+            }
+          ]
         }
       ]
     },
@@ -1707,6 +1729,14 @@
         "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/64/c4/4f/64c44f97-7c2e-d0b6-7009-f4dd26a01508/AppIcon.lsr/512x512bb.jpg",
         "added": "2026-06-26",
         "note": "Building/sandbox game for Apple Vision Pro — your room becomes the canvas. Blocks react and collide with real-world surfaces and your hands in zero-G. Follow step-by-step blueprints or build freely, then place creations as room decorations. Gaining attention on social media."
+      },
+      {
+        "id": "spatialapse-camera",
+        "title": "Spatialapse Camera",
+        "app_store": "https://apps.apple.com/us/app/spatialapse-camera/id6759534159",
+        "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/b5/d8/37/b5d83708-7ee8-9669-fcbf-99e05dd680f0/AppIcon-0-0-1x_U007epad-0-1-85-220.png/512x512bb.jpg",
+        "added": "2026-08-09",
+        "note": "Turns an iPhone into a dedicated spatial content camera for capturing content to view on Apple Vision Pro. Captures 4K stereo MV-HEVC video and timelapse in true 10-bit HLG BT.2020 wide color gamut HDR (the same HDR format used by professional cameras), with spatial audio via First Order Ambisonics. Full manual controls (shutter speed, ISO, focus lock, exposure compensation), external USB-C storage support for long recording sessions, external audio support, and a tally light indicator. By developer Matthew Fisher. $2.99, no subscription, no watermarks."
       }
     ]
   }
