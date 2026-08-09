@@ -751,22 +751,26 @@
               "title_overlay": true
             },
             {
-              "id": "the-river-you-see-teaser",
-              "title": "The River You See Teaser",
-              "deep_link": "theater://view/the-river-you-see-teaser",
+              "id": "the-river-you-see",
+              "title": "The River You See",
+              "deep_link": "theater://view/the-river-you-see",
               "status": "available",
               "genre": "Documentary / Nature",
-              "duration": "27s",
-              "added": "2026-07-10",
-              "description": "What if you could see what's under the surface? Produced by Sandwich Vision and SpatialGen, a visit to the once polluted river that now flows clear by the thriving Tennessee Aquarium and its Conservation Institute facility.",
-              "note": "Teaser for the Tennessee Aquarium immersive film shot June 2026 by SpatialGen and Sandwich Vision at the Tennessee Aquarium in Chattanooga, TN.",
+              "duration": "4m",
+              "added": "2026-08-09",
+              "description": "Slow down, look around, and experience hope. Produced by Sandwich Vision and SpatialGen, a visit to Chattanooga's thriving Tennessee Aquarium where conservation equal parts joyful and marvelous.",
+              "note": "Updated from teaser to full film August 2026. Shot at the Tennessee Aquarium in Chattanooga, TN by SpatialGen and Sandwich Vision.",
               "links": [
                 {
                   "label": "Tennessee Aquarium",
                   "url": "https://tnaqua.org"
+                },
+                {
+                  "label": "Sandwich Vision",
+                  "url": "https://sandwich.vision"
                 }
               ],
-              "thumbnail": "https://nmzfdjblmhrthistlmnc.supabase.co/storage/v1/object/public/theater-artwork/thumbnails/the-river-you-see-teaser.jpg",
+              "thumbnail": "https://nmzfdjblmhrthistlmnc.supabase.co/storage/v1/object/public/theater-artwork/thumbnails/the-river-you-see.jpg",
               "title_overlay": true
             },
             {
