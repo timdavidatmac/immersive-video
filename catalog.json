@@ -1307,6 +1307,13 @@
           "app_icon": "https://www.sliceoflifevr.com/logo.png",
           "note": "Independent immersive video platform. Titles available via web and DeoVR. Creator-focused library of VR180 and spatial content including Hugh Hou productions.",
           "added": "2026-06-21"
+        },
+        {
+          "id": "melilla-spain-vr180",
+          "title": "Melilla, Spain — 8K VR180 Walkthrough",
+          "url": "https://www.reddit.com/r/VisionPro/comments/1uzwfk1/still_waiting_for_new_apple_immersive_content/",
+          "note": "Community-shot 8K VR180 walkthrough of Melilla, a Spanish autonomous city on the North African coast — framed by the creator as revealing a different side of the city than typical headlines: welcoming people, Mediterranean waterfronts, and distinctive Spanish architecture. Camera/production details unconfirmed — VR180, not verified as Apple Immersive Video.",
+          "added": "2026-08-09"
         }
       ]
     }
