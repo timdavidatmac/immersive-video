@@ -1744,6 +1744,14 @@
         "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/b5/d8/37/b5d83708-7ee8-9669-fcbf-99e05dd680f0/AppIcon-0-0-1x_U007epad-0-1-85-220.png/512x512bb.jpg",
         "added": "2026-08-09",
         "note": "Turns an iPhone into a dedicated spatial content camera for capturing content to view on Apple Vision Pro. Captures 4K stereo MV-HEVC video and timelapse in true 10-bit HLG BT.2020 wide color gamut HDR (the same HDR format used by professional cameras), with spatial audio via First Order Ambisonics. Full manual controls (shutter speed, ISO, focus lock, exposure compensation), external USB-C storage support for long recording sessions, external audio support, and a tally light indicator. By developer Matthew Fisher. $2.99, no subscription, no watermarks."
+      },
+      {
+        "id": "adobe-premiere-ai-video-editor",
+        "title": "Adobe Premiere AI Video Editor",
+        "app_store": "https://apps.apple.com/us/app/adobe-premiere-ai-video-editor/id6742757464",
+        "app_icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/90/3b/7d/903b7db1-7ff0-ed66-ce85-02d9ad69b1de/AppIcon_Premiere-0-0-1x_U007epad-0-1-0-0-sRGB-85-220.png/512x512bb.jpg",
+        "added": "2026-08-09",
+        "note": "Runs natively on visionOS — not just iPad-compatibility mode. A genuine spatial-native editing interface: floating editor panels (preview, timeline, controls) placed directly in the user's room, spatial video clips natively editable in the timeline alongside standard clips, a Depth slider in Text Properties for compositing text at different depths within a spatial scene, and a dedicated spatial media picker for combining multiple spatial clips/photos into one project. Confirmed via official App Store screenshots and independently verified by Justin Ryan (Spatial Insider) on X."
       }
     ]
   }
