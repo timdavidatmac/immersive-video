@@ -8,7 +8,6 @@
 </head>
 <body>
 
-  <!-- ═══════════════════════ SITE HEADER -->
   <header class="site-header" role="banner">
     <div class="site-header-inner">
       <div class="site-header-row1">
@@ -29,7 +28,6 @@
           </ul>
         </nav>
 
-        <!-- ── Site-wide search ── -->
         <div class="site-search" role="search" aria-label="Site-wide search">
           <input
             type="search"
@@ -46,18 +44,23 @@
     </div>
   </header>
 
-  <!-- ═══════════════════════ PAGE HERO -->
   <div class="page-hero" role="presentation">
     <h1>Newsletter Archive</h1>
     <p>Monthly editions of the Apple Immersive Video and Spatial Computing newsletter — curated news, new releases, production stories, and tools for the immersive community.</p>
   </div>
 
-  <!-- ═══════════════════════ MAIN CONTENT -->
   <main class="page-content" role="main" id="main-content">
 
     <h2 class="section-heading">2026 Editions</h2>
 
     <ul class="newsletter-list">
+
+      <li>
+        <span class="newsletter-date">August 2026</span>
+        <span class="newsletter-title">
+          <a href="immersive_newsletter_august2026.html">August 2026 — Carl Amadeus Hiller's essay, Friday Night Baseball in Apple Immersive, Mission Stratos, A.R. Rahman's ARR Immersive, ZeusXR Player, and more</a>
+        </span>
+      </li>
 
       <li>
         <span class="newsletter-date">July 2026</span>
@@ -93,7 +96,6 @@
 
   </main>
 
-  <!-- ═══════════════════════ SITE FOOTER -->
   <footer class="site-footer" role="contentinfo">
     <div class="site-footer-inner">
       <p>The Apple Immersive Video &amp; Spatial Computing newsletter is an independent publication. It is not affiliated with, endorsed by, or sponsored by Apple Inc. Apple, Apple Vision Pro, and Apple Immersive Video are trademarks of Apple Inc.</p>
@@ -102,7 +104,6 @@
   </footer>
 
 
-  <!-- ── Site-wide search JS ── -->
   <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.min.js"></script>
   <script>
   (function() {
@@ -176,7 +177,6 @@
   })();
   </script>
 
-  <!-- Email obfuscation: reconstructs mailto: links at runtime from base64-encoded, reversed parts. -->
   <script>
   (function () {
     function decode(str) {

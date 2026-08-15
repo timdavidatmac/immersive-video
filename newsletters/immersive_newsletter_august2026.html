@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apple Immersive Video and Spatial Computing | August 2026</title>
+  <link rel="stylesheet" href="../styles.css">
+  <style>
+    .nl-wrap { max-width: 900px; margin: 32px auto; }
+    .nl-card-section { background: #ffffff; border-radius: 24px; box-shadow: 0 8px 20px -10px rgba(0,0,0,0.12); margin-bottom: 10px; overflow: hidden; }
+    .nl-card-section:last-child { margin-bottom: 0; }
+    .nl-section-inner { padding: 32px 40px; }
+    .nl-label { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600; color: #6e6e73; margin: 0 0 10px; }
+    .nl-h3 { font-size: 18px; font-weight: 600; color: #1d1d1f; margin: 0 0 6px; }
+    .nl-p { margin: 0 0 12px; font-size: 15px; color: #1d1d1f; line-height: 1.7; }
+    ul.resource-list { list-style: none; padding: 0; margin: 8px 0 0; }
+    ul.resource-list li { padding: 12px 14px; background: #f9fafb; border-left: 4px solid #9ca3af; border-radius: 15px; font-size: 15px; margin-bottom: 8px; line-height: 1.6; }
+    ul.resource-list li:last-child { margin-bottom: 0; }
+    ul.plain-list { padding-left: 22px; margin: 8px 0 0; }
+    ul.plain-list li { margin-bottom: 10px; font-size: 15px; line-height: 1.7; }
+    .nl-img-crop-card { overflow: hidden; border-radius: 24px 24px 0 0; }
+    .nl-img-crop-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .nl-img-crop { overflow: hidden; border-radius: 12px; }
+    .nl-img-crop img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .track-pill { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 12px; border-radius: 999px; margin-bottom: 10px; }
+    .pill-aiv { background: #fff7ed; color: #92400e; }
+    .pill-spatial { background: #eff6ff; color: #1e3a8a; }
+    .back-to-top { display: block; text-align: right; font-size: 11px; margin-top: 16px; color: #6e6e73; text-decoration: none; }
+    .back-to-top:hover { text-decoration: underline; }
+    code { font-family: 'SF Mono', Menlo, monospace; background: #f5f5f7; padding: 1px 5px; border-radius: 3px; font-size: 13px; }
+    .highlight-aiv { background: #fffaf3; border-left: 4px solid #b45a1c; border-radius: 15px; padding: 14px 18px; margin: 0 0 16px; font-size: 14px; color: #6e4a1f; }
+    .highlight-spatial { background: #f2f9ff; border-left: 4px solid #1a6cff; border-radius: 15px; padding: 14px 18px; margin: 0 0 16px; font-size: 14px; color: #1e3a8a; }
+    .note-pill { display: inline-block; font-size: 13px; color: #6e6e73; background: #f8fafc; padding: 8px 16px; border-radius: 999px; border: 1px dashed #cddae9; margin: 0 0 16px; }
+    .chip-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 4px; }
+    .chip { display: inline-block; background: #eef2f6; padding: 5px 14px; border-radius: 999px; font-size: 13px; color: #1f384e; }
+    .pill-cta { display: inline-block; background: #0176ba; color: #ffffff !important; font-weight: 600; font-size: 15px; padding: 12px 26px; border-radius: 999px; text-decoration: none !important; }
+    @media (max-width: 700px) {
+      .nl-wrap { margin: 0; }
+      .nl-card-section { border-radius: 0; box-shadow: none; }
+      .nl-section-inner { padding: 24px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header" role="banner">
+    <div class="site-header-inner">
+      <a href="../" class="site-header-logo" aria-label="Apple Immersive Video &amp; Spatial Computing — home">
+        <img src="../logo.svg" alt="" aria-hidden="true" width="28" height="28" style="display:inline-block; vertical-align:middle; margin-right:10px;">Apple Immersive Video &amp; Spatial Computing
+      </a>
+      <nav aria-label="Site navigation">
+        <ul class="site-nav">
+            <li><a href=".././">Immersive Video</a></li>
+            <li><a href="../spatial-apps.html">Spatial Apps</a></li>
+            <li><a href="../creators.html">For Creators</a></li>
+            <li><a href="../usecases.html">Use Cases</a></li>
+            <li><a href="../models.html">3D Models</a></li>
+            <li><a href="../immersive.html">Immersive Catalog (beta)</a></li>
+            <li><a href="../newsletters/" class="active" aria-current="page">Newsletter</a></li>
+          </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main role="main" id="main-content" style="padding: 0 16px; background-color: #e4e9ef;">
+  <div class="nl-wrap">
+
+    <div class="nl-card-section">
+      <div class="nl-img-crop-card" style="height:320px;">
+        <img src="https://www.apple.com/newsroom/images/2024/01/apple-vision-pro-is-the-ultimate-entertainment-device/article/Apple-Vision-Pro-entertainment-Apple-Immersive-Video-Adventure_big.jpg.large_2x.jpg"
+             alt="Faith Dickey walks a highline stretched across a deep Norwegian fjord, suspended high above the water with steep green cliffs on either side"
+             style="object-position: center 45%;">
+      </div>
+      <div id="top" style="background-color:#1d1d1f; padding:32px 40px;">
+        <p style="margin:0 0 4px; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:#a1a1a6; font-weight:500;">Apple Vision Pro</p>
+        <h1 style="margin:0 0 6px; font-size:28px; font-weight:600; color:#ffffff; line-height:1.2;">Apple Immersive Video<br>and Spatial Computing</h1>
+        <p style="margin:0; font-size:14px; color:#a1a1a6;">August 2026</p>
+      </div>
+      <div class="nl-section-inner" style="padding-top:24px;">
+        <p class="nl-p">The momentum around Apple Immersive Video is growing. This month, we hear from a creator who spent a year with immersive projects, we meet ZeusXR's new sharing link that makes immersive video available across multiple platforms, take a balloon ride to the stratosphere, and we learned that Apple is bringing Friday Night Baseball <strong>live</strong> to Vision Pro in Apple Immersive Video.</p>
+        <p class="nl-p">Carl Amadeus Hiller's essay is one you'll want to keep handy. His experience goes beyond the technical: a beautiful spatial postcard doesn't create a memory, it's the story, and the people in it, that stay with you. We've also included a link to one of his own immersive projects.</p>
+        <p class="nl-p">From there: a visit to the Tennessee Aquarium, A.R. Rahman's new immersive app, Jon Favreau using Vision Pro on set to visualize scenes before they were built, and more. It's been a busy month for immersive video, and I don't see things slowing down any time soon.</p>
+        <p class="nl-p" style="margin:0 0 12px;">Keep making memories,</p>
+        <p class="nl-p" style="margin:0;">Imagination Ave</p>
+      </div>
+
+      <nav class="nl-section-inner" style="padding-top:0;" role="navigation" aria-label="Newsletter contents">
+        <p class="nl-label">In This Issue</p>
+        <ol style="margin:0; padding-left:22px; line-height:2.1; font-size:15px;">
+          <li><a href="#hiller">One Year with Apple Immersive Video — Carl Amadeus Hiller's Essay</a></li>
+          <li><a href="#mlb">"Friday Night Baseball" Comes to Apple Immersive</a></li>
+          <li><a href="#river">"The River You See" — Tennessee Aquarium</a></li>
+          <li><a href="#stratos">Mission Stratos — To the Edge of Space and Back</a></li>
+          <li><a href="#arr">ARR Immersive — A.R. Rahman's Immersive Storytelling App</a></li>
+          <li><a href="#zeusxr">ZeusXR Player — One Link, Every Headset</a></li>
+          <li><a href="#roundup">Also Worth a Look</a></li>
+          <li><a href="#fun">Just for Fun</a></li>
+          <li><a href="#spatial">Spatial Computing — News &amp; Use Cases</a></li>
+          <li><a href="#catalog">What's New on the Catalog Site</a></li>
+        </ol>
+      </nav>
+    </div>
+
+    <div class="nl-card-section">
+      <div id="hiller" class="nl-section-inner">
+        <span class="track-pill pill-aiv">🎬 Apple Immersive Video</span>
+        <h2 class="nl-label" style="margin:0 0 16px;">The Big Story</h2>
+
+        <h3 class="nl-h3">"Apple Immersive Video Is a Medium for a Physical Sense of Presence"</h3>
+        <div class="highlight-aiv">"With Apple Immersive Video, I can allow people to physically experience a real place, a person, and a moment — and turn a film they have watched into a memory of their own." — Carl Amadeus Hiller</div>
+
+        <p class="nl-p">With more than 20 years directing film and concert productions, Hiller has shifted his focus over the past year almost entirely to Apple Immersive Video, shooting on a Blackmagic URSA Cine Immersive. He recently published <strong>"One Year with Apple Immersive Video,"</strong> a long-form essay he calls less a technical report than a personal account of real productions.</p>
+
+        <p class="nl-p">Hiller makes an observation early on: <strong>"Even a spectacular landscape or an exceptional building can eventually feel like a very high-quality spatial postcard. A location becomes a story only when I meet a person there, witness something happening, or build a relationship with someone and their activity."</strong> His answer is a formula he traces through his own work again and again: <strong>person, activity, place, and change.</strong> A view alone isn't a story. A person doing something specific, somewhere specific, changed by it, is. Hiller describes the first time Myerscough watched the completed version of "We Make Belonging": she was "almost shocked at first," describing the feeling as meeting her own digital twin.</p>
+
+        <p class="nl-p">There's technical content as well: he breaks down exactly why 90fps capture matters for how believable movement feels. He also raises whether Apple Immersive Video could work as a kind of coaching tool, letting someone see their own posture or presence from the outside. Hiller closes with a line worth repeating: <strong>"With Apple Immersive Video, I can allow people to physically experience a real place, a person, and a moment, and turn a film they have watched into a memory of their own."</strong></p>
+
+        <p class="nl-p" style="margin:12px 0 22px;">Want to see his work for yourself in Vision Pro? Watch "Faces of Fourni", available now on <a href="https://apps.apple.com/us/app/amplium/id6612011166" aria-label="Download Amplium on the App Store">Amplium</a>.</p>
+
+        <p class="nl-p" style="margin:0 0 22px;">
+          <a href="https://www.amadeus-hiller.com/_files/ugd/76026f_8ea94434db04414ea8b5dd7225eac7a1.pdf" aria-label="Read the full English PDF of One Year with Apple Immersive Video">Read the full essay (English PDF) <span aria-hidden="true">→</span></a>
+          &nbsp;|&nbsp;
+          <a href="https://www.linkedin.com/feed/update/urn:li:activity:7483941280985821184/" aria-label="Read Carl Amadeus Hiller's original LinkedIn post">Original LinkedIn post <span aria-hidden="true">→</span></a>
+        </p>
+        <a href="#top" class="back-to-top" aria-label="Back to top of newsletter">Back to top <span aria-hidden="true">↑</span></a>
+      </div>
+    </div>
+
+    <div class="nl-card-section">
+      <div class="nl-img-crop-card">
+        <img src="https://www.apple.com/newsroom/images/2026/08/apple-mlb-announce-september-friday-night-baseball-schedule/article/Apple-Immersive-Friday-Night-Baseball-2026-hero_big.jpg.large.jpg"
+             alt="Artwork featuring Shohei Ohtani of the Los Angeles Dodgers and Luis Arráez of the Philadelphia Phillies; baked-in copy reads “Apple TV Friday Night Baseball in Apple Immersive.”"
+             style="width:100%; height:auto; object-fit:initial; display:block;">
+      </div>
+      <div id="mlb" class="nl-section-inner">
+        <span class="track-pill pill-aiv">🎬 Apple Immersive Video</span>
+        <h2 class="nl-label" style="margin:0 0 16px;">Just Announced</h2>
+
+        <h3 class="nl-h3">"Friday Night Baseball" Comes to Apple Immersive</h3>
+
+        <div class="highlight-aiv">"For the first time, baseball fans can take in all the action of 'Friday Night Baseball' live in Apple Immersive on Apple Vision Pro, leveraging 3D video recorded in 8K with a 180-degree field of view. On August 28, viewers with Vision Pro will experience the iconic Red Sox vs. Yankees rivalry from unique camera angles that place viewers right in the game, immersed in the drama of each at-bat, the celebrations in the dugout after a big hit, close plays at the outfield wall, and more."</div>
+
+        <p class="nl-p">The broadcast features commentary from Paul Severino, Xavier Scruggs, and Michelle Margaux; dedicated replays; and an immersive graphics package with team lineups and stats floating in the viewer's space, all captured with ambisonic microphones for Spatial Audio during live breaks in the action.</p>
+
+        <p class="nl-p">One game each Friday will carry the Apple Immersive broadcast through September 18: Red Sox at Yankees on Aug 28, Angels at Pirates on Sept 4, Padres at Giants on Sept 11, and Giants at Dodgers on Sept 18, as Los Angeles looks to clinch a fifth consecutive division title.</p>
+
+        <p class="nl-p" style="margin:0 0 22px;">
+          <a href="https://www.apple.com/newsroom/2026/08/apple-mlb-announce-september-friday-night-baseball-schedule/" aria-label="Read the full Apple Newsroom announcement, including the complete September schedule">Read the full announcement (Apple Newsroom) <span aria-hidden="true">→</span></a>
+        </p>
+        <a href="#top" class="back-to-top" aria-label="Back to top of newsletter">Back to top <span aria-hidden="true">↑</span></a>
+      </div>
+    </div>
+
+    <div class="nl-card-section">
+      <div class="nl-img-crop-card" style="height:220px;">
+        <img src="https://nmzfdjblmhrthistlmnc.supabase.co/storage/v1/object/public/theater-artwork/thumbnails/the-river-you-see.jpg"
+             alt="A Tennessee Aquarium staff member feeds ring-tailed lemurs perched on rocks and branches while tortoises gather at her feet, inside a glass-domed habitat"
+             style="object-position: center 55%;">
+      </div>
+      <div id="river" class="nl-section-inner">
+        <span class="track-pill pill-aiv">🎬 Apple Immersive Video</span>
+        <h2 class="nl-label" style="margin:0 0 16px;">Now in the Theater App</h2>
+
+        <h3 class="nl-h3">"The River You See" — Slow Down, Look Around, and Experience Hope</h3>
+        <p class="nl-p">Produced by Sandwich Vision and SpatialGen, "The River You See" is a 4-minute Apple Immersive Video visit to Chattanooga's Tennessee Aquarium, where the film's own framing calls the conservation work happening there "equal parts joyful and marvelous." We flagged the 27-second teaser back in July; this is the full release, and it's live now in the Theater app.</p>
+
+        <p class="nl-p">The film puts you right inside the aquarium's habitats: ring-tailed lemurs perched on rocks and branches, tortoises gathered underfoot, the kind of close, unhurried encounter that's genuinely hard to get in person even with a ticket in hand. It's a good example of the format doing what it does best: less spectacle, more presence, and a real institution's actual conservation mission sitting right behind the visuals rather than as an afterthought.</p>
+
+        <p class="nl-p" style="margin:0 0 22px;">
+          <a href="https://apps.apple.com/us/app/theater-cinema-events/id6502666560" aria-label="Download the Theater app on the App Store">Theater app <span aria-hidden="true">→</span></a>
+          &nbsp;|&nbsp;
+          <a href="theater://view/the-river-you-see" aria-label="Watch The River You See in Vision Pro via the Theater app">Watch in Vision Pro <span aria-hidden="true">→</span></a>
+          &nbsp;|&nbsp;
+          <a href="https://tnaqua.org" aria-label="Visit the Tennessee Aquarium website">Tennessee Aquarium <span aria-hidden="true">→</span></a>
+        </p>
+        <a href="#top" class="back-to-top" aria-label="Back to top of newsletter">Back to top <span aria-hidden="true">↑</span></a>
+      </div>
+    </div>
+
+    <div class="nl-card-section">
+      <div class="nl-img-crop-card" style="height:240px;">
+        <img src="https://imaginationave.com/catalog-images/man-on-couch-space-background.png"
+             alt="A man sits on a gray couch wearing an Apple Vision Pro, reaching up with both hands as if interacting with something in the air, with a massive curved view of Earth's atmosphere and cloud-covered surface filling the background behind the couch"
+             style="object-position: center center;">
+      </div>
+      <div id="stratos" class="nl-section-inner">
+        <span class="track-pill pill-aiv">🎬 Apple Immersive Video</span>
+        <h2 class="nl-label" style="margin:0 0 16px;">Other Immersive Content</h2>
+
+        <h3 class="nl-h3">Mission Stratos — To the Edge of Space and Back</h3>
+        <p class="nl-p">Mission Stratos follows a stratospheric balloon launched from Timmins Airbase, Canada, rising far above the clouds as part of the STRATOS program, a joint research effort between the Canadian and French Space Agencies. It was shot by The Dorothy Project on an Insta360 Titan (11K), so it's 360° content rather than Apple Immersive Video's stereoscopic spec, but the production quality is genuinely high-end, and the view speaks for itself.</p>
+
+        <p class="nl-p">What keeps this from being just a pretty view is what's actually behind it: real near-space research, built for STEM audiences, not a tourism reel. Mel Randall of Arluma360 described watching the raw footage for the first time as one of those moments that reminds you why this format exists at all: nothing else puts you at that altitude, looking down at the curve of the Earth, quite like this does.</p>
+
+        <div class="nl-img-crop" style="height:220px; margin: 4px 0 16px;">
+          <img src="https://imaginationave.com/catalog-images/mission-stratos-03.png"
+               alt="View from a stratospheric balloon payload looking out over Earth's curved horizon, with a metallic/foil-wrapped equipment housing visible in the foreground and dense white clouds below"
+               style="object-position: center center;">
+        </div>
+
+        <span class="note-pill">📚 Also new in Arluma360: a Rhine Valley Castles tour through Germany, and new DJI Avata 360 drone footage over Scotland's Duncansby Stacks</span>
+
+        <p class="nl-p" style="margin:12px 0 22px;">
+          <a href="https://youtu.be/OKcMIxpbJ_0" aria-label="Watch the Mission Stratos making-of on YouTube">Watch the &lsquo;making of&rsquo; <span aria-hidden="true">→</span></a>
+          &nbsp;|&nbsp;
+          <a href="https://apps.apple.com/app/id6761225329" aria-label="Download Arluma360 on the App Store">Download Arluma360 <span aria-hidden="true">→</span></a>
+        </p>
+        <a href="#top" class="back-to-top" aria-label="Back to top of newsletter">Back to top <span aria-hidden="true">↑</span></a>
+      </div>
+    </div>
+
+    <div class="nl-card-section">
+      <div id="arr" class="nl-section-inner">
+        <span class="track-pill pill-aiv">🎬 Apple Immersive Video</span>
+        <h2 class="nl-label" style="margin:0 0 16px;">From the Field — Productions &amp; Creators</h2>
+
+        <h3 class="nl-h3">A.R. Rahman Brings Two Decades of Immersive Storytelling to Vision Pro</h3>
+        <p class="nl-p">Two-time Oscar-winning composer A.R. Rahman ("Slumdog Millionaire," "127 Hours") has launched <strong>ARR Immersive</strong> on Apple Vision Pro, confirmed via a Variety exclusive. The launch library reworks footage from "Le Musk," his 360° film that debuted at the Cannes XR Festival, for Vision Pro's spatial format, alongside new content made exclusively for the platform: three Kathak dance performances merging Western orchestral scores with Indian classical dance, and "ARR Live," a dedicated section for his concert performances.</p>
+
+        <div class="highlight-aiv">"With the ARR Immersive App, we wanted to create a space where audiences don't simply watch a performance or listen to a composition, they feel present within it. I believe this is an exciting new canvas for creators, and this is only the beginning." — A.R. Rahman</div>
+
+        <p class="nl-p" style="margin:0 0 22px;">
+          <a href="https://variety.com/2026/music/news/ar-rahman-arr-immersive-app-apple-vision-pro-1236816469/" aria-label="Read Variety's exclusive on ARR Immersive">Read Variety's exclusive <span aria-hidden="true">→</span></a>
+          &nbsp;|&nbsp;
+          <a href="https://apps.apple.com/us/app/arr-immersive/id6760642207" aria-label="Download ARR Immersive on the App Store">Download ARR Immersive <span aria-hidden="true">→</span></a>
+        </p>
+        <a href="#top" class="back-to-top" aria-label="Back to top of newsletter">Back to top <span aria-hidden="true">↑</span></a>
+      </div>
+    </div>
+
+    <div class="nl-card-section">
+      <div id="zeusxr" class="nl-section-inner">
+        <span class="track-pill pill-aiv">🎬 Apple Immersive Video</span>
+        <h2 class="nl-label" style="margin:0 0 16px;">Production, Workflow &amp; Tools</h2>
+
+        <h3 class="nl-h3">ZeusXR Player — One Link, Every Headset</h3>
+        <p class="nl-p">ZeusXR, founded by Daniel Vega, has introduced a new distribution technology built around the simple idea of a single shareable link that adapts playback to the device that opens it. That means native MV-HEVC streaming on Apple Vision Pro, and interactive stereoscopic modes on Mac and mobile.</p>
+
+        <div class="highlight-aiv">"Immersive distribution should not depend on the lowest common denominator." — Daniel Vega, Founder &amp; CEO, ZeusXR</div>
+
+        <p class="nl-p">Two demos accompanied the launch — one of them uses footage from Hiller, our lead story above. Vega brings 25 years of experience in stereoscopic media to ZeusXR, and frames the player's anaglyph mode as "connecting the origins of stereoscopic imaging with the future we are now building."</p>
+
+        <p class="nl-p" style="margin:0 0 22px;">
+          <a href="https://news.zeusxr.com/introducing-zeusxr-player-the-first-truly-multi-device-webxr-player-for-immersiv" aria-label="Read the official ZeusXR Player announcement">Read the announcement <span aria-hidden="true">→</span></a>
+          &nbsp;|&nbsp;
+          <a href="https://zeusxr.com/NNM739" aria-label="Watch the Blackmagic URSA Cine Immersive demo on ZeusXR">Watch the Blackmagic demo <span aria-hidden="true">→</span></a>
+          &nbsp;|&nbsp;
+          <a href="https://www.zeusxr.com" aria-label="Register for ZeusXR Player beta access">Beta registration <span aria-hidden="true">→</span></a>
+        </p>
+        <a href="#top" class="back-to-top" aria-label="Back to top of newsletter">Back to top <span aria-hidden="true">↑</span></a>
+      </div>
+    </div>
+
+    <div class="nl-card-section">
+      <div id="roundup" class="nl-section-inner">
+        <span class="track-pill pill-aiv">🎬 Apple Immersive Video</span>
+        <h2 class="nl-label" style="margin:0 0 16px;">Also Worth a Look</h2>
+        <p class="nl-p">The world of immersive video is expanding, here are more stories genuinely worth your time.</p>
+
+        <ul class="resource-list">
+          <li>✈️ <strong>Flight Sight: Pilot Training</strong> — a familiar name to our readers, John Racine of Rogue Labs, had his AIV-powered pilot training app featured on the App Store home page, with a fresh content update. Real Apple Immersive 3D 180° training footage inside. <a href="https://apps.apple.com/us/app/flight-sight-pilot-training/id6741590229" aria-label="Download Flight Sight: Pilot Training on the App Store">App Store <span aria-hidden="true">→</span></a></li>
+          <li>🎓 <strong>Canon EOS VR — 4-part tutorial series</strong> — Matthew Celia of Light Sail VR helped Canon put together a genuinely useful tutorial series for immersive filmmakers, covering everything from pre-production through stereoscopic post. <a href="https://youtube.com/playlist?list=PLAUv5yBjyj-4" aria-label="Watch the Canon EOS VR tutorial series playlist">Watch the series <span aria-hidden="true">→</span></a></li>
+          <li>🎪 <strong>Catching up on AWE 2026</strong> — if you missed the conference, a few sessions from AWE are worth revisiting, including <a href="https://youtu.be/Ncl-rdEKZxk" aria-label="Watch How Live Immersive Video Is Accomplished on YouTube">"How Live Immersive Video Is Accomplished"</a> with SpatialGen and Blackmagic, <a href="https://youtu.be/eUQLZqvQNIc" aria-label="Watch Inside the Immersive Video Renaissance on YouTube">"Inside the Immersive Video Renaissance"</a> with Targo and Blackmagic, and <a href="https://youtu.be/0PJ4h7i5il0" aria-label="Watch Presence Is the New Premium on YouTube">"Presence Is the New Premium"</a> with Hugh Hou and Keeley Turner. <a href="https://youtube.com/playlist?list=PLLri17oDqCEX4vsgND1zPnlRNyU2CjHy3" aria-label="View the full Immersive Video AWE playlist on YouTube">Immersive Video AWE Playlist <span aria-hidden="true">→</span></a></li>
+          <li>📹 <strong>Live Camera in Spatial Film</strong> — Hugh Hou's new on-set 3D 180° monitoring tool solves a real production headache: seeing a proper stereo preview while shooting, instead of two flat fisheye circles. <a href="https://spatial.film/live-camera/" aria-label="Learn more about Live Camera at spatial.film">Learn more <span aria-hidden="true">→</span></a></li>
+          <li>🔧 <strong>AIVU Merger</strong> — a new community tool for combining, splitting, and reordering AIVU files without a full re-export, aimed at anyone who's had to fix one small error in an otherwise-finished file. <a href="https://apps.apple.com/us/app/aivumerger/id6792478066?mt=12" aria-label="Download AIVUMerger app">AIVUMerger app <span aria-hidden="true">→</span></a> &nbsp;|&nbsp; <a href="https://www.reddit.com/r/VR180Film/comments/1viitcm/edit_aivu_has_never_been_so_easy/" aria-label="Read about AIVU Merger on Reddit">Details on Reddit <span aria-hidden="true">→</span></a></li>
+        </ul>
+        <a href="#top" class="back-to-top" aria-label="Back to top of newsletter" style="margin-top:16px;">Back to top <span aria-hidden="true">↑</span></a>
+      </div>
+    </div>
+
+    <div class="nl-card-section">
+      <div id="fun" class="nl-section-inner">
+        <span class="track-pill pill-spatial">🥽 Spatial Computing</span>
+        <h2 class="nl-label" style="margin:0 0 16px;">Just for Fun</h2>
+
+        <h3 class="nl-h3">How Jon Favreau Used Vision Pro on the Set of Star Wars: The Mandalorian and Grogu</h3>
+        <p class="nl-p">Not immersive video, but too fun not to mention: director Jon Favreau and ILM visual effects supervisor John Knoll used Apple Vision Pro to scout virtual sets and preview shots at true IMAX scale, long before anything was physically built. "The stereo viewing experience on Vision Pro is the best I've ever seen," said Knoll. "The images are bright, sharp, and perfectly synced."</p>
+
+        <p class="nl-p"><a href="https://www.instagram.com/p/DbdpLJ9jtxD/" aria-label="Read more on Apple's Hello Apple Instagram">Read more on Hello Apple <span aria-hidden="true">→</span></a></p>
+
+        <p class="nl-p"><em>The Mandalorian and Grogu</em> is now available to buy or rent on the Apple TV app.</p>
+
+        <hr aria-hidden="true" style="border:none; border-top:1px solid #eef0f2; margin:16px 0;">
+
+        <p class="nl-p" style="margin:0;">🌌 Also spotted: a fan built a custom "Silo"-inspired Vision Pro environment ahead of the show's Season 3 premiere, a nice small reminder of how much a well-built environment adds to a sense of place, even outside of video content. <a href="https://x.com/mundoxrbrasil/status/2070238374967804188" aria-label="See the Silo-inspired Vision Pro environment on X">See it on X <span aria-hidden="true">→</span></a></p>
+
+        <a href="#top" class="back-to-top" aria-label="Back to top of newsletter" style="margin-top:16px;">Back to top <span aria-hidden="true">↑</span></a>
+      </div>
+    </div>
+
+    <div class="nl-card-section">
+      <div id="spatial" class="nl-section-inner">
+        <span class="track-pill pill-spatial">🥽 Spatial Computing</span>
+        <h2 class="nl-label" style="margin:0 0 16px;">News &amp; Use Cases</h2>
+
+        <h3 class="nl-h3">Accessibility Is Now Part of USD's Core Schema</h3>
+        <p class="nl-p">OpenUSD has formally added <code>UsdUIAccessibilityAPI</code> to its core schema, meaning accessibility metadata like labels, descriptions, and priority can now live directly inside a 3D asset, rather than being bolted on afterward. Blender 5.1 and Maya-USD already ship support, with accessibility data surfaced right in Maya's Attribute Editor.</p>
+
+        <div class="highlight-spatial"><strong>Why this matters:</strong> Apple Vision Pro handles USDZ files natively, so accessibility metadata that travels with the asset, through Blender or Maya, straight into visionOS, closes a very important gap. For anyone building spatial experiences, accessibility can now be built into your files, not bolted on later.</div>
+
+        <p class="nl-p" style="margin:0 0 22px;">
+          <a href="https://openusd.org/release/api/class_usd_u_i_accessibility_a_p_i.html" aria-label="Read the OpenUSD UsdUIAccessibilityAPI documentation">USD Accessibility API <span aria-hidden="true">→</span></a>
+          &nbsp;|&nbsp;
+          <a href="https://help.autodesk.com/view/MAYAUL/2025/ENU/?guid=GUID-67A58D31-4722-4769-B3E6-1A35B5B53BED" aria-label="Read the Maya Attribute Editor documentation">Maya Attribute Editor <span aria-hidden="true">→</span></a>
+          &nbsp;|&nbsp;
+          <a href="https://docs.blender.org/manual/en/latest/files/import_export/usd.html#accessibility" aria-label="Read the Blender USD accessibility documentation">Blender USD Accessibility <span aria-hidden="true">→</span></a>
+        </p>
+
+        <h3 class="nl-h3">A New Agency Is Betting on Immersive Storytelling</h3>
+        <p class="nl-p">Mount Hood, "The Spatial Computing Agency," officially launched in July, founded by Phil Traut and staffed by 18 developers, filmmakers, and 3D designers. Alongside custom native Vision Pro app development, their "Immersive Storytelling" service line specifically promises "high-resolution 180° and 360° video, ultra-realistic depth, and state-of-the-art camera technology," real production capability, not just app development. <a href="https://mounthood.agency" aria-label="Visit Mount Hood's website">mounthood.agency <span aria-hidden="true">→</span></a></p>
+
+        <a href="#top" class="back-to-top" aria-label="Back to top of newsletter">Back to top <span aria-hidden="true">↑</span></a>
+      </div>
+    </div>
+
+    <div class="nl-card-section">
+      <div id="catalog" class="nl-section-inner" style="background-color:#fafafa;">
+        <h2 class="nl-label">📱 What's New on the Catalog Site</h2>
+        <p class="nl-p" style="margin:0 0 14px;">A few additions to imaginationave.com since our last edition:</p>
+
+        <div class="chip-row">
+          <span class="chip">🎵 ARR Immersive</span>
+          <span class="chip">📷 Spatialapse Camera</span>
+          <span class="chip">🎬 Adobe Premiere for visionOS</span>
+          <span class="chip">🌍 Melilla, Spain VR180</span>
+        </div>
+
+        <p class="nl-p" style="margin:16px 0 0;">Adobe Premiere now runs natively on visionOS, with a spatial editing interface: floating panels, spatial clips directly in the timeline, and a depth slider for compositing text.</p>
+
+        <p class="nl-p" style="margin:16px 0 0;">
+          <a href="https://imaginationave.com/" class="pill-cta" aria-label="Explore the Apple Immersive Video and spatial computing content catalog at imaginationave.com">Explore the catalog <span aria-hidden="true">→</span></a>
+        </p>
+      </div>
+    </div>
+
+    <div class="nl-card-section">
+      <div class="nl-section-inner" style="background-color:#fafafa;">
+        <h2 class="nl-label">Contact</h2>
+        <p class="nl-p" style="margin:0;"><a href="#" class="js-mailto" data-user="=Umdh52bpRXYul2Zh1Wa" data-domain="==QbvNmLjFWb" aria-label="Email Imagination Ave"><strong>Imagination Ave</strong></a></p>
+      </div>
+    </div>
+
+  </div>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="site-footer-inner">
+      <p>The Apple Immersive Video &amp; Spatial Computing catalog and newsletter are independent publications. They are not affiliated with, endorsed by, or sponsored by Apple, Blackmagic Design, or any other company mentioned. Apple, Apple Vision Pro, and Apple Immersive Video are trademarks of Apple Inc.</p>
+      <p>A publication of <a href="#" class="js-mailto" data-user="=Umdh52bpRXYul2Zh1Wa" data-domain="==QbvNmLjFWb" aria-label="Email Imagination Ave">Imagination Ave</a> &nbsp;·&nbsp; <a href="./">Newsletter Archive</a> &nbsp;·&nbsp; <a href="../">Content Catalog</a></p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      function decode(str) {
+        return atob(str.split('').reverse().join(''));
+      }
+      var links = document.querySelectorAll('.js-mailto');
+      for (var i = 0; i < links.length; i++) {
+        var el = links[i];
+        var user = decode(el.getAttribute('data-user'));
+        var domain = decode(el.getAttribute('data-domain'));
+        el.setAttribute('href', 'mailto:' + user + '@' + domain);
+      }
+    })();
+  </script>
+
+</body>
+</html>
