@@ -410,8 +410,13 @@ a.entry-name:hover { text-decoration: underline; }
 
 /* ── Newsletter Web Version ───────────────────────────────── */
 /* Used in newsletters/*.html — wider than email, takes advantage of browser width */
-/* Email version (immersive_next_draft.html) stays at 600px max-width */
-.nl-wrap { max-width: 900px; margin: 32px auto; background: #ffffff; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+/* Email version (immersive_next_draft.html) stays at 680px max-width */
+/* .nl-wrap itself is intentionally NOT styled here — each newsletter edition defines
+   its own complete .nl-wrap rule in its own <style> block (max-width, margin, background,
+   border-radius, shadow, etc.), since the visual design has evolved across editions
+   (single white container through July 2026; rounded-card design from August 2026 on).
+   A shared rule here would silently conflict with whatever a given edition defines,
+   as happened with the August 2026 edition — removed Aug 15, 2026 for that reason. */
 .nl-section { padding: 32px 48px; }
 .nl-label { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600; color: #6e6e73; margin: 0 0 10px; }
 .nl-hr { border: none; border-top: 1px solid #dddee1; margin: 0; }
